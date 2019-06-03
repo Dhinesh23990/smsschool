@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.SmsLogVO" table="sms_log">
+		<cache usage="read-write"/> 
+		
+		<id name="id" type="java.lang.String">
+			<column name="Id" />
+		</id>
+		
+		<property name="smsDescription" type="java.lang.String">
+		 	<column name="smsDescription" />
+		</property>
+		
+		<property name="smsType" type="java.lang.String">
+		 	<column name="smsType" />
+		</property>
+		
+		<property name="smsCount" type="java.lang.Integer">
+			<column name="smsCount" />
+		</property>
+				
+		<property name="sendOn" type="java.util.Date">
+			<column name="sendOn" />
+		</property>
+		
+		<property name="schoolId" type="java.lang.String">
+			<column name="schoolId" />
+		</property>
+		
+		
+	</class>
+</hibernate-mapping>

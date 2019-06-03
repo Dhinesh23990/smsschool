@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.SmsVO" table="sms">
+		<cache usage="read-write"/> 
+		
+		<id name="id" type="java.lang.String">
+			<column name="Id" />
+		</id>
+		
+		<property name="smsTotalCount" type="java.lang.Integer">
+		 	<column name="smsTotalCount" />
+		</property>
+		
+		<property name="smsBalanceCount" type="java.lang.Integer">
+		 	<column name="smsBalanceCount" />
+		</property>
+		
+		<property name="smsValidityDays" type="java.lang.Integer">
+			<column name="smsValidityDays" />
+		</property>
+		
+		<property name="smsTotalSentCount" type="java.lang.Integer">
+			<column name="smsTotalSentCount" />
+		</property>
+		
+		<property name="smsTodaySentCount" type="java.lang.Integer">
+			<column name="smsTodaySentCount" />
+		</property>
+		
+		<property name="smsStartDate" type="java.util.Date">
+			<column name="smsStartDate" />
+		</property>
+		
+		<property name="smsEndDate" type="java.util.Date">
+			<column name="smsEndDate" />
+		</property>
+		
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.LookupVO" table="lookup">
+		<cache usage="read-write"/> 
+		
+		<id name="id" type="java.lang.String">
+			<column name="Id" />
+		</id>
+		
+		<property name="typeId" type="java.lang.String">
+		 	<column name="typeId" />
+		</property>
+		
+		<property name="type" type="java.lang.String">
+			<column name="type" />
+		</property>
+		
+		<property name="name" type="java.lang.String">
+			<column name="name" />
+		</property>
+		
+		<property name="value" type="java.lang.String">
+			<column name="value" />
+		</property>
+		
+		<property name="schoolId" type="java.lang.String">
+			<column name="schoolId" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

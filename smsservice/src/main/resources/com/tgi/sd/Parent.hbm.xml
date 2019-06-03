@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.ParentVO" table="parent">
+		<cache usage="read-write" />
+
+		<id name="id" type="java.lang.String">
+			<column name="id" />
+		</id>
+		
+		<property name="studentId" type="java.lang.String">
+			<column name="studentId" />
+		</property>
+
+		<property name="parentName" type="java.lang.String">
+			<column name="parentName" />
+		</property>
+		
+		<property name="gender" type="java.lang.String">
+			<column name="gender" />
+		</property>
+		
+		<property name="dob" type="java.util.Date">
+			<column name="dob" />
+		</property>
+		
+		<property name="occupation" type="java.lang.String">
+			<column name="occupation" />
+		</property>
+		
+		<property name="educationalQualification" type="java.lang.String">
+			<column name="educationalQualification" />
+		</property>
+		
+		<property name="annualIncome" type="java.lang.String">
+			<column name="annualIncome" />
+		</property>
+		
+		<property name="aadharNumber" type="java.lang.String">
+			<column name="aadharNumber" />
+		</property>
+		
+		<property name="panNumber" type="java.lang.String">
+			<column name="panNumber" />
+		</property>
+		
+		<property name="parentMobileNumber1" type="java.lang.String">
+			<column name="parentMobileNumber1" />
+		</property>
+		
+		<property name="parentMobileNumber2" type="java.lang.String">
+			<column name="parentMobileNumber2" />
+		</property>
+		
+		<property name="emailId" type="java.lang.String">
+			<column name="emailId" />
+		</property>
+		
+		<property name="alternateEmailId" type="java.lang.String">
+			<column name="alternateEmailId" />
+		</property>
+		
+		<property name="addressLine1" type="java.lang.String">
+			<column name="addressLine1" />
+		</property>
+		
+		<property name="addressLine2" type="java.lang.String">
+			<column name="addressLine2" />
+		</property>
+		
+		<property name="country" type="java.lang.String">
+			<column name="country" />
+		</property>
+		
+		<property name="state" type="java.lang.String">
+			<column name="state" />
+		</property>
+		
+		<property name="city" type="java.lang.String">
+			<column name="city" />
+		</property>
+		
+		<property name="pinCode" type="java.lang.String">
+			<column name="pinCode" />
+		</property>
+		
+		<property name="comAddressLine1" type="java.lang.String">
+			<column name="comAddressLine1" />
+		</property>
+		
+		<property name="comAddressLine2" type="java.lang.String">
+			<column name="comAddressLine2" />
+		</property>
+		
+		<property name="comCountry" type="java.lang.String">
+			<column name="comCountry" />
+		</property>
+				
+		<property name="comState" type="java.lang.String">
+			<column name="comState" />
+		</property>
+		
+		<property name="comCity" type="java.util.Date">
+			<column name="comCity" />
+		</property>
+		
+		<property name="comPinCode" type="java.lang.String">
+			<column name="comPinCode" />
+		</property>
+		
+		<property name="profileImage" type="java.lang.String">
+			<column name="profileImage" />
+		</property>
+		
+		<property name="schoolId" type="java.lang.String">
+			<column name="schoolId" />
+		</property>
+		
+	</class>
+</hibernate-mapping>		   

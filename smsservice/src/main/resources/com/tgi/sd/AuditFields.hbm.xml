@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.AuditFields" table="auditfields">
+		<cache usage="read-write" />
+
+		<id name="id" type="java.lang.String">
+			<column name="id" />
+		</id>
+		<property name="createdBy" type="java.lang.String">
+			<column name="createdBy" />
+		</property>
+
+		<property name="updateBy" type="java.lang.String">
+			<column name="updateBy" />
+		</property>
+		
+		<property name="createdDate" type="java.util.Date">
+			<column name="createdDate" />
+		</property>
+		
+		<property name="updatedDate" type="java.util.Date">
+			<column name="updatedDate" />
+		</property>
+		
+
+	</class>
+</hibernate-mapping>		   

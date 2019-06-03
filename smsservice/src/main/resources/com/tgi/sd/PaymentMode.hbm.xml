@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.fms.PaymentModeVO" table="paymentmode">
+		<cache usage="read-write"/> 
+		
+		<id name="id" type="java.lang.String">
+			<column name="Id" />
+		</id>
+		
+		<property name="feeConfigurationId" type="java.lang.String">
+		 	<column name="feeConfigurationId" />
+		</property>
+		
+		<property name="payName" type="java.lang.String">
+		 	<column name="payName" />
+		</property>
+		
+		<property name="schoolId" type="java.lang.String">
+		 	<column name="schoolId" />
+		</property>
+		
+		<property name="studentId" type="java.lang.String">
+		 	<column name="studentId" />
+		</property>
+		
+		<property name="paymentType" type="java.lang.String">
+		 	<column name="paymentType" />
+		</property>
+		
+		<property name="amount" type="java.lang.String">
+		 	<column name="amount" />
+		</property>
+		
+		<property name="pending" type="java.lang.String">
+		 	<column name="pending" />
+		</property>
+		
+		<property name="status" type="java.lang.String">
+		 	<column name="status" />
+		</property>
+		
+		<property name="term" type="java.lang.String">
+		 	<column name="term" />
+		</property>
+		
+		<property name="classId" type="java.lang.String">
+		 	<column name="classId" />
+		</property>
+		
+		<property name="batchId" type="java.lang.String">
+		 	<column name="batchId" />
+		</property>
+		
+		<property name="cardTransactionId" type="java.lang.String">
+		 	<column name="cardTransactionId" />
+		</property>
+		
+		<property name="bankName" type="java.lang.String">
+		 	<column name="bankName" />
+		</property>
+		
+		<property name="chequeNo" type="java.lang.String">
+		 	<column name="chequeNo" />
+		</property>
+		
+		<property name="ddNo" type="java.lang.String">
+		 	<column name="ddNo" />
+		</property>
+		
+		<property name="paymentDate" type="java.lang.String">
+		 	<column name="paymentDate" />
+		</property>
+		
+		<bag name="feeTypes" table="paymentmodetype" cascade="all" order-by="feeType desc">
+			<key column="paymentModeId" />
+			<one-to-many class="com.tgi.sd.domain.fms.PaymentModeTypeVO" />
+		</bag>
+	</class>
+	
+	
+	<!-- config types -->
+	<class name="com.tgi.sd.domain.fms.PaymentModeTypeVO" table="paymentmodetype">
+		<cache usage="read-write"/> 
+		
+		<id name="recId" type="java.lang.Integer">
+			<column name="recId" />
+				<generator class="increment"/>
+		</id>
+		
+		<property name="paymentModeId" type="java.lang.String">
+		 	<column name="paymentModeId" />
+		</property>
+		
+		<property name="feeTypeId" type="java.lang.String">
+		 	<column name="feeTypeId" />
+		</property>
+		
+		<property name="feeType" type="java.lang.String">
+		 	<column name="feeType" />
+		</property>
+		
+		<property name="recurringPerYear" type="java.lang.String">
+		 	<column name="recurringPerYear" />
+		</property>
+		
+		<property name="remDuration" type="java.lang.String">
+		 	<column name="remDuration" />
+		</property>
+		
+		<property name="checked" type="java.lang.Boolean">
+		 	<column name="checked" />
+		</property>
+		
+		<property name="amount" type="java.lang.Double">
+		 	<column name="amount" />
+		</property>
+		
+		<property name="schoolId" type="java.lang.String">
+			<column name="schoolId" />
+		</property>
+		
+	</class>		
+</hibernate-mapping>

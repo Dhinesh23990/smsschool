@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.StudentVO" table="students">
+		<cache usage="read-write" />
+
+		<id name="id" type="java.lang.String">
+			<column name="id" />
+		</id>
+		
+		<property name="studentName" type="java.lang.String">
+			<column name="studentName" />
+		</property>
+
+		<property name="studentId" type="java.lang.String">
+			<column name="studentId" />
+		</property>
+		<property name="surName" type="java.lang.String">
+			<column name="surName" />
+		</property>
+		<property name="gender" type="java.lang.String">
+			<column name="gender" />
+		</property>
+		<property name="dob" type="java.util.Date">
+			<column name="dob" />
+		</property>
+		
+		
+		<property name="bloodGroup" type="java.lang.String">
+			<column name="bloodGroup" />
+		</property>
+		<property name="religion" type="java.lang.String">
+			<column name="religion" />
+		</property>
+		<property name="caste" type="java.lang.String">
+			<column name="caste" />
+		</property>
+		<property name="nationality" type="java.lang.String">
+			<column name="nationality" />
+		</property>
+		<property name="mohterTongue" type="java.lang.String">
+			<column name="mohterTongue" />
+		</property>
+		<property name="physicallyChallenged" type="java.lang.String">
+			<column name="physicallyChallenged" />
+		</property>
+		<property name="disabilityDetail" type="java.lang.String">
+			<column name="disabilityDetail" />
+		</property>
+		
+		<property name="mobileNumber" type="java.lang.String">
+			<column name="mobileNumber" />
+		</property>
+		<property name="emergencyContactNumber" type="java.lang.String">
+			<column name="emergencyContactNumber" />
+		</property>
+		<property name="emailId" type="java.lang.String">
+			<column name="emailId" />
+		</property>
+		<property name="alternateEmailId" type="java.lang.String">
+			<column name="alternateEmailId" />
+		</property>
+		<property name="countryId" type="java.lang.String">
+			<column name="countryId" />
+		</property>
+		<property name="stateId" type="java.lang.String">
+			<column name="stateId" />
+		</property>
+		<property name="cityId" type="java.lang.String">
+			<column name="cityId" />
+		</property>
+		<property name="zipcode" type="java.lang.String">
+			<column name="zipcode" />
+		</property>
+		<property name="addressLine1" type="java.lang.String">
+			<column name="addressLine1" />
+		</property>
+		<property name="addressLine2" type="java.lang.String">
+			<column name="addressLine2" />
+		</property>
+		<property name="admissionNumber" type="java.lang.String">
+			<column name="admissionNumber" />
+		</property>
+		<property name="FileNo" type="java.lang.String">
+			<column name="FileNo" />
+		</property>
+		<property name="admissionDate" type="java.util.Date">
+			<column name="admissionDate" />
+		</property>
+		<property name="medium" type="java.lang.String">
+			<column name="medium" />
+		</property>
+		<property name="classId" type="java.lang.String">
+			<column name="classId" />
+		</property>
+		<property name="section" type="java.lang.String">
+			<column name="section" />
+		</property>
+		<property name="batchId" type="java.lang.String">
+			<column name="batchId" />
+		</property>
+		<property name="course" type="java.lang.String">
+			<column name="course" />
+		</property>
+		<property name="firstLanguage" type="java.lang.String">
+			<column name="firstLanguage" />
+		</property>
+		<property name="secondLanguage" type="java.lang.String">
+			<column name="secondLanguage" />
+		</property>
+		<property name="identificationMark1" type="java.lang.String">
+			<column name="identificationMark1" />
+		</property>
+		<property name="identificationMark2" type="java.lang.String">
+			<column name="identificationMark2" />
+		</property>
+		
+		<property name="previousSchool" type="java.lang.String">
+			<column name="previousSchool" />
+		</property>
+		<property name="lastStudiedCourse" type="java.lang.String">
+			<column name="lastStudiedCourse" />
+		</property>
+		<property name="lastExaminationMark" type="java.lang.String">
+			<column name="lastExaminationMark" />
+		</property>
+		<property name="ReasonForChange" type="java.lang.String">
+			<column name="ReasonForChange" />
+		</property>
+		<property name="yearOfLastStudiedSchool" type="java.lang.String">
+			<column name="yearOfLastStudiedSchool" />
+		</property>
+		<property name="reasonForGap" type="java.lang.String">
+			<column name="reasonForGap" />
+		</property>
+		<property name="schoolId" type="java.lang.String">
+			<column name="schoolId" />
+		</property>
+		
+		
+		
+		<property name="attendancePercenatge" type="java.lang.Long">
+			<column name="attendancePercenatge" />
+		</property>
+		<property name="presentDays" type="java.lang.Integer">
+			<column name="presentDays" />
+		</property>
+		<property name="totalDays" type="java.lang.Integer">
+			<column name="totalDays" />
+		</property>
+		<property name="parentName" type="java.lang.String">
+			<column name="parentName" />
+		</property>
+		<property name="parentId" type="java.lang.String">
+			<column name="parentId" />
+		</property>
+		<property name="relation" type="java.lang.String">
+			<column name="relation" />
+		</property>
+		<property name="parentOccupation" type="java.lang.String">
+			<column name="parentOccupation" />
+		</property>
+		<property name="parentGender" type="java.lang.String">
+			<column name="parentGender" />
+		</property>
+		<property name="parentQualification" type="java.lang.String">
+			<column name="parentQualification" />
+		</property>
+		<property name="parentMobileNumber1" type="java.lang.String">
+			<column name="parentMobileNumber1" />
+		</property>
+		<property name="parentMobileNumber2" type="java.lang.String">
+			<column name="parentMobileNumber2" />
+		</property>
+		<property name="parentDob" type="java.lang.String">
+			<column name="parentDob" />
+		</property>
+		<property name="parentAnnualIncome" type="java.lang.String">
+			<column name="parentAnnualIncome" />
+		</property>
+		<property name="parentEmailId" type="java.lang.String">
+			<column name="parentEmailId" />
+		</property>
+		<property name="parentAlternateEmailId" type="java.lang.String">
+			<column name="parentAlternateEmailId" />
+		</property>
+		<property name="motherName" type="java.lang.String">
+			<column name="motherName" />
+		</property>
+		<property name="motherOccupation" type="java.lang.String">
+			<column name="motherOccupation" />
+		</property>
+		<property name="motherAnnualIncome" type="java.lang.String">
+			<column name="motherAnnualIncome" />
+		</property>
+		<property name="guardianName" type="java.lang.String">
+			<column name="guardianName" />
+		</property>
+		<property name="guardianOccupation" type="java.lang.String">
+			<column name="guardianOccupation" />
+		</property>
+		<property name="guardianAnnualIncome" type="java.lang.String">
+			<column name="guardianAnnualIncome" />
+		</property>
+
+	</class>
+</hibernate-mapping>		   

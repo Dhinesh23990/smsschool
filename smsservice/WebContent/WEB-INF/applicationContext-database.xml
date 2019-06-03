@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<!--
+		This applicationContext contains spring hibernate integration
+	-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd 
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+    http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+
+		
+	<!-- <context:property-placeholder location="classpath:gos-${run.env:local}.properties" /> -->
+ 	
+ 	<import resource="applicationContext-hibernate.xml"/> 
+ 	
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>${datasource.url}</value>
+		</property>
+		<property name="username">
+			<value>${datasource.username}</value>
+		</property>
+		<property name="password">
+			<value>${datasource.password}</value>
+		</property>
+	</bean>
+
+
+	
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		autowire="byName" >
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		autowire="byName">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources"  ref="hibernateMapping"></property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+				<!--<prop key="connection.autocommit">false</prop>	
+				--><prop key="hibernate.connection.release_mode">${hibernate.connection.release_mode}</prop>
+				<!--<prop key="hibernate.connection.max_allowed_packet">524288000</prop>
+				--><prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+				<!--<prop key="connection.isolation">1</prop>1 is READ_UNCOMMITTED, 2 is READ_COMMITTED-->
+			</props>
+		</property>
+	</bean>
+	
+		<tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans>

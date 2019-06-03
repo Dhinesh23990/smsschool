@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.SmsTemplateVO" table="smstemplate">
+		<cache usage="read-write"/> 
+		
+		<id name="id" type="java.lang.String">
+			<column name="Id" />
+		</id>
+		
+		<property name="shortDescription" type="java.lang.String">
+		 	<column name="shortDescription" />
+		</property>
+		
+		<property name="template" type="java.lang.String">
+		 	<column name="template" />
+		</property>
+	
+		<property name="schoolId" type="java.lang.String">
+		 	<column name="schoolId" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

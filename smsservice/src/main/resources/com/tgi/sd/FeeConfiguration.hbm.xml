@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.fms.FeeConfigurationVO" table="feeconfiguration">
+		<cache usage="read-write"/> 
+		
+		<id name="id" type="java.lang.String">
+			<column name="Id" />
+		</id>
+		
+		<property name="type" type="java.lang.String">
+		 	<column name="type" />
+		</property>
+		
+		<property name="batchId" type="java.lang.String">
+		 	<column name="batchId" />
+		</property>
+		
+		<property name="classId" type="java.lang.String">
+		 	<column name="classId" />
+		</property>
+		
+		<property name="sectionId" type="java.lang.String">
+		 	<column name="sectionId" />
+		</property>
+		
+		<property name="term" type="java.lang.String">
+		 	<column name="term" />
+		</property>
+		
+		<property name="feeTypeId" type="java.lang.String">
+		 	<column name="feeTypeId" />
+		</property>
+		
+		<property name="feeComponentId" type="java.lang.String">
+		 	<column name="feeComponentId" />
+		</property>
+		
+		<property name="amount" type="java.lang.Double">
+		 	<column name="amount" />
+		</property>
+		
+		<property name="feeStartDate" type="java.util.Date">
+		 	<column name="feeStartDate" />
+		</property>
+		
+		<property name="feeReminderDate" type="java.util.Date">
+		 	<column name="feeReminderDate" />
+		</property>
+		
+		<property name="feeCategory" type="java.lang.String">
+		 	<column name="feeCategory" />
+		</property>
+		
+		<property name="studentId" type="java.lang.String">
+		 	<column name="studentId" />
+		</property>
+		
+		<property name="schoolId" type="java.lang.String">
+			<column name="schoolId" />
+		</property>
+ 
+		<bag name="feeTypes" table="feeconfigurationtype" cascade="all" order-by="feeType desc">
+			<key column="feeConfigurationId" />
+			<one-to-many class="com.tgi.sd.domain.fms.FeeConfigurationTypeVO" />
+		</bag>
+		
+	</class>
+	
+	
+	
+	<!-- config types -->
+	<class name="com.tgi.sd.domain.fms.FeeConfigurationTypeVO" table="feeconfigurationtype">
+		<cache usage="read-write"/> 
+		
+		<id name="recId" type="java.lang.Integer">
+			<column name="recId" />
+				<generator class="increment"/>
+		</id>
+		
+		<property name="feeConfigurationId" type="java.lang.String">
+		 	<column name="feeConfigurationId" />
+		</property>
+		
+		<property name="feeTypeId" type="java.lang.String">
+		 	<column name="feeTypeId" />
+		</property>
+		
+		<property name="feeType" type="java.lang.String">
+		 	<column name="feeType" />
+		</property>
+		
+		<property name="recurringPerYear" type="java.lang.String">
+		 	<column name="recurringPerYear" />
+		</property>
+		
+		<property name="remDuration" type="java.lang.String">
+		 	<column name="remDuration" />
+		</property>
+		
+		<property name="checked" type="java.lang.Boolean">
+		 	<column name="checked" />
+		</property>
+		
+		<property name="amount" type="java.lang.Double">
+		 	<column name="amount" />
+		</property>
+		
+		<property name="schoolId" type="java.lang.String">
+			<column name="schoolId" />
+		</property>
+		
+	</class>	
+</hibernate-mapping>

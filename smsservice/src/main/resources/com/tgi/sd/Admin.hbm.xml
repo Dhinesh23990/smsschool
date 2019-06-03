@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.AdminVO" table="admin">
+		<cache usage="read-write" />
+
+		<id name="id" type="java.lang.String">
+			<column name="id" />
+		</id>
+		<property name="userOid" type="java.lang.String">
+			<column name="userOid" />
+		</property>
+
+		<property name="adminId" type="java.lang.String">
+			<column name="adminId" />
+		</property>
+		<property name="firstName" type="java.lang.String">
+			<column name="firstName" />
+		</property>
+		<property name="userName" type="java.lang.String">
+			<column name="userName" />
+		</property>
+		<property name="initial" type="java.lang.String">
+			<column name="initial" />
+		</property>
+		<property name="genderId" type="java.lang.String">
+			<column name="genderId" />
+		</property>
+		<property name="dob" type="java.util.Date">
+			<column name="dob" />
+		</property>
+		<property name="blooGroupId" type="java.lang.String">
+			<column name="blooGroupId" />
+		</property>
+		<property name="religionId" type="java.lang.String">
+			<column name="religionId" />
+		</property>
+		<property name="casteId" type="java.lang.String">
+			<column name="casteId" />
+		</property>
+		<property name="nationalityId" type="java.lang.String">
+			<column name="nationalityId" />
+		</property>
+		<property name="motherTongueId" type="java.lang.String">
+			<column name="motherTongueId" />
+		</property>
+		<property name="aadharCardNo" type="java.lang.String">
+			<column name="aadharCardNo" />
+		</property>
+		<property name="panCardNo" type="java.lang.String">
+			<column name="panCardNo" />
+		</property>
+		<property name="mobileNumber" type="java.lang.String">
+			<column name="mobileNumber" />
+		</property>
+		<property name="emergencyContactNumber" type="java.lang.String">
+			<column name="emergencyContactNumber" />
+		</property>
+		<property name="emailId" type="java.lang.String">
+			<column name="emailId" />
+		</property>
+		<property name="alternateEmailId" type="java.lang.String">
+			<column name="alternateEmailId" />
+		</property>
+		<property name="addressLine1" type="java.lang.String">
+			<column name="addressLine1" />
+		</property>
+		<property name="addressLine2" type="java.lang.String">
+			<column name="addressLine2" />
+		</property>
+		<property name="countryId" type="java.lang.String">
+			<column name="countryId" />
+		</property>
+		<property name="stateId" type="java.lang.String">
+			<column name="stateId" />
+		</property>
+		<property name="cityId" type="java.lang.String">
+			<column name="cityId" />
+		</property>
+		<property name="pincodeId" type="java.lang.String">
+			<column name="pincodeId" />
+		</property>
+		<property name="comAddressLine1" type="java.lang.String">
+			<column name="comAddressLine1" />
+		</property>
+		<property name="comAddressLine2" type="java.lang.String">
+			<column name="comAddressLine2" />
+		</property>
+		<property name="comCountryId" type="java.lang.String">
+			<column name="comCountryId" />
+		</property>
+		<property name="comStateId" type="java.lang.String">
+			<column name="comStateId" />
+		</property>
+		<property name="comCityId" type="java.lang.String">
+			<column name="comCityId" />
+		</property>
+		<property name="comPinCodeId" type="java.lang.String">
+			<column name="comPinCodeId" />
+		</property>
+		<property name="employeeNumber" type="java.lang.String">
+			<column name="employeeNumber" />
+		</property>
+		<property name="fileNumber" type="java.lang.String">
+			<column name="fileNumber" />
+		</property>
+		<property name="dateOfJoining" type="java.util.Date">
+			<column name="dateOfJoining" />
+		</property>
+		<property name="educationalQualification" type="java.lang.String">
+			<column name="educationalQualification" />
+		</property>
+		<property name="designation" type="java.lang.String">
+			<column name="designation" />
+		</property>
+		<property name="experience" type="java.lang.String">
+			<column name="experience" />
+		</property>
+		<property name="salary" type="java.lang.String">
+			<column name="salary" />
+		</property>
+		<property name="previousSchool" type="java.lang.String">
+			<column name="previousSchool" />
+		</property>
+		<property name="reasonForChange" type="java.lang.String">
+			<column name="reasonForChange" />
+		</property>
+		<property name="schoolId" type="java.lang.String">
+			<column name="schoolId" />
+		</property>
+		<property name="status" type="java.lang.String">
+			<column name="status" />
+		</property>
+
+	</class>
+</hibernate-mapping>		   

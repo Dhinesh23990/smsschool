@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Application context definition for gos on JPA. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+	<context:annotation-config />
+	
+
+	<!--  <context:component-scan base-package="com.tgi.sd.dao" />-->
+	
+	<!--  DB config and common -->
+	
+	<bean id="propertyPlaceholderConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:gos-${run.env:local}.properties</value>
+				<value>classpath:gos_${run.env:en}.properties</value>
+			</list>
+		</property>
+	</bean>
+  
+
+ 	<import resource="applicationContext-dao.xml" />
+ 	
+ 	
+	<bean id="adminManager" class="com.tgi.sd.manager.AdminManagerImpl">
+		<property name="adminDAO" ref="adminDAO"></property>
+		<property name="cityDAO" ref="cityDAO"></property>
+		<property name="countryDAO" ref="countryDAO"></property>
+		<property name="stateDAO" ref="stateDAO"></property>
+		<property name="genderDAO" ref="genderDAO"></property>
+		<property name="bloodGroupDAO" ref="bloodGroupDAO"></property>
+		<property name="religionDAO" ref="religionDAO"></property>
+		<property name="casteDAO" ref="casteDAO"></property>
+		<property name="nationalityDAO" ref="nationalityDAO"></property>
+		<property name="schoolDAO" ref="schoolDAO"></property>
+		<property name="motherTongueDAO" ref="motherTongueDAO"></property>
+		<property name="teacherDAO" ref="teacherDAO"></property>
+		<property name="mailDAO" ref="mailDAO"></property>
+		
+	</bean>
+
+	<bean id="attendanceManager" class="com.tgi.sd.manager.AttendanceManagerImpl">
+		<property name="attendanceDAO" ref="attendanceDAO"></property>
+		<property name="studentDAO" ref="studentDAO"></property>
+		<property name="sectionDAO" ref="sectionDAO"></property>
+		<property name="classDAO" ref="classDAO"></property>
+		<property name="batchDAO" ref="batchDAO"></property>
+	</bean>
+		
+	<bean id="batchConfigurationManager" class="com.tgi.sd.manager.BatchConfigurationManagerImpl">
+		<property name="batchConfigurationDAO" ref="batchConfigurationDAO"></property>
+		<property name="batchDAO" ref="batchDAO"></property>
+		<property name="classDAO" ref="classDAO"></property>
+		<property name="sectionDAO" ref="sectionDAO"></property>
+		<property name="mediumDAO" ref="mediumDAO"></property>
+		<property name="courseDAO" ref="courseDAO"></property>
+		<property name="teacherDAO" ref="teacherDAO"></property>
+	</bean>
+
+	<bean id="batchManager" class="com.tgi.sd.manager.BatchManagerImpl">
+		<property name="batchDAO" ref="batchDAO"></property>
+	</bean>
+	
+	<bean id="bloodGroupManager" class="com.tgi.sd.manager.BloodGroupManagerImpl">
+		<property name="bloodGroupDAO" ref="bloodGroupDAO"></property>
+	</bean>
+	
+	<bean id="casteManager" class="com.tgi.sd.manager.CasteManagerImpl">
+		<property name="casteDAO" ref="casteDAO"></property>
+	</bean>
+
+	<bean id="categoryManager" class="com.tgi.sd.manager.CategoryManagerImpl">
+		<property name="categoryDAO" ref="categoryDAO"></property>
+	</bean>
+		
+	<bean id="cityManager" class="com.tgi.sd.manager.CityManagerImpl">
+		<property name="cityDAO" ref="cityDAO"></property>
+		<property name="countryDAO" ref="countryDAO"></property>
+		<property name="stateDAO" ref="stateDAO"></property>
+	</bean>	   
+	
+	<bean id="classManager" class="com.tgi.sd.manager.ClassManagerImpl">
+		<property name="classDAO" ref="classDAO"></property>
+	</bean>
+		
+	<bean id="concessionManager" class="com.tgi.sd.manager.ConcessionManagerImpl">
+		<property name="concessionDAO" ref="concessionDAO"></property>
+	</bean>
+			
+	<bean id="countryManager" class="com.tgi.sd.manager.CountryManagerImpl">
+		<property name="countryDAO" ref="countryDAO"></property>
+	</bean>
+		
+	<bean id="courseManager" class="com.tgi.sd.manager.CourseManagerImpl">
+		<property name="courseDAO" ref="courseDAO"></property>
+	</bean>
+	
+	<bean id="dashboardManager" class="com.tgi.sd.manager.DashboardManagerImpl">
+		<property name="dashboardDAO" ref="dashboardDAO"></property>
+		<property name="genderDAO" ref="genderDAO"></property>
+		<property name="classDAO" ref="classDAO"></property>
+		<property name="sectionDAO" ref="sectionDAO"></property>
+		<property name="batchDAO" ref="batchDAO"></property>
+		<property name="mediumDAO" ref="mediumDAO"></property>
+		<property name="courseDAO" ref="courseDAO"></property>
+		<property name="schoolDAO" ref="schoolDAO"></property>
+		<property name="smsDAO" ref="smsDAO"></property>
+		<property name="bloodGroupDAO" ref="bloodGroupDAO"></property>
+		<property name="countryDAO" ref="countryDAO"></property>
+		<property name="educationQualificationDAO" ref="educationQualificationDAO"></property>
+		<property name="languageDAO" ref="languageDAO"></property>
+		<property name="motherTongueDAO" ref="motherTongueDAO"></property>
+		<property name="nationalityDAO" ref="nationalityDAO"></property>
+		<property name="religionDAO" ref="religionDAO"></property>
+		<property name="casteDAO" ref="casteDAO"></property>
+		<property name="subjectDAO" ref="subjectDAO"></property>
+		<property name="attendanceDAO" ref="attendanceDAO"></property>
+		<property name="studentDAO" ref="studentDAO"></property>
+	</bean>	
+
+	<bean id="educationQualificationManager" class="com.tgi.sd.manager.EducationQualificationManagerImpl">
+		<property name="educationQualificationDAO" ref="educationQualificationDAO"></property>
+	</bean>	
+
+	<bean id="eventManager" class="com.tgi.sd.manager.EventManagerImpl">
+		<property name="eventDAO" ref="eventDAO"></property>
+	</bean>	
+
+	<bean id="examManager" class="com.tgi.sd.manager.ExamManagerImpl">
+		<property name="examDAO" ref="examDAO"></property>
+	</bean>	
+
+	<bean id="examSessionManager" class="com.tgi.sd.manager.ExamSessionManagerImpl">
+		<property name="examSessionDAO" ref="examSessionDAO"></property>
+	</bean>	
+
+	<bean id="feeComponentManager" class="com.tgi.sd.manager.FeeComponentManagerImpl">
+		<property name="feeComponentDAO" ref="feeComponentDAO"></property>
+		<property name="feeTypeDAO" ref="feeTypeDAO"></property>
+	</bean>	
+
+	<bean id="feeConfigurationManager" class="com.tgi.sd.manager.FeeConfigurationManagerImpl">
+		<property name="feeConfigurationDAO" ref="feeConfigurationDAO"></property>
+		<property name="feeComponentDAO" ref="feeComponentDAO"></property>
+		<property name="feeTypeDAO" ref="feeTypeDAO"></property>
+		<property name="classDAO" ref="classDAO"></property>
+		<property name="sectionDAO" ref="sectionDAO"></property>
+		<property name="batchDAO" ref="batchDAO"></property>
+		<property name="studentDAO" ref="studentDAO"></property>
+		<property name="paymentModeDAO" ref="paymentModeDAO"></property>
+		<property name="paymentDAO" ref="paymentDAO"></property>
+	</bean>	
+
+	<bean id="feeTypeManager" class="com.tgi.sd.manager.FeeTypeManagerImpl">
+		<property name="feeTypeDAO" ref="feeTypeDAO"></property>
+	</bean>	
+			
+	<bean id="galleryManager" class="com.tgi.sd.manager.GalleryManagerImpl">
+		<property name="galleryDAO" ref="galleryDAO"></property>
+	</bean>	
+										
+	<bean id="genderManager" class="com.tgi.sd.manager.GenderManagerImpl">
+		<property name="genderDAO" ref="genderDAO"></property>
+	</bean>
+
+	<bean id="gradeLimitManager" class="com.tgi.sd.manager.GradeLimitManagerImpl">
+		<property name="gradeLimitDAO" ref="gradeLimitDAO"></property>
+	</bean>
+
+	<bean id="homeworkManager" class="com.tgi.sd.manager.HomeWorkManagerImpl">
+		<property name="homeworkDAO" ref="homeworkDAO"></property>
+		<property name="studentDAO" ref="studentDAO"></property>
+	</bean>
+				
+	<bean id="languageManager" class="com.tgi.sd.manager.LanguageManagerImpl">
+		<property name="languageDAO" ref="languageDAO"></property>
+	</bean>
+
+	<bean id="leaveEntitlementManager" class="com.tgi.sd.manager.LeaveEntitlementManagerImpl">
+		<property name="leaveEntitlementDAO" ref="leaveEntitlementDAO"></property>
+		<property name="leaveMasterDAO" ref="leaveMasterDAO"></property>
+		<property name="teacherDAO" ref="teacherDAO"></property>
+		<property name="leavePeriodDAO" ref="leavePeriodDAO"></property>
+	</bean>
+	
+	<bean id="leaveMasterManager" class="com.tgi.sd.manager.LeaveMasterManagerImpl">
+		<property name="leaveMasterDAO" ref="leaveMasterDAO"></property>
+	</bean>
+	
+	<bean id="leavePeriodManager" class="com.tgi.sd.manager.LeavePeriodManagerImpl">
+		<property name="leavePeriodDAO" ref="leavePeriodDAO"></property>
+		<property name="leaveMasterDAO" ref="leaveMasterDAO"></property>
+	</bean>
+		
+	<bean id="loginManager" class="com.tgi.sd.manager.LoginManagerImpl">
+		<property name="userDAO" ref="userDAO"></property>
+		<property name="mailDAO" ref="mailDAO"></property>
+		<property name="lookupDAO" ref="lookupDAO"></property>
+	</bean>
+
+	<bean id="lookupManager" class="com.tgi.sd.manager.LookupManagerImpl">
+		<property name="lookupDAO" ref="lookupDAO"></property>
+	</bean>
+				
+	<bean id="mediumManager" class="com.tgi.sd.manager.MediumManagerImpl">
+		<property name="mediumDAO" ref="mediumDAO"></property>
+	</bean>
+			
+	<bean id="motherTongueManager" class="com.tgi.sd.manager.MotherTongueManagerImpl">
+		<property name="motherTongueDAO" ref="motherTongueDAO"></property>
+	</bean>
+			
+	<bean id="nationalityManager" class="com.tgi.sd.manager.NationalityManagerImpl">
+		<property name="nationalityDAO" ref="nationalityDAO"></property>
+	</bean>
+	
+	<bean id="notificationManager" class="com.tgi.sd.manager.NotificationManagerImpl">
+		<property name="notificationDAO" ref="notificationDAO"></property>
+		<property name="studentDAO" ref="studentDAO"></property>
+	</bean>
+			
+	<bean id="parentManager" class="com.tgi.sd.manager.ParentManagerImpl">
+		<property name="parentDAO" ref="parentDAO"></property>
+		<property name="userDAO" ref="userDAO"></property>
+		<property name="studentDAO" ref="studentDAO"></property>
+		<property name="schoolDAO" ref="schoolDAO"></property>
+	</bean>
+
+	<bean id="paymentManager" class="com.tgi.sd.manager.PaymentManagerImpl">
+		<property name="paymentDAO" ref="paymentDAO"></property>
+		<property name="studentDAO" ref="studentDAO"></property>
+	</bean>
+		
+	<bean id="paymentModeManager" class="com.tgi.sd.manager.PaymentModeManagerImpl">
+		<property name="paymentModeDAO" ref="paymentModeDAO"></property>
+		<property name="studentDAO" ref="studentDAO"></property>
+		<property name="classDAO" ref="classDAO"></property>
+		<property name="sectionDAO" ref="sectionDAO"></property>
+		<property name="feeConfigurationDAO" ref="feeConfigurationDAO"></property>
+	</bean>
+
+	<bean id="pincodeManager" class="com.tgi.sd.manager.PincodeManagerImpl">
+		<property name="pincodeDAO" ref="pincodeDAO"></property>
+	</bean>
+
+	<bean id="religionManager" class="com.tgi.sd.manager.ReligionManagerImpl">
+		<property name="religionDAO" ref="religionDAO"></property>
+	</bean>
+							
+ 	<bean id="reportManager" class="com.tgi.sd.manager.ReportManagerImpl">
+		<property name="studentDAO" ref="studentDAO"></property>
+		<property name="userDAO" ref="userDAO"></property>
+		<property name="teacherDAO" ref="teacherDAO"></property>
+		<property name="parentDAO" ref="parentDAO"></property>
+	</bean> 
+			
+	<bean id="schoolManager" class="com.tgi.sd.manager.SchoolManagerImpl">
+		<property name="schoolDAO" ref="schoolDAO"></property>
+		<property name="userDAO" ref="userDAO"></property>
+		<property name="mailDAO" ref="mailDAO"></property>
+	</bean>
+	
+	<bean id="sectionManager" class="com.tgi.sd.manager.SectionManagerImpl">
+		<property name="sectionDAO" ref="sectionDAO"></property>
+	</bean>
+			
+	<bean id="smsManager" class="com.tgi.sd.manager.SmsManagerImpl">
+		<property name="smsDAO" ref="smsDAO"></property>
+		<property name="studentDAO" ref="studentDAO"></property>
+		<property name="parentDAO" ref="parentDAO"></property>
+		<property name="userDAO" ref="userDAO"></property>
+		<property name="teacherDAO" ref="teacherDAO"></property>
+		<property name="adminDAO" ref="adminDAO"></property>
+		<property name="batchConfigurationDAO" ref="batchConfigurationDAO"></property>
+		<property name="schoolDAO" ref="schoolDAO"></property>
+		<property name="classDAO" ref="classDAO"></property>
+		<property name="sectionDAO" ref="sectionDAO"></property>
+	</bean>			
+
+	<bean id="smsTemplateManager" class="com.tgi.sd.manager.SmsTemplateManagerImpl">
+		<property name="smsTemplateDAO" ref="smsTemplateDAO"></property>
+	</bean>	
+	
+	<bean id="staffAttendanceManager" class="com.tgi.sd.manager.StaffAttendanceManagerImpl">
+		<property name="staffAttendanceDAO" ref="staffAttendanceDAO"></property>
+		<property name="teacherDAO" ref="teacherDAO"></property>
+		<property name="sectionDAO" ref="sectionDAO"></property>
+		<property name="classDAO" ref="classDAO"></property>
+		<property name="leaveEntitlementDAO" ref="leaveEntitlementDAO"></property>
+		<property name="leaveMasterDAO" ref="leaveMasterDAO"></property>
+		
+	</bean>	
+				
+	<bean id="stateManager" class="com.tgi.sd.manager.StateManagerImpl">
+		<property name="stateDAO" ref="stateDAO"></property>
+		<property name="countryDAO" ref="countryDAO"></property>
+	</bean>
+	
+	<bean id="studentManager" class="com.tgi.sd.manager.StudentManagerImpl">
+		<property name="studentDAO" ref="studentDAO"></property>
+		<property name="cityDAO" ref="cityDAO"></property>
+		<property name="countryDAO" ref="countryDAO"></property>
+		<property name="stateDAO" ref="stateDAO"></property>
+		<property name="genderDAO" ref="genderDAO"></property>
+		<property name="bloodGroupDAO" ref="bloodGroupDAO"></property>
+		<property name="religionDAO" ref="religionDAO"></property>
+		<property name="casteDAO" ref="casteDAO"></property>
+		<property name="nationalityDAO" ref="nationalityDAO"></property>
+		<property name="motherTongueDAO" ref="motherTongueDAO"></property>
+		<property name="mediumDAO" ref="mediumDAO"></property>
+		<property name="classDAO" ref="classDAO"></property>
+		<property name="sectionDAO" ref="sectionDAO"></property>
+		<property name="courseDAO" ref="courseDAO"></property>
+		<property name="languageDAO" ref="languageDAO"></property>
+		<property name="batchDAO" ref="batchDAO"></property>
+		<property name="schoolDAO" ref="schoolDAO"></property>
+		<property name="batchConfigurationDAO" ref="batchConfigurationDAO"></property>
+		<property name="teacherDAO" ref="teacherDAO"></property>
+	</bean>
+	
+	<bean id="subjectManager" class="com.tgi.sd.manager.SubjectManagerImpl">
+		<property name="subjectDAO" ref="subjectDAO"></property>
+	</bean>
+
+	<bean id="subjectSetManager" class="com.tgi.sd.manager.SubjectSetManagerImpl">
+		<property name="subjectSetDAO" ref="subjectSetDAO"></property>
+	</bean>
+					
+	<bean id="subjectTypeManager" class="com.tgi.sd.manager.SubjectTypeManagerImpl">
+		<property name="subjectTypeDAO" ref="subjectTypeDAO"></property>
+	</bean>
+
+	<bean id="teacherManager" class="com.tgi.sd.manager.TeacherManagerImpl">
+		<property name="teacherDAO" ref="teacherDAO"></property>
+		<property name="attendanceDAO" ref="attendanceDAO"></property>
+		<property name="studentDAO" ref="studentDAO"></property>
+		<property name="cityDAO" ref="cityDAO"></property>
+		<property name="countryDAO" ref="countryDAO"></property>
+		<property name="stateDAO" ref="stateDAO"></property>
+		<property name="genderDAO" ref="genderDAO"></property>
+		<property name="bloodGroupDAO" ref="bloodGroupDAO"></property>
+		<property name="religionDAO" ref="religionDAO"></property>
+		<property name="casteDAO" ref="casteDAO"></property>
+		<property name="nationalityDAO" ref="nationalityDAO"></property>
+		<property name="motherTongueDAO" ref="motherTongueDAO"></property>
+		<property name="schoolDAO" ref="schoolDAO"></property>
+		<property name="batchConfigurationDAO" ref="batchConfigurationDAO"></property>
+	</bean>
+		
+	<bean id="testManager" class="com.tgi.sd.manager.TestManagerImpl">
+		<property name="testDAO" ref="testDAO" />
+	</bean>
+	
+	<bean id="userManager" class="com.tgi.sd.manager.UserManagerImpl">
+		<property name="userDAO" ref="userDAO" />
+	</bean>
+			
+</beans>
+
+
+

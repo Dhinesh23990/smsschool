@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.fileUpload.BlobDocumentMappingVO" table="blobdocumentmapping">
+		<cache usage="read-write" />
+
+		<id name="id" type="java.lang.String">
+			<column name="id" />
+		</id>
+		<property name="directory" type="java.lang.String">
+			<column name="directory" />
+		</property>
+
+		<property name="parentId" type="java.lang.String">
+			<column name="parentId" />
+		</property>
+		
+		<property name="blobId" type="java.lang.String">
+			<column name="blobId" />
+		</property>
+				
+		<property name="created" type="java.util.Date">
+			<column name="created" />
+		</property>
+		
+		<property name="updated" type="java.util.Date">
+			<column name="updated" />
+		</property>
+		
+		<property name="ocrProcessed" type="java.lang.Boolean">
+			<column name="ocrProcessed" />
+		</property>
+		
+		<property name="ocrBlobId" type="java.lang.String">
+			<column name="ocrBlobId" />
+		</property>
+
+	</class>
+</hibernate-mapping>		   

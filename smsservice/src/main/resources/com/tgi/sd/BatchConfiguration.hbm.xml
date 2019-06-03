@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.config.BatchConfigurationVO" table="batchconfiguration">
+		<cache usage="read-write" />
+
+		<id name="id" type="java.lang.String">
+			<column name="id" />
+		</id>
+		
+		<property name="batchId" type="java.lang.String">
+			<column name="batchId" />
+		</property>
+		<property name="mediumId" type="java.lang.String">
+			<column name="mediumId" />
+		</property>
+		<property name="sectionId" type="java.lang.String">
+			<column name="sectionId" />
+		</property>
+		<property name="courseId" type="java.lang.String">
+			<column name="courseId" />
+		</property>
+		<property name="classId" type="java.lang.String">
+			<column name="classId" />
+		</property>
+		<property name="classTeacherId" type="java.util.Date">
+			<column name="classTeacherId" />
+		</property>
+		<property name="subjectSetId" type="java.lang.String">
+			<column name="subjectSetId" />
+		</property>
+		<property name="schoolId" type="java.lang.String">
+			<column name="schoolId" />
+		</property>
+		<property name="gradeSystem" type="java.lang.Boolean">
+			<column name="gradeSystem" />
+		</property>
+		
+		
+
+	</class>
+</hibernate-mapping>		   

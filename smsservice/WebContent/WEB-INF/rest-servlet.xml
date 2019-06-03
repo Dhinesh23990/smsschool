@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	 <!--  <context:component-scan base-package="com.jm.ipcr.service" /> -->
+	 <mvc:resources mapping="/images/**" location="productImages/images/" />
+	<mvc:annotation-driven />
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="maxUploadSize" value="50000000"/>
+	</bean>
+	
+	<bean id="adminService" class="com.tgi.sd.service.AdminService">
+		<property name="adminManager" ref="adminManager"></property>
+	</bean>
+
+	<bean id="attendanceService" class="com.tgi.sd.service.AttendanceService">
+		<property name="attendanceManager" ref="attendanceManager"></property>
+	</bean>
+		
+	<bean id="batchConfigurationService" class="com.tgi.sd.service.BatchConfigurationService">
+		<property name="batchConfigurationManager" ref="batchConfigurationManager"></property>
+	</bean>
+
+	<bean id="batchService" class="com.tgi.sd.service.BatchService">
+		<property name="batchManager" ref="batchManager"></property>
+	</bean>
+	
+	<bean id="bloodGroupService" class="com.tgi.sd.service.BloodGroupService">
+		<property name="bloodGroupManager" ref="bloodGroupManager"></property>
+	</bean>
+	
+	<bean id="casteService" class="com.tgi.sd.service.CasteService">
+		<property name="casteManager" ref="casteManager"></property>
+	</bean>
+
+	<bean id="categoryService" class="com.tgi.sd.service.CategoryService">
+		<property name="categoryManager" ref="categoryManager"></property>
+	</bean>
+		
+	<bean id="cityService" class="com.tgi.sd.service.CityService">
+		<property name="cityManager" ref="cityManager"></property>
+	</bean>	   
+	
+	<bean id="classService" class="com.tgi.sd.service.ClassService">
+		<property name="classManager" ref="classManager"></property>
+	</bean>
+		
+	<bean id="concessionService" class="com.tgi.sd.service.ConcessionService">
+		<property name="concessionManager" ref="concessionManager"></property>
+	</bean>
+			
+	<bean id="countryService" class="com.tgi.sd.service.CountryService">
+		<property name="countryManager" ref="countryManager"></property>
+	</bean>
+		
+	<bean id="courseService" class="com.tgi.sd.service.CourseService">
+		<property name="courseManager" ref="courseManager"></property>
+	</bean>
+	
+	<bean id="dashboardService" class="com.tgi.sd.service.DashboardService">
+		<property name="dashboardManager" ref="dashboardManager"></property>
+	</bean>	
+
+	<bean id="educationalQualificationService" class="com.tgi.sd.service.EducationalQualificationService">
+		<property name="educationQualificationManager" ref="educationQualificationManager"></property>
+	</bean>	
+
+	<bean id="eventService" class="com.tgi.sd.service.EventService">
+		<property name="eventManager" ref="eventManager"></property>
+	</bean>	
+
+	<bean id="examService" class="com.tgi.sd.service.ExamService">
+		<property name="examManager" ref="examManager"></property>
+	</bean>	
+
+	<bean id="examSessionService" class="com.tgi.sd.service.ExamSessionService">
+		<property name="examSessionManager" ref="examSessionManager"></property>
+	</bean>	
+
+	<bean id="feeComponentService" class="com.tgi.sd.service.FeeComponentService">
+		<property name="feeComponentManager" ref="feeComponentManager"></property>
+	</bean>	
+
+	<bean id="feeConfigurationService" class="com.tgi.sd.service.FeeConfigurationService">
+		<property name="feeConfigurationManager" ref="feeConfigurationManager"></property>
+	</bean>	
+
+	<bean id="feeTypeService" class="com.tgi.sd.service.FeeTypeService">
+		<property name="feeTypeManager" ref="feeTypeManager"></property>
+	</bean>	
+			
+	<bean id="galleryService" class="com.tgi.sd.service.GalleryService">
+		<property name="galleryManager" ref="galleryManager"></property>
+	</bean>	
+										
+	<bean id="genderService" class="com.tgi.sd.service.GenderService">
+		<property name="genderManager" ref="genderManager"></property>
+	</bean>
+
+	<bean id="gradeLimitService" class="com.tgi.sd.service.GradeLimitService">
+		<property name="gradeLimitManager" ref="gradeLimitManager"></property>
+	</bean>
+
+	<bean id="homeWorkService" class="com.tgi.sd.service.HomeWorkService">
+		<property name="homeworkManager" ref="homeworkManager"></property>
+	</bean>
+				
+	<bean id="languageService" class="com.tgi.sd.service.LanguageService">
+		<property name="languageManager" ref="languageManager"></property>
+	</bean>
+
+	<bean id="leaveEntitlementService" class="com.tgi.sd.service.LeaveEntitlementService">
+		<property name="leaveEntitlementManager" ref="leaveEntitlementManager"></property>
+	</bean>
+	
+	<bean id="leaveMasterService" class="com.tgi.sd.service.LeaveMasterService">
+		<property name="leaveMasterManager" ref="leaveMasterManager"></property>
+	</bean>
+	
+	<bean id="leavePeriodService" class="com.tgi.sd.service.LeavePeriodService">
+		<property name="leavePeriodManager" ref="leavePeriodManager"></property>
+	</bean>
+		
+	<bean id="loginService" class="com.tgi.sd.service.LoginService">
+		<property name="loginManager" ref="loginManager"></property>
+	</bean>
+
+	<bean id="lookupService" class="com.tgi.sd.service.LookupService">
+		<property name="lookupManager" ref="lookupManager"></property>
+	</bean>
+				
+	<bean id="mediumService" class="com.tgi.sd.service.MediumService">
+		<property name="mediumManager" ref="mediumManager"></property>
+	</bean>
+			
+	<bean id="motherTongueService" class="com.tgi.sd.service.MotherTongueService">
+		<property name="motherTongueManager" ref="motherTongueManager"></property>
+	</bean>
+			
+	<bean id="nationalityService" class="com.tgi.sd.service.NationalityService">
+		<property name="nationalityManager" ref="nationalityManager"></property>
+	</bean>
+	
+	<bean id="notificationService" class="com.tgi.sd.service.NotificationService">
+		<property name="notificationManager" ref="notificationManager"></property>
+	</bean>
+			
+	<bean id="parentService" class="com.tgi.sd.service.ParentService">
+		<property name="parentManager" ref="parentManager"></property>
+	</bean>
+
+	<bean id="paymentService" class="com.tgi.sd.service.PaymentService">
+		<property name="paymentManager" ref="paymentManager"></property>
+	</bean>
+		
+	<bean id="paymentModeService" class="com.tgi.sd.service.PaymentModeService">
+		<property name="paymentModeManager" ref="paymentModeManager"></property>
+	</bean>
+
+	<bean id="pincodeService" class="com.tgi.sd.service.PincodeService">
+		<property name="pincodeManager" ref="pincodeManager"></property>
+	</bean>
+
+	<bean id="religionService" class="com.tgi.sd.service.ReligionService">
+		<property name="religionManager" ref="religionManager"></property>
+	</bean>
+							
+	<bean id="reportService" class="com.tgi.sd.service.ReportService">
+		<property name="reportManager" ref="reportManager"></property>
+	</bean> 
+			
+	<bean id="schoolService" class="com.tgi.sd.service.SchoolService">
+		<property name="schoolManager" ref="schoolManager"></property>
+	</bean>
+	
+	<bean id="sectionService" class="com.tgi.sd.service.SectionService">
+		<property name="sectionManager" ref="sectionManager"></property>
+	</bean>
+			
+	<bean id="smsTemplateService" class="com.tgi.sd.service.SMSTemplateService">
+		<property name="smsTemplateManager" ref="smsTemplateManager"></property>
+	</bean>	
+	
+	<bean id="staffAttendanceService" class="com.tgi.sd.service.StaffAttendanceService">
+		<property name="staffAttendanceManager" ref="staffAttendanceManager"></property>
+	</bean>	
+				
+	<bean id="stateService" class="com.tgi.sd.service.StateService">
+		<property name="stateManager" ref="stateManager"></property>
+	</bean>
+	
+	<bean id="studentService" class="com.tgi.sd.service.StudentService">
+		<property name="studentManager" ref="studentManager"></property>
+	</bean>
+	
+	<bean id="subjectService" class="com.tgi.sd.service.SubjectService">
+		<property name="subjectManager" ref="subjectManager"></property>
+	</bean>
+
+	<bean id="subjectSetService" class="com.tgi.sd.service.SubjectSetService">
+		<property name="subjectSetManager" ref="subjectSetManager"></property>
+	</bean>
+	
+	<bean id="subjectTypeService" class="com.tgi.sd.service.SubjectTypeService">
+		<property name="subjectTypeManager" ref="subjectTypeManager"></property>
+	</bean>
+					
+	<bean id="teacherService" class="com.tgi.sd.service.TeacherService">
+		<property name="teacherManager" ref="teacherManager"></property>
+	</bean>
+		
+	<bean id="testService" class="com.tgi.sd.service.TestService">
+		<property name="testManager" ref="testManager" />
+	</bean>
+	
+	<bean id="userService" class="com.tgi.sd.service.UserService">
+		<property name="userManager" ref="userManager" />
+	</bean>
+		
+</beans>

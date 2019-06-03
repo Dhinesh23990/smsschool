@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jms="http://www.springframework.org/schema/jms" xmlns:amq="http://activemq.apache.org/schema/core"
+	xmlns:cxf="http://camel.apache.org/schema/cxf"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+      http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-autowire="no">
+
+	<bean id="hibernateMapping" class="java.util.ArrayList"> 
+		<constructor-arg>
+		<list>
+			
+				<value>com/tgi/sd/Admin.hbm.xml</value>
+				<value>com/tgi/sd/Attendance.hbm.xml</value>
+				<value>com/tgi/sd/AttendanceSummary.hbm.xml</value>
+				<value>com/tgi/sd/AuditFields.hbm.xml</value>
+				<value>com/tgi/sd/Batch.hbm.xml</value>
+				<value>com/tgi/sd/BatchConfiguration.hbm.xml</value>
+				<value>com/tgi/sd/BlobDocumentMapping.hbm.xml</value>
+				<value>com/tgi/sd/Bloodgroup.hbm.xml</value>
+				<value>com/tgi/sd/Caste.hbm.xml</value>
+				<value>com/tgi/sd/Category.hbm.xml</value>
+				<value>com/tgi/sd/City.hbm.xml</value>
+				<value>com/tgi/sd/Class.hbm.xml</value>
+				<value>com/tgi/sd/Concession.hbm.xml</value>
+				<value>com/tgi/sd/Count.hbm.xml</value>
+				<value>com/tgi/sd/Country.hbm.xml</value>
+				<value>com/tgi/sd/Course.hbm.xml</value>
+				<value>com/tgi/sd/Educational.hbm.xml</value>
+				<value>com/tgi/sd/Event.hbm.xml</value>
+				<value>com/tgi/sd/Exam.hbm.xml</value>
+				<value>com/tgi/sd/ExamSession.hbm.xml</value>
+				<value>com/tgi/sd/FeeComponent.hbm.xml</value>
+				<value>com/tgi/sd/FeeConfiguration.hbm.xml</value>
+				<value>com/tgi/sd/FeeType.hbm.xml</value>
+				<value>com/tgi/sd/Gallery.hbm.xml</value>
+				<value>com/tgi/sd/Gender.hbm.xml</value>
+				<value>com/tgi/sd/GradeLimit.hbm.xml</value>
+				<value>com/tgi/sd/Homework.hbm.xml</value>
+				<value>com/tgi/sd/Language.hbm.xml</value>
+				<value>com/tgi/sd/LeaveEntitlement.hbm.xml</value>
+				<value>com/tgi/sd/LeaveMaster.hbm.xml</value>
+				<value>com/tgi/sd/LeavePeriod.hbm.xml</value>
+				<value>com/tgi/sd/Lookup.hbm.xml</value>
+				<value>com/tgi/sd/Mail.hbm.xml</value>
+				<value>com/tgi/sd/Medium.hbm.xml</value>
+				<value>com/tgi/sd/MotherTongue.hbm.xml</value>
+				<value>com/tgi/sd/Nationality.hbm.xml</value>
+				<value>com/tgi/sd/Notification.hbm.xml</value>
+				<value>com/tgi/sd/Parent.hbm.xml</value>
+				<value>com/tgi/sd/Payment.hbm.xml</value>
+				<value>com/tgi/sd/PaymentMode.hbm.xml</value>
+				<value>com/tgi/sd/Pincode.hbm.xml</value>
+				<value>com/tgi/sd/Religion.hbm.xml</value>
+				<value>com/tgi/sd/Role.hbm.xml</value>
+				<value>com/tgi/sd/School.hbm.xml</value>
+				<value>com/tgi/sd/Section.hbm.xml</value>
+				<value>com/tgi/sd/Sms.hbm.xml</value>
+				<value>com/tgi/sd/SmsHistory.hbm.xml</value>
+				<value>com/tgi/sd/SmsLog.hbm.xml</value>
+				<value>com/tgi/sd/SmsTemplate.hbm.xml</value>
+				<value>com/tgi/sd/StaffAttendance.hbm.xml</value>
+				<value>com/tgi/sd/State.hbm.xml</value>
+				<value>com/tgi/sd/Student.hbm.xml</value>
+				<value>com/tgi/sd/Subject.hbm.xml</value>
+				<value>com/tgi/sd/SubjectSet.hbm.xml</value>
+				<value>com/tgi/sd/SubjectType.hbm.xml</value>
+				<value>com/tgi/sd/Teacher.hbm.xml</value>
+				<value>com/tgi/sd/Test.hbm.xml</value>
+				<value>com/tgi/sd/Token.hbm.xml</value>
+				<value>com/tgi/sd/User.hbm.xml</value>
+				
+		</list>
+		</constructor-arg>
+	</bean>
+
+</beans>

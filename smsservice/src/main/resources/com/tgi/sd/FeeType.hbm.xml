@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.fms.FeeTypeVO" table="feetype">
+		<cache usage="read-write"/> 
+		
+		<id name="id" type="java.lang.String">
+			<column name="Id" />
+		</id>
+		
+		<property name="feeType" type="java.lang.String">
+		 	<column name="feeType" />
+		</property>
+		
+		<property name="recurringPerYear" type="java.lang.String">
+		 	<column name="recurringPerYear" />
+		</property>
+		
+		<property name="remDuration" type="java.lang.String">
+		 	<column name="remDuration" />
+		</property>
+		
+		<property name="checked" type="java.lang.Boolean">
+		 	<column name="checked" />
+		</property>
+		
+		<property name="amount" type="java.lang.Double">
+		 	<column name="amount" />
+		</property>
+		
+		<property name="schoolId" type="java.lang.String">
+			<column name="schoolId" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

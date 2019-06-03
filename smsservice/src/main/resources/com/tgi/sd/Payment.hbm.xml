@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tgi.sd.domain.fms.PaymentVO" table="feecomponent">
+		<cache usage="read-write"/> 
+		
+		<id name="id" type="java.lang.String">
+			<column name="Id" />
+		</id>
+		
+		<property name="feeConfigurationId" type="java.lang.String">
+		 	<column name="feeConfigurationId" />
+		</property>
+		
+		<property name="paymentType" type="java.lang.String">
+		 	<column name="paymentType" />
+		</property>
+		
+		<property name="amount" type="java.lang.String">
+		 	<column name="amount" />
+		</property>
+		
+		<property name="paymentStatus" type="java.lang.String">
+		 	<column name="paymentStatus" />
+		</property>
+		
+		<property name="status" type="java.lang.String">
+		 	<column name="status" />
+		</property>
+		
+		<property name="term" type="java.lang.String">
+		 	<column name="term" />
+		</property>
+		
+		<property name="batchId" type="java.lang.String">
+		 	<column name="batchId" />
+		</property>
+		
+		<property name="classId" type="java.lang.String">
+		 	<column name="classId" />
+		</property>
+	
+		<property name="sectionId" type="java.lang.String">
+		 	<column name="sectionId" />
+		</property>
+		
+		<property name="studentId" type="java.lang.String">
+		 	<column name="studentId" />
+		</property>
+		
+		<property name="schoolId" type="java.lang.String">
+			<column name="schoolId" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

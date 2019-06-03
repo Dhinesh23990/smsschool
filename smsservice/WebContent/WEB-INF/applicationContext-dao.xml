@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Application context definition for gos on JPA. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<context:component-scan base-package="com.tgi.sd.dao" />
+
+	<import resource="applicationContext-database.xml" />
+
+	<!-- Spring DAO Service beans -->
+
+	<bean id="adminDAO" class="com.tgi.sd.dao.AdminDAOImpl"
+		autowire="byName" />
+		
+	<bean id="attendanceDAO" class="com.tgi.sd.dao.AttendanceDAOImpl"
+		autowire="byName" />				
+
+	<bean id="batchConfigurationDAO" class="com.tgi.sd.dao.BatchConfigurationDAOImpl"
+		autowire="byName" />
+		
+	<bean id="batchDAO" class="com.tgi.sd.dao.BatchDAOImpl"
+		autowire="byName" />	
+
+<!--  
+	<bean id="blobDAO" class="com.tgi.sd.dao.BlobDAOImpl"
+		autowire="byName" />
+		-->
+
+	<!-- <bean id="blobDocumentMappingDAO" class="com.tgi.sd.dao.BlobDocumentMappingDAOImpl"
+		autowire="byName" />
+	 -->					
+	<bean id="bloodGroupDAO" class="com.tgi.sd.dao.BloodGroupDAOImpl"
+		autowire="byName" />
+		
+	<bean id="casteDAO" class="com.tgi.sd.dao.CasteDAOImpl"
+		autowire="byName" />
+	
+	<bean id="categoryDAO" class="com.tgi.sd.dao.CategoryDAOImpl"
+		autowire="byName" />
+					
+	<bean id="cityDAO" class="com.tgi.sd.dao.CityDAOImpl"
+		autowire="byName" />
+		
+	<bean id="classDAO" class="com.tgi.sd.dao.ClassDAOImpl"
+		autowire="byName" />
+
+	<bean id="concessionDAO" class="com.tgi.sd.dao.ConcessionDAOImpl"
+		autowire="byName" />
+		
+	<bean id="countryDAO" class="com.tgi.sd.dao.CountryDAOImpl"
+		autowire="byName" />
+
+	<bean id="courseDAO" class="com.tgi.sd.dao.CourseDAOImpl"
+		autowire="byName" />
+		
+	<bean id="dashboardDAO" class="com.tgi.sd.dao.DashboardDAOImpl"
+		autowire="byName" />	
+
+	<bean id="educationQualificationDAO" class="com.tgi.sd.dao.EducationQualificationDAOImpl"
+		autowire="byName" />
+		
+	<bean id="eventDAO" class="com.tgi.sd.dao.EventDAOImpl"
+		autowire="byName" />	
+		
+	<bean id="examDAO" class="com.tgi.sd.dao.ExamDAOImpl"
+		autowire="byName" />	
+		
+	<bean id="examSessionDAO" class="com.tgi.sd.dao.ExamSessionDAOImpl"
+		autowire="byName" />	
+		
+	<bean id="feeComponentDAO" class="com.tgi.sd.dao.FeeComponentDAOImpl"
+		autowire="byName" />		
+		
+	<bean id="feeConfigurationDAO" class="com.tgi.sd.dao.FeeConfigurationDAOImpl"
+		autowire="byName" />	
+
+	<bean id="feeTypeDAO" class="com.tgi.sd.dao.FeeTypeDAOImpl"
+		autowire="byName" />
+					
+	<bean id="galleryDAO" class="com.tgi.sd.dao.GalleryDAOImpl"
+		autowire="byName" />
+							
+	<bean id="genderDAO" class="com.tgi.sd.dao.GenderDAOImpl"
+		autowire="byName" />
+
+	<bean id="gradeLimitDAO" class="com.tgi.sd.dao.GradeLimitDAOImpl"
+		autowire="byName" />
+		
+	<bean id="homeworkDAO" class="com.tgi.sd.dao.HomeWorkDAOImpl"
+		autowire="byName" />	
+		
+	<bean id="languageDAO" class="com.tgi.sd.dao.LanguageDAOImpl"
+		autowire="byName" />
+		
+	<bean id="leaveEntitlementDAO" class="com.tgi.sd.dao.LeaveEntitlementDAOImpl"
+		autowire="byName" />		
+
+	<bean id="leaveMasterDAO" class="com.tgi.sd.dao.LeaveMasterDAOImpl"
+		autowire="byName" />
+
+	<bean id="leavePeriodDAO" class="com.tgi.sd.dao.LeavePeriodDAOImpl"
+		autowire="byName" />
+
+	<bean id="lookupDAO" class="com.tgi.sd.dao.LookupDAOImpl"
+		autowire="byName" />
+			
+	<bean id="mailDAO" class="com.tgi.sd.dao.MailDAOImpl"
+		autowire="byName" />
+								
+	<bean id="mediumDAO" class="com.tgi.sd.dao.MediumDAOImpl"
+		autowire="byName" />
+
+	<bean id="motherTongueDAO" class="com.tgi.sd.dao.MotherTongueDAOImpl"
+		autowire="byName" />
+
+	<bean id="nationalityDAO" class="com.tgi.sd.dao.NationalityDAOImpl"
+		autowire="byName" />
+
+	<bean id="notificationDAO" class="com.tgi.sd.dao.NotificationDAOImpl"
+		autowire="byName" />
+		
+	<bean id="parentDAO" class="com.tgi.sd.dao.ParentDAOImpl"
+		autowire="byName" />
+
+	<bean id="paymentDAO" class="com.tgi.sd.dao.PaymentDAOImpl"
+		autowire="byName" />
+
+	<bean id="paymentModeDAO" class="com.tgi.sd.dao.PaymentModeDAOImpl"
+		autowire="byName" />
+
+	<bean id="pincodeDAO" class="com.tgi.sd.dao.PincodeDAOImpl"
+		autowire="byName" />
+			
+	<!-- <bean id="reportDAO" class="com.tgi.sd.dao.ReportDAOImpl"
+		autowire="byName" />  -->
+							
+	<bean id="religionDAO" class="com.tgi.sd.dao.ReligionDAOImpl"
+		autowire="byName" />
+		
+	<bean id="schoolDAO" class="com.tgi.sd.dao.SchoolDAOImpl"
+		autowire="byName" />
+		
+	<bean id="sectionDAO" class="com.tgi.sd.dao.SectionDAOImpl"
+		autowire="byName" />
+
+	<bean id="smsDAO" class="com.tgi.sd.dao.SmsDAOImpl"
+		autowire="byName" />
+
+	<bean id="smsTemplateDAO" class="com.tgi.sd.dao.SmsTemplateDAOImpl"
+		autowire="byName" />
+		
+	<bean id="staffAttendanceDAO" class="com.tgi.sd.dao.StaffAttendanceDAOImpl"
+		autowire="byName" />		
+						
+	<bean id="stateDAO" class="com.tgi.sd.dao.StateDAOImpl"
+		autowire="byName" />
+	
+	<bean id="studentDAO" class="com.tgi.sd.dao.StudentDAOImpl"
+		autowire="byName" />
+
+	<bean id="subjectDAO" class="com.tgi.sd.dao.SubjectDAOImpl"
+		autowire="byName" />
+
+	<bean id="subjectSetDAO" class="com.tgi.sd.dao.SubjectSetDAOImpl"
+		autowire="byName" />
+
+	<bean id="subjectTypeDAO" class="com.tgi.sd.dao.SubjectTypeDAOImpl"
+		autowire="byName" />
+										
+	<bean id="teacherDAO" class="com.tgi.sd.dao.TeacherDAOImpl"
+		autowire="byName" />
+		
+	<bean id="testDAO" class="com.tgi.sd.dao.TestDAOImpl"
+		autowire="byName" />
+																
+	<bean id="userDAO" class="com.tgi.sd.dao.UserDAOImpl"
+		autowire="byName" />
+		
+		
+		
+	<bean id="txProxyTemplate" abstract="true"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">
+					PROPAGATION_REQUIRED,
+					-java.lang.Exception
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+
+    <bean id="adminDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="adminDAO" />
+    </bean>
+       
+    <bean id="attendanceDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="attendanceDAO" />
+    </bean>
+    
+    <bean id="batchConfigurationDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="batchConfigurationDAO" />
+    </bean>
+        
+    <bean id="batchDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="batchDAO" />
+    </bean>
+   <!--  
+    <bean id="blobDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="blobDAO" />
+    </bean> -->
+
+  <!--   <bean id="blobDocumentMappingDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="blobDocumentMappingDAO" />
+    </bean>    
+     -->
+    <bean id="bloodGroupDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="bloodGroupDAO" />
+    </bean>
+    
+    <bean id="casteDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="casteDAO" />
+    </bean>    
+    
+    <bean id="categoryDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="categoryDAO" />
+    </bean>   
+        
+    <bean id="cityDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="cityDAO" />
+    </bean>    
+    
+    <bean id="classDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="classDAO" />
+    </bean>    
+    
+    <bean id="concessionDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="concessionDAO" />
+    </bean>      
+    
+     <bean id="countryDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="countryDAO" />
+    </bean>    
+    
+    <bean id="courseDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="courseDAO" />
+    </bean>    
+    
+    <bean id="dashboardDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="dashboardDAO" />
+    </bean> 
+    
+    <bean id="educationQualificationDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="educationQualificationDAO" />
+    </bean> 
+    
+    <bean id="eventDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="eventDAO" />
+    </bean> 
+    
+    <bean id="examDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="examDAO" />
+    </bean> 
+    
+    <bean id="examSessionDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="examSessionDAO" />
+    </bean> 
+    
+    <bean id="feeComponentDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="feeComponentDAO" />
+    </bean>     
+    
+    <bean id="feeConfigurationDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="feeConfigurationDAO" />
+    </bean>  
+      
+    <bean id="feeTypeDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="feeTypeDAO" />
+    </bean> 
+            
+    <bean id="galleryDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="galleryDAO" />
+    </bean> 
+                
+    <bean id="genderDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="genderDAO" />
+    </bean>    
+    
+    <bean id="gradeLimitDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="gradeLimitDAO" />
+    </bean>    
+    
+    <bean id="homeWorkDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="homeworkDAO" />
+    </bean>   
+    
+    <bean id="languageDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="languageDAO" />
+    </bean>    
+    
+    <bean id="leaveEntitlementDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="leaveEntitlementDAO" />
+    </bean> 
+    
+    <bean id="leaveMasterDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="leaveMasterDAO" />
+    </bean>     
+    
+    <bean id="leavePeriodDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="leavePeriodDAO" />
+    </bean>   
+        
+    <bean id="lookupDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="lookupDAO" />
+    </bean>  
+        
+    <bean id="mailDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="mailDAO" />
+    </bean>
+            
+    <bean id="mediumDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="mediumDAO" />
+    </bean>    
+    
+     <bean id="motherTongueDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="motherTongueDAO" />
+    </bean>    
+    
+     <bean id="nationalityDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="nationalityDAO" />
+    </bean>    
+    
+    <bean id="notificationDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="notificationDAO" />
+    </bean>    
+    
+    <bean id="parentDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="parentDAO" />
+    </bean>
+    
+    <bean id="paymentDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="paymentDAO" />
+    </bean>
+    
+    <bean id="paymentModeDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="paymentModeDAO" />
+    </bean>
+
+    <bean id="pincodeDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="pincodeDAO" />
+    </bean>    
+    
+    <!--  <bean id="reportDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="reportDAO" />
+    </bean> 
+   -->  
+    <bean id="religionDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="religionDAO" />
+    </bean>    
+    
+    <bean id="schoolDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="schoolDAO" />
+    </bean>    
+    
+    <bean id="sectionDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="sectionDAO" />
+    </bean>    
+
+    <bean id="smsDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="smsDAO" />
+    </bean>      
+    
+    <bean id="smsTemplateDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="smsTemplateDAO" />
+    </bean>   
+
+    <bean id="staffAttendanceDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="staffAttendanceDAO" />
+    </bean>   
+            
+     <bean id="stateDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="stateDAO" />
+    </bean>
+    
+    <bean id="studentDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="studentDAO" />
+    </bean>
+    
+    <bean id="subjectDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="subjectDAO" />
+    </bean>
+
+    <bean id="subjectSetDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="subjectSetDAO" />
+    </bean>    
+
+    <bean id="subjectTypeDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="subjectTypeDAO" />
+    </bean>    
+        
+    <bean id="teacherDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="teacherDAO" />
+    </bean>
+    
+    <bean id="testDAOTxn" parent="txProxyTemplate">
+		<property name="target" ref="testDAO" />
+	</bean>
+	
+	<bean id="userDAOTxn" parent="txProxyTemplate">
+        <property name="target" ref="userDAO" />
+    </bean>
+
+</beans>
+
+
+
