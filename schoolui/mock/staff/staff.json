@@ -1,0 +1,59 @@
+{
+	"Status" : "Ok",
+	"StaffVO" : 
+	[
+		{
+		"StaffId":"ST1200",
+		"StaffName":"Veera",
+		"Gender":"Male",
+		"DateOfBirth":"25-07-1987",
+		"Mobile":"9874563210",
+		"EmailId":"veera@gmail.com",
+		"EmployeeNo":"14575",
+		"DateofJoining":"25-07-2012",
+		"Experience":"5",
+		"Designation":"Teacher",
+		"SpecializedIn":"English"
+		
+		},
+		{
+		"StaffId":"ST1201",
+		"StaffName":"Vickram",
+		"Gender":"Male",
+		"DateOfBirth":"25-07-1987",
+		"Mobile":"9965656589",
+		"EmailId":"Vickram@gmail.com",
+		"EmployeeNo":"14576",
+		"DateofJoining":"25-07-2013",
+		"Experience":"4",
+		"Designation":"Teacher",
+		"SpecializedIn":"Tamil"
+		},
+		{
+		"StaffId":"ST1202",
+		"StaffName":"Vignesh",
+		"Gender":"Male",
+		"DateOfBirth":"25-07-1987",
+		"Mobile":"9965656584",
+		"EmailId":"Vignesh@gmail.com",
+		"EmployeeNo":"14577",
+		"DateofJoining":"25-07-2014",
+		"Experience":"3",
+		"Designation":"Teacher",
+		"SpecializedIn":"Maths"
+		},		
+		{
+		"StaffId":"ST1203",
+		"StaffName":"Vijay",
+		"Gender":"Male",
+		"DateOfBirth":"25-07-1987",
+		"Mobile":"9965656587",
+		"EmailId":"Vijay@gmail.com",
+		"EmployeeNo":"14578",
+		"DateofJoining":"25-07-2015",
+		"Experience":"2",
+		"Designation":"Teacher",
+		"SpecializedIn":"Science"
+		}
+	]
+}

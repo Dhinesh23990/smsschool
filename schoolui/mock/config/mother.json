@@ -1,0 +1,18 @@
+{
+	"Status" : "Ok",
+	"configVO" : 
+	[
+		{
+		"SNo":"ASD3456",
+		"MothertongueName":"Tamil"
+		},
+		{
+		"SNo":"ASD3456",
+		"MothertongueName":"English"
+		},
+		{
+		"SNo":"ASD3456",
+		"MothertongueName":"Hindi"
+		}
+	]
+}

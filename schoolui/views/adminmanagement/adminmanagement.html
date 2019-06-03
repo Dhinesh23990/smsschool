@@ -1,0 +1,401 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="getAllAdmindata()" data-ng-controller="adminmgmtController">
+    <div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'adminmanagement.admgmt' | translate}}</h3>
+	</div>
+	<div class="row" style="margin-left:-10px !important;">
+		<div class="col-md-12" style="padding-right:5px !important">
+			<ol class="breadcrumb" id="setresyults">
+				<li  data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home navcursor" style="font-size:11px !important;right:5px !important"></i><a>{{'configreligion.home' | translate}}</a></li>
+				<li class="active navcursor">{{'adminmanagement.Admin' | translate}}</li>
+				<li class="active navcursor">{{listandgridview}}</li>
+			</ol>
+		</div>
+	</div>
+	
+	<div class="panel panel-default" style="margin-left: 6px;">
+		<div class="panel-heading">
+		<i class="fa fa-bars"></i>
+			<span class="labelstcampaign" style="font-size:14px;font-weight:bold">Admin {{listandgridview}}</span>
+			<span class="pull-right">
+				<a class="activeview navcursor" id="list_view" data-ng-click="listviewdet()" style="margin-right:10px;font-weight:bold">{{'adminmanagement.lstv' | translate}}</a>
+				<a class="hoverview defaultcol navcursor" id="grid_view" data-ng-click="gridviewdet()" style="font-weight:bold">{{'adminmanagement.grdv' | translate}}</a>
+				
+			</span>
+			
+		</div>
+		<div class="panel-body" data-ng-show="adminlistviewdetails">
+			<div class="col-md-12 nopadmar" data-ng-show="hidesearchdet">
+				<button href="#review" data-toggle="collapse" class="btn btn-sm btn-primary" data-ng-click="backtosearch()">
+				{{'staffmanagement.search' | translate}}<i class="glyphicon glyphicon-search"
+				style="font-size:11px !important;left:5px !important"></i></button>
+				<button class="btn btn-sm btn-primary pull-right" ui-sref="addadmin">{{'adminmanagement.add' | translate}}
+				<i class="glyphicon glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+				<div class="col-md-5" style="padding-left:0px !important">
+					<div class="main-search hidden-xs">
+						<form class="ng-pristine ng-valid">
+							<input class="form-control" placeholder="{{'adminmanagement.search' | translate}}" type="text" data-ng-model="search.firstName"
+							style="background:none;border:0;border-bottom:1px solid #6ec06e;box-shadow:none;border-radius:0;padding:3px 0;letter-spacing:1px;color:#000 !important">
+							<button class="btn" style="position:absolute;top:2px;right:12px;padding:6px 3px;background:none;border-radius:0transition:all .4s cubic-bezier(.05, .74, .27, .99);transform:translateZ(0);will-change:transform;color:#6ec06e"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+				</div>				
+			</div>
+			 <div id="review" class="col-md-12 collapse nopadmar">
+				<div class="col-md-12" style="padding:0px 0px 8px 0px">
+					<button href="#review" data-toggle="collapse" class="btn btn-sm btn-danger" data-ng-click="returnsearch()">
+					<i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>{{'adminmanagement.back' | translate}}
+					</button>
+					<button class="btn btn-sm btn-primary pull-right" ui-sref="addadmin">{{'adminmanagement.add' | translate}}
+				<i class="glyphicon glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+				</div>
+				<div class="col-md-12" style="border:2px solid #eee;padding:10px">
+					<div class="col-md-12 nopadmar">
+						
+						<div class="col-md-4">
+							<label class="control-label minotaur-label">{{'adminmanagement.fullname' | translate}}</label>
+							<input placeholder="{{'staffmanagement.adminmax' | translate}}" name="fullname" class="form-control" data-ng-model="search.firstName" type="text">
+						</div>
+						<div class="col-md-4">
+							<label class="control-label minotaur-label">{{'staffmanagement.surinit' | translate}}</label>
+							<input placeholder="{{'staffmanagement.surinit' | translate}}" name="surname" class="form-control" data-ng-model="search.initial" type="text">
+						</div>
+						
+						<div class="form-group col-md-4">
+							<label for="pr-name" class="control-label minotaur-label">{{'staffmanagement.dob' | translate}}<span class="text-red"> *</span></label>
+							
+							<input class="form-control" type="text" name="birthdate" ng-model="search.dob" placeholder="Date Of Birth" />
+						</div>
+					</div>
+					<div class="col-md-12 nopadmar">
+					<div class="col-md-4">
+								<label class="control-label minotaur-label">{{'staffmanagement.gen' | translate}}</label>
+								<select class="form-control" name="Gender" data-ng-model="searchgrid.genderId" 
+								ng-options="gender.key as gender.value for gender in genders">
+									<option value="">{{'staffmanagement.selurgen' | translate}}</option>
+								</select>
+						</div>
+						<div class="col-md-4">
+							<label class="control-label minotaur-label">{{'staffmanagement.mobile' | translate}}</label>
+							<input placeholder="{{'staffmanagement.mobile' | translate}}" name="mobileno" class="form-control" data-ng-model="search.mobileNumber" type="text">
+						</div>
+						
+						<div class="form-group col-md-4">
+							<label for="pr-name" class="control-label minotaur-label">{{'staffmanagement.doj' | translate}}<span class="text-red"> *</span></label>
+							<input class="form-control" type="text" name="admissionDate" ng-model="search.dateOfJoining" placeholder="Date Of Joining" />
+						</div>							
+						
+					</div>
+					<div class="col-md-12 nopadmar">
+						<div class=" col-md-6">
+							<label for="Employee No" class="control-label minotaur-label">{{'staffmanagement.empno' | translate}}</label>
+							<input name="employeeno" id="employeeno" class="form-control" ng-model="searchgrid.employeeNumber" placeholder="{{'staffmanagement.empno' | translate}}" required="" type="text">
+						</div>
+						<div class=" col-md-6">
+							<label for="File No" class="control-label minotaur-label">{{'staffmanagement.FileNo' | translate}}</label>
+							<input name="fileno" id="fileno" class="form-control" ng-model="searchgrid.fileNumber" placeholder="{{'staffmanagement.FileNo' | translate}}" type="text">
+						</div>
+					</div>
+				</div>
+			 </div>
+			<div class="col-md-12 nopadmar" data-ng-show="show_datatables" >
+			<!--<button class="btn btn-sm btn-primary" ui-sref="addadmin">Add Student</button>
+				-->
+				<table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th class="text-center">{{'adminmanagement.sno' | translate}}</th>
+							<th class="text-center">{{'adminmanagement.id' | translate}}</th>
+							<th class="text-center" style="width:145px !important">{{'adminmanagement.name' | translate}}</th>
+							<th class="text-center">{{'adminmanagement.mobile' | translate}}</th>
+							<!--<th class="text-center" style="width:145px !important">{{'adminmanagement.email' | translate}}</th>-->
+							<th class="text-center">{{'adminmanagement.eno' | translate}}</th>
+							<th class="text-center">{{'adminmanagement.doj' | translate}}</th>
+							<th class="text-center" style="width:145px !important">{{'adminmanagement.exp' | translate}}</th>
+							<th class="text-center"><span class="text-center" style="margin-right:28px !important">{{'adminmanagement.Action' | translate}}</span></th>
+							        
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in items | filter:search">
+						  <td class="change_colr">{{item.indexId}}</td>
+						  <td class="change_colr text-center">{{item.adminId}}</td>
+						  <td class="change_colr text-center">{{item.firstName}}</td>
+						  <td class="change_colr text-center">{{item.mobileNumber}}</td>
+						 <!-- <td class="change_colr text-center">{{item.emailId}}</td>-->
+						  <td class="change_colr text-center">{{item.employeeNumber}}</td>
+						  <td class="change_colr text-center">{{item.dateOfJoining}}</td>
+						  <td class="change_colr text-center">{{item.experience}}</td>
+						 
+						  <td>
+						   <span ><a tooltip-placement="top" tooltip="View"   ui-sref="viewadmin({adminId:item.id})" style="cursor: pointer;">
+							<i class="creatli"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"><span></i></a></span>
+						  <span><a tooltip-placement="top" tooltip="Edit"  ui-sref="editadmin({adminId:item.id})" style="cursor: pointer;">
+						  <i class="creatli"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></i></a></span>
+						  
+						  <span><a data-ng-click="deleteadmindata(item.id)" tooltip-placement="top" tooltip="Delete" style="cursor: pointer;">
+						  <i class="creatli"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></i></a></span></td>
+						  
+						</tr>
+					</tbody>
+				</table>
+				<div class="col-md-12 show_entries" data-ng-show="show_datatables" >
+				 <div class="col-md-6 pull-left nopadmar" style="margin-top:15px !important">
+				 Showing {{show_begin}} to {{show_end}} of {{totalRecords}} entries
+				 </div>
+				 <div class="col-md-6 pull-right nopadmar" data-ng-show="abovedata">
+					 <pagination class="pull-right"
+					  ng-model="currentPage"
+					  total-items="totalRecords"
+					  max-size="maxSize"  
+					  boundary-links="true">
+					</pagination>
+				</div>
+				</div>
+			</div>
+			<div class="col-md-12 nopadmar" data-ng-if="items.length == 0">
+				<table class="table table-striped table-bordered table-hover generaltable minotaur-table" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th class="text-center" >{{'adminmanagement.sno' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.id' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.name' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.mobile' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.email' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.eno' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.doj' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.exp' | translate}}</th>
+							<th class="text-center" ><span class="text-center" style="margin-right:28px !important">{{'adminmanagement.Action' | translate}}</span></th>
+							
+							
+									        
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						 <td colspan="9" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="panel-body" data-ng-show="admingridviewdetails">
+			<div class="col-md-12 nopadmar" data-ng-show="hidesearchdetgrid">
+				<button href="#reviewgrid" data-toggle="collapse" class="btn btn-sm btn-primary" data-ng-click="backtosearchgrid()">
+				Show Search<i class="glyphicon glyphicon-search"
+				style="font-size:11px !important;left:5px !important"></i></button>
+				<button class="btn btn-sm btn-primary  pull-right" ui-sref="addadmin">{{'adminmanagement.add' | translate}}
+				<i class="glyphicon glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+				<!--<div class="col-md-5" style="padding-left:0px !important">
+					<div class="main-search hidden-xs">
+						<form class="ng-pristine ng-valid">
+							<input class="form-control" placeholder="Search Admin ID..." type="text" data-ng-model="search.StudentId"
+							style="background:none;border:0;border-bottom:1px solid #6ec06e;box-shadow:none;border-radius:0;padding:3px 0;letter-spacing:1px;color:#000 !important">
+							<button class="btn" style="position:absolute;top:2px;right:12px;padding:6px 3px;background:none;border-radius:0transition:all .4s cubic-bezier(.05, .74, .27, .99);transform:translateZ(0);will-change:transform;color:#6ec06e"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+				</div>	-->			
+			</div>
+			 <div id="reviewgrid" class="col-md-12 collapse nopadmar">
+				<div class="col-md-12" style="padding:0px 0px 8px 0px">
+					<button href="#reviewgrid" data-toggle="collapse" class="btn btn-sm btn-danger" data-ng-click="returnsearchgrid()">
+					<i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>{{'staffmanagement.H/B' | translate}}
+					</button>
+					<button class="btn btn-sm btn-primary pull-right" ui-sref="addadmin">{{'adminmanagement.add' | translate}}
+				<i class="glyphicon glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+				</div>
+				<div class="col-md-12" style="border:2px solid #eee;padding:10px">
+					<div class="col-md-12 nopadmar">
+						<ul class="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom profile-tabs"
+						style="border-bottom:1px solid #6ec06e;">
+							<li role="presentation"  class="active">
+								<a class="font-14-800" href="#searchone" style="border-radius:unset !important" aria-controls="timeline" role="tab" data-toggle="tab">
+								 {{'staffmanagement.Idname' | translate}}
+								</a> 
+							</li>
+							<li role="presentation"  class="">
+								<a class="font-14-800" style="border-radius:unset !important"  href="#searchtwo" aria-controls="timeline" role="tab" data-toggle="tab">
+								 {{'staffmanagement.aca' | translate}}	
+								</a> 
+							</li>
+							<li role="presentation"  class="">
+								<a class="font-14-800" style="border-radius:unset !important"  href="#searchthree" aria-controls="timeline" role="tab" data-toggle="tab">
+							{{'staffmanagement.perdet' | translate}}
+								</a> 
+							</li>
+							<li class="pull-right">
+								<button class="btn btn-sm btn-danger" data-ng-click="clearallsearchvalue()">{{'adminmanagement.ClearAll' | translate}}</button>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content col-md-12" style="padding:10px">
+						<div role="tabpanel nopadmar" class="tab-pane active" id="searchone">
+							<div class="col-md-4">
+								<label for="username" class="control-label minotaur-label">{{'addadmin.FirstName' | translate}} </label>
+								<input name="adminname" id="name" class="form-control" ng-model="searchgrid.firstName" required="" type="text" placeholder="{{'staffmanagement.adminmax' | translate}}">
+							</div>
+							<div class="col-md-4">
+								<label for="Surname" class="control-label minotaur-label">{{'staffmanagement.surinit' | translate}}</label>
+								<input name="Surname" id="Surname" class="form-control" ng-model="searchgrid.initial" type="text" placeholder="{{'staffmanagement.surinit' | translate}}">										
+							</div>
+							
+							<div class=" col-md-4">
+								<label for="Employee No" class="control-label minotaur-label">{{'staffmanagement.empno' | translate}}</label>
+								<input name="employeeno" id="employeeno" class="form-control" ng-model="searchgrid.employeeNumber" placeholder="{{'staffmanagement.empno' | translate}}" required="" type="text">
+							</div>
+							<div class=" col-md-4">
+								<label for="File No" class="control-label minotaur-label">{{'staffmanagement.FileNo' | translate}}</label>
+								<input name="fileno" id="fileno" class="form-control" ng-model="searchgrid.fileNumber" placeholder="{{'staffmanagement.FileNo' | translate}}" type="text">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="pr-name" class="control-label minotaur-label">{{'staffmanagement.doj' | translate}}<span class="text-red"> *</span></label>
+								<input class="form-control" type="text" name="admissionDate" ng-model="searchgrid.dateOfJoining" placeholder="Date Of Joining" />
+							</div>
+						</div>
+					
+						<div role="tabpanel nopadmar" class="tab-pane" id="searchtwo">
+							
+							<div class="form-group col-md-4">
+							<label for="Qualification" class="control-label minotaur-label">{{'staffmanagement.eduq' | translate}}
+							</label>							
+							<select class="form-control" name="edu" data-ng-model="AdminVO.educationalQualification" 
+								ng-options="educationalQualification.key as educationalQualification.value for educationalQualification in educationalQualifications" >
+								<option value="">Select Your Educational Qualification</option>
+								</select>
+							</div>
+							
+							<div class="col-md-4">
+								<label for="pr-name" class="control-label minotaur-label">{{'staffmanagement.desig' | translate}}</label>
+								<input name="designation" id="designation" class="form-control" ng-model="searchgrid.designation" placeholder="Current {{'staffmanagement.desig' | translate}}" type="text">										
+							</div>
+							<div class=" col-md-4">
+								<label for="Designation" class="control-label minotaur-label">{{'staffmanagement.exp' | translate}}</label>
+								<input name="experience" id="experience" class="form-control" ng-model="searchgrid.experience" placeholder="Overall {{'staffmanagement.exp' | translate}}" type="text">									
+							</div>
+						</div>
+						<div role="tabpanel nopadmar" class="tab-pane" id="searchthree">
+						<div class="row">
+							<div class="col-md-4">
+								<label class="control-label minotaur-label">{{'staffmanagement.gen' | translate}}</label>
+								<select class="form-control" name="Gender" data-ng-model="searchgrid.genderId" 
+								ng-options="gender.key as gender.value for gender in genders">
+									<option value="">{{'staffmanagement.selurgen' | translate}}</option>
+								</select>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="pr-name" class="control-label minotaur-label">{{'staffmanagement.dob' | translate}}<span class="text-red"> *</span></label>
+								 <input class="form-control" type="text" name="admissionDate" ng-model="searchgrid.dob" placeholder="Date Of Birth" />
+							</div>	
+							<div class="col-md-4">
+								<label class="control-label minotaur-label">{{'staffmanagement.bld' | translate}}</label>
+								<select class="form-control" name="bloodgroup" data-ng-model="searchgrid.blooGroupId" 
+								ng-options="bloodgroup.key as bloodgroup.value for bloodgroup in bloodgroups">
+									<option value="">{{'staffmanagement.selurbld' | translate}}</option>
+								</select>
+							</div>
+							</div>
+							<div class="row">
+							<div class="col-md-3">
+								<label class="control-label minotaur-label">{{'staffmanagement.rel' | translate}}</label>
+								<select class="form-control" name="Religion" data-ng-model="searchgrid.religionId" 
+									ng-options="religion.key as religion.value for religion in religions">
+									<option value="">{{'staffmanagement.selrel' | translate}}</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<label class="control-label minotaur-label">{{'staffmanagement.cas' | translate}}</label>
+								<select class="form-control" name="Caste" data-ng-model="searchgrid.casteId" 
+									ng-options="caste.key as caste.value for caste in castes">
+									<option value="">{{'staffmanagement.selcas' | translate}}</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<label class="control-label minotaur-label">{{'staffmanagement.nation' | translate}}</label>
+								<select class="form-control" name="Nationality" data-ng-model="searchgrid.nationalityId" 
+									ng-options="nationality.key as nationality.value for nationality in nationalities" >
+									<option value="">{{'staffmanagement.selnation' | translate}}</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<label class="control-label minotaur-label">{{'staffmanagement.motg' | translate}}</label>
+								<select class="form-control" name="motherTongue" data-ng-model="searchgrid.motherTongueId" 
+									ng-options="motherTongue.key as motherTongue.value for motherTongue in motherTongues">
+									<option value="">{{'staffmanagement.selmotg' | translate}}</option>
+								</select>
+							</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 nopadmar">
+				<hr style="border:1px solid #ececec !important">
+			</div>
+			<!-- row -->
+			<div class="col-md-12 nopadmar" data-ng-show="show_datatables">
+				<div class="col-md-3" style="padding:0px 8px 0px 0px" ng-repeat="item in griditems | filter:searchgrid">
+					<div class="tile tile-simple">
+						<section class="tile-widget p-10" style="background-color:#e5eae4;" >
+							<div class="thumb thumb-xl pull-right" style="width:130px !important"><div class="topcorner"></div> 
+								<div><strong><font color="green"><a ui-sref="editadmin({adminId:item.id})">{{item.firstName}}</a></font></strong></div>
+								<div class="m-0"><strong>{{item.adminId}}</strong></div>
+								<div class="m-0">{{item.dob}}</div>
+								<!--<div class="m-0">{{item.dateOfJoining}}</div>
+								--><div class="m-0">{{item.employeeNumber}}</div>	
+							</div>
+							<div class="thumb thumb-xl" style="width:90px !important">
+							<span style="position:relative;z-index:1020;top:2px;left:70px"><a tooltip-placement="left" tooltip="Edit" ui-sref="editadmin({adminId:item.id})" style="cursor: pointer;">
+								<i class="creatli" style="font-size:11px !important;width:18px !important;height:16px !important;line-height:16px !important"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></i></a></span>
+								<img data-ng-if="!item.image_url" style="position:relative;top:-19px;margin-bottom:-15px" src="assets/images/default_school.png" alt="">
+								<img data-ng-if="item.image_url" style="position:relative;top:-19px;margin-bottom:-15px;height:90px !important" src="{{item.image_url}}" alt="">		
+							</div>
+						</section>
+						
+					</div>		
+				</div>
+				<div class="col-md-12 show_entries" data-ng-show="show_datatables">
+				 <div class="col-md-6 pull-left nopadmar">
+				 </div>
+				 <div class="col-md-6 pull-right nopadmar" data-ng-show="abovedata">
+					<pagination class="pull-right"
+					  ng-model="gridcurrentPage"
+					  total-items="gridtotalRecords"
+					  max-size="maxSize"  
+					  boundary-links="true">
+					</pagination>
+				</div>
+				</div>
+			</div>
+			<div class="col-md-12 nopadmar" data-ng-if="griditems.length == 0">
+				<table class="table table-striped table-bordered table-hover generaltable minotaur-table" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th class="text-center" >{{'adminmanagement.sno' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.id' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.name' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.mobile' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.email' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.eno' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.doj' | translate}}</th>
+							<th class="text-center" >{{'adminmanagement.exp' | translate}}</th>
+							<th class="text-center" ><span class="text-center" style="margin-right:28px !important">{{'adminmanagement.Action' | translate}}</span></th>       
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						 <td colspan="9" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/ng-template" id="deleteadmin.html">
+		<div class="modal-header">
+			<h4 class="modal-title popupfontst">Are you sure want to delete this Admin details</h4>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-sm btn-danger" ng-click="deleteadminok()">OK</button>
+			<button class="btn btn-sm btn-primary" ng-click="okcancel()">{{'staffmanagement.Cancel' | translate}}</button>	
+		</div>
+</script>

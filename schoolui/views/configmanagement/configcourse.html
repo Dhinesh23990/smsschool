@@ -1,0 +1,170 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="getAllCourseData()" data-ng-controller="configcourse">
+    <div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'configcourse.coursemang' | translate}}</h3>
+	</div>
+	
+	
+	<div class="row" style="margin-left:-10px !important;">
+		<div class="col-md-12" style="padding-right:5px !important">
+			<ol class="breadcrumb" id="setresyults">
+				<li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i>
+				<a>{{'configreligion.home' | translate}}</a></li>
+				<li class="active">{{'configcourse.course' | translate}}</li>
+			</ol>
+		</div>
+	</div>
+	
+	
+	<div class="panel panel-default" style="margin-left: 6px;">
+	
+		<div class="panel-heading">
+		<i class="fa fa-bars"></i>
+			<span class="labelstcampaign" style="font-weight:bold;font-size:14px !important"> {{'configcourse.courselist' | translate}}</span>
+			<span></span>
+		</div>
+		
+		
+		<div class="panel-body">
+			<div class="col-md-12 nopadmar" data-ng-show="hidesearchdet">
+				<button href="#review" data-toggle="collapse" class="btn btn-sm btn-primary" data-ng-click="backtosearch()">{{'configreligion.addnew' | translate}}
+				<i class="glyphicon glyphicon-plus" style="font-size:11px !important;right:0px !important"></i></button>				
+			</div>
+			
+			 <div id="review" class="col-md-12 collapse">
+			 
+				<div class="col-md-12" style="padding:0px 0px 8px 0px">
+					<button href="#review" data-toggle="collapse" class="btn btn-sm btn-danger" data-ng-click="returnsearch()">
+					<i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.h/b' | translate}}
+					</button>
+				</div>
+				
+				<div class="col-md-12" style="border:2px solid #eee;padding:10px">
+				  <form name="coursesForm" novalidate >
+				     
+					 <div class="col-md-12 nopadmar"><span><h3 style="margin-top:1px !important;">{{'configreligion.creatform' | translate}}</h3></span>
+						<div class="form-group col-md-2">
+						   <label for="Coursename" class="control-label pull-right" style="margin-left:20px;">{{'configcourse.courseName' | translate}} <span class="text-red">*</span></label>
+                        </div>		
+						
+						  <div class="form-group col-md-5 nopadmar">
+								<input name="Coursename" type="text" id="Coursename" class="form-control" ng-model="CourseVO.courseName" placeholder="Course Name" validator="required" valid-method="watch" required-error-message="Course Name is required" numeric-only-course>
+
+						  </div>
+						<div class="form-group col-md-5">
+							<button class="btn btn-sm btn-primary" type="submit"
+							validation-submit="coursesForm" data-ng-click="coursesForm.$valid && createcourse()"><i class="glyphicon glyphicon-ok" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.create' | translate}}</button>
+						  <button class="btn btn-sm btn-danger" type="reset" style="margin-left:10px;" ng-click="goclear()"><i class="glyphicon glyphicon-remove" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.clear' | translate}}</button>
+						
+						</div>
+						<div class="col-md-12" data-ng-show="errormsg">
+							<div class="col-md-8 text-center text-red">
+								{{'configcourse.errormsg' | translate}}
+							</div>
+						</div>
+					</div>				  
+				  </form>					
+				</div>
+			 </div>
+			 
+			 <div data-ng-show="updatehidesearchdet" class="col-md-12 ">
+			 
+				<div class="col-md-12" style="padding:0px 0px 8px 0px">
+					<button class="btn btn-sm btn-danger" data-ng-click="updatereturnsearch()"> 
+					<i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.h/b' | translate}}</button>
+				</div>
+				
+				<div class="col-md-12" style="border:2px solid #eee;padding:10px">
+				  <form name="updateForm">
+				     
+					 <div class="col-md-12 nopadmar"><span><h3 style="margin-top:1px !important;">{{'configreligion.updateform' | translate}}</h3></span>
+					 
+						<div class="form-group col-md-2">
+						  <label for="ReligionName" class="control-label pull-right" style="margin-left:20px;">{{'configcourse.courseName' | translate}}<span class="text-red"> * </span></label>
+						</div>
+						
+						<div class="form-group col-md-5 nopadmar">
+					      <input name="Coursename" type="text" id="Coursename" class="form-control" 
+						  ng-model="UpdateVO.courseName"  placeholder="Course Name" validator="required" 
+						  valid-method="watch" required-error-message="Course Name is required">
+						</div>
+						<div class="form-group col-md-5">
+							<button class="btn btn-sm btn-primary" type="submit"
+							validation-submit="updateForm" data-ng-click="updateForm.$valid && update()"><i class="glyphicon glyphicon-ok" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.update' | translate}}</button>
+				           <button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="go()"><i class="glyphicon glyphicon-remove" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.cancel' | translate}}</button>
+						</div>	
+						<div class="col-md-12" data-ng-show="errormsg">
+							<div class="col-md-8 text-center text-red">
+								{{'configcourse.errormsg' | translate}}
+							</div>
+						</div>
+					</div>				  
+				  </form>					
+				</div>
+			 </div>
+			<!-- row -->
+			<div class="col-md-12 nopadmar" data-ng-show="tablehidesearchdet && show_datatables" >
+				<table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'configreligion.sNo' | translate}}</th>
+							<th>{{'configcourse.courseName' | translate}}</th>
+							<th>{{'configexamlist.action' | translate}}</th>	        							
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in items">
+						  <td class="change_colr">{{item.indexId}}</td>
+						  <td class="change_colr">{{item.courseName}}</td>
+						  <td><span ng-click="edit(item.id)"><a tooltip-placement="top" tooltip="Edit"  style="cursor: pointer;">
+						  <i class="creatli"><span href="#review" class="glyphicon glyphicon-edit" aria-hidden="true" ></span></i></a></span>
+						  <span data-ng-click="deletecourse(item.id)"><a tooltip-placement="top" tooltip="Delete" style="cursor: pointer;">
+						  <i class="creatli" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></i></a></span>
+						</tr>
+					</tbody>
+				</table>
+				<div class="col-md-12 show_entries" data-ng-show="show_datatables" >
+				 <div class="col-md-6 pull-left nopadmar" style="margin-top:15px !important">
+				 Showing {{show_begin}} to {{show_end}} of {{totalRecords}} entries
+				 </div>
+				 <div class="col-md-6 pull-right nopadmar" data-ng-show="abovedata">
+					 <pagination class="pull-right"
+					  ng-model="currentPage"
+					  total-items="totalRecords"
+					  max-size="maxSize"  
+					  boundary-links="true">
+					</pagination>
+				</div>
+				</div>
+			</div>
+			<div class="col-md-12 nopadmar" data-ng-show="tablehidesearchdet" style="margin-top:10px !important"   data-ng-if="items.length == 0">
+				<table  class="table table-striped table-bordered table-hover generaltable minotaur-table" style="display: table;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'configreligion.sNo' | translate}}</th>
+							<th>{{'configcourse.courseName' | translate}}</th>
+							<th>{{'configexamlist.action' | translate}}</th>	        							
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						<td colspan="3">No Results Found</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			
+			
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="deletereligion.html">
+		<div class="modal-header">
+			<h4 class="modal-title popupfontst">{{'configcourse.deletcourse' | translate}}</h4>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-sm btn-danger" ng-click="deletereligionok()">{{'common.ok' | translate}}</button>
+			<button class="btn btn-sm btn-primary" ng-click="okcancel()">{{'configreligion.cancel' | translate}}</button>	
+		</div>
+</script>

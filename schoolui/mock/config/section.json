@@ -1,0 +1,24 @@
+{
+	"Status" : "Ok",
+	"sectionView" : 
+	[
+		{
+		
+		"Section":"General"
+		
+		}	,
+		{
+		
+		"Section":"A"
+		
+		}	,
+		
+		{
+		
+		"Section":"B"
+		
+		}	
+		
+		
+	]
+}

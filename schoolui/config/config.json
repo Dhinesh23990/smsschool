@@ -1,0 +1,70 @@
+{
+	"mock" :false, 
+	"locale" : "en-US",
+	"supportedLanguages" : "en-US,fr-FR",
+	
+	"initModule" : {
+		"file" : ["config/login/users.xml","config/usermanagement/usermanagement.xml","config/configmanagement/configmanagement.xml",
+		"config/sms/sms.xml","config/feesmanagement/feesmanagement.xml","config/studentattendance/studentattendance.xml","config/staffattendance/staffattendance.xml",
+		"config/schooladminmanagement/schooladmin.xml","config/vehiclemanagement/vehiclemanagement.xml","config/eventmanagement/eventmanagement.xml","config/notificationmanagement/notificationmanagement.xml","config/Timetable/timetable.xml"]		
+	},
+	
+	"defaultLandingPage" : "dashboard",
+	
+	"adminLandingPage" : "admindashboard",  
+	
+	"adminLoginPage" : "admin",
+	
+	"ForgetPasswordPage" : "forgetpsw",
+
+	"serviceBaseURL":"http://localhost:8082/smsservice/rest/",
+	
+	"serviceLoginBaseURL":"http://localhost:8082/smsservice/rest/loginService/",
+
+	"redirecturl":"http://localhost0:8082/oxford/#/homepage",
+	
+	
+	"paginationSize":"10",
+	
+	"request" : {
+		"param" : "visionrequest",
+		"value" : "RequestVO"
+	},
+
+	"response" : {
+		"param" : "ResponseVO",
+		"successFlag" : "Status=Ok",
+		"failureFlag" : "Status=Error"
+	},
+	
+	"requestHeader" : {
+		"param" : "Authorization",
+		"value" : "Bearer "
+	},
+	
+	"authentication" : {
+		"required" : true,
+		"page" : "login",
+		"enablePasswordEncryption" : true
+	},
+	
+	"authorization" : {
+		"required" : false,
+		"page" : "permissionDenied"
+	},
+	
+	"dashboards":{
+		"dashboardKey" : "userRole",
+		"ROLE_USER":{
+			"authTrueLandingPage": "dashboard"
+		},
+		"ROLEADMIN":{
+			"authTrueLandingPage": "admindashboard"
+		},
+		"SCHOOLADMIN":{
+			"authTrueLandingPage": "dashboard"
+		}
+	},
+		
+	"html5Mode" : true
+}

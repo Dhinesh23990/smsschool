@@ -1,0 +1,119 @@
+<minotaur-header ng-class="specialClass" class="container-fluid">
+<div data-ng-controller ="dashboardheadercontroller" data-ng-init="schoolheaderdata()">
+	<div class="navbar-header">
+    <button type="button" class="header-nav-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false" aria-controls="header-navbar">
+	<span class="sr-only">Toggle header</span> 
+	<i class="fa fa-cog"></i></button>
+	<a class="navbar-brand navcursor" ui-sref="dashboard"><span><strong>Schools Diary</strong></span> </a>
+    <button type="button" data-ng-show="firstbutton"  class="navigation-toggle" id="navigation-toggle">
+	<span class="sr-only">Toggle navigation</span> 
+	<i class="fa fa-bars" data-ng-click="changenavbar()"></i></button>
+	<button type="button" data-ng-show="sndbutton"  class="navigation-toggle" id="navigation-toggle">
+	<span class="sr-only">Toggle navigation</span> 
+	<i class="fa fa-bars" data-ng-click="changerepeatnavbar()"></i></button>
+	
+	</div>
+	<div class="main-search hidden-xs" style="position:relative !important;left:30% !important">
+		<form class="ng-pristine ng-valid" name="onlyinput" data-ng-submit="searchstudentdet(searchvalue)">
+		<input style="position:absolute !important" type="text" class="form-control" placeholder="Search Student Id Or Mobile Number" data-ng-model="searchvalue"><button class="btn"><i class="fa fa-search"></i></button>
+		</form>
+	</div>
+	
+	<div id="header-navbar" class="navbar-collapse collapse" style="position:absolute !important;right:30px;top:2px">
+		<ul class="nav navbar-nav navbar-right" style="position:relative !important">
+			<!--<li>
+				<div uib-dropdown="" class="dropdown" style="">
+					<button id="notifications" type="button" class="btn dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell-o"></i> <span class="nav-text">Notifications</span> <span class="badge bg-red">6</span></button>
+					<div class="dropdown-menu with-arrow animated littleFadeInRight notifications" uib-dropdown-menu="" role="menu" aria-labelledby="notifications">
+						<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><section class="content" slimscroll="{height:'100%', size:'3px'}" style="overflow: hidden; width: auto; height: 100%;">
+							<h4 class="uppercase-bold text-sm text-center">Minotaur Notifications</h4>
+							<ul class="list-group">
+								<li class="list-group-item ng-scope" ng-repeat="notification in header.notifications" style="">
+									<div class="media">
+										<div class="media-left"><span class="media-object media-icon bg-danger"><i class="fa fa-ban"></i></span></div>
+										<div class="media-body"><span class="ng-binding">User Imrich cancelled account</span> <small class="ng-binding">6 minutes ago</small></div>
+									</div>
+								</li>
+								<li class="list-group-item ng-scope" ng-repeat="notification in header.notifications">
+									<div class="media">
+										<div class="media-left"><span class="media-object media-icon bg-primary"><i class="fa fa-bolt"></i></span></div>
+										<div class="media-body"><span class="ng-binding">New user registered</span> <small class="ng-binding">12 minutes ago</small></div>
+									</div>
+								</li>
+								<li class="list-group-item ng-scope" ng-repeat="notification in header.notifications">
+									<div class="media">
+										<div class="media-left"><span class="media-object media-icon bg-greensea"><i class="fa fa-lock"></i></span></div>
+										<div class="media-body"><span class="ng-binding">User Robert locked account</span> <small class="ng-binding">18 minutes ago</small></div>
+									</div>
+								</li>
+								<li class="list-group-item ng-scope" ng-repeat="notification in header.notifications">
+									<div class="media">
+										<div class="media-left"><span class="media-object media-icon bg-danger"><i class="fa fa-ban"></i></span></div>
+										<div class="media-body"><span class="ng-binding">User Jon cancelled account</span> <small class="ng-binding">36 minutes ago</small></div>
+									</div>
+								</li>
+								<li class="list-group-item ng-scope" ng-repeat="notification in header.notifications">
+									<div class="media">
+										<div class="media-left"><span class="media-object media-icon bg-warning"><i class="fa fa-bullseye"></i></span></div>
+										<div class="media-body"><span class="ng-binding">User Joffrey has been muted</span> <small class="ng-binding">42 minutes ago</small></div>
+									</div>
+								</li>
+								<li class="list-group-item ng-scope" ng-repeat="notification in header.notifications">
+									<div class="media">
+										<div class="media-left"><span class="media-object media-icon bg-greensea"><i class="fa fa-lock"></i></span></div>
+										<div class="media-body"><span class="ng-binding">User Sam locked account</span> <small class="ng-binding">58 minutes ago</small></div>
+									</div>
+								</li>
+							</ul>
+						</section><div class="slimScrollBar" style="background: rgb(0, 0, 0) none repeat scroll 0% 0%; width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 147.925px;"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51) none repeat scroll 0% 0%; opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+					</div>
+				</div>
+			</li>-->
+			<li>
+				<!-- Single button -->
+				<div uib-dropdown="" class="dropdown">
+					<button data-ng-show="defaultimage" id="profile" type="button" class="btn no-bg dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+					<img src="assets/images/default_school.png" class="img-responsive img-circle hidden-xs" alt=""></button>
+					<button style="width:65px !important" data-ng-show="schoolimage" id="profile" type="button" class="btn no-bg dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+					<img style="height:30px;width:100%" src="{{image_id}}" class="img-responsive img-circle hidden-xs" alt=""></button>
+					<span class="navcursor text-sm uppercase-bold" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false" style="top:7px;color:#fff;font-weight:bold;position:relative">{{profiledata.userName}}
+					</span>
+					<div class="dropdown-menu with-arrow littleFadeInRight profile" uib-dropdown-menu="" role="menu" aria-labelledby="profile">
+						<div class="media">
+							<div class="media-left" data-ng-show="defaultimage"><img class="media-object img-circle" src="assets/images/default_school.png"  alt=""></div>
+							<div class="media-left" data-ng-show="schoolimage">
+							<img class="media-object img-circle" style="height:80px !important" src="{{image_id}}" alt=""></div>
+							<div class="media-body">
+								<h4 class="text-sm uppercase-bold">{{profiledata.userName}}</h4><a>{{profiledata.contactEmailId}}</a>
+								<!--<ul class="list-unstyled">
+									<li><a> Member since May 2017</a></li>
+								    <li><a href="javascript:;"><i class="fa fa-check"></i> Tasks</a></li>
+									<li><a href="javascript:;"><i class="fa fa-cog"></i> Settings</a></li>
+								</ul>-->
+							</div>
+						</div>
+						<div class="footer">
+							<button class="btn btn-theme minotaur-btn pull-right" data-ng-click="logoutschool()">
+							<i class="fa fa-power-off"></i> Logout</button>
+							<button class="btn btn-theme minotaur-btn" data-ng-if="profiledata.id != school_id" ui-sref="viewadmin({adminId:profiledata.id})">
+							<i class="fa fa-user"></i> Edit Profile</button>
+							<button class="btn btn-theme minotaur-btn" data-ng-if="profiledata.id == school_id" ui-sref="viewsschool({schoolId:school_id})" >
+							<i class="fa fa-user"></i> Edit Profile</button>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+</minotaur-header>
+
+<script type="text/ng-template" id="searchstudent.html">
+		<div class="modal-header">
+			<h4 class="modal-title popupfontst">Search results not found...</h4>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-sm btn-danger" ng-click="searchstudentok()">{{'common.ok' | translate}}</button>
+			<!--<button class="btn btn-sm btn-primary" ng-click="searchcancel()">{{'common.cancel' | translate}}</button>-->	
+		</div>
+</script>

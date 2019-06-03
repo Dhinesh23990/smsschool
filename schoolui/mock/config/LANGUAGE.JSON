@@ -1,0 +1,19 @@
+{
+	"Status" : "Ok",
+	"configVO" : 
+	[
+		{
+		"SNo":"ASD3456",
+		"Sessionname":"Morning",
+		"startTime":"8.00am",		
+		"endTime":"11.00am"
+		},
+		{
+		"SNo":"ASD3456",
+		"Sessionname":"AfterNoon",
+		"startTime":"8.00am",
+		"endTime":"11.00am"
+		}
+		
+	]
+}

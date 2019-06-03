@@ -1,0 +1,125 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="gatallstatedata()" data-ng-controller="newentryController">
+    <div class="row headcontent">
+        <h3 class="schooldiary_h2">{{'configstate.statemgmt' | translate}}</h3>
+    </div>
+    <div class="row" style="margin-left:-10px !important;width:1140px;">
+        <div class="col-md-12" style="padding-right:5px !important">
+            <ol class="breadcrumb" id="setresyults">
+                <li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a>{{'configstate.home' | translate}}</a></li>
+                <li class="active">{{'configstate.state' | translate}}</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="panel panel-default" data-ng-show="statelist" style="margin-left: 6px;width: 1119px;">
+
+        <div class="panel-heading">
+		<i class="fa fa-bars"></i>
+            <span class="labelstcampaign" style="font-weight:bold;font-size:14px !important"> {{'configstate.statelist' | translate}}</span>
+			<span class="pull-right">
+			  <a class="activeview navcursor" id="list_view" data-ng-click="deliverviewdet()" style="margin-right:10px;font-weight:bold">{{'configtimetable.list' | translate}}</a>
+		      <a class="hoverview defaultcol navcursor" id="grid_view" data-ng-click="undeliverviewdet()" style="font-weight:bold">{{'configtimetable.batch' | translate}}</a>
+			</span>
+		    	
+        </div>
+		
+        <div class="panel-body">
+            
+          <div class="col-md-12" style="border:4px solid #eee;padding:20px">
+		      
+			<div class="col-md-2 nopadmar" data-ng-show="hidesearchdet">
+                <button href="#review" data-toggle="collapse" class="btn btn-sm btn-primary pull-left" ui-sref="newentry">
+                    {{'configtimetable.new' | translate}}<i class="glyphicon glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+            </div>
+			<div class="form-group col-md-6" style="margin-right:30px;">				
+			   <select class="form-control" name="country" data-ng-model="StateVO.countryId" 
+				ng-options="countrydatas.key as countrydatas.value for countrydatas in countrydatass" data-ng-change="clearcitydata()">
+				
+				<option value="">{{'configtimetable.selectbatch' | translate}}</option>
+				</select>
+            </div>
+		  
+		  </div> 
+			
+
+         <!--   <div id="review" class="col-md-12 collapse" data-ng-show="create">
+   
+                  <form name="createForm">
+					<div class="col-md-12" style="border:2px solid #eee;padding:10px">
+                        <div class="col-md-12 nopadmar">
+					<h3 style="margin-top:1px !important;">{{'configstate.statecreation' | translate}}</h3>
+					
+                        
+                            
+							  <div class="form-group col-md-6">
+                                <label for="city" class="control-label minotaur-label"> {{'configstate.statename' | translate}}<span class="text-red"> * </span> </label>
+                                <input name="state" id="name" class="form-control" ng-model="StateVO.stateName"  type="text" placeholder="state Name" validator="required" valid-method="watch"
+									required-error-message="State Name is required"
+								numeric-only-state>
+                                
+                            </div>
+							
+							</div>
+				
+													<div class="col-md-12" data-ng-show="errormsg">
+							<div class="col-md-8 text-center text-red">
+								{{'configstate.errorrmsg' | translate}}
+							</div>
+						</div>
+                    
+                    <div class="row">
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-7">
+                            <button class="btn btn-sm btn-primary" type="submit" validation-submit="createForm"  data-ng-click="createForm.$valid && createstate()"><i class="glyphicon glyphicon-ok" style="font-size:11px !important;right:5px !important"></i>{{'common.create' | translate}}</button>
+                            <button class="btn btn-sm btn-danger" style="margin-left:10px;" data-ng-click="clearcontent()"><i class="glyphicon glyphicon-remove" style="font-size:11px !important;right:5px !important"></i>{{'configbatchconfig.clear' | translate}}</button>
+                        </div>
+                    </div>
+					
+
+               
+            </div>
+						
+
+
+                    </form>
+		  </div>-->
+           
+            
+			
+		    <div class="col-md-12 nopadmar" data-ng-show="statedet" style="margin-top:10px !important"   data-ng-if="state.length == 0">
+                <!--<button class="btn btn-sm btn-primary" ui-sref="addstudent">Add Student</button>
+				-->
+                <table  class="table table-striped table-bordered table-hover generaltable minotaur-table" style="display: table;" role="grid">
+                    <thead class="tabletbody">
+                        <tr>
+                            <th>{{'configstate.id' | translate}}</th>
+                            
+                          <th>{{'configstate.countryname' | translate}}</th>
+                           <th>{{'configstate.statename' | translate}}</th>  
+                           <th>{{'common.action' | translate}}</th>  
+                            
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+						  <td colspan="4">No Results Found</td>
+</tr>
+                    </tbody>
+                </table>
+            </div>
+     </div>  
+</div>
+</div>
+
+<script type="text/ng-template" id="deletestates.html">
+    <div class="modal-header">
+        <h4 class="modal-title popupfontst">Are you sure want to delete this State details</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-danger" ng-click="deletestateok()">{{'configbatchconfig.ok' | translate}}</button>
+        <button class="btn btn-sm btn-primary" ng-click="okcancel()">{{'configbatchconfig.cancel' | translate}}</button>
+    </div>
+</script>
+

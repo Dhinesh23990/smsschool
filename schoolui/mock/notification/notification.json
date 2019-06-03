@@ -1,0 +1,22 @@
+{
+	"Status" : "Ok",
+	"NotificationVO" : 
+	[
+		{
+		"SNo":"ASD3456",
+		"message":"Annual Day will be start on soon"
+		},
+		{
+		"SNo":"ASD3456",
+		"eventName":"Sports Day"
+		},
+		{
+		"SNo":"ASD3456",
+		"eventName":"Cultural Days"
+		},
+		{
+		"SNo":"ASD3456",
+		"eventName":"Pooja Holidays"
+		}
+	]
+}

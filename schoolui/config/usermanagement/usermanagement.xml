@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<module id="usermanagementmodule">
+	<routers>
+		<router id="studentmanagement" url="/studentmanagement/{searchId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/studentmanagement/studentmanagement.html"></view>
+            </views>
+        </router>
+		<router id="addstudent" url="/addstudent" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/studentmanagement/addstudent.html"></view>
+            </views>
+        </router>
+		<router id="editstudent" url="/editstudent/{studentId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/studentmanagement/editstudent.html"></view>
+            </views>
+        </router>
+		<router id="viewstudent" url="/viewstudent/{studentId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/studentmanagement/viewstudent.html"></view>
+			</views>
+        </router>
+		<router id="adminmanagement" url="/adminmanagement" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/adminmanagement/adminmanagement.html"></view>
+            </views>
+        </router>
+		<router id="addadmin" url="/addadmin" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/adminmanagement/addadmin.html"></view>
+            </views>
+        </router>
+		<router id="editadmin" url="/editadmin/{adminId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/adminmanagement/editadmin.html"></view>
+			</views>
+        </router>
+		<router id="viewadmin" url="/viewadmin/{adminId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/adminmanagement/viewadmin.html"></view>
+			</views>
+        </router>
+		<router id="staffmanagement" url="/staffmanagement" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/staffmanagement/staffmanagement.html"></view>
+            </views>
+        </router>
+		<router id="addstaff" url="/addstaff" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/staffmanagement/addstaff.html"></view>
+            </views>
+        </router>
+		<router id="editstaff" url="/editstaff/{teacherId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/staffmanagement/editstaff.html"></view>
+			</views>
+        </router>
+		<router id="viewstaff" url="/viewstaff/{teacherId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/staffmanagement/viewstaff.html"></view>
+			</views>
+        </router>
+		
+	</routers>
+	<services id="usermanagementservice">
+		<operations>
+			<operation name="saveStudent" method="post" requestType="json" 
+				responseWrapper="response" url="student/saveStudent"
+				mockUrl="mock/course/admin.json" mock="false">
+			</operation>
+			<operation name="updateStudent" method="post" requestType="json" 
+				responseWrapper="response" url="student/updateStudent"
+				mockUrl="mock/admin/usersList.json" mock="false">
+			</operation>
+			<operation name="getStudent" method="get" requestWrapper="request" responseWrapper="response" 
+				url="student/getStudent" mockUrl="mock/admin/usersList.json" mock="false">
+				<params>
+                    <param name="id" source="state" key="studentId"></param>
+                </params>
+			</operation>
+			<operation name="viewStudent" method="get" requestWrapper="request" responseWrapper="response" 
+				url="student/viewStudent" mockUrl="mock/admin/usersList.json" mock="false">
+				<params>
+                    <param name="id" source="state" key="studentId"></param>
+                </params>
+			</operation>
+			<operation name="saveTeacher" method="post" requestType="json" 
+				responseWrapper="response" url="teacher/saveTeacher"
+				mockUrl="mock/staff/staff.json" mock="false">
+			</operation>
+			<operation name="updateTeacher" method="post" requestType="json" 
+				responseWrapper="response" url="teacher/updateTeacher"
+				mockUrl="mock/admin/usersList.json" mock="false">
+			</operation>
+			<operation name="getTeacher" method="get" requestWrapper="request" responseWrapper="response" 
+				url="teacher/getTeacher" mockUrl="mock/admin/usersList.json" mock="false">
+				<params>
+                    <param name="teacherId" source="state" key="teacherId"></param>
+                </params>
+			</operation>
+			<operation name="viewTeacher" method="get" requestWrapper="request" responseWrapper="response" 
+				url="teacher/viewTeacher" mockUrl="mock/admin/usersList.json" mock="false">
+				<params>
+                    <param name="teacherId" source="state" key="teacherId"></param>
+                </params>
+			</operation>
+			<operation name="saveAdmin" method="post" requestType="json" 
+				responseWrapper="response" url="admin/saveAdmin"
+				mockUrl="mock/admin/admin.json" mock="false">
+			</operation>
+			<operation name="updateAdmin" method="post" requestType="json" 
+				responseWrapper="response" url="admin/updateAdmin"
+				mockUrl="mock/admin/admin.json" mock="false">
+			</operation>
+			<operation name="getAdmin" method="get" requestWrapper="request" responseWrapper="response" 
+				url="admin/getAdmin" mockUrl="mock/admin/admin.json" mock="false">
+				<params>
+                    <param name="id" source="state" key="adminId"></param>
+				</params>
+			</operation>
+			<operation name="viewAdmin" method="get" requestWrapper="request" responseWrapper="response" 
+				url="admin/viewAdmin" mockUrl="mock/admin/usersList.json" mock="false">
+				<params>
+                    <param name="id" source="state" key="adminId"></param>
+                </params>
+			</operation>
+			
+		</operations>
+	</services>
+</module>

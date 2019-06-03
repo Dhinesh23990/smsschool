@@ -1,0 +1,162 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-controller="studentaddattendancemgmtController">
+   <div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'studentattendance.studentattendancemgmt' | translate}}</h3>
+	</div>
+	<div class="row" style="margin-left:-10px !important;">
+		<div class="col-md-12" style="padding-right:5px !important">
+			<ol class="breadcrumb" id="setresyults">
+			<li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a >{{'studentattendance.home' | translate}}</a></li>
+			<li class="active" ui-sref="studentattendance">{{'studentattendance.studentatde' | translate}}</li>
+			</ol>
+		</div>
+	</div>
+	<div class="panel panel-default" style="margin-left: 6px;">
+		<div class="panel-heading">
+			<span class="labelstcampaign fa fa fa-bars" style="font-weight:bold;font-size:14px !important"> {{'studentattendance.studentatde' | translate}} </span>
+			</div>
+	<div class="panel-body">
+			
+			<div class="col-md-12" style="border:2px solid #eee;padding:10px;">
+				  <form name="step1">
+                        <div class="row">
+							<div class="form-group col-md-4">
+								<label for="pr-name" class="control-label ">{{'studentattendance.dtofatt' | translate}}<span class="text-red"> *</span></label>
+								<input class="form-control" placeholder="Attendance Date" type="text" name="birthdate" ng-model="attenddancedate" validator="required" valid-method="watch" required-error-message= "Attendance Date is required">
+							</div>
+                            <div class="form-group col-md-4">
+                                <label for="class" class="control-label minotaur-label"> {{'studentattendance.class' | translate}}<span class="text-red">*</span> </label>
+							<select class="form-control" name="class" id="class" data-ng-model="className"
+								ng-options="class.key as class.value for class in classes" validator="required" valid-method="watch" required-error-message="Class Name is required">
+                                     <option value="">{{'studentattendance.selectclass' | translate}}</option>
+							</select>
+                            </div>
+							
+							 <div class="form-group col-md-4">
+                                <label for="section" class="control-label minotaur-label"> {{'studentattendance.section' | translate}}<span class="text-red">*</span> </label>
+                                <select class="form-control" name="section" id="section" data-ng-model="sectionName"
+								ng-options="section.key as section.value for section in sections" validator="required" valid-method="watch" required-error-message="Section Name is required">
+                                    <option value="">{{'studentattendance.selectsection' | translate}}</option>
+							    </select>
+                            </div>
+							
+							
+						</div>
+							
+							<div class="row">
+					    <div class="form-group col-md-5">
+						</div>
+						<div class="form-group col-md-6">
+						    <button class="btn btn-sm btn-success" type="submit" validation-submit="step1"  data-ng-click="getAllStudent()">
+							{{'studentattendance.show' | translate}}</button>
+ 
+						</div>	
+					
+					</div>
+				</form>
+			</div>
+			
+    <div data-ng-show="attendancetable && className && sectionName && attenddancedate && items.length > 0">
+		<div class="col-md-12 nopadmar">
+			<!--<button class="btn btn-sm btn-primary" ui-sref="addstudent">Add Student</button>
+				-->
+			<div class="form-group col-md-12" style="padding:10px 0px 5px 0px">
+				<p style="padding:3px 0px;color:#000000;font-weight:bold;">NOTE : </p>
+
+				<p style="padding:3px 0px">1. Only checked comments will be included in the message </p>
+
+				<p style="padding:3px 0px">2. Select "Full Day" for Daily Attendance OR "Morning/Afternoon" for Half Day Attendance </p>
+						
+			</div>
+				<table  class="table table-striped table-bordered table-hover generaltable minotaur-table" style="display: table;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>					
+							<th>{{'studentattendance.studentids' | translate}}</th>
+							<th>{{'studentattendance.admissionno' | translate}}</th>
+							<th>{{'studentattendance.studentnames' | translate}}</th>
+							<th>
+							<input id="fullDay" name="fullDay"  type="checkbox" ng-model="checked" ng-click="checkalloneday()"> <label for="fullDay"> {{'studentattendance.fullday' | translate}}</label>
+							</th>
+							<th>
+							<input id="morning" name="morning" type="checkbox" ng-model="checkedMorning" ng-click="checkallmorning()" > <label for="morning"> {{'studentattendance.morning' | translate}}</label>
+							</th>
+							<th>
+							<input id="afternoon" name="afternoon" type="checkbox" ng-model="checkedAfternoon" ng-click="checkallafternone()" > <label for="afternoon"> {{'studentattendance.afternoon' | translate}}</label>
+							</th>
+							<th>
+							<input id="notemsg" ng-model="notemsg" type="checkbox"> <label for="notemsg"> {{'studentattendance.note' | translate}}</label></th>
+							<th>{{'studentattendance.attendance' | translate}}</th>							
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in items">
+					
+						  <td class="change_colr">{{item.studentId}}</td>
+						  <td class="change_colr">{{item.admissionNumber}}</td>
+						  <td class="change_colr">{{item.studentName}}</td>
+						  <td><input name="fullDay" data-ng-disabled="checkeddisabledfullday" type="checkbox" ng-model="item.fullDay"></td>
+						   <td><input name="morning" data-ng-disabled="checkeddisabledmorning" type="checkbox" ng-model="item.morning"></td>
+						    <td><input name="afternoon" data-ng-disabled="checkeddisabledafternoon" type="checkbox" ng-model="item.afternoon"></td>
+							<td><input id="notemsg" ng-model="notemsg" type="checkbox"> <input name="cmnts" id="name"  ng-model="item.note"  type="text" placeholder="Comments"></td>
+						  <td class="change_colr">
+						  <span style="background-color:#6ec06e;padding:5px">{{item.attendancePercenatge}} %
+						  </span></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="form-group col-md-5">
+						</div>
+						<div class="form-group col-md-6">
+						    <button class="btn btn-sm btn-primary"  data-ng-click="saveattendance()">
+							{{'studentattendance.Save' | translate}}</button>
+							<button class="btn btn-sm btn-success" >
+							{{'studentattendance.SaveSend' | translate}}</button>
+							<button class="btn btn-sm btn-danger"  data-ng-click="clearAllattendance()">
+							{{'studentattendance.Clear' | translate}}</button>
+						</div>	
+		</div>
+	</div>	
+	<div class="col-md-12 nopadmar" data-ng-if="items.length == 0">
+			
+				<table  class="table table-striped table-bordered table-hover generaltable minotaur-table" style="display: table;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>					
+							<th>{{'studentattendance.studentids' | translate}}</th>
+							<th>{{'studentattendance.admissionno' | translate}}</th>
+							<th>{{'studentattendance.studentnames' | translate}}</th>
+							<th>
+							<input id="fullDay"  type="checkbox"> <label for="fullDay" > {{'studentattendance.fullday' | translate}}</label>
+							</th>
+							<th>
+							<input id="morning" type="checkbox"> <label for="morning"> {{'studentattendance.morning' | translate}}</label>
+							</th>
+							<th>
+							<input id="afternoon" type="checkbox"> <label for="afternoon"> {{'studentattendance.afternoon' | translate}}</label>
+							</th>
+							<th>
+							<input id="notemsg" type="checkbox"> <label for="notemsg"> {{'studentattendance.note' | translate}}</label></th>
+							<th>{{'studentattendance.attendance' | translate}}</th>							
+						</tr>
+					</thead>
+					<tbody>
+						<tr>			
+						  <td colspan="7" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+				
+		</div>
+</div>									   
+				</div>
+				
+			</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

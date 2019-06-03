@@ -1,0 +1,22 @@
+{
+	"Status" : "Ok",
+	"configVO" : 
+	[
+		{
+		"SNo":"ASD3456",
+		"CasteName":"OC"
+		},
+		{
+		"SNo":"ASD3456",
+		"CasteName":"MBC"
+		},
+		{
+		"SNo":"ASD3456",
+		"CasteName":"BC"
+		},
+		{
+		"SNo":"ASD3456",
+		"CasteName":"SC"
+		}
+	]
+}

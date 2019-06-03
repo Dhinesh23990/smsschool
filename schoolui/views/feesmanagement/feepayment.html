@@ -1,0 +1,362 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="getallfeetype()" data-ng-controller="feetypepaymentController">
+    <div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'feeconfiguration.feepaymgmt' | translate}}</h3>
+	</div>
+	<div class="row" style="margin-left:-10px !important;">
+		<div class="col-md-12" style="padding-right:5px !important">
+			<ol class="breadcrumb" id="setresyults">
+				<li data-ng-click="gotodashboard()">
+				<i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a> {{'configclass.Home' | translate}}</a></li>
+				<li class="active">{{'feeconfiguration.Feepayment' | translate}}</li>
+			</ol>
+		</div>
+	</div>
+	<div class="panel panel-default" style="margin-left:6px;">g
+		<div class="panel-heading">
+			<i class="fa fa-bars"></i>
+			<span class="labelstcampaign" style="font-size:14px;font-weight:bold">{{'feeconfiguration.Feepayment' | translate}}</span>
+			<!-- <span class="pull-right">
+				<a class="activeview navcursor" id="list_view" data-ng-click="listviewdet()" style="margin-right:10px;font-weight:bold">{{'common.create' | translate}}</a>
+				<a class="hoverview defaultcol navcursor" id="grid_view" data-ng-click="gridviewdet()" style="font-weight:bold">{{'feeconfiguration.list' | translate}}</a>				
+			</span> -->
+		</div>
+		<div class="panel-body">
+			<div class="col-md-12 nopadmar" data-ng-show="createviewdetails">
+				<div class="col-md-12 nopadmar" data-ng-show="searchpayment_det">
+					<form name="searchpayment">
+						<div class="col-md-12" style="margin-bottom:10px;">
+							<!-- <div class="col-md-4">	
+								<input type="text" class="form-control" placeholder="Search Student Id or Mobile Number" data-ng-model="searchid" required>
+							</div>
+							<div class="col-md-4">
+								<select class="form-control" name="type" data-ng-model="term" ng-options="term.key as term.value for term in terms" required>
+									<option value="">{{'feeconfiguration.selter' | translate}}</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<select class="form-control" name="Batch" data-ng-model="batchId" ng-options="batch.key as batch.value for batch in batches" required>
+									<option value="">{{'feeconfiguration.selacyear' | translate}}</option>
+								</select>
+							</div> -->
+						
+							<div class="col-md-3">
+							<select class="form-control"  name="Batch" data-ng-model="batchId"  ng-options="batch.key as batch.value for batch in batches" 
+							validator="required" valid-method="watch" required-error-message="Choose Academic Year">	
+								<option value="">{{'feeconfiguration.selacyear' | translate}}</option>
+							</select>
+							</div>
+							<div class="col-md-3">
+							<select class="form-control" name="class" data-ng-model="className" ng-options="class.key as class.value for class in classes" 
+							 >
+								<option value="">{{'feeconfiguration.selcls' | translate}}</option>
+							</select>
+							</div>
+						
+							<div class="col-md-3">
+							<select class="form-control" name="section" data-ng-model="sectionName" ng-options="section.key as section.value for section in sections" >
+								<option value="">{{'feeconfiguration.selSection' | translate}}</option>
+							</select>
+							</div>
+							<div class="col-md-3">
+							<input name="name" type="text" class="form-control" placeholder="Search Name" data-ng-model="studentname"  validator="required" valid-method="watch" required-error-message="Enter the Name"/>
+							</div>
+							
+							
+						</div>
+							<div class="col-md-12" style="margin-bottom:10px">
+							
+							<div style="margin-bottom:40px;">
+							<button  class="btn btn-primary pull-right" type="submit" validation-submit="searchpayment" data-ng-click="searchstudentdet(batchId,className,sectionName,studentname)"  >{{'feeconfiguration.Search' | translate}}<i class="glyphicon glyphicon-search" style="font-size:11px !important;left:5px !important" ></i></button>
+							<!-- data-ng-click="searchpayment.$valid && searchstudentdet(datchId,className,sectionName,name)" -->
+							<!-- data-ng-click="searchpayment.$valid && searchstudentdet(batchId,className,sectionName,studentname)" -->
+							
+							</div>
+						</div>
+						
+						
+						<!-- <div class="col-md-12" style="margin-bottom:10px">
+							<div class="col-md-3"></div>
+							<div class="col-md-6 text-center">
+								<button class="btn btn-sm btn-primary" data-ng-click="searchpayment.$valid && searchstudentdet(searchid,term,batchId)">Submit
+								</button>
+							</div>	
+						</div> -->
+					
+					</form>
+					
+				</div>
+				<div class="col-md-12 nopadmar" data-ng-show="showstudent_det ">
+						<table class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid">
+						<thead class="tablebody"  style="background-color:#337ab7;color:#fff">
+							<tr>
+								<th style="width:50px !important"> {{'feeconfiguration.SNo' | translate}}</th>
+								<th class="text-center" style="width:153px !important"> {{'feeconfiguration.StudentName' | translate}} </th>
+								<th class="text-center" style="width:153px !important"> {{'feeconfiguration.Class' | translate}} </th>
+								<th class="text-center" style="width:153px !important"> {{'feeconfiguration.Section' | translate}} </th>
+								<th class="text-center"  style="width:100px !important"> {{'feeconfiguration.year' | translate}} </th>
+								<th class="text-center"  style="width:100px !important"> {{'feeconfiguration.term' | translate}} </th>
+								<th class="text-center" style="width:100px !important"> {{'feeconfiguration.totalAmount' | translate}} </th>
+								<th class="text-center"> {{'feeconfiguration.status' | translate}}</th>
+								<th class="text-center"> {{'feeconfiguration.pendingAmount' | translate}}</th>
+								<th class="text-center" style="width:110px !important"> {{'feeconfiguration.Actions' | translate}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-ng-repeat="item in items">
+								<td class="change_colr"> {{$index + 1}}</td>
+								<td class="change_colr">{{students.studentName}} </td>
+								<td class="change_colr">{{students.className}} </td>
+								<td class="change_colr">{{students.sectionName}} </td>
+								<td class="change_colr">{{students.batchName}}</td>
+								<td class="change_colr">{{item.term}}</td>
+								<td class="change_colr">{{item.amount}}</td>
+								<td class="change_colr">{{item.amount}}								
+								</td>								
+								<td class="change_colr" >
+								{{item.pendingAmount}}								
+								</td>								
+								<td class="change_colr">
+								<span data-ng-if="item.pendingAmount"><a tooltip-placement="bottom" tooltip="Click here to make payment" data-ui-sref="feepaytypes({batchId:batchId,className:className,sectionName:sectionName,studentname:studentname,studentId:students.id,term:item.term})" style="cursor:pointer;">
+								<i class="creatli"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </i></a> </span>
+								<span data-ng-if="!item.pendingAmount">Paid</span>
+								
+								<!-- <span><a tooltip-placement="top" tooltip="Edit" data-ui-sref="editfee" style="cursor:pointer;">
+							    <i class="creatli"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></i></a></span>
+								</td> --></td>
+							</tr>
+							
+						</tbody>
+						</table>
+						<div class="col-md-12 show_entries" data-ng-show="showstudent_det">
+					      <div class="col-md-6 pull-left nopadmar" style="margin-top:15px !important">
+				         	 <!-- Showing {{show_begin}} to 2 of 2 entries -->
+				         	  Showing {{show_begin}} to {{show_end}} of {{totalRecords}} entries
+				       	  </div>
+					          <div class="col-md-6 pull-right nopadmar" data-ng-show="abovedata">
+						         <pagination class="pull-right"
+						             ng-model="currentPage"
+						             total-items="totalRecords"
+						             max-size="maxSize"  
+						             boundary-links="true">
+						         </pagination>
+					         </div>
+				       </div>
+					</div>
+				<div class="col-md-12 nopadmar" data-ng-show="showstudsent_det">
+					<div class="col-md-12" style="padding:0px 0px 15px 0px">
+						<div class="col-md-12 nopadmar" style="border-top:2px solid #eee;background-color:#f5f5f5;padding:10px 10px 0px 10px" >
+							<div class="col-md-12 text-center" style="padding:10px">
+								<div style="font-weight:bold;font-size:16px;padding-bottom:2px">
+								<input type="hidden" data-ng-model="PaymentModeVO.studentId">
+								Student Name & Id :  {{studentIdetails.studentName}} <span data-ng-if="studentIdetails.surName">{{studentIdetails.surName}}</span> ({{studentIdetails.studentId}})
+								</div>
+								<div style="font-weight:bold;font-size:16px;padding-bottom:2px">Class & Section : {{studentIdetails.className}} - {{studentIdetails.sectionName}}</div> 
+								<div style="font-weight:bold;font-size:16px;padding-bottom:2px">Batch : {{studentIdetails.batchName}}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-12" style="border-top:1px solid #b3b6b7 ;border-bottom:1px solid #b3b6b7;padding:7px;margin-bottom:10px">
+							<div class="col-md-2"></div>
+							<div class="col-md-8 nopadmar" style="font-size:14px;font-weight:bold">
+								<div class="col-md-6">
+								Fees Type
+								</div>
+								<div class="col-md-4">
+									<div class="col-md-10 nopadmar text-center">
+									Amount
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+						<div class="col-md-12 nopadmar" data-ng-repeat="feetype in feetypes">
+							<div class="col-md-2"></div>
+							<div class="col-md-4" style="font-weight:600">
+								<span style="padding-left:5px"><input type="checkbox" data-ng-model="feetype.checked"></span> {{feetype.feeType}}
+							</div>
+							<div class="col-md-4 nopadmar">
+								<div class="col-md-10 nopadmar">
+									<input type="text" class="form-control pull-left" data-ng-model="feetype.amount" data-ng-disabled="!feetype.checked" placeholder="Amount" data-ng-change="findtotalamount(feetypes)">
+								</div>		
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+						<div class="col-md-12 nopadmar">
+							<div class="col-md-4"></div>
+							<div class="col-md-6">
+								<div class="col-md-3" style="font-weight:600">
+									Total Amount  
+								</div>
+								<div class="col-md-8" style="margin-left:15px">
+									<input type="text" class="form-control" data-ng-model="totalAmount" data-ng-disabled="true" placeholder="Total Amount">
+								</div>
+								<div class="col-md-1"></div>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="col-md-12 nopadmar text-center" style="color:red;font-weight:bold;font-size:14px" data-ng-show="errorstudentdet">
+					{{errormsgfeespay}}
+				</div>
+				<div class="col-md-12 nopadmar text-center" data-ng-show="showstudent_det">
+					<button class="btn btn-sm btn-primary" data-ng-click="paymentstudentdet()">Payment</button>
+					<button class="btn btn-sm btn-danger" data-ng-click="cancelpaymentdet()">Cancel</button>
+				</div>
+				<div class="col-md-12 nopadmar" data-ng-show="payment_det">
+					<div class="col-md-12">
+						<button class="btn btn-sm btn-primary" data-ng-click="backtocreatepayment()"><i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:2px !important">   
+						</i> Back</button>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-1"></div>
+						<div class="col-md-5">
+							<label class="control-label" style="padding-left:75px;font-size:17px;line-height:unset">Cash</label>
+							<div><a class="navcursor" data-ng-click="paidcashpayment()"><img style="height:200px;weight:200px" src="assets/images/debt.png">
+							</a>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<label class="control-label" style="padding-left:75px;font-size:17px;line-height:unset">Card</label>
+							<div><a class="navcursor" data-ng-click="paidcardpayment()"><img style="height:200px;weight:200px" src="assets/images/card.png"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 nopadmar" data-ng-show="cashpaymentsucces">
+					<div class="col-md-12" style="margin-bottom:10px">
+						<button class="btn btn-sm btn-primary" data-ng-click="backtopaymentsuccess()">
+						<i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:2px !important">   
+						</i> Back</button>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-4 text-center" style="font-size:15px;font-weight:bold">
+							Total Amount  -  {{totalAmount}}
+						</div>
+						<div class="col-md-8">
+							<button class="btn btn-sm btn-primary" data-ng-click="paymentsuccess()">Submit</button>
+							<button class="btn btn-sm btn-danger" data-ng-click="cancelpaymentdet()">Cancel</button>
+						</div>
+					</div>
+					<div class="col-md-12 nopadmar text-center" style="color:red;font-weight:bold;font-size:14px" data-ng-show="errorpaymentsuccess">
+						{{errormsgfeespayment}}
+					</div>
+				</div>
+				<div class="col-md-12 nopadmar" data-ng-show="cardpaymentsucces">
+					<div class="col-md-12" style="margin-bottom:10px">
+						<button class="btn btn-sm btn-primary" data-ng-click="backtopaymentsuccess()">
+						<i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:2px !important">   
+						</i> Back</button>
+					</div>
+					<div class="col-md-12">
+						<form name="cardpayment">
+							<div class="col-md-2"></div>
+							<div class="col-md-2">
+								<label class="control-label">
+									Payment Transaction Id
+								</label>
+							</div>
+							<div class="col-md-4">
+								<input type="text" name="transactionid" class="form-control" placeholder="Transaction Id" data-ng-model="PaymentModeVO.cardTransactionId" validator="required" valid-method="watch"
+								required-error-message="Transaction Id is required">
+							</div>
+							<div class="col-md-12 nopadmar text-center" style="color:red;font-weight:bold;font-size:14px" data-ng-show="errorpaymentsuccess">
+							{{errormsgfeespayment}}
+							</div>
+							<div class="col-md-12 text-center">
+								<button class="btn btn-sm btn-primary" type="submit" validation-submit="cardpayment" data-ng-click="cardpayment.$valid && paymentsuccess()">Submit</button>
+								<button class="btn btn-sm btn-danger" data-ng-click="cancelpaymentdet()">Cancel</button>
+							</div>
+						</form>
+					</div>
+				</div>
+            </div>
+			<div class="col-md-12 nopadmar" data-ng-show="show_datatables && listviewdetails">
+				<table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable"
+				style="display: table; width: 961px;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th style="width:120px">{{'configclass.sno' | translate}}</th>
+							<th>{{'feeconfiguration.StudentId' | translate}}</th>
+							<th>{{'feeconfiguration.StudentName' | translate}}</th>
+							<th style="width:140px">{{'feeconfiguration.paymenttype' | translate}}</th>
+							<th style="width:280px">{{'feeconfiguration.FeesType' | translate}}</th>
+							<th style="width:100px">{{'feeconfiguration.paymentdate' | translate}}</th>
+							<th>{{'feeconfiguration.Amount' | translate}}</th>
+							<th>{{'feeconfiguration.status' | translate}}</th>
+							<th style="width:100px">{{'feeconfiguration.Actions' | translate}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in items">
+							<td class="change_colr">{{item.indexId}}</td>
+							<td class="change_colr">{{item.studentVO.studentId}}</td>
+							<td class="change_colr">{{item.studentVO.studentName}}</td>
+							<td class="change_colr">{{item.paymentType}}</td>
+							<td class="change_colr">
+							<span data-ng-repeat="typenames in item.feeTypes">{{typenames.feeType}} {{$last ? '' : ', '}}</span></td>
+							<td class="change_colr">{{item.paymentdate}}</td>
+							<td class="change_colr">{{item.amount}}</td>
+							<td class="change_colr">{{item.status}}</td>
+							<td><span><a data-ng-click="edit(item.id)"  tooltip-placement="top" tooltip="Edit" style="cursor: pointer;">
+								<i class="creatli"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></i>
+								</a>
+								</span>
+								<span><a data-ng-click="deletefeeconfig(item.id)" tooltip-placement="top" tooltip="Delete" style="cursor: pointer;">
+									<i class="creatli"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></i>
+								</a>
+								</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="col-md-12 show_entries" data-ng-show="show_datatables">
+					<div class="col-md-6 pull-left nopadmar" style="margin-top:15px !important">
+					 Showing {{show_begin}} to {{show_end}} of {{totalRecords}} entries
+					</div>
+					<div class="col-md-6 pull-right nopadmar" data-ng-show="abovedata">
+						 <pagination class="pull-right"
+						  ng-model="currentPage"
+						  total-items="totalRecords"
+						  max-size="maxSize"  
+						  boundary-links="true">
+						</pagination>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 nopadmar" data-ng-show="listviewdetails" style="margin-top:10px !important" data-ng-if="items.length == 0">
+				<table class="table table-striped table-bordered table-hover generaltable minotaur-table" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'configclass.sno' | translate}}</th>
+							<th>{{'feeconfiguration.StudentId' | translate}} </th>
+							<th>{{'feeconfiguration.StudentName' | translate}}</th>
+							<th>{{'feeconfiguration.paymenttype' | translate}}</th>
+							<th style="width:350px">{{'feeconfiguration.FeesType' | translate}}</th>
+							<th style="width:150px">{{'feeconfiguration.Amount' | translate}}</th>
+							<th>{{'feeconfiguration.status' | translate}}</th>
+							<th style="width:150px">{{'feeconfiguration.Actions' | translate}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="7" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div> -->
+	</div>
+</div>
+
+<script type="text/ng-template" id="deleteFeeType.html">
+		<div class="modal-header" >
+			<h4 class="modal-title popupfontst"> {{'feeconfiguration.deletefeetype' | translate}} </h4>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-sm btn-danger" ng-click="deleteFeeTypeOk()">{{'feeconfiguration.OK' | translate}}</button>
+			<button class="btn btn-sm btn-primary" ng-click="okcancel()">{{'feeconfiguration.Cancel' | translate}}</button>	
+		</div>
+</script>

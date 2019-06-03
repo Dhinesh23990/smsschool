@@ -1,0 +1,47 @@
+<div class="contentadminlogin">
+<div class="page page-core page-login ng-scope" adminlogin>
+	<div class="adminlogin-modal">
+		<div class="branding">
+			<div class="row nopadmar">
+				<div class="col-md-6 nopadmar"><img class="pull-left" src="assets/images/logo_tgi.png" alt=""></div>
+				<div class="col-md-6 nopadmar"><img class="pull-right" style="height:55px;margin-top:10px" src="assets/images/logo_schoolsdiary.png" alt=""></div>
+			</div>
+			<span style="font-size:24px;line-height:1.1"><strong>Schools Diary</strong></span>
+		</div>
+		<form class="form-group" name="loginForm">
+			<div class="form-group with-addon"><span class="input-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input placeholder="Username" name="username" class="form-control" data-ng-model="j_username" type="text" validator="required" required-error-message="Username is required" valid-method="watch">
+			</div>
+			<div class="form-group with-addon"><span class="input-addon"><i class="fa fa-key" style="font-weight:800 !important;font-size:16px !important"></i></span>
+				<input placeholder="Password" name="password" class="form-control" data-ng-model="j_password" type="password" 
+				validator="required" required-error-message="Password is required" valid-method="watch">
+			</div>
+			<div class="form-group" data-ng-show="wrongusers">
+				<span  class="col-md-12 text-center" style="color:red">Incorrect Username or Password </span>
+			</div>
+			<button type="submit" validation-submit="loginForm" class="btn btn-lg btn-success btn-block 
+			btn-rounded-40" data-ng-click="loginmockuser()">Login</button>
+			<!--<div class="form-group" style="margin:18px 0px !important;">
+				<label class="minotaur-checkbox inline-block pull-right">Remember me
+					<input type="checkbox">
+					<div class="input-indicator"></div>
+				</label>
+			</div>
+			<div class="form-group" style="margin-top:45px !important;">
+			<div  style="font-size:15px !important;" >Forgot your password?</div>
+			<div class="form-group" style="font-size:13px !important;" >no worries, click 
+			<a ui-sref="forgetpsw" style="font-size:bold !important;font-size:14px !important">here</a> to reset your password.</div>
+			</div>-->
+		</form>
+	</div>
+	<section class="footer col-md-12 text-center" style="position:relative;text-align:center;color:white;padding-top:8px;">
+		<div class="footer-inner">
+			JM
+		<div class="footer-tools">
+			<span class="go-top">
+			<i class="icon-angle-up"></i>
+			</span>
+		</div>
+		</section>
+</div>
+</div>

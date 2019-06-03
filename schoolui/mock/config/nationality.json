@@ -1,0 +1,18 @@
+{
+	"Status" : "Ok",
+	"configVO" : 
+	[
+		{
+		"SNo":"ASD3456",
+		"NationalityName":"Indian"
+		},
+		{
+		"SNo":"ASD3456",
+		"NationalityName":"U.S"
+		},
+		{
+		"SNo":"ASD3456",
+		"NationalityName":"England"
+		}
+	]
+}

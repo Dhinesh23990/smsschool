@@ -1,0 +1,217 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="getAllAdmindashboardcount()" data-ng-controller="dashboardcountcontroller">
+    <!-- <ol class="breadcrumb bg-white">
+        <li><a ui-sref="dashboard">{{'configgender.Home' | translate}}</a></li>
+        <li class="active">{{'dashboard.dashboardc' | translate}}</li>
+    </ol>-->
+	
+    <div class="row headcontent">
+        <h3 class="schooldiary_h2">{{'studentmgmt.dasmnt' | translate}}</h3> 
+    </div>
+    <div  style="margin-left:-11px !important">
+        <div class="col-md-12" style="padding-right:5px !important">
+            <ol class="breadcrumb" id="setresyults">
+                <li><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a>{{'configgender.Home' | translate}}</a></li>
+                <li class="active">{{'dashboard.dashboardc' | translate}}</li>
+            </ol>
+        </div>
+    </div>
+	
+    <!-- row -->
+    <div class="col-md-12 nopadmar">
+        <!-- col -->
+        <div class="card-container col-lg-2 col-sm-4 " style="padding:0px 5px !important">
+            <div class="card">
+                <div class="front bg-greensea" style="height:25% !important;" >
+                    <!-- row -->
+                    <div class="row nopadmar">
+                        <div class="col-xs-12 nopadmar">
+                            <p class="text-xl line-xl text-strong mb-0" style="color:#ffffff">{{allschooldata.SchoolCount}}</p><span style="font-size:17px;font-weight:bold"> {{'admindashboard.school' | translate}}</span></div>
+                        <!-- /col -->
+                    </div>
+                    <!-- /row -->
+                </div>
+                <div class="back bg-greensea">
+                    <!-- row -->
+                    <div class="row nopadmar">
+                        <!-- col -->
+                        <div class="col-xs-12">
+                            <a style="font-size:17px !important;font-weight:bold !important" ui-sref="schoolmgmt">
+                                <i class="fa fa-hand-o-right"></i> {{'admindashboard.viewmore' | translate}}</a>
+                        </div>
+
+                        <!-- /col -->
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+        </div>
+        <!-- /col -->
+        <!-- col -->
+        <div class="card-container col-lg-2 col-sm-4 " style="padding:0px 5px !important">
+            <div class="card">
+                <div class="front bg-lightred" style="height:25% !important">
+                    <!-- row -->
+                    <div class="row nopadmar">
+                        <div class="col-xs-12 nopadmar">
+                            <p class="text-xl line-xl text-strong mb-0" style="color:#ffffff">{{allschooldata.ActiveSchoolCount}}</p><span style="font-size:16px;font-weight:bold">{{'admindashboard.activesch' | translate}}</span></div>
+                        <!-- /col -->
+                    </div>
+                    <!-- /row -->
+                </div>
+                <div class="back bg-lightred">
+                    <!-- row -->
+                    <div class="row nopadmar">
+                        <div class="col-xs-12">
+                            <a style="font-size:17px !important;font-weight:bold !important" ui-sref="schoolmgmt({status:'ACTIVE'})">
+                                <i class="fa fa-hand-o-right"></i>{{'admindashboard.viewmore' | translate}}</a>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+        </div>
+        <!-- /col -->
+        <!-- col -->
+        <div class="card-container col-lg-2 col-sm-4 " style="padding:0px 5px !important">
+            <div class="card">
+                <div class="front bg-warning" style="height:25% !important">
+                    <!-- row -->
+                    <div class="row nopadmar">
+                        <div class="col-xs-12 nopadmar">
+                            <p class="text-xl line-xl text-strong mb-0" style="color:#ffffff">{{allschooldata.InactiveSchoolCount}}</p><span style="font-size:16px;font-weight:bold">{{'admindashboard.inactsch' | translate}}</span></div>
+                        <!-- /col -->
+                    </div>
+                    <!-- /row -->
+                </div>
+                <div class="back bg-warning">
+                    <!-- row -->
+                    <div class="row nopadmar">
+                        <div class="col-xs-12">
+                            <a style="font-size:17px !important;font-weight:bold !important" ui-sref="schoolmgmt({status:'INACTIVE'})">
+                                <i class="fa fa-hand-o-right"></i> {{'admindashboard.viewmore' | translate}}</a>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+        </div>
+        <!-- /col -->
+        <!-- col -->
+        <div class="card-container col-lg-2 col-sm-4 " style="padding:0px 5px !important">
+            <div class="card">
+                <div class="front bg-slategray" style="height:25% !important">
+                   <div class="row nopadmar">
+                        <div class="col-xs-12 nopadmar">
+                            <p class="text-xl line-xl text-strong mb-0" style="color:#ffffff">{{allschooldata.StudentCount}}</p><span style="font-size:17px;font-weight:bold">{{'studentattendance.student' | translate}}</span></div>
+                    </div>
+                </div>
+                <div class="back bg-slategray">
+                    <div class="row nopadmar">
+                        <div class="col-xs-12">
+                            <a style="font-size:17px !important;font-weight:bold !important">
+                                <i class="fa fa-hand-o-right"></i> {{'admindashboard.viewmore' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="card-container col-lg-2 col-sm-4 " style="padding:0px 5px !important">
+            <div class="card">
+                <div class="front bg-greensea" style="height:25% !important">
+                    <div class="row nopadmar">
+                        <div class="col-xs-12 nopadmar">
+                            <p class="text-xl line-xl text-strong mb-0" style="color:#ffffff">{{allschooldata.TeacherCount}}</p><span style="font-size:17px;font-weight:bold">{{'admindashboard.staff' | translate}}</span>	
+						</div>
+                    </div>
+                </div>
+                <div class="back bg-greensea">
+                    <div class="row nopadmar">
+                        <div class="col-xs-12">
+                            <a style="font-size:17px !important;font-weight:bold !important">
+                                <i class="fa fa-hand-o-right"></i> {{'admindashboard.viewmore' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="card-container col-lg-2 col-sm-4 " style="padding:0px 5px !important">
+            <div class="card">
+                <div class="front bg-lightred" style="height:25% !important">
+                    <div class="row nopadmar">
+                        <div class="col-xs-12 nopadmar">
+                            <p class="text-xl line-xl text-strong mb-0" style="color:#ffffff">{{allschooldata.AdminCount}}</p><span style="font-size:17px;font-weight:bold">{{'admindashboard.admin' | translate}}</span></div>
+                    </div>
+                </div>
+                <div class="back bg-lightred">
+                    <div class="row nopadmar">
+                        <div class="col-xs-12">
+                            <a style="font-size:17px !important;font-weight:bold !important">
+                                <i class="fa fa-hand-o-right"></i> {{'admindashboard.viewmore' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<div class="col-md-12" style="padding: 0px 5px;">
+		<div class="panel panel-primary ">
+			<div class="panel-heading">
+			 <i class="fa fa-bars"></i> 
+				<span class="labelstcampaign" style="font-weight:bold;font-size:14px !important"> SMS Status - Overview</span>
+			</div>
+
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-2">
+
+						<a id="box11" class="icon-btn span2" style="cursor:default;" href="#">
+							<i class=" glyphicon glyphicon-envelope"></i>
+							<div>Total SMS Purchased </div>
+							<span class="badge badge-info">{{allsmsdata.smsTotalCount}}</span>
+						</a>
+					</div>
+
+					<div class="col-md-2">
+
+						<a id="box11" class="icon-btn span2" style="cursor:default;" href="#">
+							<i class=" fa fa-calendar"></i>
+							<div>SMS Purchased Date</div>
+							<span class="badge badge-info">{{allsmsdata.smsStartDate}}</span>
+						</a>
+					</div>
+					<div class="col-md-2">
+
+						<a id="box11" class="icon-btn span2" style="cursor:default;" href="#">
+							<i class=" glyphicon glyphicon-share"></i>
+							<div>Total SMS Sent</div>
+							<span class="badge badge-success">{{allsmsdata.smsTotalSentCount}}</span>
+						</a>
+					</div>
+					<div class="col-md-2">
+
+						<a id="box11" class="icon-btn span2" style="cursor:default;" href="#">
+							<i class="fa fa-bar-chart"></i>
+							<div>SMS Balance</div>
+							<span class="badge badge-danger">{{allsmsdata.smsBalanceCount}}</span>
+						</a>
+					</div>
+					<div class="col-md-2">
+						<a id="box11" class="icon-btn span2" style="cursor:default;" href="#">
+							<i class=" fa fa-calendar"></i>
+							<div>Expired Date</div>
+							<span class="badge badge-danger">{{allsmsdata.smsEndDate}}</span>
+						</a>
+					</div>
+					<div class="col-md-2">
+						<a id="box11" class="icon-btn span2" style="cursor:default;" href="#">
+							<i class=" glyphicon glyphicon-share"></i>
+							<div>SMS Sent Today</div>
+							<span class="badge badge-success">{{allsmsdata.smsTodaySentCount}}</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

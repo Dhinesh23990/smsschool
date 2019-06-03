@@ -1,0 +1,24 @@
+{
+	"Status" : "Ok",
+	"subjectView" : 
+	[
+		{
+		
+		"Subject":"Tamil"
+		
+		}	,
+		{
+		
+		"Subject":"English"
+		
+		}	,
+		
+		{
+		
+		"Subject":"Maths"
+		
+		}	
+		
+		
+	]
+}

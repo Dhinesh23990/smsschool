@@ -1,0 +1,24 @@
+{
+	"Status" : "Ok",
+	"genderView" : 
+	[
+		{
+		
+		"Gender":"Male"
+		
+		}	,
+		{
+		
+		"Gender":"Female"
+		
+		}	,
+		
+		{
+		
+		"Gender":"Transgender"
+		
+		}	
+		
+		
+	]
+}

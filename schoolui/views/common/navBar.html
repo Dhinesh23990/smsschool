@@ -1,0 +1,202 @@
+<minotaur-nav ng-class="specialClass " class="{{simplenavbar}}" id="nav-bar" ng-controller="navbarController">
+<div class="nav-heading">
+    <h3></h3>
+</div>
+<div class="nav-heading" id="slimScrollDiv">
+<!--<div slimscroll="{height: '100%',size: '4px',borderRadius: '0px',opacity: .2}" style="overflow: hidden; width: auto; height: 100%;">-->
+    <ul class="nav nav-sidebar" id="listResults">
+        <li ng-click="gotocenterpage('dashboard')" class="active" style="">
+			<a>
+			<span class="nav-text">{{'navbarcontent.dashboard' | translate}}</span>
+			<i class="fa fa-home"></i>
+			</a>
+		</li>
+        <li class="dropdown" style="">
+		<a class="navcursor">
+		<span class="nav-text">{{'navbarcontent.usermgmt' | translate}}</span>
+		<i class="fa fa-users"></i></a>
+            <ul id="ddremove" style="display: none; height: 105px; padding-top: 10px; margin-top: 0px; padding-bottom: 10px; margin-bottom: 0px;">
+				<li ng-click="gotocenterpage('studentmanagement')" class=""><a><span class="nav-text ng-binding">{{'navbarcontent.student' | translate}}</span> <i class="ng-binding">ST</i></a></li>
+                <li ng-click="gotocenterpage('staffmanagement')" class=""><a ><span class="nav-text ng-binding">{{'navbarcontent.teacher' | translate}}</span> <i class="ng-binding">ST</i></a></li>
+                <li ng-click="gotocenterpage('adminmanagement')" class=""><a>{{'navbarcontent.admin' | translate}}  
+				 <i class="ng-binding">AD</i></a></li>
+               
+            </ul>
+        </li>
+		<li class="dropdown" style="">
+		<a class="navcursor">
+		<span class="nav-text">{{'navbarcontent.configurations' | translate}}</span>
+		<i class="fa fa-cogs"></i></a>
+			<ul id="ddremove" style="display: none; height:545px; padding-top: 10px; margin-top: 0px; padding-bottom: 10px; margin-bottom: 0px;">
+			    <li ng-click="gotocenterpage('configbatch')" class=""><a><span class="nav-text ng-binding">{{'navbarcontent.batch' | translate}}</span> <i class="ng-binding">BA</i></a></li>
+				<li ng-click="gotocenterpage('configbatchconfig')" class=""><a><span class="nav-text ng-binding">{{'navbarcontent.batchconfiguration' | translate}}</span> <i class="ng-binding">BC</i></a></li>
+				<li ng-click="gotocenterpage('configblood')" class=""><a>{{'navbarcontent.bloodgroup' | translate}} 
+				 <i class="ng-binding">BG</i></a></li>
+				<!--<li ng-click="gotocenterpage('configpincode')" class=""><a><span class="nav-text ng-binding">Pincode</span> <i class="ng-binding">PC</i></a></li>-->
+				<li ng-click="gotocenterpage('configcity')" class=""><a><span class="nav-text ng-binding">{{'navbarcontent.city' | translate}} </span> <i class="ng-binding">CY</i></a></li>
+				<!--<li ng-click="gotocenterpage('configsubjectset')" class=""><a><span class="nav-text ng-binding">Subject Set</span> <i class="ng-binding">SS</i></a></li>
+				  <li ng-click="gotocenterpage('configsubjecttype')" class=""><a><span class="nav-text ng-binding">Subject Type</span> <i class="ng-binding">ST</i></a></li>-->
+				<li ng-click="gotocenterpage('configclass')" class=""><a><span class="nav-text ng-binding">{{'navbarcontent.class' | translate}} </span> <i class="ng-binding">CL</i></a></li>
+				<li ng-click="gotocenterpage('configcourse')" class=""><a>{{'navbarcontent.course' | translate}}  
+				 <i class="ng-binding">CO</i></a></li>
+				<li ng-click="gotocenterpage('configcaste')" class=""><a>{{'navbarcontent.caste' | translate}}  
+				 <i class="ng-binding">CA</i></a></li>
+				<li ng-click="gotocenterpage('configcountry')" class=""><a>{{'navbarcontent.country' | translate}}  
+				 <i class="ng-binding">CO</i></a></li>
+				<li ng-click="gotocenterpage('configeducational')" class=""><a>{{'navbarcontent.educaqualification' | translate}} 
+				 <i class="ng-binding">EQ</i></a></li>
+				<!--<li ng-click="gotocenterpage('configexamsession')" class=""><a>Exam Session  
+				 <i class="ng-binding">EX</i></a></li>
+				<li ng-click="gotocenterpage('configexamlist')" class=""><a>Exam List  
+				 <i class="ng-binding">EX</i></a></li>-->
+				<li ng-click="gotocenterpage('configgender')" class=""><a>{{'navbarcontent.gender' | translate}} 
+				 <i class="ng-binding">GE</i></a></li>
+				<!--  <li ng-click="gotocenterpage('configgradlimit')" class=""><a>Grade Limit
+				 <i class="ng-binding">GA</i></a></li>-->
+				<li ng-click="gotocenterpage('configlanguage')" class=""><a>{{'navbarcontent.language' | translate}} 
+				 <i class="ng-binding">LA</i></a></li>
+                <li ng-click="gotocenterpage('configmedium')" class="">
+				<a><span class="nav-text ng-binding">{{'navbarcontent.medium' | translate}} </span> <i class="ng-binding">ME</i></a></li>          
+                <li ng-click="gotocenterpage('configmothertongue')" class=""><a>{{'navbarcontent.mothertongue' | translate}} 
+				 <i class="ng-binding">MT</i></a></li> 
+                <li ng-click="gotocenterpage('confignationality')" class=""><a>{{'navbarcontent.nationality' | translate}}  
+				 <i class="ng-binding">NA</i></a></li>               			 
+				<li ng-click="gotocenterpage('configreligion')" class=""><a>{{'navbarcontent.religion' | translate}}  
+				 <i class="ng-binding">RE</i></a></li> 
+				<li ng-click="gotocenterpage('configsection')" class=""><a>{{'navbarcontent.section' | translate}} 
+				 <i class="ng-binding">SE</i></a></li>
+				<li ng-click="gotocenterpage('configstate')" class=""><a><span class="nav-text ng-binding">{{'navbarcontent.state' | translate}}</span> <i class="ng-binding">ST</i></a></li>
+				<li ng-click="gotocenterpage('configsubject')" class=""><a>{{'navbarcontent.subject' | translate}} 
+				 <i class="ng-binding">SU</i></a></li>
+				  
+            </ul>
+        </li>	
+        <li class="dropdown" style=""><a>
+		<span class="nav-text">{{'navbarcontent.stuattendance' | translate}} </span>
+		      <i class="fa  fa-list-alt"></i></a>
+                <ul style="display: none; height: 70px; padding-top: 10px; margin-top: 0px; padding-bottom: 10px; margin-bottom: 0px;">
+				<li ng-click="gotocenterpage('studentattendance')" class=""><a><span class="nav-text ng-binding">{{'navbarcontent.view' | translate}}</span> <i class="ng-binding">V</i></a></li>
+                <li ng-click="gotocenterpage('addattendance')" class=""><a><span class="nav-text ng-binding">{{'navbarcontent.newentry' | translate}} </span> <i class="ng-binding">NE</i></a></li>
+            </ul>
+        </li>	
+		 <li class="dropdown" style="">
+		<a>
+		<span class="nav-text">{{'navbarcontent.staffattendance' | translate}} </span>
+
+		      <i class="fa  fa-list-alt"></i></a>
+                <ul style="display: none; height: 160px; padding-top: 10px; margin-top: 0px; padding-bottom: 10px; margin-bottom: 0px;">
+                <li ng-click="gotocenterpage('teacherattendance')" class=""><a ><span class="nav-text ng-binding">{{'navbarcontent.view' | translate}}</span> <i class="ng-binding">V</i></a></li>
+                <li ng-click="gotocenterpage('addteacherattendance')" class=""><a ><span class="nav-text ng-binding">{{'navbarcontent.newentry' | translate}}</span> <i class="ng-binding">NE</i></a></li>
+				<li ng-click="gotocenterpage('leavemaster')" class=""><a ><span class="nav-text ng-binding">{{'navbarcontent.leavemaster' | translate}}</span> <i class="ng-binding">LM</i></a></li>
+               <li ng-click="gotocenterpage('leaveperiod')" class=""><a ><span class="nav-text ng-binding">{{'navbarcontent.leaveperiod' | translate}} </span> <i class="ng-binding">LP</i></a></li>
+			   <li ng-click="gotocenterpage('leaveentitlement')" class=""><a ><span class="nav-text ng-binding">{{'navbarcontent.leaveentitlement' | translate}} </span> <i class="ng-binding">LE</i></a></li>
+            </ul>
+        </li>
+		<li class="dropdown" style="">
+			<a class="navcursor">
+			<span class="nav-text">{{'navbarcontent.sMS' | translate}}</span>
+			<i class="fa fa-envelope"></i>
+			</a>
+            <ul id="ddremove" style="display: none; height: 70px; padding-top: 10px; margin-top: 0px; padding-bottom: 10px; margin-bottom: 0px;">
+				 <li ng-click="gotocenterpage('confignotification')" class=""><a>{{'navbarcontent.apptemplate' | translate}} <i class="ng-binding">ST</i></a></li>
+                 <li ng-click="gotosmspage('configsms')" class=""><a>{{'navbarcontent.sMS' | translate}}
+				 <i class="ng-binding">SM</i></a></li> 				 
+              <!-- <li ng-click="gotosmspage('configsms')" class=""><a>SMS
+				 <i class="ng-binding">SM</i></a></li>  -->
+            </ul>
+        </li>	
+		<li class="dropdown" style="">
+			<a class="navcursor">
+			<span class="nav-text">{{'navbarcontent.feesmanagement' | translate}} </span>
+			<i class="fa fa-rupee"></i></a>
+            <ul id="ddremove" style="display: none; height: 170px; padding-top: 10px; margin-top: 0px; padding-bottom: 10px; margin-bottom: 0px;">
+				<li ng-click="gotocenterpage('feetypes')" class=""><a><span class="nav-text ng-binding">{{'navbarcontent.feestypes' | translate}} </span> <i class="ng-binding">FT</i></a></li>
+               <!-- <li ng-click="gotocenterpage('feecomponents')" class=""><a ><span class="nav-text ng-binding">Fees Components</span> <i class="ng-binding">FC</i></a></li>-->
+                <li ng-click="gotocenterpage('feeconfiguration')" class=""><a ><span class="nav-text ng-binding">{{'navbarcontent.feesconfiguration' | translate}}  </span>
+				<i class="ng-binding">FG</i></a></li>
+				<li ng-click="gotocenterpage('feespaymenttype')" class=""><a><span class="nav-text ng-binding">{{'navbarcontent.feespayment' | translate}} </span> <i class="ng-binding">FP</i></a></li>
+				<li ng-click="gotocenterpage('individualstudent')" class=""><a ><span class="nav-text ng-binding">Individual Student </span>
+				<i class="ng-binding">IS</i></a></li>
+				<li ng-click="gotocenterpage('feeconcessiontype')" class=""><a ><span class="nav-text ng-binding">Concession Type</span>
+				<i class="ng-binding">CT</i></a></li>
+				<li ng-click="gotocenterpage('feespaymentmode')" class=""><a ><span class="nav-text ng-binding">Payment Mode</span>
+				<i class="ng-binding">PM</i></a></li>
+               
+            </ul>
+        </li>
+       
+       <!-- <li class="dropdown" style="">
+		<a class="navcursor">
+		<span class="nav-text">TimeTable</span>
+		<i class="fa fa-calendar"></i></a>
+            <ul id="ddremove" style="display: none; height: 70px; padding-top: 10px; margin-top: 0px; padding-bottom: 10px; margin-bottom: 0px;">
+				 <li ng-click="gotocenterpage('configtimetable')" class=""><a>Configure 
+				 <i class="ng-binding">Co</i></a></li>    
+                 <li ng-click="gotocenterpage('viewmap')" class=""><a>View/Mapping 
+				 <i class="ng-binding">Vi</i></a></li>   				 
+            </ul>			
+        </li>	
+		<li class="dropdown" style="">
+			<a class="navcursor">
+			<span class="nav-text">Vehicle Management</span>
+			<i class="fa fa-bus"></i></a>
+            <ul style="display: none; height: 220px; padding-top: 10px; margin-top: 0px; padding-bottom: 10px; margin-bottom: 0px;">
+
+				<li ng-click="gotocenterpage('vehicledetails')" class=""><a><span class="nav-text ng-binding">Vehicles</span> <i class="ng-binding">V</i></a></li>
+                <li ng-click="gotocenterpage('routedetails')" class=""><a><span class="nav-text ng-binding">Routes</span> <i class="ng-binding">R</i></a></li>
+               <li ng-click="gotocenterpage('vehicleroute')" class=""><a><span class="nav-text ng-binding">VehicleRoute</span> <i class="ng-binding">VR</i></a></li>
+            </ul>
+        </li>-->
+       <!--  <li class="dropdown" style="" ng-click="gotocenterpage('feespaymenttype')" >
+			<a class="navcursor">
+			<span class="nav-text">{{'navbarcontent.feespayment' | translate}} </span>
+			
+			<i class="fa fa-rupee"></i></a>
+			<ul id="ddremove" style="display: none; height: 70px; padding-top: 10px; margin-top: 0px; padding-bottom: 10px; margin-bottom: 0px;">
+				
+               
+            </ul>
+           
+        </li> -->
+        <li ng-click="gotocenterpage('feespaymenttype')" class="" >
+        <a class="navcursor" >
+        <span class="nav-text ng-binding">{{'navbarcontent.feespayment' | translate}} </span>
+        <i class="fa fa-rupee"></i></a>
+        <ul id="ddremove" style="display: none; height: 0px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+        </ul>
+        </li>
+
+		<li ng-click="gotocenterpage('eventdetails')" class=""><a
+			class="navcursor"> 
+			<span class="nav-text ng-binding">{{'navbarcontent.events'| translate}} </span> 
+			<i class="fa fa-calendar-check-o"></i></a>
+			<ul id="ddremove" style="display: none; height: 0px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+			</ul></li>
+
+
+			<li ng-click="gotocenterpage('notificationdetails')" class=""><a
+			class="navcursor"> 
+			<span class="nav-text ng-binding">{{'navbarcontent.notification'| translate}} </span> 
+			<i class="fa-bell-o"></i></a>
+			<ul id="ddremove" style="display: none; height: 0px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+			</ul></li>
+			
+
+	</ul>
+<!--	
+</div>
+<div class="slimScrollBar" style="background: rgb(0, 0, 0) none repeat scroll 0% 0%; width: 4px; position: absolute; top: 0px; opacity: 0.2; display: none; border-radius: 0px; z-index: 99; right: 1px; height: 587px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51) none repeat scroll 0% 0%; opacity: 0.2; z-index: 90; right: 1px;"></div>
+-->
+</div></minotaur-nav>
+
+<script type="text/javascript">
+    $(function(){
+      $('#slimScrollDiv').slimscroll({
+    	  color: '#00bfff',  
+          size: '10px',
+        height:'600px',
+       alwaysVisible:true,
+       enableKeyNavigation: true
+      });
+    });
+</script>

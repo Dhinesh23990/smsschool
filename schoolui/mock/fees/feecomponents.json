@@ -1,0 +1,22 @@
+{
+	"Status" : "Ok",
+	"feesComponentsVO" : 
+	[
+		{
+		"FeeType":"exam",
+		"FeeComponent":"fees"
+		},
+		{
+		"FeeType":"exam",
+		"FeeComponent":"fees"
+		},
+		{
+		"FeeType":"exam",
+		"FeeComponent":"fees"
+		},
+		{
+		"FeeType":"exam",
+		"FeeComponent":"fees"
+		}		
+	]
+}

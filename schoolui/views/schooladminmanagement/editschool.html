@@ -1,0 +1,208 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="getSchoolById()" data-ng-controller="editschooladminController">
+    <div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'schooladmin.schoolmnt' | translate}}</h3>
+	</div>
+	<div class="row" style="margin-left:-10px !important;">
+		<div class="col-md-12" style="padding-right:5px !important">
+			<ol class="breadcrumb" id="setresyults">
+				<li data-ng-click="gotodashboard()" class="navcursor"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a>{{'configgender.Home' | translate}}</a></li>
+				<li class="active">{{'common.create' | translate}}</li>
+				<!--<li class="active">{{listandgridview}}</li>-->
+			</ol>
+		</div>
+	</div>
+	<div class="row" style="margin-left: -9px;width: 1145px;">
+		<div class="col-md-12">
+		<!-- tile -->
+		<div class="tile tile-simple">
+			<!-- tile body -->
+			<section class="tile-body p-0">
+				<!-------<form name="outerForm" role="form" novalidate="" class="form-validation ng-invalid ng-invalid-required ng-valid-pattern ng-valid-url ng-valid-email ng-dirty ng-valid-parse ng-valid-maxlength ng-valid-minlength ng-valid-match ng-submitted" style="">---------->
+					<div id="addstaffDiv" active="forms.activeStep" justified="true" class="tab-wizard padded ng-isolate-scope">
+						<ul class="nav nav-tabs nav-justified" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+							<li id="fstid" ng-class="[{active: active, disabled: disabled}, classes]" class="uib-tab nav-item ng-scope ng-isolate-scope active" index="0" ng-click="firstpreviousstep()" style="">
+								<a class="nav-link ng-binding">
+									<uib-tab-heading class="ng-scope">
+										<i class="fa fa-check ng-scope" ng-if="step1.$valid" style=""></i>
+										{{'addstaff.pinfo' | translate}} 
+										<span class="pull-right wizard-step">1</span>
+									</uib-tab-heading>
+								</a>
+							</li>
+							<li  id="sndid" class="uib-tab nav-item ng-scope ng-isolate-scope" ng-class="step1.$valid ? 'active' : 'disabled'" index="1" disable="step1.$invalid" ng-click="step1.$valid && firststep()" style="">
+								<a class="nav-link ng-binding">
+									<uib-tab-heading class="ng-scope">
+										{{'schooladmin.smsinfo' | translate}}<span class="pull-right wizard-step">2</span>
+									</uib-tab-heading>
+								</a>
+							</li>
+							
+							<li id="thirdid" ng-class="step2.$valid ? 'active' : 'disabled'" class="uib-tab nav-item ng-scope ng-isolate-scope" index="3" disable="step2.$invalid" ng-click="step2.$valid && secondstep()">
+								<a href=""  class="nav-link ng-binding" >
+									<uib-tab-heading class="ng-scope">
+										<!-- ngIf: step4.$valid -->{{'schooladmin.schoolimage' | translate}}<span class="pull-right wizard-step">3</span></uib-tab-heading>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<!-- ngRepeat: tab in tabset.tabs -->
+							<div class="tab-pane ng-scope active" id="firststep">
+								<form name="step1" novalidate  ng-submit="submitForm()">
+									<div class="row">
+										<div class="colmd-12" data-ng-show="errormsg">
+											<div class="colmd-12" data-ng-show="errormsg">
+											<div class="col-md-12">
+												<span class="text-red">{{schoolerrormsg}}</span>
+											</div>
+										</div>
+										</div>
+										<div class="form-group col-md-3">
+											<label for="username" class="control-label minotaur-label">{{'schooladmin.schoolname' | translate}} <span class="text-red">*</span></label>
+											<input name="schoolname" id="name" class="form-control" ng-model="SchoolVO.schoolName" type="text" placeholder="School Name" validator="required" valid-method="watch"
+											required-error-message="School Name is required">
+										</div>
+										<div class="form-group col-md-3">
+											<label for="username" class="control-label minotaur-label">{{'schooladmin.schoolcode' | translate}} <span class="text-red">*</span></label>
+											<input name="schoolcode" id="name" class="form-control" ng-model="SchoolVO.schoolCode" type="text" placeholder="School Code" ng-maxlength="4" maxlength="4" validator="required" valid-method="watch"
+											required-error-message="School Code is required" numeric-character>
+										</div>
+										<div class="form-group col-md-3">
+											<label for="username" class="control-label minotaur-label">{{'schooladmin.mobileno' | translate}} <span class="text-red">*</span></label>
+											<input name="mobileno" id="name" class="form-control" ng-model="SchoolVO.contactNumber" type="text" placeholder="Contact Mobile No" ng-maxlength="10" maxlength="10" ng-pattern="/[0-9]{10}$/" validator="required" valid-method="watch"
+											required-error-message="Contact Mobile No is required" numeric-only-addstudent>
+										</div>
+										<div class="form-group col-md-3">
+											<label for="username" class="control-label minotaur-label">{{'schooladmin.emailid' | translate}} <span class="text-red">*</span></label>
+											<input name="emailid" id="name" class="form-control" ng-model="SchoolVO.contactEmailId" type="email" placeholder="Contact Email Id" validator="required" valid-method="watch"
+											required-error-message="Contact Email Id is required">
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label for="username" class="control-label minotaur-label">{{'studentmgmt.address1' | translate}} <span class="text-red">*</span></label>
+											<textarea name="address1" id="address1" class="form-control" ng-model="SchoolVO.address1" placeholder="Address Line 1" rows="1" validator="required" valid-method="watch"
+											required-error-message="Address Line 1 is required"></textarea>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="username" class="control-label minotaur-label">{{'studentmgmt.address2' | translate}} </label>
+											<textarea  name="address2" id="address2" class="form-control" ng-model="SchoolVO.address2" placeholder="Address Line 2" rows="1">
+											</textarea>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-3">
+											<label for="username" class="control-label minotaur-label">{{'studentmgmt.country' | translate}} <span class="text-red">*</span></label>
+											<input name="country" id="country" class="form-control" ng-model="SchoolVO.country" type="text" placeholder="Country" validator="required" valid-method="watch"
+											required-error-message="Country is required">
+										</div>
+										<div class="form-group col-md-3">
+											<label for="username" class="control-label minotaur-label">{{'studentmgmt.state' | translate}} <span class="text-red">*</span></label>
+											<input name="state" id="name" class="form-control" ng-model="SchoolVO.state" type="text" placeholder="State" validator="required" valid-method="watch"
+											required-error-message="State is required">
+										</div>
+										<div class="form-group col-md-3">
+											<label for="username" class="control-label minotaur-label">{{'studentmgmt.city' | translate}} <span class="text-red">*</span></label>
+											<input name="city" id="city" class="form-control" ng-model="SchoolVO.city" type="text" placeholder="City" validator="required" valid-method="watch"
+											required-error-message="City is required">
+										</div>
+										<div class="form-group col-md-3">
+											<label for="zip" class="control-label minotaur-label">{{'studentmgmt.zipcode' | translate}}</label>
+											<input name="zipcode" id="zipcode" class="form-control" ng-model="SchoolVO.zipcode" placeholder="Enter zipcode" type="text"
+											ng-maxlength="6" maxlength="6" ng-pattern="/[0-9]{6}$/" numeric-only-addstudent>	
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label for="username" class="control-label minotaur-label">{{'schooladmin.username' | translate}} <span class="text-red">*</span></label>
+											<input name="username" id="username" class="form-control" ng-model="SchoolVO.userName" type="text" placeholder="UserName(Login Id)" validator="required" valid-method="watch" ng-maxlength="50" maxlength="50"
+											required-error-message="User Name is required">
+										</div>
+										<!--<div class="form-group col-md-4">
+											<label for="username" class="control-label minotaur-label">{{'schooladmin.psw' | translate}} <span class="text-red">*</span></label>
+											<input name="password" id="password" class="form-control" ng-model="SchoolVO.password" type="password" placeholder="Password" validator="required" valid-method="watch" ng-minlength="7" minlength="7"
+											required-error-message="Password is required" data-ng-change ="setvalidation(SchoolVO.password,confirmpassword)" ng-disabled="true">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="username" class="control-label minotaur-label">{{'schooladmin.confpsw' | translate}} <span class="text-red">*</span></label>
+											<input name="confirmpassword" id="confirmpassword" class="form-control" ng-model="SchoolVO.password" type="password" placeholder="Confirm Password" data-ng-change ="setvalidation(SchoolVO.password,confirmpassword)"
+											required" ng-disabled="true">
+											
+										</div>-->
+									</div>
+									
+									<button class="btn btn-danger btn-ef btn-ef-5 btn-ef-5a" ui-sref="schoolmgmt">
+									<i class="fa fa-times"></i><span>{{'staffmanagement.Cancel' | translate}}</span></button>
+									<button class="btn btn-primary btn-ef btn-ef-5 btn-ef-5a pull-right" type="submit" ng-click="step1.$valid && firststep()" validation-submit="step1"><i class="fa fa-share"></i> <span>{{'staffmanagement.Next' | translate}}</span></button>
+								</form>
+							</div>
+							<!-- end ngRepeat: tab in tabset.tabs -->
+							<div class="tab-pane ng-scope" id="secondstep">
+								<form name="step2" novalidate>
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label for="street" class="control-label minotaur-label">{{'schooladmin.smscnt' | translate}}<span class="text-red"> *</span></label>
+											<input name="smsTotalCount" id="smsTotalCount" class="form-control" ng-model="SchoolVO.smsTotalCount" placeholder="Total Sms Count"
+											validator="required" valid-method="watch" required-error-message="Total Sms Count is required" type="text" numeric-only-addstudent>
+											
+										</div>
+										<div class="form-group col-md-4">
+											<label for="pr-name" class="control-label minotaur-label">{{'schooladmin.smsstdate' | translate}} <span class="text-red">*</span></label>
+											<input id="dobbirth" class="form-control" type="text" name="birthdate" ng-model="smsStartDate" validator="required" placeholder="Start Date" valid-method="watch"
+											required-error-message="Start Date is required" />
+										</div>
+										<div class="form-group col-md-4">
+											<label for="pr-name" class="control-label minotaur-label">{{'schooladmin.smsendate' | translate}} <span class="text-red">*</span></label>
+											<input id="admissionDate" class="form-control" type="text" name="admissionDate" ng-model="smsEndDate" validator="required" placeholder="End Date" valid-method="watch"
+											required-error-message="End Date is required" />
+										</div>
+									</div>
+
+									<button class="btn btn-danger btn-ef btn-ef-5 btn-ef-5a" ng-click="firstpreviousstep()">
+									<i class="fa fa-reply "></i><span>{{'staffmanagement.Previous' | translate}}</span></button>									
+									<button class="btn btn-primary btn-ef btn-ef-5 btn-ef-5a pull-right" ng-click="step2.$valid && secondstep()" type="submit" validation-submit="step2" ><i class="fa fa-share"></i> <span>{{'staffmanagement.Next' | translate}}</span></button>
+								</form>
+							</div>
+							
+							<div class="tab-pane ng-scope" id="thirdstep">
+								<form name="step3">
+									<div class="row">
+										<div class="form-group col-md-3"></div>
+										<div class="form-group col-md-6">
+											<div ng-click="openFileChooser()" nv-file-drop uploader="uploader" class="well text-center p-30 b-dashed b-2x">
+												<input style="visibility: hidden; position: absolute;" my-schoolupdate-directive  type="file" name="file" id="profileimage">
+												<label for="profileimage"> 
+													<div style="padding: 0px 20px 0;">
+													<span tooltip-placement="top" tooltip="Best of your image size :- height : 200 pixel and width : 200 pixel"
+													  class="btn btn-default btn-ef btn-ef-5 btn-ef-5a"><i class="fa  fa-upload"></i> 
+														<span>Browse</span>
+													 </span> 
+													</div>	
+												</label>
+												<div class="text-center">
+													(.JPG,.JPEG,.PNG)
+												</div>
+											</div>
+										</div>
+										<div class="form-group col-md-3">
+											<img  style="width:100%" height="120" src="{{image_id}}">
+										</div>
+										<div data-ng-show="success_file" class="form-group col-md-12 text-center">
+											<div style="color:red">
+											{{'staffmanagement.uploaderrormsg' | translate}}</div>
+										</div>
+									</div>									
+									<button class="btn btn-danger btn-ef btn-ef-5 btn-ef-5a" ng-click="secondpreviousstep()">
+									<i class="fa fa-reply "></i><span>{{'staffmanagement.Previous' | translate}}</span></button>
+									<button class="btn btn-primary btn-ef btn-ef-5 btn-ef-5a pull-right" ng-click="step3.$valid && finalstep()" ng-disabled="step3.$invalid" ><i class="fa fa-pencil-square"></i> <span>{{'common.update' | translate}}</span></button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</form>
+			</section>
+			<!-- /tile body -->
+		</div>
+    <!-- /tile -->
+	</div>
+	</div>
+</div>

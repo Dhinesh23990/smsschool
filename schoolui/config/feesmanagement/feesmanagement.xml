@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<module id="feesmanagementmodule">	
+	<routers>
+	<router id="feetypes" url="/feetypes" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/feesmanagement/feetypes.html"></view>
+            </views>
+    </router>
+	<router id="feecomponents" url="/feecomponents" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/feesmanagement/feecomponents.html"></view>
+            </views>
+    </router>
+	<!--<router id="feeconfiguration" url="/feeconfiguration" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/feesmanagement/feeconfiguration.html"></view>
+            </views>
+    </router>-->
+	<router id="feeconfiguration" url="/feeconfiguration" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/feesmanagement/setfeeconfiguration.html"></view>
+            </views>
+    </router>
+	<router id="individualstudent" url="/individualstudent" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/feesmanagement/individualstudent.html"></view>
+            </views>
+    </router>
+	<router id="feeconcessiontype" url="/feeconcessiontype" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/feesmanagement/feeconcessiontype.html"></view>
+            </views>
+    </router>
+	<router id="feespaymentmode" url="/feespaymentmode" auth="false">
+			<views>              
+                <view containerId="apps" templateUrl="views/feesmanagement/feepaymentmode.html"></view>
+            </views>
+    </router>
+	<router id="feespaymenttype" url="/feespaymenttype" auth="false">
+			<views>              
+                <view containerId="apps" templateUrl="views/feesmanagement/feepayment.html"></view>
+            </views>
+    </router>
+ 	<!-- new html for feepayment type -->
+    <router id="feepaytypes" url="/feepaytypes/{batchId}/{className}/{sectionName}/{studentname}/{studentId}/{term}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/feesmanagement/feePayTypes.html"></view>
+            </views>
+    </router>
+    
+	</routers>
+	<services id="feesmanagementservice">
+		<operations>
+		
+			<operation name="saveFeeComponent" method="post" requestType="json" 
+				responseWrapper="response" url="feeComponent/saveFeeComponent"
+				mockUrl="mock/fees/feecomponents.json" mock="false">
+			</operation>
+			<operation name="updateFeeComponent" method="post" requestType="json" 
+				responseWrapper="response" url="feeComponent/updateFeeComponent"
+				mockUrl="mock/fees/feecomponents.json" mock="false">
+			</operation>
+			<operation name="saveFeeType" method="post" requestType="json" 
+				responseWrapper="response" url="feeType/saveFeeType"
+				mockUrl="mock/fees/feeType.json" mock="false">
+			</operation>
+			<operation name="updateFeeType" method="post" requestType="json" 
+				responseWrapper="response" url="feeType/updateFeeType"
+				mockUrl="mock/fees/feeType.json" mock="false">
+			</operation>
+			<operation name="saveConcession" method="post" requestType="json" 
+				responseWrapper="response" url="concession/saveConcession"
+				mockUrl="mock/fees/feeType.json" mock="false">
+			</operation>
+			<operation name="updateConcession" method="post" requestType="json" 
+				responseWrapper="response" url="concession/updateConcession"
+				mockUrl="mock/fees/feeType.json" mock="false">
+			</operation>
+			<operation name="savePaymentMode" method="post" requestType="json" 
+				responseWrapper="response" url="paymentMode/savePaymentMode"
+				mockUrl="mock/paymentMode/payment.json" mock="false">
+			</operation>
+			<operation name="updatePaymentMode" method="post" requestType="json" 
+				responseWrapper="response" url="paymentMode/updatePaymentMode"
+				mockUrl="mock/paymentMode/payment.json" mock="false">
+			</operation>
+			<operation name="saveFeeConfiguration" method="post" requestType="json" 
+				responseWrapper="response" url="feeConfiguration/saveFeeConfiguration"
+				mockUrl="mock/Feeconfiguration/Feeconfiguration.json" mock="false">
+			</operation>
+			<operation name="updateFeeConfiguration" method="post" requestType="json" 
+				responseWrapper="response" url="feeConfiguration/updateFeeConfiguration"
+				mockUrl="mock/Feeconfiguration/Feeconfiguration.json" mock="false">
+			</operation>
+			<operation name="updatePaymentMode" method="post" requestType="json" 
+				responseWrapper="response" url="paymentMode/updatePaymentMode"
+				mockUrl="mock/paymentMode/payment.json" mock="false">
+			</operation>
+			
+		</operations>
+	</services>
+</module>

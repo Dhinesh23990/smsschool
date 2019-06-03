@@ -1,0 +1,420 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-controller="individualstudentController" >
+    <div class="row headcontent">
+        <h3 class="schooldiary_h2">{{'feeconfiguration.individual' | translate}}</h3>
+    </div>
+    <div class="row" style="margin-left:-10px !important;">
+        <div class="col-md-12" style="padding-right:5px !important">
+            <ol class="breadcrumb" id="setresyults">
+                <li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a>{{'configreligion.home' | translate}}</a></li>
+                
+                <li class="active">{{paymentandfeesplit}}</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="panel panel-default" style="margin-left: 6px;">
+        <div class="panel-heading">
+		<i class="fa fa-bars"></i>
+            <span class="labelstcampaign" style="font-size:14px;font-weight:bold">  {{'feeconfiguration.FeeStudentDetails' | translate}}{{paymentandfeesplit}}</span>
+            <span class="pull-right">
+				<a class="activeview navcursor" id="payment" data-ng-click="paymentdet()" style="margin-right:10px;font-weight:bold;">{{'feeconfiguration.Payment' | translate}}</a>
+				<a class="hoverview defaultcol navcursor" id="feesplit" data-ng-click="feesplitdet()" style="font-weight:bold">{{'feeconfiguration.FeeSplit' | translate}}</a>
+				<a class="hoverview defaultcol navcursor" id="overall" data-ng-click="overalldet()" style="font-weight:bold">{{'feeconfiguration.Overall' | translate}}</a>
+			</span>
+
+        </div>
+        <div class="panel-body">
+
+            <div class="col-md-12 nopadmar" data-ng-show="paymentdetails">
+                <div class="col-md-12" style="padding:0px 0px 8px 0px">
+                    <button class="btn btn-sm btn-danger" data-ng-click="returnsearch()">
+                        <i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>{{'feeconfiguration.H/B' | translate}}
+                    </button>
+
+                </div>
+                <div class="col-md-12" style="border:2px solid #eee;padding:10px">
+                    <div class="col-md-12 nopadmar">
+
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.StudentId' | translate}}</label>
+                            <input placeholder="Student Id" name="studentid" class="form-control" data-ng-model="fms.studentid" type="text">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.StudentName' | translate}}</label>
+                            <input placeholder="Student Name" name="studentname<" class="form-control" data-ng-model="fms.studentname" type="text">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.Class' | translate}}</label>
+                            <select class="form-control" name="class" data-ng-model="fms.class" ng-options="class.key as class.value for class in classes">
+                                <option value="">{{'feeconfiguration.selcls' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.FeeType' | translate}}</label>
+                            <select class="form-control" name="feetype" data-ng-model="fms.feetype" ng-options="feetype.key as feetype.value for feetype in feetypes">
+                                <option value="">{{'feeconfiguration.selfee' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label">{{'feeconfiguration.FeeComponent' | translate}}</label>
+                            <select class="form-control" name="feecomponent" data-ng-model="fms.feecomponent" ng-options="feecomponent.key as feecomponent.value for feecomponent in feecomponents">
+                                <option value="">{{'feeconfiguration.selfeecompo' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="pr-name" class="control-label ">{{'feeconfiguration.FeeStartDate' | translate}}<span class="text-red"> *</span></label>
+                            <div layout-gt-xs="row">
+                                <div flex-gt-xs>
+								 
+                                    <md-datepicker ng-model="startdate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                </div>
+                            </div>
+                            <input name="dob" id="dob" class="form-control" ng-model="startdate" placeholder="YYYY-MM-DD" type="hidden" validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Startdtrequired' | translate}}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="pr-name" class="control-label ">{{'feeconfiguration.FeeReminderDate' | translate}} <span class="text-red"> *</span></label>
+                            <div layout-gt-xs="row">
+                                <div flex-gt-xs>
+                                    <md-datepicker ng-model="reminderdate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                </div>
+                            </div>
+                            <input name="dob" id="dob" class="form-control" ng-model="reminderdate" placeholder="YYYY-MM-DD" type="hidden" validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Reminderdtrequired' | translate}}">
+                        </div>
+
+                    </div>
+					<div class="col-md-12">
+
+						<button class="btn btn-sm btn-primary " type="submit" validation-submit="createForm" data-ng-click="createForm.$valid && createclass()"> {{'feeconfiguration.Search' | translate}}</button>
+
+						<button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="goclear()">{{'feeconfiguration.Clear' | translate}}</button>
+					</div>
+
+                </div>
+            </div>
+            <div class="col-md-12 nopadmar" data-ng-show="hidesearchdet">
+                <button class="btn btn-sm btn-primary" data-ng-click="backtosearch()">
+                    {{'feeconfiguration.ShowSearch' | translate}}<i class="glyphicon glyphicon-search" style="font-size:11px !important;left:5px !important"></i></button>
+            </div>
+           
+                <div class="col-md-12 nopadmar" ng-show="payshowline">
+                    <hr style="height:1px; border:none; color: #10464a; background-color:#10464a; width:100%; ">
+                </div>
+			<div ng-show="feecollected">
+                <div class="col-md-12 nopadmar" style="border:1px solid #ececec !important; ;padding:10px">
+
+                    <span>{{'feeconfiguration.feecol' | translate}}</span>
+                </div>
+
+                <div class="col-md-12 nopadmar" style="border:2px solid #ececec !important; ;padding:20px"><span>0.00</span>
+                </div>
+            </div>
+
+            <div class="col-md-12 nopadmar" data-ng-show="paymenttable">
+                <!--<button class="btn btn-sm btn-primary" ui-sref="addstaff">Add Student</button>
+				-->
+                <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid">
+                    <thead class="tabletbody">
+                        <tr>
+                            <th class="text-center">{{'feeconfiguration.SNo' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.StudentId' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.StudentName' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.Class' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.totfee' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.feepaid' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.con' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.Configure' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.Concession' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.PayFee' | translate}}</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items | filter:fms">
+                            <td class="change_colr text-center">{{$index+1}}</td>
+                            <td class="change_colr text-center">{{item.StudentId}}</td>
+                            <td class="change_colr text-center">{{item.StudentName}}</td>
+                            <td class="change_colr text-center">{{item.Class}}</td>
+                            <td class="change_colr text-center">{{item.TotalFee}}</td>
+                            <td class="change_colr text-center">{{item.FeePaid}}</td>
+                            <td class="change_colr text-center">{{item.ConcessionFee}}</td>
+                            <td class="change_colr">{{item.Configure}}</td>
+                            <td class="change_colr">{{item.Concession}}</td>
+                            <td class="change_colr">{{item.PayFee}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="col-md-12" data-ng-show="errormsg">
+                    <div class="col-md-8 text-center text-red">
+                        {{'configclass.errormsg' | translate}}
+                    </div>
+                </div>
+                <div class="col-md-12">
+
+                    <button class="btn btn-sm btn-primary " type="submit" validation-submit="createForm" data-ng-click="createForm.$valid && createclass()"> {{'feeconfiguration.SendSMS' | translate}}</button>
+
+                    <button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="goclear()">{{'feeconfiguration.Export' | translate}}</button>
+                </div>
+            </div>
+
+            <div class="col-md-12 nopadmar" data-ng-show="feesplitdetails">
+                <div class="col-md-12" style="padding:0px 0px 8px 0px">
+                    <button class="btn btn-sm btn-danger" data-ng-click="fsreturnsearch()">
+                        <i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>{{'feeconfiguration.H/B' | translate}}
+                    </button>
+
+                </div>
+                <div class="col-md-12" style="border:2px solid #eee;padding:10px">
+                    <div class="col-md-12 nopadmar">
+
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.StudentId' | translate}}</label>
+                            <input placeholder="Student Id" name="studentid" class="form-control" data-ng-model="fms.studentid" type="text">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.StudentName' | translate}}</label>
+                            <input placeholder="Student Name" name="studentname<" class="form-control" data-ng-model="fms.studentname" type="text">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.Class' | translate}}</label>
+                            <select class="form-control" name="class" data-ng-model="fms.class" ng-options="class.key as class.value for class in classes">
+                                <option value="">{{'feeconfiguration.selcls' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.FeeType' | translate}}</label>
+                            <select class="form-control" name="feetype" data-ng-model="fms.feetype" ng-options="feetype.key as feetype.value for feetype in feetypes">
+                                <option value="">{{'feeconfiguration.selfee' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label">{{'feeconfiguration.FeeComponent' | translate}}</label>
+                            <select class="form-control" name="feecomponent" data-ng-model="fms.feecomponent" ng-options="feecomponent.key as feecomponent.value for feecomponent in feecomponents">
+                                <option value="">---Select {{'feeconfiguration.FeeComponent' | translate}}---</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="pr-name" class="control-label ">{{'feeconfiguration.FeeStartDate' | translate}}<span class="text-red"> *</span></label>
+                            <div layout-gt-xs="row">
+                                <div flex-gt-xs>
+                                    <md-datepicker ng-model="startdate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                </div>
+                            </div>
+                            <input name="dob" id="dob" class="form-control" ng-model="startdate" placeholder="YYYY-MM-DD" type="hidden" validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Startdtrequired' | translate}}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="pr-name" class="control-label ">{{'feeconfiguration.FeeReminderDate' | translate}} <span class="text-red"> *</span></label>
+                            <div layout-gt-xs="row">
+                                <div flex-gt-xs>
+                                    <md-datepicker ng-model="reminderdate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                </div>
+                            </div>
+                            <input name="dob" id="dob" class="form-control" ng-model="reminderdate" placeholder="YYYY-MM-DD" type="hidden" validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Reminderdtrequired' | translate}}">
+                        </div>
+
+                    </div>
+
+                </div>
+				<div class="col-md-12">
+
+						<button class="btn btn-sm btn-primary " type="submit" validation-submit="createForm" data-ng-click="createForm.$valid && createclass()"> {{'feeconfiguration.Search' | translate}}</button>
+
+						<button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="goclear()">{{'feeconfiguration.Clear' | translate}}</button>
+					</div>
+            </div>
+
+            <div class="col-md-12 nopadmar" data-ng-show="fshidesearchdet">
+                <button class="btn btn-sm btn-primary" data-ng-click="backtosearchgrid()">
+                    {{'feeconfiguration.ShowSearch' | translate}}<i class="glyphicon glyphicon-search" style="font-size:11px !important;left:5px !important"></i></button>
+            </div>
+
+            <div class="col-md-12 nopadmar" data-ng-show="fsshowline">
+                <hr style="height:1px; border:none; color: #10464a; background-color:#10464a; width:100%; " >
+            </div>
+
+            <div class="col-md-12 nopadmar" data-ng-show="feesplittable">
+                <!--<button class="btn btn-sm btn-primary" ui-sref="addstaff">Add Student</button>
+				-->
+                <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid">
+                    <thead class="tabletbody">
+                        <tr>
+                            <th class="text-center">{{'feeconfiguration.SNo' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.StudentId' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.StudentName' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.Class' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.totfee' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.feepaid' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.Concession' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.mgmtfee' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.govtfee' | translate}}</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items | filter:fms">
+                            <td class="change_colr text-center">{{$index+1}}</td>
+                            <td class="change_colr text-center">{{item.StudentId}}</td>
+                            <td class="change_colr text-center">{{item.StudentName}}</td>
+                            <td class="change_colr text-center">{{item.Class}}</td>
+                            <td class="change_colr text-center">{{item.TotalFee}}</td>
+                            <td class="change_colr text-center">{{item.FeePaid}}</td>
+                            <td class="change_colr text-center">{{item.ConcessionFee}}</td>
+                            <td class="change_colr">{{item.Configure}}</td>
+                            <td class="change_colr">{{item.Concession}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="col-md-12">
+
+                    <button class="btn btn-sm btn-primary " type="submit" validation-submit="createForm" data-ng-click="createForm.$valid && createclass()"> SendSMS</button>
+
+                    <button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="goclear()">{{'feeconfiguration.Export' | translate}}</button>
+                </div>
+                <div class="col-md-12" data-ng-show="errormsg">
+                    <div class="col-md-8 text-center text-red">
+                        {{'configclass.errormsg' | translate}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 nopadmar" data-ng-show="overalldetails">
+                <div class="col-md-12" style="padding:0px 0px 8px 0px">
+                    <button class="btn btn-sm btn-danger" data-ng-click="ovreturnsearch()">
+                        <i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>Hide search
+                    </button>
+
+                </div>
+                <div class="col-md-12" style="border:2px solid #eee;padding:10px">
+                    <div class="col-md-12 nopadmar">
+
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.StudentId' | translate}}</label>
+                            <input placeholder="Student Id" name="studentid" class="form-control" data-ng-model="fms.studentid" type="text">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.StudentName' | translate}}</label>
+                            <input placeholder="Student Name" name="studentname<" class="form-control" data-ng-model="fms.studentname" type="text">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.Class' | translate}}</label>
+                            <select class="form-control" name="class" data-ng-model="fms.class" ng-options="class.key as class.value for class in classes">
+                                <option value="">{{'feeconfiguration.selcls' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">{{'feeconfiguration.FeeType' | translate}}</label>
+                            <select class="form-control" name="feetype" data-ng-model="fms.feetype" ng-options="feetype.key as feetype.value for feetype in feetypes">
+                                <option value="">{{'feeconfiguration.selfee' | translate}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label">{{'feeconfiguration.FeeComponent' | translate}}</label>
+                            <select class="form-control" name="feecomponent" data-ng-model="fms.feecomponent" ng-options="feecomponent.key as feecomponent.value for feecomponent in feecomponents">
+                                <option value="">---Select {{'feeconfiguration.FeeComponent' | translate}}---</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="pr-name" class="control-label ">{{'feeconfiguration.FeeStartDate' | translate}}<span class="text-red"> *</span></label>
+                            <div layout-gt-xs="row">
+                                <div flex-gt-xs>
+                                    <md-datepicker ng-model="startdate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                </div>
+                            </div>
+                            <input name="dob" id="dob" class="form-control" ng-model="startdate" placeholder="YYYY-MM-DD" type="hidden" validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Startdtrequired' | translate}}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="pr-name" class="control-label ">{{'feeconfiguration.FeeReminderDate' | translate}} <span class="text-red"> *</span></label>
+                            <div layout-gt-xs="row">
+                                <div flex-gt-xs>
+                                    <md-datepicker ng-model="reminderdate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                </div>
+                            </div>
+                            <input name="dob" id="dob" class="form-control" ng-model="reminderdate" placeholder="YYYY-MM-DD" type="hidden" validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Reminderdtrequired' | translate}}">
+                        </div>
+
+                    </div>
+					<div class="col-md-12">
+
+						<button class="btn btn-sm btn-primary " type="submit" validation-submit="createForm" data-ng-click="createForm.$valid && createclass()"> {{'feeconfiguration.Search' | translate}}</button>
+
+						<button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="goclear()">{{'feeconfiguration.Clear' | translate}}</button>
+					</div>
+
+                </div>
+            </div>
+
+            <div class="col-md-12 nopadmar" data-ng-show="ovhidesearchdet">
+                <button class="btn btn-sm btn-primary" data-ng-click="ovbacktosearchgrid()">
+                    {{'feeconfiguration.ShowSearch' | translate}}<i class="glyphicon glyphicon-search" style="font-size:11px !important;left:5px !important"></i></button>
+            </div>
+
+            <div class="col-md-12 nopadmar" data-ng-show="ovshowline">
+                <hr style="height:1px; border:none; color: #10464a; background-color:#10464a; width:100%; " >
+            </div>
+
+            <div class="col-md-12 nopadmar" data-ng-show="overalltable">
+                <!--<button class="btn btn-sm btn-primary" ui-sref="addstaff">Add Student</button>
+				-->
+                <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid">
+                    <thead class="tabletbody">
+                        <tr>
+                            <th class="text-center">{{'feeconfiguration.SNo' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.StudentId' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.StudentName' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.Class' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.AnnualFees' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.AnnualConcession' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.AnnualPaid' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.AnnualBalance' | translate}}</th>
+                            <th class="text-center">{{'feeconfiguration.MonthlyFees' | translate}}</th>
+							<th class="text-center">{{'feeconfiguration.MonthlyConcession' | translate}}</th>
+							<th class="text-center">{{'feeconfiguration.MonthlyPaid' | translate}}</th>
+							<th class="text-center">{{'feeconfiguration.MonthlyBalance' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items | filter:fms">
+                            <td class="change_colr text-center">{{$index+1}}</td>
+                            <td class="change_colr text-center">{{item.StudentId}}</td>
+                            <td class="change_colr text-center">{{item.StudentName}}</td>
+                            <td class="change_colr text-center">{{item.Class}}</td>
+                            <td class="change_colr text-center">{{item.TotalFee}}</td>
+                            <td class="change_colr text-center">{{item.FeePaid}}</td>
+                            <td class="change_colr text-center">{{item.Concession}}</td>
+                            <td class="change_colr">{{item.Configure}}</td>
+                            <td class="change_colr">{{item.Concession}}</td>
+							<td class="change_colr text-center">{{item.Concession}}</td>
+                            <td class="change_colr">{{item.Configure}}</td>
+                            <td class="change_colr">{{item.Concession}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="col-md-12">
+
+                    <button class="btn btn-sm btn-primary " type="submit" validation-submit="createForm" data-ng-click="createForm.$valid && createclass()"> {{'feeconfiguration.SendSMS' | translate}}</button>
+
+                    <button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="goclear()">{{'feeconfiguration.Export' | translate}}</button>
+                </div>
+                <div class="col-md-12" data-ng-show="errormsg">
+                    <div class="col-md-8 text-center text-red">
+                        {{'configclass.errormsg' | translate}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="deletestudent.html">
+    <div class="modal-header">
+        <h4 class="modal-title popupfontst">{{'feeconfiguration.delete' | translate}}</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-info" ng-click="deletestaffok()">{{'feeconfiguration.OK' | translate}}</button>
+        <button class="btn btn-sm btn-default" ng-click="okcancel()">{{'feeconfiguration.Cancel' | translate}}</button>
+    </div>
+</script>

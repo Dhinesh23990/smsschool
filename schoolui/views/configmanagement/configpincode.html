@@ -1,0 +1,159 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-controller="configpincodeController">
+    <div class="row headcontent">
+        <h3 class="schooldiary_h2">{{'configpincode.pincodemgmt' | translate}}</h3>
+    </div>
+    <div class="row schooldiary_row">
+        <div class="col-md-12">
+            <ol class="breadcrumb" id="setresyults">
+                <li><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a>{{'configpincode.home' | translate}}</a></li>
+                <li class="active">{{'configpincode.pincode' | translate}}</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="panel panel-default" data-ng-show="pincodelist">
+
+        <div class="panel-heading">
+            <span class="labelstcampaign fa fa-bars"> {{'configpincode.pincodelist' | translate}}</span>
+        </div>
+		
+        <div class="panel-body">
+            <div class="col-md-1" data-ng-show="hidesearchdet">
+                <button href="#review" data-toggle="collapse" class="btn btn-sm btn-primary pull-left" data-ng-click="backtosearch()">
+                    {{'configpincode.newentry' | translate}}<i class="glyphicon glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+            </div>
+            <div class="col-md-11" data-ng-show="searchview">
+                <button class="btn btn-sm btn-primary pull-left" data-ng-click="viewsearch()">
+                    {{'configpincode.search' | translate}}<i class="fa fa-search" style="font-size:11px !important;left:5px !important"></i></button>
+            </div>
+
+            <div id="review" class="col-md-12 collapse" data-ng-show="createform">
+                
+                    <div class="col-md-12" style="padding:2px 0px 8px 0px">
+                        <button href="#review" data-toggle="collapse" class="btn btn-sm btn-danger" data-ng-click="returnsearch()">
+                            <i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>{{'configpincode.back' | translate}}
+                        </button>
+                    </div>
+
+                    <h3>{{'configpincode.pincodecreation' | translate}}</h3>
+                    <form name="step1">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="country" class="control-label minotaur-label"> {{'configpincode.country' | translate}}<span class="text-red">*</span> </label>
+                                <select class="form-control" name="country" id="country" ng-modal="search.country">
+                                    <option value="">{{'configpincode.selectcountry' | translate}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="state" class="control-label minotaur-label"> {{'configpincode.state' | translate}}<span class="text-red">*</span> </label>
+                                <select class="form-control" name="state" id="state" ng-modal="search.state">
+                                    <option value="">{{'configpincode.selectstate' | translate}}</option>
+                                  
+                                </select>
+                            </div>
+                                    </div>
+                                 <div class="row">
+                                     <div class="form-group col-md-6">
+                                <label for="state" class="control-label minotaur-label"> {{'configpincode.city' | translate}}<span class="text-red">*</span> </label>
+                                <select class="form-control" name="state" id="state" ng-modal="search.state">
+                                    <option value="">{{'configpincode.selectcity' | translate}}</option>
+                                  
+                                </select>
+                            </div>
+
+
+
+							  <div class="form-group col-md-6">
+                                <label for="city" class="control-label minotaur-label"> {{'configpincode.city' | translate}}<span class="text-red">*</span> </label>
+                                <input name="city" id="name" class="form-control" ng-model="city" required="" type="text" placeholder="City Name">
+                                    <p data-ng-show="step1.city.$dirty && step1.city.$error.required" > {{'configpincode.cityname'| translate}} cannot be blank</p>
+                            </div>
+							</div>
+							
+
+
+                    </form>
+                    <hr></hr>
+                    <div class="row">
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-7">
+                            <button class="btn btn-sm btn-primary " ng-disabled="step1.$invalid">{{'common.create' | translate}}</button>
+                            <button class="btn btn-sm btn-danger" data-ng-click="clearcontent()">{{'configbatchconfig.clear' | translate}}</button>
+                        </div>
+                    </div>
+
+               
+            </div>
+
+            <div class="col-md-12" data-ng-show="updatedata">
+                <div class="col-md-12">
+                    <button class="btn btn-sm btn-danger" data-ng-click="updatereturnsearch()"> 
+					<i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>{{'configpincode.back' | translate}}</button>
+                </div>
+                                        <form name="step2">
+                <div style="padding:19px;">
+				
+											  <div class="form-group col-md-4">
+                                <label for="sno" class="control-label minotaur-label"> {{'configpincode.id' | translate}}<span class="text-red">*</span> </label>
+                                <input name="sno" id="sno" class="form-control" ng-model="sno" required="" type="text" placeholder="City Id">
+                                    <p data-ng-show="step2.city.$dirty && step1.city.$error.required" > {{'configpincode.id'| translate}} cannot be blank</p>
+                            </div>
+														  <div class="form-group col-md-4">
+                                <label for="city" class="control-label minotaur-label"> {{'configpincode.pincode' | translate}}<span class="text-red">*</span> </label>
+                                <input name="city" id="name" class="form-control" ng-model="city" required="" type="text" placeholder="Pincode">
+                                    <p data-ng-show="step2.city.$dirty && step1.city.$error.required" > {{'configpincode.cityname'| translate}} cannot be blank</p>
+                            </div>
+                                       <div class="row">
+                                <div class="form-group col-md-4">
+                                      </div>
+                              <div class="form-group col-md-4" style="padding:10px 0px 0px 40px;">
+                                <input type="submit" class="btn btn-primary btn-sm" value="Submit">
+                             </div>
+</div>
+</form>
+</div>
+</div>
+           
+            <div class="col-md-12 " data-ng-show="pincodedet">
+                <!--<button class="btn btn-sm btn-primary" ui-sref="addstudent">Add Student</button>
+				-->
+                <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid">
+                    <thead class="tabletbody">
+                        <tr>
+                            <th>{{'configpincode.id' | translate}}</th>
+                            <th>{{'configpincode.pincode' | translate}}</th>
+                          <th>{{'configpincode.countryname' | translate}}</th>
+                           <th>{{'common.action'| translate}}</th> 
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="code in pincode | filter:search">
+                            <td class="change_colr">{{$index+1}}</td>
+                            <td class="change_colr">{{code.pincode}}</td>
+                           <td class="change_colr">{{code.country}}</td>
+                            <td><span data-ng-click="deletemedium()"><a tooltip-placement="top" tooltip="Delete" style="cursor: pointer;">
+						  <i class="creatli"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></i>
+                                </a>
+                                </span></td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+       
+</div>
+</div>
+</div>
+<script type="text/ng-template" id="deletemedium.html">
+    <div class="modal-header">
+        <h4 class="modal-title popupfontst">Are you sure want to delete this pincode details</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-info" ng-click="deletemediumok()">{{'configbatchconfig.ok' | translate}}</button>
+        <button class="btn btn-sm btn-default" ng-click="okcancel()">{{'configbatchconfig.cancel' | translate}}</button>
+    </div>
+</script>
+

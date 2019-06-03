@@ -1,0 +1,23 @@
+{
+	"Status" : "Ok",
+	"configVO" : 
+	[
+		{
+		"SNo":"ASD3456",
+		"Languagename":"Tamil"
+		},
+		{
+		"SNo":"ASD3456",
+		"Languagename":"English"
+		},
+		{
+		"SNo":"ASD3456",
+		"Languagename":"Hindi"
+		},
+		{
+		"SNo":"ASD3456",
+		"Languagename":"Telugu"
+		}
+		
+	]
+}

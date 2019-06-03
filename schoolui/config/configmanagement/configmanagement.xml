@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<module id="configmanagementmodule">	
+	<routers>
+	<router id="configclass" url="/configclass" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configclass.html"></view>
+            </views>
+        </router>
+		<router id="configbatch" url="/configbatch" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configbatch.html"></view>
+            </views>
+        </router>
+        <router id="configmedium" url="/configmedium" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configmedium.html"></view>
+            </views>
+        </router>
+		<router id="configbatchconfig" url="/configbatchconfig" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configbatchconfig.html"></view>
+            </views>
+        </router>
+      <router id="configpincode" url="/configpincode" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configpincode.html"></view>
+            </views>
+        </router>
+       <router id="configstate" url="/configstate" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configstate.html"></view>
+            </views>
+        </router>
+         <router id="configcity" url="/configcity" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configcity.html"></view>
+            </views>
+        </router>
+		<router id="configmothertongue" url="/configmothertongue" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configmothertongue.html"></view>
+            </views>
+        </router>
+		<router id="configreligion" url="/configreligion" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configreligion.html"></view>
+            </views>
+        </router>
+		<router id="configcourse" url="/configcourse" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configcourse.html"></view>
+            </views>
+        </router>
+		<router id="configcaste" url="/configcaste" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configcaste.html"></view>
+            </views>
+        </router>
+		<router id="configblood" url="/configblood" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configbloodgroup.html"></view>
+			</views>
+		 </router>
+		<router id="configgender" url="/configgender" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configgender.html"></view>
+            </views>
+        </router>
+		<router id="configsection" url="/configsection" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configsection.html"></view>
+            </views>
+        </router>
+		<router id="configsubject" url="/configsubject" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configsubject.html"></view>
+            </views>
+        </router>
+		<router id="configcountry" url="/configcountry" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configcountry.html"></view>
+            </views>
+        </router>
+		<router id="configlanguage" url="/configlanguage" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configlanguage.html"></view>
+            </views>
+        </router>
+		<router id="configexamsession" url="/configexamsession" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configexamsession.html"></view>
+            </views>
+        </router>
+		<router id="configsubjectset" url="/configsubjectset" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configsubjectset.html"></view>
+            </views>
+        </router>
+		<router id="configsubjecttype" url="/configsubjecttype" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configsubjecttype.html"></view>
+		 </views>
+        </router>
+		<router id="confignationality" url="/confignationality" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/confignationality.html"></view>
+            </views>
+        </router>
+		<router id="configgradlimit" url="/configgradlimit" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configgradlimit.html"></view>
+            </views>
+        </router>
+		<router id="configexamlist" url="/configexamlist" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configexamlist.html"></view>
+            </views>
+        </router>
+		<router id="configeducational" url="/configeducational" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/configmanagement/configeducational.html"></view>
+            </views>
+        </router>
+	</routers>
+	<services id="configmanagementservice">
+		<operations>
+			<operation name="saveCourse" method="post" requestType="json" 
+				responseWrapper="response" url="course/saveCourse"
+				mockUrl="mock/course/admin.json" mock="false">
+			</operation>
+			<operation name="updateCourse" method="post" requestType="json" 
+				responseWrapper="response" url="course/updateCourse"
+				mockUrl="mock/admin/usersList.json" mock="false">
+			</operation>
+			<operation name="saveBatch" method="post" requestType="json" 
+				responseWrapper="response" url="batch/saveBatch"
+				mockUrl="mock/course/admin.json" mock="false">
+			</operation>
+			<operation name="updateBatch" method="post" requestType="json" 
+				responseWrapper="response" url="batch/updateBatch"
+				mockUrl="mock/admin/usersList.json" mock="false">
+			</operation>
+			<operation name="saveBloodGroup" method="post" requestType="json" 
+				responseWrapper="response" url="bloodgroup/saveBloodGroup"
+				mockUrl="mock/admin/usersList.json" mock="false">
+			</operation>
+			<operation name="updateBloodGroup" method="post" requestType="json" 
+				responseWrapper="response" url="bloodgroup/updateBloodGroup"
+				mockUrl="mock/admin/usersList.json" mock="false">
+			</operation>
+			<operation name="saveSection" method="post" requestType="json" 
+				responseWrapper="response" url="section/saveSection"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="updateSection" method="post" requestType="json" 
+				responseWrapper="response" url="section/updateSection"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="saveMedium" method="post" requestType="json" 
+				responseWrapper="response" url="medium/saveMedium"
+				mockUrl="mock/medium/medium.json" mock="false">
+			</operation>
+			<operation name="updateMedium" method="post" requestType="json" 
+				responseWrapper="response" url="medium/updateMedium"
+				mockUrl="mock/medium/medium.json" mock="false">
+			</operation>			
+			<operation name="saveSubjectSet" method="post" requestType="json" 
+				responseWrapper="response" url="subjectSet/saveSubjectSet"
+				mockUrl="mock/subjectset/subjectset.json" mock="false">
+			</operation>			
+			<operation name="updateSubjectSet" method="post" requestType="json" 
+				responseWrapper="response" url="subjectSet/updateSubjectSet"
+				mockUrl="mock/subjectset/subjectset.json" mock="false">
+			</operation>
+			<operation name="saveSubject" method="post" requestType="json" 
+				responseWrapper="response" url="subject/saveSubject"
+				mockUrl="mock/subject/subject.json" mock="false">
+			</operation>
+			<operation name="updateSubject" method="post" requestType="json" 
+				responseWrapper="response" url="subject/updateSubject"
+				mockUrl="mock/subject/subject.json" mock="false">
+			</operation>
+			<operation name="saveClass" method="post" requestType="json" 
+				responseWrapper="response" url="class/saveClass"
+				mockUrl="mock/class/class.json" mock="false">
+			</operation>
+			<operation name="updateClass" method="post" requestType="json" 
+				responseWrapper="response" url="class/updateClass"
+				mockUrl="mock/class/class.json" mock="false">
+			</operation>
+			<operation name="saveCountry" method="post" requestType="json" 
+				responseWrapper="response" url="country/saveCountry"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="updateCountry" method="post" requestType="json" 
+				responseWrapper="response" url="country/updateCountry"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="saveLanguage" method="post" requestType="json" 
+				responseWrapper="response" url="language/saveLanguage"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="updateLanguage" method="post" requestType="json" 
+				responseWrapper="response" url="language/updateLanguage"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="saveNationality" method="post" requestType="json" 
+				responseWrapper="response" url="nationality/saveNationality"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="updateNationality" method="post" requestType="json" 
+				responseWrapper="response" url="nationality/updateNationality"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="saveReligion" method="post" requestType="json" 
+				responseWrapper="response" url="religion/saveReligion"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="updateReligion" method="post" requestType="json" 
+				responseWrapper="response" url="religion/updateReligion"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="saveState" method="post" requestType="json" 
+				responseWrapper="response" url="state/saveState"
+				mockUrl="mock/state/state.json" mock="false">
+			</operation>
+			<operation name="updateState" method="post" requestType="json" 
+				responseWrapper="response" url="state/updateState"
+				mockUrl="mock/state/state.json" mock="false">
+			</operation>
+			<operation name="saveSubjectType" method="post" requestType="json" 
+				responseWrapper="response" url="subjectType/saveSubjectType"
+				mockUrl="mock/SubjectType/SubjectType.json" mock="false">
+			</operation>
+			<operation name="updateSubjectType" method="post" requestType="json" 
+				responseWrapper="response" url="subjectType/updateSubjectType"
+				mockUrl="mock/SubjectType/SubjectType.json" mock="false">
+			</operation>
+			<operation name="saveMotherTongue" method="post" requestType="json" 
+				responseWrapper="response" url="motherTongue/saveMotherTongue"
+				mockUrl="mock/MotherTongue/MotherTongue.json" mock="false">
+			</operation>
+			<operation name="updateMotherTongue" method="post" requestType="json" 
+				responseWrapper="response" url="motherTongue/updateMotherTongue"
+				mockUrl="mock/MotherTongue/MotherTongue.json" mock="false">
+			</operation>
+		
+			<operation name="saveBatchConfiguration" method="post" requestType="json" 
+				responseWrapper="response" url="batchConfiguration/saveBatchConfiguration"
+				mockUrl="mock/BatchConfiguration/BatchConfiguration.json" mock="false">
+			</operation>
+			<operation name="updateBatchConfiguration" method="post" requestType="json" 
+				responseWrapper="response" url="batchConfiguration/updateBatchConfiguration"
+				mockUrl="mock/BatchConfiguration/BatchConfiguration.json" mock="false">
+			</operation>			
+			<operation name="saveGender" method="post" requestType="json" 
+				responseWrapper="response" url="gender/saveGender"
+				mockUrl="mock/configgender/configgender.json" mock="false">
+			</operation>
+			<operation name="updategender" method="post" requestType="json" 
+				responseWrapper="response" url="gender/updategender"
+				mockUrl="mock/configgender/configgender.json" mock="false">
+			</operation>
+			<operation name="saveCaste" method="post" requestType="json" 
+				responseWrapper="response" url="caste/saveCaste"
+				mockUrl="mock/configgender/configgender.json" mock="false">
+			</operation>
+			<operation name="updateCaste" method="post" requestType="json" 
+				responseWrapper="response" url="caste/updateCaste"
+				mockUrl="mock/configgender/configgender.json" mock="false">
+			</operation>
+			<operation name="saveExamSession" method="post" requestType="json" 
+				responseWrapper="response" url="examSession/saveExamSession"
+				mockUrl="mock/configgender/configgender.json" mock="false">
+			</operation>
+			<operation name="updateExamSession" method="post" requestType="json" 
+				responseWrapper="response" url="examSession/updateExamSession"
+				mockUrl="mock/configgender/configgender.json" mock="false">
+			</operation>
+			<operation name="saveCity" method="post" requestType="json" 
+				responseWrapper="response" url="city/saveCity"
+				mockUrl="mock/configgender/configgender.json" mock="false">
+			</operation>
+			<operation name="updateCity" method="post" requestType="json" 
+				responseWrapper="response" url="city/updateCity"
+				mockUrl="mock/configgender/configgender.json" mock="false">
+			</operation>
+			
+			<operation name="saveEducation" method="post" requestType="json" 
+				responseWrapper="response" url="education/saveEducation"
+				mockUrl="mock/configgender/configeducation.json" mock="false">
+			</operation>
+			<operation name="updateEducation" method="post" requestType="json" 
+				responseWrapper="response" url="education/updateEducation"
+				mockUrl="mock/configgender/configeducation.json" mock="false">
+			</operation>
+		</operations>
+		
+	</services>
+</module>

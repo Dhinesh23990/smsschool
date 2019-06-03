@@ -1,0 +1,50 @@
+{
+	"Status" : "Ok",
+	"paymentVO" : 
+	[
+		{
+		"StudentId":"ST3025",
+		"StudentName":"ram",
+		"Class":"III",
+		"TotalFee(Rs.)":"11000",
+		"FeePaid(Rs.)":"5000",
+		"ConcessionFee(Rs.)":"1000",
+		"Configure":"test",
+		"Concession":"sportsquota",
+		"PayFee":"yes"
+		},
+		{
+		"StudentId":"ST3026",
+		"StudentName":"ram",
+		"Class":"III",
+		"TotalFee(Rs.)":"11000",
+		"FeePaid(Rs.)":"5000",
+		"ConcessionFee(Rs.)":"1000",
+		"Configure":"test",
+		"Concession":"sportsquota",
+		"PayFee":"yes"
+		},
+		{
+		"StudentId":"ST3027",
+		"StudentName":"ram",
+		"Class":"III",
+		"TotalFee(Rs.)":"11000",
+		"FeePaid(Rs.)":"5000",
+		"ConcessionFee(Rs.)":"1000",
+		"Configure":"test",
+		"Concession":"sportsquota",
+		"PayFee":"yes"
+		},
+		{
+		"StudentId":"ST3028",
+		"StudentName":"ram",
+		"Class":"III",
+		"TotalFee(Rs.)":"11000",
+		"FeePaid(Rs.)":"5000",
+		"ConcessionFee(Rs.)":"1000",
+		"Configure":"test",
+		"Concession":"sportsquota",
+		"PayFee":"yes"
+		}
+	]
+}

@@ -1,0 +1,198 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="viewstudentdata()" data-ng-controller="viewstudentController">
+    <div class="row headcontent">
+        <h3 class="schooldiary_h2">{{'studentmgmt.studentmnt' | translate}}</h3>
+    </div>
+    <div class="row" style="margin-right:-5px !important">
+        <div class="col-md-12" style="padding-right:5px !important">
+            <ol class="breadcrumb" id="setresyults">
+                <li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a>{{'configgender.Home' | translate}}</a></li>
+                <li class="active navcursor" ui-sref="studentmanagement">{{'studentmgmt.student' | translate}}</li>
+                <li class="active">{{'studentmgmt.profile' | translate}}</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row" style="margin-right:-5px !important">
+        <div class="col-md-12">
+            <!-- tile -->
+            <div class="tile tile-simple">
+                <!-- tile body -->
+                <section class="tile-body p-0">
+                    <!-------<form name="outerForm" role="form" novalidate="" class="form-validation ng-invalid ng-invalid-required ng-valid-pattern ng-valid-url ng-valid-email ng-dirty ng-valid-parse ng-valid-maxlength ng-valid-minlength ng-valid-match ng-submitted" style="">---------->
+                    <div id="addstaffDiv" active="forms.activeStep" justified="true" class="tab-wizard padded ng-isolate-scope">
+                        <ul class="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom profile-tabs"
+						style="border-bottom:1px solid #6ec06e;">
+                            <li role="presentation"  class="active">
+								<a class="font-14-800" href="#firststep" style="border-radius:unset !important;font-size:14px !important;font-weight:bold !important" aria-controls="timeline" role="tab" data-toggle="tab" >
+                                       {{'studentmgmt.overview' | translate}}
+                                </a>
+                            </li>
+                            <li role="presentation"  class="">
+								<a class="font-14-800" href="#secondstep" style="border-radius:unset !important;font-size:14px !important;font-weight:bold !important" aria-controls="timeline" role="tab" data-toggle="tab">
+                                   {{'studentmgmt.profileinfo' | translate}}
+                                </a>
+                            </li>
+                           <!-- <li role="presentation"  class="">
+								<a class="font-14-800" href="#thirdstep" style="border-radius:unset !important" aria-controls="timeline" role="tab" data-toggle="tab">
+                                        <!-- ngIf: step3.$valid {{'studentmgmt.account' | translate}}</uib-tab-heading>
+                                </a>
+                            </li>-->
+
+                        </ul>
+                        <div class="tab-content">
+                            <!-- ngRepeat: tab in tabset.tabs -->
+                            <div class="tab-pane ng-scope active" id="firststep">
+								<div class="col-md-12">
+									<div class="form-group col-md-2">
+										<div class="thumb thumb-xl" style="width:120px !important;height:120px !important">
+											<img data-ng-show="defaultimage" class="media-object img-circle" src="assets/images/default_school.png"  alt="">
+											<img data-ng-show="schoolimage" class="media-object img-circle" style="height:80px !important" src="{{image_id}}" alt="">		
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div style="font-size:14px;font-weight:bold"> <a ui-sref="editstudent({studentId:StudentVO.id})">{{StudentVO.studentName}} {{StudentVO.surName}}</a>
+										<!--<span style="margin-left:5px"><a tooltip-placement="top" tooltip="Edit"   style="cursor: pointer;">
+										<i><img src="assets/images/edi.png" style="width:35px;height:35px;"></i></a></span>-->
+										</div>
+										<div style="font-size:14px;font-weight:bold;padding:10px 0px;color:#626567"> {{StudentVO.studentId}}</div>
+										<div style="font-size:14px;padding-bottom:5px;color:#626567">
+										<span><i><img src="assets/images/calenda.png" style="width:17px;height:17px;"></i>: {{StudentVO.dob}}</span> 
+										</div>
+										<div style="font-size:14px;padding-bottom:5px;color:#626567"> 
+										 <span><i><img src="assets/images/phone.png" style="width:17px;height:17px;"></i> : {{StudentVO.mobileNumber}}</span> 
+										</div>
+										<div data-ng-if="StudentVO.emailId" style="font-size:14px;padding-bottom:5px;color:#626567"> 
+											<i class="fa fa-envelope-o" aria-hidden="true"></i> : {{StudentVO.emailId}}
+										</div>
+										<!--<div style="font-size:11px;padding-bottom:5px;color:#626567">
+										<span data-ng-if="StudentVO.country"><i class="fa fa-map-marker" aria-hidden="true"></i> : <span data-ng-if="StudentVO.city"> {{StudentVO.city}}</span> <span data-ng-if="StudentVO.state">- {{StudentVO.state}} </span> - 
+										{{StudentVO.country}}</span> 
+										</div>-->
+										<!--<i class="glyphicon glyphicon-star"></i> Not updated <i class="glyphicon glyphicon-heart"></i> Not updated -->
+									
+									</div>
+									<div class="col-md-4">
+										<table dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid">
+											<tr>
+												<th colspan="2" style="font-weight:bold" class="change_colr">{{'studentmgmt.attendancesummary' | translate}}</th>
+											</tr>
+											<tr>
+												<td class="change_colr">{{'studentmgmt.totaldays' | translate}}</td>
+												<td class="change_colr">{{StudentVO.totalDays}}</td>
+											</tr>
+											<tr>
+												<td class="change_colr">{{'studentmgmt.presencedays' | translate}} <i><img src="assets/images/arrow-up-128.png" style="width:25px;height:20px;"></i>
+</td>
+												<td class="change_colr">{{StudentVO.presentDays}}</td>
+											</tr>
+											<tr>
+												<td class="change_colr">{{'studentmgmt.absencedays' | translate}}<i><img src="assets/images/arrow-down-128.png" style="width:25px;height:20px;"></i>
+</td>
+												<td class="change_colr">{{absentdays}}</td>
+											</tr>
+											<tr>
+												<td class="change_colr">{{'studentmgmt.presentper' | translate}} <i><img src="assets/images/hjhjhgj.png" style="width:25px;height:25px;"></i>
+</td>
+												<td class="change_colr"><span style="background-color:#6ec06e;padding:5px">{{StudentVO.attendancePercenatge}} %</span></td>
+											</tr>
+
+										</table>
+
+									</div>
+								</div>
+
+                            </div>
+                            <!-- end ngRepeat: tab in tabset.tabs -->
+                            <div class="tab-pane ng-scope" id="secondstep">
+                               <div class="col-md-12">
+									<div class="form-group col-md-2">
+										<div class="thumb thumb-xl" style="width:160px !important;height:200px !important">
+											<img data-ng-show="defaultimage" class="media-object img-circle" src="assets/images/default_school.png"  alt="">
+											<img data-ng-show="schoolimage" class="media-object img-circle" style="height:80px !important" src="{{image_id}}" alt="">		
+										</div>
+									</div>
+									<div class="form-group col-md-7">
+										<table dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid">
+
+											<tr>
+												<th colspan="2" style="font-weight:bold" class="change_colr">PERSONAL DETAILS</th>
+											</tr>
+											<tr>
+												<td class="change_colr">ID</td>
+												<td class="change_colr">{{StudentVO.studentId}}</td>
+											</tr>
+											<tr>
+												<td class="change_colr">Name</td>
+												<td class="change_colr">{{StudentVO.studentName}}</td>
+											</tr>
+											<tr>
+												<td class="change_colr">Gender</td>
+												<td class="change_colr">{{StudentVO.genderName}}</td>
+											</tr>
+											<tr>
+												<td class="change_colr">Religion</td>
+												<td class="change_colr">{{StudentVO.religionName}}</td>
+											</tr>
+											<tr>
+												<td class="change_colr">Caste</td>
+												<td class="change_colr">{{StudentVO.casteName}}</td>
+											</tr>
+											<tr>
+												<td class="change_colr">Birthday</td>
+												<td class="change_colr">{{StudentVO.dob}}</td>
+											</tr>
+											<tr>
+												<th colspan="2" style="font-weight:bold" class="change_colr">CONTACT DETAILS</th>
+											</tr>
+											<tr>
+												<td class="change_colr">Primary Contact Number</td>
+												<td class="change_colr">{{StudentVO.mobileNumber}}</td>
+											</tr>
+											<tr>
+												<td class="change_colr">Alertnate Contact Number</td>
+												<td class="change_colr">{{StudentVO.emergencyContactNumber}}</td>
+											</tr>
+
+										</table>
+									</div>
+								</div>
+                            </div>
+
+                            <!-- end ngRepeat: tab in tabset.tabs -->
+                           <!-- <div class="tab-pane ng-scope" id="thirdstep">
+								<div class="col-md-12">
+									<div class="col-md-3"></div>
+									<div class="row">
+
+										<div class="form-group col-sm-4">
+											<label for="About Me" class="control-label ">About Me</label>
+											<input name="aboutMe" id="aboutMe" class="form-control" ng-model="StaffVO.aboutMe" placeholder="About Me" type="text">
+										</div>
+									</div>
+									<div class="col-md-3"></div>
+									<div class="row">
+										<div class="form-group col-sm-4">
+											<label for="Hobby" class="control-label ">Hobby</label>
+											<input name="hobby" id="hobby" class="form-control" ng-model="StaffVO.hobby" placeholder="Hobby" type="text">
+										</div>
+									</div>
+									<div class="col-md-3"></div>
+									<div class="row">
+										<div class="form-group col-sm-4">
+											<label for="extra " class="control-label ">Extra <span class="text-red">*</span></label>
+											<input name="extra" id="extra" class="form-control" ng-model="StaffVO.extra" placeholder="Extra" ng-pattern="/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/" validator="required" valid-method="watch" required-error-message=" Date Of Joining is required" type="text">
+										</div>
+									</div>
+								</div>
+                            </div>-->
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!----------</form>------------>
+
+            <!-- /tile body -->
+        </div>
+        <!-- /tile -->
+    </div>
+</div>	

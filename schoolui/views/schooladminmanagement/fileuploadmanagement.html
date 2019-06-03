@@ -1,0 +1,99 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="getallschooldata()" data-ng-controller="fileuploadmgmtController">
+    <div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'schooladmin.fileup' | translate}}</h3>
+	</div>
+	<div class="row" style="margin-left:-10px !important;">
+		<div class="col-md-12" style="padding-right:5px !important">
+			<ol class="breadcrumb" id="setresyults">
+				<li data-ng-click="gotodashboard()" class="navcursor"><i class="glyphicon glyphicon-home " style="font-size:11px !important;right:5px !important"></i><a>{{'configgender.Home' | translate}}</a></li>
+				<li class="active navcursor">{{'admindashboard.fileupload' | translate}}</li>
+			</ol>
+		</div>
+	</div>
+	<div class="panel panel-default" style="margin-left: 6px;">
+		<div class="panel-heading">
+		<i class="fa fa-bars"></i>
+			<span class="labelstcampaign" style="font-weight:bold;font-size:14px !important"> {{'admindashboard.fileupload' | translate}}
+				<span class="pull-right">
+					<a class="activeview navcursor" style="margin-right:10px;font-weight:bold">{{'admindashboard.fileupload' | translate}}</a>
+					<a class="hoverview defaultcol navcursor"  ui-sref="viewfileupload({schoolId:school_id})" style="margin-right:10px;font-weight:bold">{{'admindashboard.update' | translate}}</a>			
+				</span>
+			</span>
+		</div>
+		<div class="panel-body">
+			<form name="fileupload">
+				<div class="row">
+					<div class="form-group col-md-4">
+						<label for="username" class="control-label minotaur-label">{{'schooladmin.schoolname' | translate}} </label>
+						<input class="form-control" type="text" ng-disabled="true" name="schoolname" data-ng-model="schoolname">
+					</div>
+					<div class="form-group col-md-4">
+						<label for="username" class="control-label minotaur-label">{{'schooladmin.cla' | translate}} </label>
+						<select class="form-control" name="schoolId" data-ng-model="classId" ng-options="classdata.id as classdata.className for classdata in classdatas" required>
+							<option value="">{{'schooladmin.selectcla' | translate}}</option>
+						</select>
+					</div>
+					<div class="form-group col-md-4">
+						<label for="username" class="control-label minotaur-label">{{'schooladmin.sec' | translate}} </label>
+						<select class="form-control" name="schoolId" data-ng-model="sectionId" ng-options="sectiondata.id as sectiondata.sectionName for sectiondata in sectiondatas" required>
+							<option value="">{{'schooladmin.selectsec' | translate}}</option>
+						</select>
+					</div>
+					
+				</div>
+				<div class="row"> 
+					<div class="form-group col-md-3">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="username" class="control-label minotaur-label">{{'schooladmin.uploadfile' | translate}} </label>
+						<div nv-file-drop uploader="uploader" class="well text-center p-30 b-dashed b-2x">
+							<input style="visibility: hidden; position: absolute;" my-fileupload-directive type="file" name="file" id="profileimage" required>
+							<label for="profileimage"> 
+								<div style="padding: 0px 20px 0;">
+								<span class="btn btn-default btn-ef btn-ef-5 btn-ef-5a"><i class="fa fa-upload"></i> 
+									<span>{{'studentmgmt.browse' | translate}}</span>
+								 </span> 
+								</div>	
+							</label>
+							<div class="text-center">
+								{{'studentmgmt.filetypexls' | translate}}
+							</div>
+						</div>
+						<input class="form-control" type="hidden" ng-disabled="true" name="uploadfile" data-ng-model="uploadfile" required>
+					</div>
+					<div class="form-group col-md-3">
+						<img style="width:100%" height="120" src="{{image_id}}">
+					</div>
+					<div data-ng-show="success_file" class="form-group col-md-12 text-center">
+						<div style="color:red">
+							{{successfile}}
+						</div>
+					</div>
+					<div data-ng-show="emptyfile" class="form-group col-md-12 text-center">
+						<div style="color:red">
+							{{empty_file}}
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-md-12 text-center">
+					<div id="divLoading" data-ng-show="loading"></div>
+					<button class="btn btn-primary btn-ef btn-ef-5 btn-ef-5a" ng-click="fileupload.$valid && uploaddata()" ng-disabled="fileupload.$invalid">
+						<i class="fa fa-user-plus"></i> <span>Save Upload File</span>
+					</button>
+					<button class="btn btn-danger btn-ef btn-ef-5 btn-ef-5a" ui-sref="schoolmgmt({status:null})">
+						<i class="fa fa-close"></i><span>{{'common.cancel' | translate}}</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/ng-template" id="successupload.html">
+		<div class="modal-header">
+			<h4 class="modal-title popupfontst">{{'studentmgmt.fileuploadsuccess' | translate}}</h4>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-sm btn-danger" ng-click="deletestudentok()">{{'common.ok' | translate}}</button>
+		</div>
+</script>

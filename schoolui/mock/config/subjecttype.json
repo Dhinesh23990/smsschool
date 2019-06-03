@@ -1,0 +1,22 @@
+{
+	"Status" : "Ok",
+	"TypeVO" : 
+	[
+		{
+		
+		"subjecttype":"Theory Only"
+		
+		},
+{
+		
+		"subjecttype":"Practical Only"
+		
+		},
+{
+		
+		"subjecttype":"Theory + Practical"
+		
+		}
+]
+
+}

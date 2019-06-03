@@ -1,0 +1,22 @@
+{
+	"Status" : "Ok",
+	"configVO" : 
+	[
+		{
+		"SNo":"ASD3456",
+		"bloodgroupName":"A1+ve"
+		},
+		{
+		"SNo":"ASD3456",
+		"bloodgroupName":"A1-ve"
+		},
+		{
+		"SNo":"ASD3456",
+		"bloodgroupName":"O+ve"
+		},
+		{
+		"SNo":"ASD3456",
+		"bloodgroupName":"O-ve"
+		}
+	]
+}

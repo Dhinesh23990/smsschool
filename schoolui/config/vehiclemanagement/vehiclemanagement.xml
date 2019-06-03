@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<module id="vehiclemanagementmodule">	
+	<routers>
+	<router id="vehicledetails" url="/vehicledetails" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/vehiclemanagement/vehicledetails.html"></view>
+            </views>
+    </router>
+	<router id="routedetails" url="/routedetails" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/vehiclemanagement/routedetails.html"></view>
+            </views>
+    </router>
+	<router id="vehicleroute" url="/vehicleroute" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/vehiclemanagement/vehicleroute.html"></view>
+            </views>
+    </router>
+	
+		
+		
+		
+	</routers>
+	<services id="vehiclemanagementservice">
+		<operations>
+		<operation name="saveFeeComponent" method="post" requestType="json" 
+				responseWrapper="response" url="feeComponent/saveFeeComponent"
+				mockUrl="mock/fees/feecomponents.json" mock="false">
+			</operation>
+		</operations>
+	</services>
+</module>

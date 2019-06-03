@@ -1,0 +1,384 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-controller="studentattendancemgmtController">
+    <div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'studentattendance.studentattendancemgmt' | translate}}</h3>
+	</div>
+	<div class="row" style="margin-left:-10px !important;">
+		<div class="col-md-12" style="padding-right:5px !important">
+			<ol class="breadcrumb" id="setresyults">
+				<li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a>{{'studentattendance.home' | translate}}</a></li>
+				<li class="active">{{'studentattendance.studentatde' | translate}}</li>
+			</ol>
+		</div>
+	</div>
+	
+	<div class="panel panel-default" style="margin-left: 6px;">
+		<div class="panel-heading">
+		<i class="fa fa-bars"></i>
+			<span class="labelstcampaign " style="font-weight:bold;font-size:14px !important"> {{'studentattendance.studentatde' | translate}} </span>
+			<span class="pull-right">
+				<a class="activeview" id="list_view" data-ng-click="listviewdet()" style="margin-right:10px;font-weight:bold">{{'studentattendance.dayview' | translate}}</a>
+				<a class="hoverview defaultcol" id="grid_view" data-ng-click="gridviewdet()" style="font-weight:bold">{{'studentattendance.consview' | translate}}</a>
+				<a class="hoverview defaultcol" id="student_view" data-ng-click="studentviewdet()" style="font-weight:bold">{{'studentattendance.stdview' | translate}}</a>				
+			</span>
+		</div>
+		<div class="panel-body" data-ng-show="studentlistviewdetails">
+			<div class="col-md-12 nopadmar">
+				
+				<div id="searchclass" class="col-md-12 nopadmar">
+				
+				<div class="col-md-12" style="border-top:2px solid #eee;background-color:#f5f5f5;padding:10px 10px 0px 10px">
+				     <div class="col-md-12">
+					<div class="col-md-12 nopadmar">
+					<form name="stuattendance">
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label for="pr-name" class="control-label ">{{'studentattendance.dtofatt' | translate}}</label>
+							<input class="form-control" placeholder="Attendance Date" type="text" name="birthdate" ng-model="attenddancedate" validator="required" valid-method="watch" required-error-message= "Attendance Date is required">
+						</div>
+						<div class="form-group col-md-4">
+							<label for="class" class="control-label minotaur-label"> {{'studentattendance.class' | translate}} </label>
+						<select class="form-control" name="class" id="class" data-ng-model="className"
+							ng-options="class.key as class.value for class in classes" validator="required" valid-method="watch" required-error-message="Class Name is required">
+								 <option value="">{{'studentattendance.selectclass' | translate}}</option>
+						</select>
+						</div>
+						
+							 <div class="form-group col-md-4">
+                                <label for="section" class="control-label minotaur-label"> {{'studentattendance.section' | translate}} </label>
+                                <select class="form-control" name="section" id="section" data-ng-model="sectionName"
+								ng-options="section.key as section.value for section in sections" validator="required" valid-method="watch" required-error-message="Section Name is required">
+                                    <option value="">{{'studentattendance.selectsection' | translate}}</option>
+							    </select>
+                            </div>
+							
+							
+						</div>
+						<div class="row">
+					    <div class="form-group col-md-5">
+						</div>
+						<div class="form-group col-md-6">
+						    <button class="btn btn-sm btn-success" type="submit" validation-submit="stuattendance"  data-ng-click="showbysearch('todate')">
+							{{'studentattendance.SSearch' | translate}} <i class="glyphicon glyphicon-search" style="font-size:11px !important;left:5px !important" ></i></button>
+ 
+						</div>	
+					
+							</div>
+							</form>
+					</div>
+				</div>
+				
+				</div>
+				
+							
+			</div>
+			<!--<div class="col-md-12 nopadmar" data-ng-show="items.length > 0">
+				<hr style="margin-top:5px !important;margin-bottom:5px !important;border:1px solid #10464a !important">
+			</div>-->
+			<div class="col-md-12 nopadmar" data-ng-show="items.length > 0 && day_view">
+				<table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							
+							<th>{{'studentattendance.studentid' | translate}}</th>
+							<th>{{'studentattendance.admissionno' | translate}}</th>
+							<th>{{'studentattendance.studentname' | translate}}</th>
+							<th data-ng-show="afternoons">{{'studentattendance.morning' | translate}}</th>
+							<th data-ng-show="mornings">{{'studentattendance.afternoon' | translate}}</th>
+							<th data-ng-show="fulldays">{{'studentattendance.fullday' | translate}}</th>
+							<th>{{'studentattendance.comments' | translate}}</th>
+							<th>{{'studentattendance.attendance' | translate}}</th>		        
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in items | filter:search">		
+						  <td class="change_colr">{{item.studentId}}</td>
+						  <td class="change_colr">{{item.admissionNumber}}</td>
+						  <td class="change_colr">{{item.studentName}}</td>
+						  <td class="change_colr" data-ng-show="item.fullDay == false">  
+						  <span data-ng-if="item.morning == false">
+							<i><img src="assets/images/red.png" style="width:20px;height:20;"></i>
+						  </span>
+						  <span data-ng-if="item.morning == true">
+							<i><img src="assets/images/gra.png" style="width:20px;height:20px;"></i>
+						  </span></td> 
+						  <td class="change_colr" data-ng-show="item.fullDay == false">
+						  <span data-ng-if="item.afternoon == false">
+							<i><img src="assets/images/red.png" style="width:20px;height:20px;"></i>
+						  </span>
+						  <span data-ng-if="item.afternoon == true">
+							<i><img src="assets/images/gra.png" style="width:20px;height:20px;"></i>
+						  </span></td>
+						  <td class="change_colr" data-ng-show="item.fullDay == true">
+								<i><img src="assets/images/gra.png" style="width:20px;height:20px;"></i>
+						  </td>
+						  <td class="change_colr">
+						  <span data-ng-if="item.note == null">
+							<i><img src="assets/images/Shopping.png" style="width:20px;height:20px;"></i> No Comments
+						  </span>
+						   <span data-ng-if="item.note">
+							<i><img src="assets/images/Shopping.png" style="width:20px;height:20px;"></i>      {{item.note}}
+						  </span>
+						  </td>
+						  <td class="change_colr">
+						  <span data-ng-if="item.fullDay == true"><span style="background-color:#6ec06e;padding:5px">100 %</span></span>
+						  <span data-ng-if="item.morning == true && item.afternoon == true"><span style="background-color:#6ec06e;padding:5px">100 %</span></span>
+						  <span data-ng-if="item.morning == true && item.afternoon == false"><span style="background-color:#6ec06e;padding:5px">50 %</span></span>
+						  <span data-ng-if="item.morning == false && item.afternoon == true"><span style="background-color:#6ec06e;padding:5px">50 %</span></span>
+						  <span data-ng-if="item.morning == false && item.afternoon == false && item.fullDay == false"><span style="background-color:#6ec06e;padding:5px">0 %</span> </span>
+						  </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-12" style="padding:0px;margin:5px 0px" data-ng-if="items.length == 0 && day_view">
+			
+				<table  class="table table-striped table-bordered table-hover generaltable minotaur-table " style="display: table;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'studentattendance.studentid' | translate}}</th>
+							<th>{{'studentattendance.admissionno' | translate}}</th>
+							<th>{{'studentattendance.studentname' | translate}}</th>
+							<th>{{'studentattendance.morning' | translate}}</th>
+							<th>{{'studentattendance.afternoon' | translate}}</th>
+							<th>{{'studentattendance.comments' | translate}}</th>
+							<th >{{'studentattendance.percentage' | translate}}</th>		        
+						</tr>
+					</thead>
+					<tbody>
+						<tr> 
+							<td colspan="7" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+				
+    </div>
+	<div class="panel-body" data-ng-show="studentgridviewdetails">
+		<div class="col-md-12 nopadmar">
+			<div class="col-md-12" style="border-top:2px solid #eee;background-color:#f5f5f5;padding:10px 10px 0px 10px">
+				<div id="searchclass" class="col-md-12 nopadmar">
+					<form name="attendancegrid">
+					   <div class="row">
+							<div class="form-group col-md-3">
+								<label for="pr-name" class="control-label ">{{'studentattendance.fromdate' | translate}}</label>
+								<input class="form-control" placeholder="From Date" type="text" name="birthdate" ng-model="fromdate" validator="required" valid-method="watch" required-error-message= "From Date is required">
+									
+							</div>
+							<div class="form-group col-md-3">
+							<label for="pr-name" class="control-label ">{{'studentattendance.todate' | translate}}</label>
+								<input class="form-control" placeholder="To Date" type="text" name="todate" ng-model="todate" validator="required" valid-method="watch" required-error-message= "To Date is required">
+							</div>
+							<div class="form-group col-md-3">
+								<label for="pr-name" class="control-label ">{{'studentattendance.class' | translate}}</label>					
+								<select class="form-control" name="class" id="class" data-ng-model="conclassName"
+									ng-options="class.key as class.value for class in classes" validator="required" valid-method="watch"
+								required-error-message="Class is required">
+										 <option value="">{{'studentattendance.selectclass' | translate}}</option>
+								</select>
+							  </div>
+								
+							<div class="form-group col-md-3">
+								<label for="pr-name" class="control-label ">{{'studentattendance.section' | translate}}</label>
+								<select class="form-control" name="section" id="section" data-ng-model="consectionName"
+								ng-options="section.key as section.value for section in sections"
+								validator="required" valid-method="watch"
+								required-error-message="Section is required">
+									<option value="">{{'studentattendance.selectsection' | translate}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-5">
+							</div>
+							<div class="form-group col-md-6">
+								<button class="btn btn-sm btn-success" type="submit" validation-submit="attendancegrid"  data-ng-click="conshowbysearch()">
+								{{'studentattendance.SSearch' | translate}} <i class="glyphicon glyphicon-search" style="font-size:11px !important;left:5px !important" ></i></button>
+	 
+							</div>	
+					
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-12 nopadmar" data-ng-show="conitems.length > 0 && consolidated_view">
+			
+				<table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							
+							<th>{{'studentattendance.studentid' | translate}}</th>
+							<th>{{'studentattendance.admissionno' | translate}}</th>
+							<th>{{'studentattendance.studentname' | translate}}</th>
+							<!--<th>04/08</th>
+							<th>22/08</th>
+							<th>22/05</th>
+							<th>25/05</th>-->
+							<th>Present Days</th>
+							<th>Total Days</th>
+							<th >{{'studentattendance.percentage' | translate}}</th>		        
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="conitem in conitems | filter:search">
+					
+						  <td class="change_colr">{{conitem.studentId}}</td>
+						  <td class="change_colr">{{conitem.admissionNumber}}</td>
+						  <td class="change_colr">{{conitem.studentName}}</td>
+						 <!-- <td class="change_colr">---</td>
+						  <td class="change_colr">---</td>
+						  <td class="change_colr">NA / NA</td>
+						   <td class="change_colr"></td>-->
+						    <td class="change_colr">{{conitem.presentDays}}</td>
+							 <td class="change_colr">{{conitem.totalDays}}</td>
+						  <td class="change_colr"><span style="background-color:#6ec06e;padding:5px">{{conitem.attendancePercenatge}} % </span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-12" style="padding:0px;margin:5px 0px" data-ng-if="conitems.length == 0 && consolidated_view">
+			
+				<table  class="table table-striped table-bordered table-hover generaltable minotaur-table " style="display: table;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'studentattendance.studentid' | translate}}</th>
+							<th>{{'studentattendance.admissionno' | translate}}</th>
+							<th>{{'studentattendance.studentname' | translate}}</th>
+							<th>P.D</th>
+							<th>T.D</th>
+							<th>{{'studentattendance.percentage' | translate}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr> 
+							<td colspan="6" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+				
+	</div>
+	<div class="panel-body" data-ng-show="studentsingleviewdetails">
+			<div class="col-md-12 nopadmar">
+				<div class="col-md-12" style="border-top:2px solid #eee;background-color:#f5f5f5;padding:10px 10px 0px 10px">
+				<div id="searchclass" class="col-md-12 nopadmar">
+				
+			<form name="attendancestudentview">
+			   
+			   <div class="row">
+					<!-- <div class="form-group col-md-4">
+						<label for="pr-name" class="control-label ">{{'studentattendance.studentid' | translate}}</label>					
+						<input type="text" class="form-control" name="studentid" data-ng-model="studentId" placeholder="Student Id" validator="required" valid-method="watch"
+						required-error-message="Student Id is required">
+					  </div>-->
+					<div class="col-md-4">
+						<label for="pr-name" class="control-label ">{{'studentattendance.studentid' | translate}}</label>
+						<input class="form-control" placeholder="Student ID" type="text" name="studentid" data-ng-model="studentId" validator="required" valid-method="watch" required-error-message= "Student Id is required">
+					
+					</div>
+					<div class="form-group col-md-4">
+						<label for="pr-name" class="control-label ">{{'studentattendance.fromdate' | translate}}</label>
+						<input class="form-control" placeholder="From Date" type="text" name="birthdate" ng-model="stdviewfromdate" validator="required" valid-method="watch" required-error-message= "From Date is required">	
+					</div>
+					<div class="form-group col-md-4">
+					<label for="pr-name" class="control-label ">{{'studentattendance.todate' | translate}}</label>
+						<input class="form-control" placeholder="To Date" type="text" name="todate" ng-model="stdviewtodate" validator="required" valid-method="watch" required-error-message= "To Date is required">
+					</div>
+				</div>
+				<div class="row">
+					    <div class="form-group col-md-5">
+						</div>
+						<div class="form-group col-md-6">
+						    <button class="btn btn-sm btn-success" type="submit" validation-submit="attendancestudentview" data-ng-click="studentshowbysearch()">
+							{{'studentattendance.SSearch' | translate}} <i class="glyphicon glyphicon-search" style="font-size:11px !important;left:5px !important" ></i></button>
+ 
+						</div>	
+					
+					</div>
+					</form>
+			</div>
+			</div>
+			<div class="col-md-12" data-ng-show="studentviewdetails.length > 0 && student_view" style="padding:10px 0px 0px 0px">
+			<div class="col-md-12" style="padding:0px 0px 15px 0px">
+			<div class="col-md-12 nopadmar" style="border-top:2px solid #eee;background-color:#f5f5f5;padding:10px 10px 0px 10px" >
+				<div class="col-md-12 text-center" style="padding:10px">
+					<div style="font-weight:bold;font-size:16px;padding-bottom:2px">Student Id & Name :  {{studentIdetails.studentName}} <span data-ng-if="studentIdetails.surName">{{studentIdetails.surName}}</span> ({{studentIdetails.studentId}})</div>
+					<div style="font-weight:bold;font-size:16px;padding-bottom:2px">Batch & Class : {{studentIdetails.className}} - {{studentIdetails.sectionName}} ({{studentIdetails.batchName}})</div> 
+					<div style="font-weight:bold;font-size:16px;padding-bottom:2px">Attendance Percentage : <span style="background-color:#ffffff;padding:5px"> {{studentIdetails.attendancePercenatge}} %</span></div>
+				</div>
+			</div>
+			</div>
+			<table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'studentattendance.snoo' | translate}}</th>
+							<th>{{'studentattendance.dayy' | translate}}</th>
+							<th>{{'studentattendance.morning' | translate}}</th>
+							<th>{{'studentattendance.afternoon' | translate}}</th>
+							<th>{{'studentattendance.percentage' | translate}}</th>		        
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="studentviewdetail in studentviewdetails">
+					
+						  <td class="change_colr">{{$index+1}}</td>
+						  <td class="change_colr">{{studentviewdetail.day}}</td>
+						  <td class="change_colr">  
+							  <span data-ng-if="studentviewdetail.morning == false && studentviewdetail.fullDay == false">
+								<i><img src="assets/images/red.png" style="width:20px;height:20;"></i>
+							  </span>
+							  <span data-ng-if="studentviewdetail.morning == true && studentviewdetail.fullDay == false">
+								<i><img src="assets/images/gra.png" style="width:20px;height:20px;"></i>
+							  </span>
+							  <span data-ng-if="studentviewdetail.fullDay == true">
+								<i><img src="assets/images/gra.png" style="width:20px;height:20px;"></i>
+							  </span>	
+						  </td> 
+						  <td class="change_colr">
+							  <span data-ng-if="studentviewdetail.afternoon == false && studentviewdetail.fullDay == false">
+								<i><img src="assets/images/red.png" style="width:20px;height:20px;"></i>
+							  </span>
+							  <span data-ng-if="studentviewdetail.afternoon == true && studentviewdetail.fullDay == false">
+								<i><img src="assets/images/gra.png" style="width:20px;height:20px;"></i>
+							  </span>
+							  <span data-ng-if="studentviewdetail.fullDay == true">
+								<i><img src="assets/images/gra.png" style="width:20px;height:20px;"></i>
+							  </span>
+						  </td>
+						   <td class="change_colr">
+						  <span data-ng-if="studentviewdetail.fullDay == true"><span style="background-color:#6ec06e;padding:5px">100 %</span></span>
+						  <span data-ng-if="studentviewdetail.morning == true && studentviewdetail.afternoon == true"><span style="background-color:#6ec06e;padding:5px">100 %</span></span>
+						  <span data-ng-if="studentviewdetail.morning == true && studentviewdetail.afternoon == false"><span style="background-color:#6ec06e;padding:5px">50 %</span></span>
+						  <span data-ng-if="studentviewdetail.morning == false && studentviewdetail.afternoon == true"><span style="background-color:#6ec06e;padding:5px">50 %</span></span>
+						  <span data-ng-if="studentviewdetail.morning == false && studentviewdetail.afternoon == false && studentviewdetail.fullDay == false"><span style="background-color:#6ec06e;padding:5px">0 %</span> </span>
+						  </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-12" style="padding:0px;margin:5px 0px" data-ng-if="studentviewdetails.length == 0 && student_view">
+			
+				<table  class="table table-striped table-bordered table-hover generaltable minotaur-table " style="display: table;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'studentattendance.snoo' | translate}}</th>
+							<th>{{'studentattendance.dayy' | translate}}</th>
+							<th>{{'studentattendance.morning' | translate}}</th>
+							<th>{{'studentattendance.afternoon' | translate}}</th>
+							<th>{{'studentattendance.percentage' | translate}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr> 
+							<td colspan="5" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+				
+	</div>
+</div>
+</div> 
+	

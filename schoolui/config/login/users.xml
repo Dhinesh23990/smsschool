@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<module id="usersModule">
+    <routers>
+    	<router id="login" url="/login" auth="false">
+            <views>
+                <view containerId="app" templateUrl="views/common/login.html"></view>
+            </views>
+        </router>
+		<router id="admin" url="/admin" auth="false">
+            <views>
+                <view containerId="app" templateUrl="views/common/adminlogin.html"></view>
+            </views>
+        </router>
+		<router id="forgetpsw" url="/forgetpsw" auth="false">
+			<views>
+                <view containerId="app" templateUrl="views/common/forgotPassword.html"></view>
+            </views>
+        </router>
+		<router id="dashboard" url="/dashboard" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/common/dashboard.html"></view>
+            </views>
+        </router>
+		<router id="admindashboard" url="/admindashboard" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/common/admindashboard.html"></view>
+            </views>
+        </router>
+    </routers>
+    <services id="users">
+        <operations>
+        	<operation name="login" method="get" requestWrapper="request" responseWrapper="response" url="/j_security_check" mockUrl="mock/login/login.json" mock="false"></operation>
+        	<operation name="getLoginStatus" serviceName="" method="get" requestWrapper="request" responseWrapper="response" url="/services/getLoginStatus" mockUrl="mock/login/login.json" mock="false"></operation>
+        	<operation name="getPermissions" serviceName="" method="get" requestWrapper="request" responseWrapper="response" url="/services/getPermissions" mockUrl="mock/login/permissions.json" mock="false"></operation>
+        	<operation name="logout" method="get" url="/services/logout" requestWrapper="request" responseWrapper="response" mockUrl="mock/login/login.json" mock="false"></operation>
+        </operations>
+    </services>
+</module>

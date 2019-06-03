@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<module id="notificationmanagementmodule">
+	<routers>
+		
+		<router id="notificationdetails" url="notificationdetails" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/notificationmanagement/notification.html"></view>
+            </views>
+    </router>
+	
+	</routers>	
+		
+		
+	<services id="notificationmanagementservice">
+		<operations>
+			<operation name="saveNotification" method="post" requestType="json" 
+				responseWrapper="response" url="notification/saveNotification"
+				mockUrl="mock/notification/notification.json" mock="false">
+			</operation>
+			<operation name="updateNotification" method="post" requestType="json" 
+				responseWrapper="response" url="notification/updateNotification"
+				mockUrl="mock/notification/usersList.json" mock="false">
+			</operation>
+			<operation name="getNotificationById" method="get" requestWrapper="request" responseWrapper="response" 
+				url="notification/getNotificationById" mockUrl="mock/notification/usersList.json" mock="false">
+				<params>
+                    <param name="id" source="state" key="notificationId"></param>
+                </params>
+			</operation>
+			
+		</operations>
+	</services>
+</module>

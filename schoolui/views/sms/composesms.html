@@ -1,0 +1,318 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-controller="composesmscontroller">                				
+	<div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'configcompose.send' | translate}}</h3>
+	</div>
+	
+	<div class="row" style="margin-left:-10px !important;">
+		<div class="col-md-12" style="padding-right:5px !important">
+			<ol class="breadcrumb" id="setresyults">
+				<li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i>
+				<a>{{'configreligion.home' | translate}}</a></li>
+				<li class="active" ui-sref="smslog">{{'configcompose.log' | translate}}</li>
+				<li class="active">{{'common.create' | translate}}</li>
+			</ol>
+		</div>
+	</div>
+	
+	<div class="panel panel-default"  style="margin-left: 6px;">
+                                                            
+	
+		<div class="panel-heading">
+		  <i class="fa fa-bars"></i>
+			<span class="labelstcampaign "> {{'configcompose.selectoptions' | translate}}</span>
+			<span></span>
+		</div>
+		
+		<div class="panel-body">	 		  		 
+		    <div class="col-md-12">     
+					<div id="divLoading" data-ng-show="loading">
+					</div>
+                    <form name="createform">
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="distripution" class="control-label minotaur-label"><span class="text-red"></span> </label>
+                                <select class="form-control" name="distribution" id="distribution" data-ng-model="SmsLogVO.distribution" data-ng-change="selectdistribution(SmsLogVO.distribution)"
+								ng-options="Smsdat.key as Smsdat.value for Smsdat in Sms">
+                                    <option value="">{{'configcompose.selectdistri' | translate}}</option>
+                                </select>
+                            </div>
+
+													
+							<div class="form-group col-md-4" data-ng-if="SmsLogVO.distribution == 'Individual Student' || SmsLogVO.classdata == furtherdata || SmsLogVO.distribution == 'Section Wise'">
+                                <label for="class" class="control-label minotaur-label"><span class="text-red"></span> </label>
+                                <select class="form-control" name="classwise" id="classwise" data-ng-model="SmsLogVO.classdata" data-ng-change="selectclass(SmsLogVO.classdata)"
+								 ng-options="classdata.id as classdata.name for classdata in classdatas">
+                                    <option value="">{{'configcompose.selectclass' | translate}}</option>
+                                </select>
+                            </div>
+							
+							<!--SmsLogVO.distribution == 'Section Wise' || -->
+							<div class="form-group col-md-4" data-ng-if="SmsLogVO.distribution == 'Individual Student' && SmsLogVO.classdata">
+                                <label for="short" class="control-label minotaur-label"><span class="text-red"></span></label>
+                                <select class="form-control" name="section" id="section" data-ng-model="SmsLogVO.sectiondata" data-ng-change="selectsection(SmsLogVO.sectiondata)"
+								ng-options="sectiondata.key as sectiondata.value for sectiondata in sectiondatas">
+                                    <option value="">{{'configcompose.selectsection' | translate}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4" data-ng-if="SmsLogVO.distribution=='All Student' || SmsLogVO.distribution=='Class Wise' || SmsLogVO.distribution=='Section Wise' && SmsLogVO.classdata || SmsLogVO.distribution=='All Teacher'
+							   || SmsLogVO.distribution=='Individual Teacher' || SmsLogVO.distribution=='Admin/Management' || SmsLogVO.distribution=='Group/Category' || SmsLogVO.sectiondata ">
+                                <label for="further" class="control-label minotaur-label"><span class="text-red"></span> </label>
+                                <select class="form-control" name="furthername" id="furthername" data-ng-model="SmsLogVO.furtherdata" data-ng-change="selectuserdefined(SmsLogVO.furtherdata,SmsLogVO.distribution,SmsLogVO.classdata,SmsLogVO.sectiondata)"
+									ng-options="furtherdatas.key as furtherdatas.value for furtherdatas in furtherdata">
+										<option value="">{{'configcompose.selectfurther' | translate}}</option>
+                                </select>
+                            </div>  
+							
+							<div class="col-md-12 nopadmar" data-ng-if="SmsLogVO.distribution=='Section Wise' && SmsLogVO.furtherdata=='Template' ||  SmsLogVO.distribution=='Section Wise' && SmsLogVO.furtherdata=='User Defined'">
+								<hr style="margin-top:5px !important;margin-bottom:5px !important;border:1px solid #10464a !important">
+							</div>
+							<div class="form-group col-md-12 nopadmar" data-ng-if="SmsLogVO.distribution=='Section Wise' && SmsLogVO.furtherdata=='Template' ||  SmsLogVO.distribution=='Section Wise' && SmsLogVO.furtherdata=='User Defined'" >  
+								<dualmultiselect options="demoOptions"> </dualmultiselect>
+							</div>
+							
+							<div class="form-group col-md-4" data-ng-if="SmsLogVO.distribution!='Admin/Management' && SmsLogVO.furtherdata || SmsLogVO.distribution=='All Teacher' && SmsLogVO.distribution!='Induvidual Teacher' && SmsLogVO.distribution">
+                                <label for="gender" class="control-label minotaur-label"><span class="text-red"></span> </label>
+                                <select class="form-control" name="gendername" id="gendername" data-ng-model="SmsLogVO.gender" data-ng-change="selectgenderdata(SmsLogVO.furtherdata,SmsLogVO.shortDescrip,SmsLogVO.distribution,SmsLogVO.gender)"
+								ng-options="gender.key as gender.value for gender in genders">
+                                    <option value="">{{'configcompose.allgender' | translate}}</option>
+                                </select>
+                            </div>  
+							
+							<div class="col-md-12 nopadmar" data-ng-show="SmsLogVO.distribution=='Class Wise' && SmsLogVO.furtherdata">
+								<hr style="margin-top:5px !important;margin-bottom:5px !important;border:1px solid #10464a !important">
+							</div>	
+						
+
+							<div class="form-group col-md-12 nopadmar" data-ng-show="SmsLogVO.distribution=='Class Wise' && SmsLogVO.furtherdata">
+							
+								<dualmultiselect options="demoOptions"> </dualmultiselect>
+								
+							</div>
+							<div class="col-md-12 nopadmar" data-ng-show="SmsLogVO.distribution=='Individual Student' && SmsLogVO.furtherdata">
+								<hr style="margin-top:5px !important;margin-bottom:5px !important;border:1px solid #10464a !important">
+							</div>
+							
+							
+							<!--<div class="form-group col-md-12" data-ng-show="emptystudentdata && SmsLogVO.distribution=='Individual Student' && SmsLogVO.furtherdata"> 
+								<h3>No data available in this class and section</h3>
+							</div>-->
+							<div class="form-group col-md-12 nopadmar" data-ng-show="SmsLogVO.distribution=='Individual Student' && SmsLogVO.furtherdata"> 
+							   	<dualmultiselect options="demoOptions"> </dualmultiselect> 
+							</div>
+							
+							 <div class="form-group col-md-12" data-ng-show="SmsLogVO.distribution=='Individual Teacher' && SmsLogVO.furtherdata"> 
+								
+								<dualmultiselect options="demoOptions"> </dualmultiselect>
+								
+							</div>
+							<div class="form-group col-md-12 nopadmar" data-ng-if="SmsLogVO.distribution=='Individual Student' && SmsLogVO.furtherdata=='User Defined' || SmsLogVO.distribution=='Section Wise' && SmsLogVO.furtherdata=='User Defined' ||  SmsLogVO.distribution=='Class Wise' && SmsLogVO.furtherdata=='User Defined' || SmsLogVO.distribution=='Individual Teacher' && SmsLogVO.furtherdata=='User Defined'">
+								<div class="col-md-12">
+							      <!-- <button class="btn btn-sm btn-info pull-left" style="margin-top:5px;" data-ng-click="selectgenderdata(SmsLogVO.furtherdata,SmsLogVO.shortDescrip,SmsLogVO.distribution,SmsLogVO.gender)">{{'configcompose.continue' | translate}}</button>-->
+							      <button class="btn btn-sm btn-info pull-left" style="margin-top:5px;" data-ng-click="continueuserdefined(SmsLogVO.distribution)">{{'configcompose.continue' | translate}}</button>
+
+								</div>
+							</div>
+							<div class="form-group col-md-4" data-ng-if="SmsLogVO.furtherdata == 'Template' && SmsLogVO.distribution !='Induvidual Student' && SmsLogVO.distribution!='Group/Category' && SmsLogVO.distribution">
+								<label for="short" class="control-label minotaur-label"><span class="text-red"></span> </label>
+								<select class="form-control" name="shortdis" id="shortdis" data-ng-model="SmsLogVO.shortDescrip" data-ng-change="selectfurtherdata(SmsLogVO.shortDescrip)"
+								ng-options="discription.key as discription.value for discription in discriptions">
+									<option value="">{{'configcompose.selecttemp' | translate}}</option>
+								</select>
+								<input type="hidden" data-ng-model="ComposeSMSVO.distributionType" name="distribution">
+							</div> 	                           						
+			            </div>
+				    </form> 
+						
+            </div>        			 			
+		</div>
+	</div>
+	
+</div>
+
+<script type="text/ng-template" id="template.html">
+	<div class="modal-body" style="border:10px solid #6ec06e !important">
+	<form name="templateform">
+		<div class="row nopadmar">
+			<div class="col-md-6" style="font-size:13px;font-weight:bold">
+			{{'configcompose.message' | translate}}
+			</div>
+			<div class="col-md-6" style="font-size:13px;font-weight:bold">
+				<div class="pull-right">({{'configcompose.templatemessage' | translate}})</div>
+			</div>
+			<div class="col-md-12" style="margin:5px 0px 15px 0px">
+				<div class="col-md-12" style="border:1px solid #D0D3D4;padding:13px">
+				{{templatedesc}}
+				</div>
+			</div>
+			<div class="col-md-6" style="font-size:13px;font-weight:bold">
+			{{'configcompose.variables' | translate}}
+			</div>
+			<div class="col-md-6" style="font-size:13px;font-weight:bold">
+				<div class="pull-right">({{'configcompose.blankempty' | translate}})</div>
+			</div>
+			<div class="col-md-12" style="margin:5px 0px 15px 0px">
+				<div class="col-md-12" style="border:1px solid #D0D3D4;padding:10px" >
+					<!--<div class="row-fluid" id="add_remove">
+									
+					</div>
+					
+					<input name="studentname" id="name" class="form-control" ng-model="StudentVO.studentName" type="text" placeholder="student full name" validator="required" valid-method="watch"
+											required-error-message="Student Name is required" numeric-only-course>-->
+					<div class="col-md-12" style="margin:7px 0px;padding:0px" data-ng-repeat="setinput in setinputtag" data-ng-if="setinputtag.length > 0">
+						<div class="col-md-3" style="padding:0px">
+							{{setinput.data}} <span style="font-weight:bold">=></span>
+						</div>
+						<div class="col-md-9" style="padding:0px" data-ng-if="setinput.check == 'true'">
+							<input type="text" data-ng-model="setinput.answerdata" name="date{{$index}}" class="form-control" 
+							placeholder="DD/MM/YYYY" ng-pattern="/(0[1-9]|1[0-9]|2[0-9]|3[01])/(0[1-9]|1[012])/[0-9]{4}$/" type="text" validator="required" valid-method="watch" required-error-message="Date is required">
+							
+						</div>
+						<div class="col-md-9" style="padding:0px" data-ng-if="setinput.check == 'false'">
+							<input type="text" data-ng-model="setinput.answerdata" name="date{{$index}}" class="form-control" 
+							validator="required" valid-method="watch" required-error-message="{{setinput.data}} is required">
+							
+						</div>
+					</div>
+					<div class="col-md-12" style="margin:7px 0px;padding:0px" data-ng-if="setinputtag.length == 0">
+						No Varaibles Fields
+					</div>
+					<!--<div class="col-md-12" style="margin:7px 0px;padding:0px">
+						<div class="col-md-3" style="padding:0px">		
+							{{'configcompose.reasond' | translate}} <span style="font-weight:bold">=></span>
+						</div>
+						<div class="col-md-9" style="padding:0px">
+							<input type="text" placeholder="reason..." data-ng-model="reason" name="reason" class="form-control">
+						</div>
+					</div>-->
+					
+					<div class="col-md-12" style="margin:15px 0px 10px 0px;padding:0px">
+						<div class="col-md-4" style="padding:0px">
+							<button class="btn btn-primary btn-sm" ng-click="show = !show">{{'configcompose.smscntdet' | translate}}</button>
+						</div>
+						<div class="col-md-8" style="margin-top:5px;padding:0px;color:#7B7D7D">
+							<div class="pull-right">{{'configcompose.chaleg' | translate}} {{temcontent}} {{'configcompose.exckey' | translate}}</div>
+						</div>
+						<div class="col-md-12" data-ng-show="show">
+							<span style="font-weight:bold">English SMS</span></br>
+							<span>1</span><sup >st</sup><span>SMS - 160 characters</span></br>
+							<span>2</span><sup >nd</sup><span >SMS - 146  characters </span></br>
+							<span>3</span><sup>rd</sup><span>SMS Onwords- 153  characters </span></br>
+							<span style="font-weight:bold">Regional  SMS</span></br>
+							<span>Each SMS - 62 characters</span> 
+						</div> 
+					</div>
+					
+				</div>
+			</div>
+			<div class="col-md-6" style="font-size:13px;font-weight:bold">
+			{{'configcompose.SendTo' | translate}}
+			</div>
+			<div class="col-md-6" style="font-size:13px;font-weight:bold">
+			<div class="pull-right">({{'configcompose.reqnos' | translate}})</div>
+			</div>
+			<div class="col-md-12" style="margin:5px 0px 15px 0px">
+			
+				<div class="col-md-12" style="border:1px solid #D0D3D4;padding:10px 0px 15px 10px;font-size:13px;font-weight:bold">
+				<!--<div data-ng-repeat="checkboxss in checkboxvalue"><input type="checkbox" data-ng-model="checkboxss.tem_parentmobileno1" ng-checked="true" name="pad_{{$index}}" class=""> {{checkboxss.name}}</div>-->
+				<div data-ng-if="SmsLogVO.distribution != 'All Teacher' && SmsLogVO.distribution != 'Individual Teacher' && SmsLogVO.distribution != 'Admin/Management'"><input type="checkbox" data-ng-model="tem_parentmobileno1" name="parentmobileno1" class="" data-ng-click="changeparentmobileno1($event)"> {{'configcompose.pmn1' | translate}}</div>
+				<div data-ng-if="SmsLogVO.distribution != 'All Teacher' && SmsLogVO.distribution != 'Individual Teacher' && SmsLogVO.distribution != 'Admin/Management'"><input type="checkbox" data-ng-model="tem_parentmobileno2" name="parentmobileno2" class="" data-ng-click="changeparentmobileno2($event)"> {{'configcompose.pmn2' | translate}}</div>
+				<div data-ng-if="SmsLogVO.distribution != 'All Teacher' && SmsLogVO.distribution != 'Individual Teacher' && SmsLogVO.distribution != 'Admin/Management'"><input type="checkbox" data-ng-model="tem_studentmobileno" name="studentmobileno" class="" data-ng-click="changestudentmobileno($event)"> {{'configcompose.smn' | translate}}</div>
+				<div data-ng-if="SmsLogVO.distribution"><input type="checkbox" data-ng-model="tem_adminmobileno" name="adminmobileno" class="" data-ng-click="changeadminmobileno($event)"> {{'configcompose.amn' | translate}}
+				</div>			
+				<div data-ng-if="SmsLogVO.distribution != 'All Teacher' && SmsLogVO.distribution != 'Individual Teacher' && SmsLogVO.distribution != 'Admin/Management'"><input type="checkbox" data-ng-model="tem_classteachermobileno" name="classteachermobileno" class="" data-ng-click="changeteachermobileno($event)"> {{'configcompose.cltmn' | translate}}</div>
+
+				
+			</div>
+		</div>
+		</div>
+		
+		<div class="row nopadmar" style="background-color:#ececec;height:70px">
+			<div class="col-md-12 text-center" style="margin:20px 0px">
+			<button class="btn btn-sm btn-success" type="submit" validation-submit="templateform" ng-click="sendandsavesms()">{{'common.submit' | translate}}</button>
+			<button class="btn btn-sm btn-danger" ng-click="okcancel()">{{'common.cancel' | translate}}</button>
+			<button class="btn btn-sm btn-info" ng-click="composeok()" >{{'common.clear' | translate}}</button>
+			<button class="btn btn-sm btn-primary" ng-click="okcancel()">{{'common.close' | translate}}</button>
+			</div>
+		</div>
+		
+		</form>
+	</div>
+</script>
+
+<script type="text/ng-template" id="userdefined.html">
+	<div class="modal-body" style="border:10px solid #6ec06e !important">
+		<form name="userdefinedform">
+		<div class="row nopadmar">
+			<div class="col-md-6" style="font-size:13px;font-weight:bold">
+			{{'configcompose.message' | translate}}
+			</div>
+			<div class="col-md-6" style="font-size:13px;font-weight:bold">
+				<div class="pull-right">({{'configcompose.userde' | translate}})</div>
+			</div>
+			
+			<div class="col-md-12" style="margin:5px 0px 15px 0px">
+				<div class="col-md-12" style="border:1px solid #D0D3D4;padding:10px">
+					<div class="col-md-12" style="margin:7px 0px;padding:0px">
+						<textarea class="form-control" name="messagearea" rows="5" placeholder="Message Area..." data-ng-model="messagearea" data-ng-change="getmessagecount(messagearea)" validator="required" valid-method="watch" required-error-message="Message is required">
+						</textarea>
+					</div>
+					
+					<div class="col-md-12" style="margin:15px 0px 10px 0px;padding:0px">
+						<div class="col-md-4" style="padding:0px">
+							<button class="btn btn-primary btn-sm" ng-click="show = !show">{{'configcompose.smscntdet' | translate}}</button>
+						</div>
+						<div class="col-md-8" style="margin-top:5px;padding:0px;color:#7B7D7D">
+							<div class="pull-right">{{'configcompose.chaleg' | translate}} {{messagecount}}</div>
+						</div>
+					</div>
+					
+					<div class="col-md-12" data-ng-show="show">
+						<span style="font-weight:bold">English SMS</span></br>
+						<span>1</span><sup >st</sup><span>SMS - 160 characters</span></br>
+						<span>2</span><sup >nd</sup><span >SMS - 146  characters </span></br>
+						<span>3</span><sup>rd</sup><span>SMS Onwords- 153  characters </span></br>
+						<span style="font-weight:bold">Regional  SMS</span></br>
+						<span>Each SMS - 62 characters</span> 
+					</div> 
+				</div>
+			</div>
+			<div class="col-md-6" style="font-size:13px;font-weight:bold">
+			{{'configcompose.SendTo' | translate}}
+			</div>
+			<div class="col-md-6" style="font-size:13px;font-weight:bold">
+			<div class="pull-right">({{'configcompose.reqnos' | translate}})</div>
+			</div>
+			<div class="col-md-12" style="margin:5px 0px 15px 0px">
+				<div class="col-md-12" style="border:1px solid #D0D3D4;padding:10px 0px 15px 10px;font-size:13px;font-weight:bold">
+				<!--<div data-ng-repeat="checkboxss in checkboxvalue"><input type="checkbox" data-ng-model="checkboxss.tem_parentmobileno1" ng-checked="true" name="pad_{{$index}}" class=""> {{checkboxss.name}}</div>-->
+				<div data-ng-if="SmsLogVO.distribution != 'All Teacher' && SmsLogVO.distribution != 'Individual Teacher' && SmsLogVO.distribution != 'Admin/Management'"><input type="checkbox" data-ng-model="tem_parentmobileno1" name="parentmobileno1" class="" data-ng-click="changeparentmobileno1($event)"> {{'configcompose.pmn1' | translate}}</div>
+				<div data-ng-if="SmsLogVO.distribution != 'All Teacher' && SmsLogVO.distribution != 'Individual Teacher' && SmsLogVO.distribution != 'Admin/Management'"><input type="checkbox" data-ng-model="tem_parentmobileno2" name="parentmobileno2" class="" data-ng-click="changeparentmobileno2($event)"> {{'configcompose.pmn2' | translate}}</div>
+				<div data-ng-if="SmsLogVO.distribution != 'All Teacher' && SmsLogVO.distribution != 'Individual Teacher' && SmsLogVO.distribution != 'Admin/Management'"><input type="checkbox" data-ng-model="tem_studentmobileno" name="studentmobileno" class="" data-ng-click="changestudentmobileno($event)"> {{'configcompose.smn' | translate}}</div>
+				<div data-ng-if="SmsLogVO.distribution"><input type="checkbox" data-ng-model="tem_adminmobileno" name="adminmobileno" class="" data-ng-click="changeadminmobileno($event)"> {{'configcompose.amn' | translate}}
+				</div>
+				<div data-ng-if="SmsLogVO.distribution != 'All Teacher' && SmsLogVO.distribution != 'Individual Teacher' && SmsLogVO.distribution != 'Admin/Management'"><input type="checkbox" data-ng-model="tem_classteachermobileno" name="classteachermobileno" class="" data-ng-click="changeteachermobileno($event)"> {{'configcompose.cltmn' | translate}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="row nopadmar" style="background-color:#ececec;height:70px">
+			<div class="col-md-12 text-center" style="margin:20px 0px">
+			<button class="btn btn-sm btn-success" type="submit" validation-submit="userdefinedform" ng-click="composeuserdefinedok(messagearea)">{{'common.submit' | translate}}</button>
+			<button class="btn btn-sm btn-danger" ng-click="okuserdefinedcancel()">{{'common.cancel' | translate}}</button>
+			<button class="btn btn-sm btn-info" ng-click="composeclear()">{{'common.clear' | translate}}</button>
+			<button class="btn btn-sm btn-primary" ng-click="okuserdefinedcancel()">{{'common.close' | translate}}</button>
+			</div>
+		</div>
+	</form>
+	</div>
+</script>
+
+<script type="text/ng-template" id="sendingfailed.html">
+	<div class="modal-header">
+		<h4 class="modal-title popupfontst">Sending Message Failed to your {{errormesssage}} </h4>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-sm btn-primary" ng-click="sendingfailedokcancel()">{{'common.cancel' | translate}}</button>	
+	</div>
+</script>
+
+

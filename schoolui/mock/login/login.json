@@ -1,0 +1,14 @@
+{
+	"ResponseVO" : {
+		"Status" : "Ok",
+		"userProfile":{
+			"id": "123456",
+			"token": "123456",
+			"firstName":"Adam",
+			"lastName":"Smith",
+			"email": "test@email.com",
+			"userRole": "ADMIN",
+			"status":"ACT"
+		}	
+	}
+}

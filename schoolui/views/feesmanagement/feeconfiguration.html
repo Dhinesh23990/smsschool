@@ -1,0 +1,443 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="getallfeeconfigtype()" data-ng-controller="feeconfigurationController">
+    <div class="row headcontent">
+        <h3 class="schooldiary_h2">{{'feeconfiguration.feecnfg' | translate}}</h3>
+    </div>
+    <div class="row" style="margin-left:-10px !important;">
+        <div class="col-md-12" style="padding-right:5px !important">
+            <ol class="breadcrumb" id="setresyults">
+                <li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a> Home</a></li>
+                
+                <li class="active ">{{'feeconfiguration.FeeConfigurations'|translate}}</li>
+
+            </ol>
+        </div>
+    </div>
+
+    <div class="panel panel-default" style="margin-left: 6px;">
+        <div class="panel-heading">
+		<i class="fa fa-bars"></i>
+            <span class="labelstcampaign  " style="font-size:14px;font-weight:bold"> {{feeconfigurationandview}}</span>
+            <span class="pull-right">
+				<a class="activeview navcursor" id="fee_config" data-ng-click="feeconfigdet()" style="margin-right:10px;font-weight:bold;">{{'feeconfiguration.FeeConfigurations' | translate}}</a>
+				<a class="hoverview defaultcol navcursor" id="view_feestructure" data-ng-click="viewfeestructdet()" style="font-weight:bold;">View Fees Structure</a>
+
+			</span>
+
+        </div>
+        <div class="panel-body" data-ng-show="feeconfigurationdetails">
+            <div class="col-md-12 nopadmar" data-ng-show="hidesearchdet">
+
+                <button href="#review" data-toggle="collapse" class="btn btn-sm btn-primary" data-ng-click="backtosearch()">
+                    {{'feeconfiguration.AddNew' | translate}} <i class="glyphicon  glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+
+            </div>
+            <div id="review" class="col-md-12 collapse">
+                <div class="col-md-12" style="padding:0px 0px 8px 0px">
+                    <button href="#review" data-toggle="collapse" class="btn btn-sm btn-danger" data-ng-click="returnsearch()">
+                        <i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:2px !important"></i> {{'feeconfiguration.H/B' | translate}}</button>
+
+                </div>
+                <form name="createForm">
+                    <div class="col-md-12" style="border:2px solid #eee;padding:10px">
+                        <div class="col-md-12 nopadmar">
+						 <h3> {{'configclass.crefrm' | translate}}</h3>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="type" class="control-label ">{{'feeconfiguration.Type' | translate}} </label>
+                                    <select class="form-control" name="type" data-ng-model="FeeConfigurationVO.type" ng-options="type.key as type.value for type in types">
+                                        <option value="">{{'feeconfiguration.selType' | translate}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="batch" class="control-label ">{{'feeconfiguration.Batch' | translate}} </label>
+                                    <select class="form-control" name="Batch" data-ng-model="FeeConfigurationVO.batchId" ng-options="batch.key as batch.value for batch in batches">
+
+                                        <option value="">{{'feeconfiguration.selBatch' | translate}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="class" class="control-label ">{{'feeconfiguration.Class' | translate}}</label>
+                                    <select class="form-control" name="class" data-ng-model="FeeConfigurationVO.classId" ng-options="class.key as class.value for class in classes">
+                                        <option value="">{{'feeconfiguration.selClass' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="Fees Type " class="control-label ">{{'feeconfiguration.FeesType' | translate}} </label>
+                                    <select class="form-control" name="feestype" data-ng-model="FeeConfigurationVO.feeTypeId " ng-options="feetype.id as feetype.feeType for feetype in feetypes">
+                                        <option value="">{{'feeconfiguration.selFeesType' | translate}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="feescomponent" class="control-label " ng-show="FeeConfigurationVO.feeTypeId">{{'feeconfiguration.FeeComponent' | translate}}</label>
+                                    <select class="form-control" name="feescomponent" data-ng-model="FeeConfigurationVO.feeComponentId " ng-show="FeeConfigurationVO.feeTypeId" ng-options="feescomponent.key as feescomponent.value for feescomponent in feescomponents">
+                                        <option value="">{{'feeconfiguration.selFeesComponent' | translate}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="section" class="control-label " ng-if="FeeConfigurationVO.type == 'Section wise'">{{'feeconfiguration.Section' | translate}}</label>
+                                    <select class="form-control" name="section" ng-if="FeeConfigurationVO.type == 'Section wise'" data-ng-model="FeeConfigurationVO.sectionId" ng-options="section.key as section.value for section in sections">
+
+                                        <option value="">{{'feeconfiguration.selSection' | translate}}</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 nopadmar">
+                            <hr style="color:#10464a">
+                        </div>
+                        <div class="col-md-12 nopadmar">
+
+                            <div class="row">
+                                <div class="form-group col-md-2"></div>
+                                <div class="form-group col-md-4">
+                                    <label for="Amount" class="control-label ">{{'feeconfiguration.Amount' | translate}}<span class="text-red">*</span></label>
+                                    <input name="amount" id="amount" class="form-control" ng-model="FeeConfigurationVO.amount" required="" type="text" placeholder="Enter Amount" 
+									validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Amtreq' | translate}}" numeric-decimal>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="feecategory" class="control-label ">{{'feeconfiguration.FeeCategory' | translate}}</label>
+                                    <select class="form-control" name="feecategory" data-ng-model="FeeConfigurationVO.feeCategory " ng-options="feecategory.key as feecategory.value for feecategory in feecategories">
+                                        <option value="">{{'feeconfiguration.selFeeCategory' | translate}}</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 nopadmar">
+                                <div class="form-group col-md-2"></div>
+                                <div class="form-group col-md-4">
+                                    <label for="pr-name" class="control-label ">{{'feeconfiguration.FeeStartDate' | translate}}<span class="text-red"> *</span></label>
+                                    <div layout-gt-xs="row">
+                                        <div flex-gt-xs>
+                                            <md-datepicker ng-model="feeStartDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                        </div>
+                                    </div>
+                                    <input name="startdt" id="startdt" class="form-control" ng-model="feeStartDate" placeholder="YYYY-MM-DD" type="hidden" validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Startdtrequired' | translate}}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="pr-name" class="control-label ">{{'feeconfiguration.FeeReminderDate' | translate}} <span class="text-red"> *</span></label>
+                                    <div layout-gt-xs="row">
+                                        <div flex-gt-xs>
+                                            <md-datepicker ng-model="feeReminderDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                        </div>
+                                    </div>
+                                    <input name="enddt" id="enddt" class="form-control" ng-model="feeReminderDate" placeholder="YYYY-MM-DD" type="hidden" validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Reminderdtrequired' | translate}}">
+                                </div>
+                                <div class="col-md-5"></div>
+                                <div class="col-md-5">
+
+                                    <button class="btn btn-sm btn-primary fa fa-check" type="submit" validation-submit="createForm" data-ng-click="createForm.$valid && create()"> {{'configsection.create' | translate}}</button>
+
+                                    <button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="goclear()">{{'configreligion.clear' | translate}}</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                </form>
+                </div>
+			</div>
+			 <div class="col-md-12 " data-ng-show="showupdatefrm">
+                <div class="col-md-12" style="padding:0px 0px 8px 0px">
+                    <button data-toggle="collapse" class="btn btn-sm btn-danger" data-ng-click="updatesearch()">
+                        <i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:2px !important">   
+					</i> Back </button>
+                </div>
+				 <form name="updateForm">
+                <div class="col-md-12" style="border:2px solid #eee;padding:10px">
+                    <div class="col-md-12 nopadmar">
+                        <h3>  {{'configclass.upfrm' | translate}}</h3>
+						<div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="type" class="control-label ">{{'feeconfiguration.Type' | translate}} </label>
+                                    <select class="form-control" name="type" data-ng-model="UpdateVO.type" ng-options="type.key as type.value for type in types">
+                                        <option value="">{{'feeconfiguration.selType' | translate}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="batch" class="control-label ">{{'feeconfiguration.Batch' | translate}} </label>
+                                    <select class="form-control" name="Batch" data-ng-model="UpdateVO.batchId" ng-options="batch.key as batch.value for batch in batches">
+
+                                        <option value="">{{'feeconfiguration.selBatch' | translate}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="class" class="control-label ">{{'feeconfiguration.Class' | translate}}</label>
+                                    <select class="form-control" name="class" data-ng-model="UpdateVO.classId" ng-options="class.key as class.value for class in classes">
+                                        <option value="">{{'feeconfiguration.selClass' | translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="Fees Type " class="control-label ">{{'feeconfiguration.FeesType' | translate}} </label>
+                                    <select class="form-control" name="feestype" data-ng-model="UpdateVO.feeTypeId " ng-options="feetype.id as feetype.feeType for feetype in feetypes">
+                                        <option value="">{{'feeconfiguration.selFeesType' | translate}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="feescomponent" class="control-label " >{{'feeconfiguration.FeeComponent' | translate}}</label>
+                                    <select class="form-control" name="feescomponent" data-ng-model="UpdateVO.feeComponentId "  ng-options="feescomponent.key as feescomponent.value for feescomponent in feescomponents">
+                                        <option value="">{{'feeconfiguration.selFeesComponent' | translate}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="section" class="control-label " >{{'feeconfiguration.Section' | translate}}</label>
+                                    <select class="form-control" name="section"  data-ng-model="UpdateVO.sectionId" ng-options="section.key as section.value for section in sections">
+
+                                        <option value="">{{'feeconfiguration.selSection' | translate}}</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 nopadmar">
+                            <hr style="color:#10464a">
+                        </div>
+                        <div class="col-md-12 nopadmar">
+
+                            <div class="row">
+                                <div class="form-group col-md-2"></div>
+                                <div class="form-group col-md-4">
+                                    <label for="Amount" class="control-label ">{{'feeconfiguration.Amount' | translate}}<span class="text-red">*</span></label>
+                                    <input name="amount" id="amount" class="form-control" ng-model="UpdateVO.amount" required="" type="text" placeholder="Enter Amount" 
+									validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Amtreq' | translate}}" numeric-decimal>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="feecategory" class="control-label ">{{'feeconfiguration.FeeCategory' | translate}}</label>
+                                    <select class="form-control" name="feecategory" data-ng-model="UpdateVO.feeCategory " ng-options="feecategory.key as feecategory.value for feecategory in feecategories">
+                                        <option value="">{{'feeconfiguration.selFeeCategory' | translate}}</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 nopadmar">
+                                <div class="form-group col-md-2"></div>
+                                <div class="form-group col-md-4">
+                                    <label for="pr-name" class="control-label ">{{'feeconfiguration.FeeStartDate' | translate}}<span class="text-red"> *</span></label>
+                                    <div layout-gt-xs="row">
+                                        <div flex-gt-xs>
+                                            <md-datepicker ng-model="feeStartDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                        </div>
+                                    </div>
+                                    <input name="startdt" id="startdt" class="form-control" ng-model="feeStartDate" placeholder="YYYY-MM-DD" type="hidden" validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Startdtrequired' | translate}}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="pr-name" class="control-label ">{{'feeconfiguration.FeeReminderDate' | translate}} <span class="text-red"> *</span></label>
+                                    <div layout-gt-xs="row">
+                                        <div flex-gt-xs>
+                                            <md-datepicker ng-model="feeReminderDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                        </div>
+                                    </div>
+                                    <input name="enddt" id="enddt" class="form-control" ng-model="feeReminderDate" placeholder="YYYY-MM-DD" type="hidden" validator="required" valid-method="watch" required-error-message="{{'feeconfiguration.Reminderdtrequired' | translate}}">
+                                </div>
+                                <div class="col-md-5"></div>
+                                 <div class="col-md-5">
+                                <button class="btn btn-sm btn-primary" type="submit" validation-submit="updateForm" data-ng-click="updateForm.$valid && update()"><i class="glyphicon glyphicon-ok" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.update' | translate}}</button>
+                                <button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="go()"><i class="glyphicon glyphicon-remove" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.cancel' | translate}}</button>
+								</div>
+                                
+                            </div>
+                        
+                    </div>
+                   
+					
+                            
+                </div>
+				</form>
+            </div>
+                <div class="col-md-12 nopadmar" data-ng-if="items.length > 0" data-ng-show="hidetable">
+                    <!--<button class="btn btn-sm btn-primary" ui-sref="addstudent">Add Student</button>
+				-->
+                    <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 850px;" role="grid">
+                        <thead class="tabletbody">
+                            <tr>
+                                <th style="width:50px">{{'configclass.sno' | translate}}</th>
+
+                                <th style="width:250px">{{'feeconfiguration.Batch' | translate}} </th>
+                                <th style="width:150px">{{'feeconfiguration.Class' | translate}}</th>
+                                <th style="width:250px">{{'feeconfiguration.FeesType' | translate}}</th>
+
+                                <th style="width:150px">{{'feeconfiguration.Section' | translate}}</th>
+                               
+                                <th style="width:250px">{{'feeconfiguration.FeeStartDate' | translate}}</th>
+								 <th style="width:250px">{{'feeconfiguration.FeeReminderDate' | translate}}</th>
+                                <th style="width:150px">{{'feeconfiguration.Amount' | translate}}</th>
+                                <th style="width:250px">{{'feeconfiguration.FeeCategory' | translate}}</th>
+                                <th style="width:250px">{{'feeconfiguration.Actions' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--<tr ng-repeat="item in items | filter:{StudentId: studentid, StudentName:studentname, ParentName:parentname,ParentMobile:parentno,AdmissionID:admissionid,Class:class,Section:section,Medium:medium}">-->
+                            <tr ng-repeat="item in items | filter:search">
+                                <td class="change_colr">{{$index+1}}</td>
+
+                                <td class="change_colr">{{item.batchName}}</td>
+                                <td class="change_colr">{{item.className}}</td>
+                                <td class="change_colr">{{item.feeTypeName}}</td>
+                                <td class="change_colr">{{item.sectionName}}</td>
+								    <td class="change_colr">{{item.feeStartDate}}</td>
+                                <td class="change_colr">{{item.feeReminderDate}}</td>
+                            
+                                <td class="change_colr">{{item.amount}}</td>
+                                <td class="change_colr">{{item.feeCategory}}</td>
+
+                                <td><span><a data-ng-click="edit(item.id)"  tooltip-placement="top" tooltip="Edit" style="cursor: pointer;">
+										<i class="creatli"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></i>
+                                    </a>
+                                    </span>
+                                    <span><a  data-ng-click="deletefeeconfig(item.id)" tooltip-placement="top" tooltip="Delete" style="cursor: pointer;">
+										<i class="creatli"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></i>
+                                    </a>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+			<div class="col-md-12 nopadmar" style="margin-top:10px !important" data-ng-if="items.length == 0">
+				<table class="table table-striped table-bordered table-hover generaltable minotaur-table" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th style="width:150px">{{'configclass.sno' | translate}}</th>
+
+                                <th style="width:250px">{{'feeconfiguration.Batch' | translate}} </th>
+                                <th style="width:250px">{{'feeconfiguration.Class' | translate}}</th>
+                                <th style="width:250px">{{'feeconfiguration.FeesType' | translate}}</th>
+
+                                <th style="width:250px">{{'feeconfiguration.Section' | translate}}</th>
+                         
+                                <th style="width:250px">{{'feeconfiguration.FeeStartDate' | translate}}</th>
+								<th style="width:250px">{{'feeconfiguration.FeeReminderDate' | translate}}</th>
+                                <th style="width:250px">{{'feeconfiguration.Amount' | translate}}</th>
+                                <th style="width:250px">{{'feeconfiguration.FeeCategory' | translate}}</th>
+                                <th>{{'feeconfiguration.Actions' | translate}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						 <td colspan="10" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+           
+        </div>
+
+        <div class="panel-body" data-ng-show="viewfeesturcturedetails">
+            <div class="col-md-12 nopadmar">
+                <form name="showForm" novalidate>
+                    <div class="col-md-12 nopadmar">
+                        
+                        <div class="form-group col-md-4">
+                            <label for="class" class="control-label ">{{'feeconfiguration.Class' | translate}} </label>
+                            <select class="form-control" name="class" data-ng-model="classId" ng-options="class.key as class.value for class in classes">
+                                <option value="">{{'feeconfiguration.selClass' | translate}}</option>
+                            </select>
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="feecategory" class="control-label ">{{'feeconfiguration.FeeCategory' | translate}} </label>
+                            <select class="form-control" name="feecategory" data-ng-model="feeCategory" ng-options="feecategory.key as feecategory.value for feecategory in feecategories">
+
+                                <option value="">{{'feeconfiguration.selFeeCategory' | translate}}</option>
+                            </select>
+                        </div>
+						<div class="col-md-4" style="margin-top:25px">
+                            <button class="btn btn-sm btn-primary " type="submit" validation-submit="showForm" data-ng-click="showForm.$valid && showfeestructuretable()"> {{'feeconfiguration.Show' | translate}}</button>
+                        </div>
+					</div>	
+                </form>
+            </div>
+
+            <div class="col-md-12 nopadmar" data-ng-if="items.length > 0" data-ng-show="tab2hidetable">
+
+                <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 850px;" role="grid">
+                    <thead class="tabletbody">
+                        <tr>
+                            <th style="width:50px">{{'configclass.sno' | translate}}</th>
+
+                            <th style="width:200px">{{'feeconfiguration.Batch' | translate}} </th>
+                            <th style="width:150px">{{'feeconfiguration.Class' | translate}}</th>
+                            <th style="width:200px">{{'feeconfiguration.FeesType' | translate}}</th>
+
+                            <th style="width:150px">{{'feeconfiguration.Section' | translate}}</th>
+                          
+                            <th style="width:200px">{{'feeconfiguration.Amount' | translate}}</th>
+                            <th style="width:200px">{{'feeconfiguration.FeeCategory' | translate}}</th>
+                            <th style="width:200px">{{'feeconfiguration.Actions' | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--<tr ng-repeat="item in items | filter:{StudentId: studentid, StudentName:studentname, ParentName:parentname,ParentMobile:parentno,AdmissionID:admissionid,Class:class,Section:section,Medium:medium}">-->
+                        <tr ng-repeat="item in items | filter:search">
+                            <td class="change_colr">{{$index+1}}</td>
+
+                            <td class="change_colr">{{item.batchName}}</td>
+                            <td class="change_colr">{{item.className}}</td>
+                            <td class="change_colr">{{item.feeTypeName}}</td>
+
+                            <td class="change_colr">{{item.sectionName}}</td>
+                           
+                            <td class="change_colr">{{item.amount}}</td>
+                            <td class="change_colr">{{item.feeCategory}}</td>
+
+                            <td><span><a data-ng-click="edit(item.id)"  tooltip-placement="top" tooltip="Edit" style="cursor: pointer;">
+											<i class="creatli"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></i>
+                                </a>
+                                </span>
+                                <span><a  data-ng-click="deletefeeconfig(item.id)" tooltip-placement="top" tooltip="Delete" style="cursor: pointer;">
+											<i class="creatli"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></i>
+                                </a>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+			<div class="col-md-12 nopadmar" style="margin-top:10px !important" data-ng-if="items.length == 0">
+				<table class="table table-striped table-bordered table-hover generaltable minotaur-table" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th style="width:50px">{{'configclass.sno' | translate}}</th>
+
+                                <th style="width:250px">{{'feeconfiguration.Batch' | translate}} </th>
+                                <th style="width:150px">{{'feeconfiguration.Class' | translate}}</th>
+                                <th style="width:250px">{{'feeconfiguration.FeesType' | translate}}</th>
+
+                                <th style="width:150px">{{'feeconfiguration.Section' | translate}}</th>
+                                
+                                <th style="width:250px">{{'feeconfiguration.FeeStartDate' | translate}}</th>
+								<th style="width:250px">{{'feeconfiguration.FeeReminderDate' | translate}}</th>
+                                <th style="width:150px">{{'feeconfiguration.Amount' | translate}}</th>
+                                <th style="width:250px">{{'feeconfiguration.FeeCategory' | translate}}</th>
+                                <th style="width:250px">{{'feeconfiguration.Actions' | translate}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						 <td colspan="10" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+        </div>
+
+    </div>
+</div>
+
+<script type="text/ng-template" id="deletefeeconfig.html">
+    <div class="modal-header">
+        <h4 class="modal-title popupfontst">{{'feeconfiguration.deletefeeconfig' | translate}}</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-danger" ng-click="deletefeeconfigok()">{{'feeconfiguration.OK' | translate}}</button>
+        <button class="btn btn-sm btn-primary" ng-click="okcancel()">{{'feeconfiguration.Cancel' | translate}}</button>
+    </div>
+</script>

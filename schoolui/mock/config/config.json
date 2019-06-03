@@ -1,0 +1,22 @@
+{
+	"Status" : "Ok",
+	"configVO" : 
+	[
+		{
+		"SNo":"ASD3456",
+		"ReligionName":"Hindu"
+		},
+		{
+		"SNo":"ASD3456",
+		"ReligionName":"Muslim"
+		},
+		{
+		"SNo":"ASD3456",
+		"ReligionName":"Hindu"
+		},
+		{
+		"SNo":"ASD3456",
+		"ReligionName":"Christian"
+		}
+	]
+}

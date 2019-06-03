@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<module id="eventmanagementmodule">
+	<routers>
+		
+		<router id="eventdetails" url="/eventdetails" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/eventmanagement/event.html"></view>
+            </views>
+    </router>
+	
+	</routers>	
+		
+		
+	<services id="eventmanagementservice">
+		<operations>
+			<operation name="saveEvent" method="post" requestType="json" 
+				responseWrapper="response" url="event/saveEvent"
+				mockUrl="mock/event/event.json" mock="false">
+			</operation>
+			<operation name="updateEvent" method="post" requestType="json" 
+				responseWrapper="response" url="event/updateEvent"
+				mockUrl="mock/event/usersList.json" mock="false">
+			</operation>
+			<operation name="getEventById" method="get" requestWrapper="request" responseWrapper="response" 
+				url="event/getEventById" mockUrl="mock/event/usersList.json" mock="false">
+				<params>
+                    <param name="id" source="state" key="eventId"></param>
+                </params>
+			</operation>
+			
+		</operations>
+	</services>
+</module>

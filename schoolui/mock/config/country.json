@@ -1,0 +1,23 @@
+{
+	"Status" : "Ok",
+	"configVO" : 
+	[
+		{
+		"SNo":"ASD3456",
+		"Countryname":"India"
+		},
+		{
+		"SNo":"ASD3456",
+		"Countryname":"North Korea"
+		},
+		{
+		"SNo":"ASD3456",
+		"Countryname":"America"
+		},
+		{
+		"SNo":"ASD3456",
+		"Countryname":"England"
+		}
+
+	]
+}

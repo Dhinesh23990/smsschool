@@ -1,0 +1,59 @@
+	<div class="page page-dashboard pull-to-header ng-scope" data-ng-controller="expiredsmscontroller">
+
+       <div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'configexpire.expire' | translate}}</h3>
+	   </div>
+      
+		<div class="row schooldiary_row">
+				<div class="col-md-12">
+					<ol class="breadcrumb" id="setresyults">
+						<li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i>
+						<a>{{'configreligion.home' | translate}}</a></li>
+						<li >{{'configexpire.sms' | translate}}</li>						
+					</ol>
+				</div>
+		</div>
+	<div class="col-md-7">
+		<div class="panel panel-default">	
+		 
+			  <div class="panel-heading">
+				  <i class="fa fa-bars"></i>
+					<span class="labelstcampaign" style="font-weight:bold;font-size:14px !important"> {{'configexpire.status' | translate}} </span>							
+			  </div>
+			  			  
+			 <div class="panel-body">				
+				  <table  class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px; margin-left:10px;" role="grid"> 					
+					<tbody>				
+                        <tr>					
+                          <td class="change_colr">SMS Purchased	</td>
+                          <td class="">{{schooldata.smsTotalCount}}</td>						  
+						</tr>	
+                        <tr>					
+                          <td class="change_colr">SMS Sent Till Now</td>	
+                          <td class="">{{balancecount}}</td>							  
+						</tr>
+						<tr>					
+                          <td class="change_colr">Package Start Date</td>			
+                          <td class="">{{schooldata.smsStartDate}}</td>								  
+						</tr>
+						<tr>					
+                          <td class="change_colr">Package End Date</td>	
+                          <td class="">{{schooldata.smsEndDate}}</td>							  
+						</tr>
+					</tbody>
+				  </table>
+			</div>
+		   <button class="btn btn-sm btn-primary" style="margin:20px 75px" ng-click="ok()"><span class="fa fa-check"></span>  {{'configexpire.request' | translate}}  </button>
+		</div>
+	</div>	
+ </div>                				
+	
+
+
+
+<script type="text/ng-template" id="expiredpopup.html">
+	<div class="modal-header">
+		<h4 class="modal-title popupfontst">{{'configblood.deletblood' | translate}}</h4>
+	</div>
+</script>
+

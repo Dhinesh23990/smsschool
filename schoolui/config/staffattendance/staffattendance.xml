@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<module id="staffattendancemodule">	
+	<routers>
+        <router id="teacherattendance" url="/teacherattendance" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/staffattendance/teacherattendance.html"></view>
+            </views>
+        </router>
+		<router id="addteacherattendance" url="/addteacherattendance" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/staffattendance/addteacherattendance.html"></view>
+            </views>
+        </router>
+		<router id="leavemaster" url="/leavemaster" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/staffattendance/leavemaster.html"></view>
+            </views>
+        </router>
+		<router id="leaveperiod" url="/leaveperiod" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/staffattendance/leaveperiod.html"></view>
+            </views>
+        </router>
+		<router id="leaveentitlement" url="/leaveentitlement" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/staffattendance/leaveentitlement.html"></view>
+            </views>
+        </router>
+	</routers>
+	<services id="staffattendanceservice">
+		<operations>
+			<operation name="saveBulkStaffAttendance" method="post" requestType="json" 
+				responseWrapper="response" url="staffAttendance/saveBulkAttendance"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="saveLeaveMaster" method="post" requestType="json" 
+				responseWrapper="response" url="leaveMaster/saveLeaveMaster"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="updateLeaveMaster" method="post" requestType="json" 
+				responseWrapper="response" url="leaveMaster/updateLeaveMaster"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="saveLeavePeriod" method="post" requestType="json" 
+				responseWrapper="response" url="leavePeriod/saveLeavePeriod"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="updateLeavePeriod" method="post" requestType="json" 
+				responseWrapper="response" url="leavePeriod/updateLeavePeriod"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="saveLeaveEntitlement" method="post" requestType="json" 
+				responseWrapper="response" url="leaveEntitlement/saveLeaveEntitlement"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="updateLeaveEntitlement" method="post" requestType="json" 
+				responseWrapper="response" url="leaveEntitlement/updateLeaveEntitlement"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+		</operations>
+	</services>
+</module>

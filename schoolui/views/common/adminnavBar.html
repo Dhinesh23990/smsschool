@@ -1,0 +1,32 @@
+<minotaur-nav ng-class="specialClass" id="naver-bar" ng-controller="navbarController">
+<div class="nav-heading">
+    <h3>Navigation</h3>
+</div>
+<div id="slimScrollDiv">
+    <ul class="nav nav-sidebar" id="listResults">
+        <li ng-click="gotocenterpage('admindashboard')" class="active" style="">
+			<a>
+			<span class="nav-text">{{'dashboard.dashboardc' | translate}}</span>
+			<i class="fa fa-home"></i>
+			</a>
+		</li>
+        <li class="dropdown" style="">
+		<a>
+		<span class="nav-text navcursor">{{'admindashboard.adminmanagement' | translate}}</span>
+		<i class="fa fa-users"></i></a>
+            <ul id="ddremove" style="display: none; height: 45px; padding-top: 10px; margin-top: 0px; padding-bottom: 10px; margin-bottom: 0px;">
+				<li ng-click="gotocenterpage('schoolmgmt')" class=""><a><span class="nav-text ng-binding"></span> {{'admindashboard.school' | translate}}<i class="ng-binding">SC</i></a></li>
+            </ul>
+        </li>
+		<!--<li class="dropdown" style="">
+			<a class="navcursor"><span class="nav-text">{{'schooladmin.fileup' | translate}}</span><i class="fa fa-users"></i></a>
+            <ul id="ddremove" style="display: none; height: 45px; padding-top: 10px; margin-top: 0px; padding-bottom: 10px; margin-bottom: 0px;">
+				<li ui-sref="fileuploadmgmt" class="">
+				<a><span class="nav-text ng-binding"></span>{{'admindashboard.newfileup' | translate}}<i class="ng-binding">NF</i></a></li>
+				<li ui-sref="viewfileupload" class="">
+				<a><span class="nav-text ng-binding"></span>{{'admindashboard.viewfile' | translate}}<i class="ng-binding">VI</i></a></li>
+            </ul>
+        </li>-->
+    </ul>
+</div>
+</minotaur-nav>

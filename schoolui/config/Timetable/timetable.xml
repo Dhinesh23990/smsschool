@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<module id="timetable">	
+	<routers>
+		<router id="configtimetable" url="/configtimetable" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/timetable/configtimetable.html"></view>
+            </views>
+        </router>
+        <router id="newentry" url="/newentry" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/timetable/newentry.html"></view>
+            </views>
+        </router>
+        <router id="viewmap" url="/viewmap" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/timetable/viewmap.html"></view>
+            </views>
+        </router>		
+	</routers>
+	<services id="timetableservice">
+		<operations>
+			<operation name="saveCampaign" method="post" requestWrapper="request"
+				responseWrapper="response" url=""
+				mockUrl="mock/admin/usersList.json" mock="true">
+			</operation>			
+		</operations>
+	</services>
+</module>

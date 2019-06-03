@@ -1,0 +1,212 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="getAllCityData()" data-ng-controller="configcityController">
+    <div class="row headcontent">
+        <h3 class="schooldiary_h2">{{'configcity.citymgmt' | translate}}</h3>
+    </div>
+    <div class="row" style="margin-left:-10px !important;">
+		<div class="col-md-12" style="padding-right:5px !important">
+            <ol class="breadcrumb" id="setresyults">
+                <li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a>{{'configcity.home' | translate}}</a></li>
+                <li class="active">{{'configcity.city' | translate}}</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="panel panel-default" data-ng-show="citylist" style="margin-left: 6px;">
+        <div class="panel-heading">
+		<i class="fa fa-bars"></i>
+            <span class="labelstcampaign" style="font-weight:bold;font-size:14px !important"> {{'configcity.citylist' | translate}}</span>
+        </div>
+		
+        <div class="panel-body">
+            <div class="col-md-12 nopadmar" data-ng-show="hidesearchdet">
+                <button href="#review" data-toggle="collapse" class="btn btn-sm btn-primary pull-left" data-ng-click="backtosearch()">
+                   {{'configblood.configbloodadd' | translate}}<i class="glyphicon glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+            </div>
+            
+
+            <div id="review" class="col-md-12 collapse" data-ng-show="createform">
+                
+                    <div class="col-md-12" style="padding:2px 0px 8px 0px">
+                        <button href="#review" data-toggle="collapse" class="btn btn-sm btn-danger" data-ng-click="returnsearch()">
+                            <i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i> {{'configreligion.h/b' | translate}}
+                        </button>
+                    </div>
+
+                    <div class="col-md-12" style="border:2px solid #eee;padding:10px">
+                    <form name="createcityform">
+					<h3 style="margin-top:1px !important;">{{'configcity.citycreation' | translate}}</h3>
+                       
+                            <div class="form-group col-md-4">
+                                <label for="country" class="control-label minotaur-label"> {{'configcity.country' | translate}} <span class="text-red"> * </span> </label>
+                                <select class="form-control" name="countryname" id="countryname" data-ng-model="CityVO.countryId" data-ng-change="getcity(CityVO.countryId)"
+								ng-options="countrydatas.key as countrydatas.value for countrydatas in countrydatass" validator="required" valid-method="watch"
+								required-error-message="Country Name is required">
+                                    <option value="">{{'configcity.selectcountry' | translate}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="state" class="control-label minotaur-label"> {{'configcity.state' | translate}} <span class="text-red"> * </span> </label>
+                                <select class="form-control" name="statename" id="statename" data-ng-model="CityVO.stateId" 
+								ng-options="state.key as state.value for state in stateval" validator="required" valid-method="watch" 
+								required-error-message="State Name is required">
+                                    <option value="">{{'configcity.selectstate' | translate}}</option>
+                                </select>
+                            </div>
+							<div class="form-group col-md-4">
+                               <label for="city" class="control-label minotaur-label"> {{'configcity.city' | translate}} <span class="text-red"> * </span> </label>
+                                <input name="cityname" id="cityname" class="form-control" ng-model="CityVO.cityName" type="text"
+								placeholder="City Name" validator="required" valid-method="watch"
+								required-error-message="City Name is required" numeric-only-city>
+                            </div>
+							<div class="col-md-12" data-ng-show="errormsg">
+								<div class="col-md-8 text-center text-red">
+									{{'configcity.errormsg' | translate}}
+								</div>
+							</div>
+							<div class="row">   
+							<div class="col-md-5">
+                        </div>
+								<div class="col-md-7">
+									<button class="btn btn-sm btn-primary " type="submit" validation-submit="createcityform" 
+										data-ng-click="createcityform.$valid && createcity()"><i class="glyphicon glyphicon-ok" style="font-size:11px !important;right:5px !important"></i>{{'common.create' | translate}}
+								    </button>
+									<button class="btn btn-sm btn-danger" style="margin-left:10px;" data-ng-click="clearcontent()"><i class="glyphicon glyphicon-remove" style="font-size:11px !important;right:5px !important"></i>{{'configbatchconfig.clear' | translate}}</button>
+								</div>
+                            </div>      
+			     	</form>  
+				</div>					
+			</div>
+           <div class="col-md-12" data-ng-show="updatedata">
+                <div class="col-md-12" style="padding:0px 0px 8px 0px">
+                    <button class="btn btn-sm btn-danger" data-ng-click="updatereturnsearch()"> 
+					<i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>{{'configbatchconfig.hideback' | translate}}</button>
+                </div>
+				<div class="col-md-12" style="border:2px solid #eee;padding:10px">
+                  <form name="updateForm">
+                     
+				<h3 style="margin-top:1px !important;">{{'configcity.cityupdation' | translate}}</h3>
+				            <div class="form-group col-md-4">
+                                <label for="country" class="control-label minotaur-label"> {{'configcity.country' | translate}}<span class="text-red"> * </span></label>
+                                <select class="form-control" name="country" id="country" data-ng-model="UpdateVO.countryId" 
+								ng-options="countrydatas.key as countrydatas.value for countrydatas in countrydatass" data-ng-change="updatecity(UpdateVO.countryId)" validator="required" valid-method="watch"
+								required-error-message="Country Name is required">
+                                    <option value="">{{'configcity.selectcountry' | translate}}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="state" class="control-label minotaur-label"> {{'configcity.state' | translate}}<span class="text-red"> * </span> </label>
+                                <select class="form-control" name="state" id="state" data-ng-model="UpdateVO.stateId" 
+								ng-options="state.key as state.value for state in stateval"  validator="required" valid-method="watch"
+								required-error-message="State Name is required">
+                                    <option value="">{{'configcity.selectstate' | translate}}</option>
+                                </select>
+                            </div>
+							<div class="form-group col-md-4">
+                               <label for="city" class="control-label minotaur-label"> {{'configcity.city' | translate}}<span class="text-red"> * </span> </label>
+                                <input name="city" id="name" class="form-control" ng-model="UpdateVO.cityName" type="text" placeholder="City Name" validator="required" valid-method="watch"
+								required-error-message="City Name is required">
+                            </div>
+							<div class="col-md-12" data-ng-show="errormsg">
+								<div class="col-md-8 text-center text-red">
+									{{'configcity.errormsg' | translate}}
+								</div>
+							</div>
+							
+							<div class="row">  
+							<div class="col-md-5">
+                        </div>
+							<div class="col-md-7">
+								<button class="btn btn-sm btn-primary "   type="submit" validation-submit="updateForm" 
+							    data-ng-click="updateForm.$valid && update()"> <i class="glyphicon glyphicon-ok" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.update' | translate}}</button>
+								<button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="go()"><i class="glyphicon glyphicon-remove" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.cancel' | translate}}</button>					   						   				         
+						 	</div>	
+
+						</div>
+					
+                  </form>
+				  
+                
+            </div>  
+			</div>
+           
+            <div class="col-md-12 nopadmar" data-ng-show="citydet && show_datatables" >
+                <!--<button class="btn btn-sm btn-primary" ui-sref="addstudent">Add Student</button>
+				-->
+                <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid">
+                    <thead class="tabletbody">
+                        <tr>
+                            <th>{{'configcity.id' | translate}}</th>
+                            <th>{{'configcity.city' | translate}}</th>
+                            <th>{{'configcity.statename' | translate}}</th>
+                            <th>{{'configcity.countryname' | translate}}</th>
+                            <th>{{'common.action'| translate}}</th> 
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="city in items">
+                            <td class="change_colr">{{city.indexId}}</td>
+                            <td class="change_colr">{{city.cityName}}</td>
+                            <td class="change_colr">{{city.stateName}}</td>
+                            <td class="change_colr">{{city.countryName}}</td>
+                           <td><span data-ng-click="edit(city.id)"><a tooltip-placement="top" tooltip="Edit" style="cursor: pointer;">
+						  <i class="creatli"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></i></a></span>
+						   <span data-ng-click="deletecity(city.id)"><a tooltip-placement="top" tooltip="Delete" style="cursor: pointer;">
+						  <i class="creatli"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></i></a>
+                         </td>      
+                                
+                        </tr>
+                    </tbody>
+                </table>
+				<div class="col-md-12 show_entries" data-ng-show="show_datatables" >
+				 <div class="col-md-6 pull-left nopadmar" style="margin-top:15px !important">
+				 Showing {{show_begin}} to {{show_end}} of {{totalRecords}} entries
+				 </div>
+				 <div class="col-md-6 pull-right nopadmar" data-ng-show="abovedata">
+					 <pagination class="pull-right"
+					  ng-model="currentPage"
+					  total-items="totalRecords"
+					  max-size="maxSize"  
+					  boundary-links="true">
+					</pagination>
+				</div>
+				</div>
+            </div>
+			
+			 <div class="col-md-12 nopadmar" data-ng-show="citydet" style="margin-top:10px !important" data-ng-if="items.length == 0">
+                <!--<button class="btn btn-sm btn-primary" ui-sref="addstudent">Add Student</button>
+				-->
+                <table  class="table table-striped table-bordered table-hover generaltable minotaur-table " style="display: table; " role="grid">                    
+				<thead class="tabletbody">
+                        <tr>
+                            <th>{{'configcity.id' | translate}}</th>
+                            <th>{{'configcity.city' | translate}}</th>
+                            <th>{{'configcity.statename' | translate}}</th>
+                            <th>{{'configcity.countryname' | translate}}</th>
+                            <th>{{'common.action'| translate}}</th> 
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+						<td colspan="5">No Results Found</td>    
+                         </tr>       
+                        
+                    </tbody>
+                </table>
+            </div>
+      
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="deletecity.html">
+    <div class="modal-header">
+        <h4 class="modal-title popupfontst">Are you sure want to delete this city details</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-danger" ng-click="deletecityok()">{{'configbatchconfig.ok' | translate}}</button>
+        <button class="btn btn-sm btn-primary" ng-click="okcancel()">{{'configbatchconfig.cancel' | translate}}</button>
+    </div>
+</script>

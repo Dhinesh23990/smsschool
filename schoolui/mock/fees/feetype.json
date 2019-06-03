@@ -1,0 +1,26 @@
+{
+	"Status" : "Ok",
+	"feestypeVO" : 
+	[
+		{
+		"FeeType":"AnnualFees",
+		"Recurring":"1",
+		"RemDuration":"2 Months"
+		},
+		{
+		"FeeType":"MonthlyFees",
+		"Recurring":"12",
+		"RemDuration":"1 week"
+		},
+		{
+		"FeeType":"MiscellaneousFees",
+		"Recurring":"3",
+		"RemDuration":"2 Months"
+		},
+		{
+		"FeeType":"TermFees",
+		"Recurring":"4",
+		"RemDuration":"3 Months"
+		}
+	]
+}

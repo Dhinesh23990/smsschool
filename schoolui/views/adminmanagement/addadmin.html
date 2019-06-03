@@ -1,0 +1,400 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-controller="adminmgmtController">
+   <div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'adminmanagement.admgmt' | translate}}</h3>
+	</div>
+	<div class="row" style="margin-left:-10px !important;">
+		<div class="col-md-12">
+			<ol class="breadcrumb" id="setresyults">
+			<li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a >{{'configreligion.home' | translate}}</a></li>
+			<li><a ui-sref="adminmanagement">{{'adminmanagement.Admin' | translate}}</a></li>
+			<li class="active">{{'addadmin.Create' | translate}}</li>
+			</ol>
+		</div>
+	</div>
+	<div class="row " style="margin-left: -9px;">
+		<div class="col-md-12">
+		<!-- tile -->
+		<div class="tile tile-simple">
+			<!-- tile body -->
+			<section class="tile-body p-0">
+				<!-------<form name="outerForm" role="form" novalidate="" class="form-validation ng-invalid ng-invalid-required ng-valid-pattern ng-valid-url ng-valid-email ng-dirty ng-valid-parse ng-valid-maxlength ng-valid-minlength ng-valid-match ng-submitted" style="">---------->
+					<div id="addadminDiv" active="forms.activeStep" justified="true" class="tab-wizard padded ng-isolate-scope">
+						<ul class="nav nav-tabs nav-justified" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+							<li id="fstid" ng-class="[{active: active, disabled: disabled}, classes]" class="uib-tab nav-item ng-scope ng-isolate-scope active" index="0" ng-click="firstpreviousstep()"  style="">
+								<a href=""  class="nav-link ng-binding" >
+									<uib-tab-heading class="ng-scope">
+										<!-- ngIf: step1.$valid --><i class="fa fa-check ng-scope" ng-if="step1.$valid" style=""></i>
+										<!-- end ngIf: step1.$valid -->{{'addadmin.pinfo' | translate}} <span class="pull-right wizard-step">1</span></uib-tab-heading>
+								</a>
+							</li>
+							<li  id="sndid" class="uib-tab nav-item ng-scope ng-isolate-scope" ng-class="step1.$valid ? 'active' : 'disabled'" index="1" disable="step1.$invalid" ng-click="step1.$valid && firststep()" style="">
+								<a href=""  class="nav-link ng-binding">
+									<uib-tab-heading class="ng-scope">
+										<!-- ngIf: step2.$valid -->{{'addadmin.cinfo' | translate}}<span class="pull-right wizard-step">2</span></uib-tab-heading>
+								</a>
+							</li>
+							<li id="thirdid" ng-class="step2.$valid ? 'active' : 'disabled'" class="uib-tab nav-item ng-scope ng-isolate-scope" index="2" disable="step2.$invalid" ng-click="step2.$valid && secondstep()">
+								<a href=""  class="nav-link ng-binding">
+									<uib-tab-heading class="ng-scope">
+										<!-- ngIf: step3.$valid -->{{'addadmin.ainfo' | translate}}<span class="pull-right wizard-step">3</span></uib-tab-heading>
+								</a>
+							</li>
+							<li id="fourid" ng-class="step3.$valid ? 'active' : 'disabled'" class="uib-tab nav-item ng-scope ng-isolate-scope" index="3" disable="step3.$invalid" ng-click="step3.$valid && thirdstep()">
+								<a href=""  class="nav-link ng-binding" >
+									<uib-tab-heading class="ng-scope">
+										<!-- ngIf: step4.$valid -->{{'addadmin.img' | translate}}<span class="pull-right wizard-step">4</span></uib-tab-heading>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<!-- ngRepeat: tab in tabset.tabs -->
+							<div class="tab-pane ng-scope active" id="firststep">
+								<form name="step1" novalidate >
+									<div class="row">
+										<div class="colmd-12" data-ng-show="errormsg">
+											<div class="col-md-12">
+												<span class="text-red">{{displayerrormsg}}</span>
+											</div>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="username" class="control-label minotaur-label">{{'addadmin.FirstName' | translate}} <span class="text-red">*</span></label>
+											<input name="adminname" id="name" class="form-control" ng-model="AdminVO.firstName" required="" type="text" placeholder="{{'staffmanagement.adminmax' | translate}}" 
+											ng-maxlength="50" maxlength="50"  validator="required" valid-method="watch" required-error-message="First Name is required">
+											
+										</div>
+										<div class="form-group col-md-4">
+											<label for="Surname" class="control-label minotaur-label">{{'staffmanagement.surinit' | translate}}</label>
+											<input name="Surname" id="Surname" class="form-control" ng-model="AdminVO.initial" type="text" placeholder="{{'staffmanagement.surinit' | translate}}" ng-maxlength="20" maxlength="20" >										
+										</div>
+										<div class="form-group col-md-4">
+											<label for="username" class="control-label minotaur-label">{{'addadmin.userName' | translate}} <span class="text-red">*</span></label>
+											<input name="userName" id="userName" class="form-control" ng-model="AdminVO.userName" required="" type="text" placeholder="User Name(Login Id)" ng-maxlength="50" maxlength="50" 
+											validator="required" valid-method="watch" required-error-message="User Name is required">
+											
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label for="pr-name" class="control-label ">{{'staffmanagement.dob' | translate}}<span class="text-red"> *</span></label>
+											 <input class="form-control" type="text" name="birthdate" ng-model="dob" validator="required" placeholder="Date Of Birth" valid-method="watch"
+											required-error-message="Date Of Birth is required" />
+										</div>
+										
+										<div class="form-group col-md-4">
+											<label for="Gender" class="control-label minotaur-label">{{'staffmanagement.gen' | translate}} <span class="text-red">*</span></label>
+											<select class="form-control" name="Gender" data-ng-model="AdminVO.genderId" 
+											ng-options="gender.key as gender.value for gender in genders" validator="required" valid-method="watch" required-error-message="{{'staffmanagement.Genderisrequired' | translate}}">
+												<option value="">{{'staffmanagement.selurgen' | translate}}</option>
+											</select>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="username" class="control-label minotaur-label">{{'staffmanagement.bld' | translate}} </label>
+											<select class="form-control" name="bloodgroup" data-ng-model="AdminVO.blooGroupId" 
+											ng-options="bloodgroup.key as bloodgroup.value for bloodgroup in bloodgroups" >
+											<option value="">{{'staffmanagement.selurbld' | translate}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label for="Caste" class="control-label minotaur-label">{{'staffmanagement.cas' | translate}}</label>
+											<select class="form-control" name="Caste" data-ng-model="AdminVO.casteId" 
+											ng-options="Caste.key as Caste.value for Caste in castes">
+											<option value="">{{'staffmanagement.selcas' | translate}}</option>
+											</select>
+										
+										</div>
+										<div class="form-group col-md-4">
+											<label for="Nationality" class="control-label minotaur-label">{{'staffmanagement.nation' | translate}}</label>
+											<select class="form-control" name="Nationality" data-ng-model="AdminVO.nationalityId" 
+											ng-options="nationality.key as nationality.value for nationality in nationalities" 
+											>
+											<option value="">{{'staffmanagement.selnation' | translate}}</option>
+											</select>
+											
+										</div>
+										<div class="form-group col-md-4">
+											<label for="Mother Tongue" class="control-label minotaur-label">{{'staffmanagement.motg' | translate}}</label>
+											<select class="form-control" name="motherTongue" data-ng-model="AdminVO.motherTongueId" 
+											ng-options="motherTongue.key as motherTongue.value for motherTongue in motherTongues" 
+											>
+											<option value="">{{'staffmanagement.selmotg' | translate}}</option>
+											</select>
+										
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label for="Religion" class="control-label minotaur-label">{{'staffmanagement.rel' | translate}}</label>
+											<select class="form-control" name="Religion" data-ng-model="AdminVO.religionId" 
+											ng-options="religion.key as religion.value for religion in religions" >
+											<option value="">{{'staffmanagement.selrel' | translate}}</option>
+											</select>
+										
+										</div>
+										<div class="form-group col-md-4">
+											<label for="Aadhar Card No " class="control-label minotaur-label">{{'staffmanagement.aadhar' | translate}} </label>
+											<input name="aadhar" id="name" class="form-control" ng-model="AdminVO.aadharCardNo"  type="text" maxlength="12" placeholder="{{'staffmanagement.aadhar' | translate}}">
+											
+										</div>
+										<div class=" col-md-4">
+											<label for="PAN Card No " class="control-label minotaur-label">{{'staffmanagement.pan' | translate}}</label>
+											<input name="pan" id="name" class="form-control" ng-model="AdminVO.panCardNo" type="text" maxlength="10" placeholder="{{'staffmanagement.pan' | translate}}">
+											
+										</div>
+									</div>
+									
+									<button class="btn btn-danger btn-ef btn-ef-5 btn-ef-5a" ng-click="aresure()">
+									<i class="fa fa-times"></i><span>{{'staffmanagement.Cancel' | translate}}</span></button>
+									<button class="btn btn-primary btn-ef btn-ef-5 btn-ef-5a pull-right" type="submit" ng-click="step1.$valid && firststep()" validation-submit="step1"><i class="fa fa-share"></i> <span>Next</span></button>
+								</form>
+							</div>
+							<!-- end ngRepeat: tab in tabset.tabs -->
+							<div class="tab-pane ng-scope" id="secondstep">
+								<form name="step2" novalidate>
+									<div class="row">
+										<div class="colmd-12" data-ng-show="errormsgemail">
+											<div class="col-md-12">
+												<span class="text-red">{{'staffmanagement.errormsgademailid' | translate}}</span>
+											</div>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="street" class="control-label minotaur-label">{{'staffmanagement.mobile' | translate}} <span class="text-red">*</span></label>
+											<input name="mobileno" id="mobileno" class="form-control" ng-model="AdminVO.mobileNumber" placeholder="{{'addstaff.prime' | translate}}"
+											validator="required" valid-method="watch" required-error-message="{{'staffmanagement.MobileNoisrequired' | translate}}" type="text" ng-maxlength="10" maxlength="10" ng-pattern="/[0-9]{10}$/">
+											
+										</div>
+										<div class="form-group col-md-6">
+											<label for="dnumber" class="control-label minotaur-label">{{'staffmanagement.emer' | translate}}</label>
+											<input name="emgmobileno" id="emgmobileno" class="form-control" ng-model="AdminVO.emergencyContactNumber" placeholder="{{'staffmanagement.emer' | translate}}" type="text" ng-maxlength="10" maxlength="10"
+											ng-pattern="/[0-9]{10}$/">
+											<p class="nopadmar" data-ng-show="step2.emgmobileno.$dirty && step2.emgmobileno.$error.pattern">Invalid Mobile No</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label for="street" class="control-label minotaur-label">{{'staffmanagement.email' | translate}}</label> <span class="text-red">*</span>
+											<input name="emailid" id="emailid" class="form-control" ng-model="AdminVO.emailId" placeholder="{{'staffmanagement.primaryemailid' | translate}}" type="email" validator="required" valid-method="watch" required-error-message="Email Id is required">
+											
+										</div>
+										<div class="form-group col-md-6">
+											<label for="dnumber" class="control-label minotaur-label">Alternate{{'staffmanagement.email' | translate}} </label>
+											<input name="alternatemailid" id="alternatemailid" class="form-control" ng-model="AdminVO.alternateEmailId" placeholder="Alternate {{'staffmanagement.email' | translate}} " type="email">
+										</div>
+									</div>
+									<h4 style="margin-top:0px !important;background-color:#6ec06e;color:white;padding:10px">{{'addstaff.paddr' | translate}}</h4>
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label for="address2" class="control-label minotaur-label">{{'addstaff.addr' | translate}} <span class="text-red">*</span></label>
+											<textarea name="address" id="address" class="form-control" ng-model="AdminVO.addressLine1" ng-change="copyaddr()" placeholder="{{'addstaff.addr' | translate}}" rows="1"
+											validator="required" valid-method="watch" required-error-message="Address Line 1 is required"></textarea>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="address2" class="control-label minotaur-label">{{'addstaff.addrl' | translate}}</label>
+											<textarea name="address2" id="address2" class="form-control" ng-model="AdminVO.addressLine2" ng-change="copyaddr()"
+											placeholder="{{'addstaff.addrl' | translate}}" rows="1" ></textarea>
+										</div>
+									</div>
+									<div class="row">
+									
+										<div class="form-group col-md-3">
+											<label for="country" class="control-label minotaur-label">{{'addstaff.cou' | translate}}  <span class="text-red">*</span></label>
+											<select class="form-control" name="country"  id="country" data-ng-model="AdminVO.countryId"  data-ng-change="getallstatebycountry(AdminVO.countryId)"
+											ng-options="country.key as country.value for country in countries" validator="required" valid-method="watch" required-error-message="{{'staffmanagement.Countryisrequired' | translate}}">
+											<option value="">{{'addstaff.scou' | translate}}</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+										<label for="country" class="control-label minotaur-label">{{'addstaff.st' | translate}} <span class="text-red">*</span></label>
+											<select class="form-control" name="state"  id="state" data-ng-model="AdminVO.stateId"  ng-change="getallcitybystatecountry(AdminVO.countryId,AdminVO.stateId)"
+											ng-options="state.key as state.value for state in states" validator="required" valid-method="watch" required-error-message="{{'staffmanagement.Stateisrequired' | translate}}">
+											<option value="">{{'addstaff.sst' | translate}}</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+										<label for="country" class="control-label minotaur-label">{{'addstaff.cy' | translate}} <span class="text-red">*</span></label>
+											<select class="form-control" name="city"  id="city" data-ng-model="AdminVO.cityId" ng-change="copyaddr()"
+											ng-options="city.key as city.value for city in cities" validator="required" valid-method="watch" required-error-message="{{'staffmanagement.Cityisrequired' | translate}}">
+											<option value="">{{'addstaff.scy' | translate}}</option>
+											</select>
+										</div>
+										
+										<div class="form-group col-md-3">
+										<label for="country" class="control-label ">{{'addstaff.pin' | translate}} </label>
+											<input name="pincode" id="pincode" class="form-control" ng-model="AdminVO.pincode"   data-ng-change="copyaddr()"
+											type="text" maxlength="6" placeholder="{{'addstaff.pin' | translate}}" numeric-only-addstudent>
+											
+										</div>
+										
+									</div>
+									
+									<h4 style="margin-top:0px !important;background-color:#6ec06e;color:white; padding:10px">{{'addstaff.chk' | translate}}<input type="checkbox" name="sameAddress"  ng-model="sameAddress" ng-change="sameAddressUpdate()">)</h4>
+									
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label for="address2" class="control-label minotaur-label">{{'addstaff.addr' | translate}} <span class="text-red">*</span></label>
+											<textarea name="caddress" id="caddress" class="form-control" ng-model="AdminVO.comAddressLine1" ng-disabled="sameAddress" placeholder=" {{'addstaff.addr' | translate}}" rows="1" validator="required" valid-method="watch" required-error-message="Address Line 1 is required"></textarea>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="address2" class="control-label minotaur-label">{{'addstaff.addrl' | translate}}</label>
+											<textarea name="caddress2" id="caddress2" class="form-control" ng-model="AdminVO.comAddressLine2"  ng-disabled="sameAddress" placeholder="{{'addstaff.addrl' | translate}}" rows="1" ></textarea>
+										</div>
+									</div>
+									<div class="row">
+									
+										<div class="form-group col-md-3">
+											<label for="country" class="control-label minotaur-label">{{'addstaff.cou' | translate}} <span class="text-red">*</span></label>
+											<select class="form-control" name="ccountry"  id="ccountry" data-ng-model="AdminVO.comCountryId"  ng-disabled="sameAddress"
+											ng-options="country.key as country.value for country in countries" validator="required" valid-method="watch" required-error-message="{{'staffmanagement.Countryisrequired' | translate}}">
+											<option value="">{{'addstaff.scou' | translate}}</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+										<label for="country" class="control-label minotaur-label">{{'addstaff.st' | translate}} <span class="text-red">*</span></label>
+											<select class="form-control" name="cstate"  id="cstate" data-ng-model="AdminVO.comStateId" ng-disabled="sameAddress"
+											ng-options="state.key as state.value for state in states" validator="required" valid-method="watch" required-error-message="{{'staffmanagement.Stateisrequired' | translate}}">
+											<option value="">{{'addstaff.sst' | translate}}</option>
+											</select>
+										</div>
+										<div class="form-group col-md-3">
+										<label for="country" class="control-label minotaur-label">{{'addstaff.cy' | translate}} <span class="text-red">*</span></label>
+											<select class="form-control" name="ccity"  id="ccity" data-ng-model="AdminVO.comCityId" ng-disabled="sameAddress"
+											ng-options="city.key as city.value for city in cities" validator="required" valid-method="watch" required-error-message="{{'staffmanagement.Cityisrequired' | translate}}">
+											<option value="">{{'addstaff.scy' | translate}}</option>
+											</select>
+										</div>
+										
+										<div class="form-group col-md-3">
+										<label for="country" class="control-label ">{{'addstaff.pin' | translate}} </label>
+											<input name="cpincode" id="cpincode" class="form-control" ng-model="AdminVO.comPinCode"  type="text" maxlength="6"  ng-disabled="sameAddress"  placeholder="{{'addstaff.pin' | translate}}" numeric-only-addstudent>
+											
+										</div>	
+										
+									</div>
+									<button class="btn btn-danger btn-ef btn-ef-5 btn-ef-5a" ng-click="firstpreviousstep()">
+									<i class="fa fa-reply "></i><span>{{'staffmanagement.Previous' | translate}}</span></button>									
+									<button class="btn btn-primary btn-ef btn-ef-5 btn-ef-5a pull-right" ng-click="step2.$valid && secondstep()" type="submit" validation-submit="step2" ><i class="fa fa-share"></i> <span>{{'staffmanagement.Next' | translate}}</span></button>
+								</form>
+							</div>
+							<!-- end ngRepeat: tab in tabset.tabs -->
+							<div class="tab-pane ng-scope" id="thirdstep">
+								<form name="step3" novalidate>
+									<div class="row">
+										<div class="colmd-12" data-ng-show="errormsgad">
+											<div class="col-md-12">
+												<span class="text-red">{{'staffmanagement.errormsgadmis' | translate}}</span>
+											</div>
+										</div>
+										<div class="form-group col-md-4">
+										<label for="Employee No" class="control-label minotaur-label">{{'staffmanagement.empno' | translate}}<span class="text-red">*</span></label>
+											<input name="employeeno" id="employeeno" class="form-control" ng-model="AdminVO.employeeNumber" placeholder="{{'staffmanagement.empno' | translate}}" 
+											validator="required" valid-method="watch" required-error-message=" Employee No is required" type="text">
+											
+										</div>
+										<div class="form-group col-md-4">
+											<label for="File No" class="control-label minotaur-label">{{'staffmanagement.FileNo' | translate}}</label>
+											<input name="fileno" id="fileno" class="form-control" ng-model="AdminVO.fileNumber" placeholder="{{'staffmanagement.FileNo' | translate}}" type="text">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="pr-name" class="control-label ">{{'staffmanagement.doj' | translate}}<span class="text-red"> *</span></label>
+											<input class="form-control" type="text" name="admissionDate" ng-model="dateOfJoining" validator="required" placeholder="Date Of Joining" valid-method="watch"
+											required-error-message="{{'staffmanagement.DateOfJoiningisrequired' | translate}}" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-4">
+										<label for="Qualification" class="control-label minotaur-label">{{'staffmanagement.eduq' | translate}}</label>
+										<!---	<input name="edu" id="edu" class="form-control" ng-model="AdminVO.educationalQualification" placeholder="Maximum {{'staffmanagement.eduq' | translate}}" type="text">	---->								
+										<select class="form-control" name="edu" data-ng-model="AdminVO.educationalQualification" 
+											ng-options="educationalQualification.key as educationalQualification.value for educationalQualification in educationalQualifications" >
+											<option value="">Select Your Educational Qualification</option>
+										</select>
+										</div>
+										<div class="form-group col-md-4">
+										<label for="Designation" class="control-label minotaur-label">{{'staffmanagement.desig' | translate}}</label>
+											<input name="designation" id="designation" class="form-control" ng-model="AdminVO.designation" placeholder=" Current {{'staffmanagement.desig' | translate}}" type="text">										
+										</div>
+										<div class="form-group col-md-4">
+										<label for="Experience" class="control-label minotaur-label">{{'staffmanagement.exp' | translate}}</label>
+											<input name="experience" id="experience" class="form-control" ng-model="AdminVO.experience" placeholder="Overall {{'staffmanagement.exp' | translate}}" type="text">									
+										</div>
+									</div>
+									<div class="row">
+										
+										<div class="form-group col-md-4">
+										<label for="Salary" class="control-label minotaur-label">{{'staffmanagement.Salary' | translate}}</label>
+											<input name="salary" id="salary" class="form-control" ng-model="AdminVO.salary" placeholder=" Current {{'staffmanagement.Salary' | translate}}" type="text">										
+										</div>
+										<div class="form-group col-md-4">
+										<label for="Previous School" class="control-label minotaur-label">{{'staffmanagement.presch' | translate}}</label>
+											<input name="presch" id="presch" class="form-control" ng-model="AdminVO.previousSchool" placeholder="{{'staffmanagement.LastWorkedSchoolName' | translate}}" type="text">									
+										</div>
+										<div class="form-group col-md-4">
+										<label for="Reason For Change" class="control-label minotaur-label">{{'staffmanagement.reason' | translate}}</label>
+											<input name="reason" id="reason" class="form-control" ng-model="AdminVO.reasonForChange" placeholder="{{'staffmanagement.ReasonForSchoolChange' | translate}}" type="text">										
+										</div>
+									</div>
+									
+									
+									<button class="btn btn-danger btn-ef btn-ef-5 btn-ef-5a" ng-click="secondpreviousstep()">
+									<i class="fa fa-reply "></i><span>{{'staffmanagement.Previous' | translate}}</span></button>
+									<button class="btn btn-primary btn-ef btn-ef-5 btn-ef-5a pull-right" ng-click="step3.$valid && thirdstep()" type="submit" validation-submit="step3" ><i class="fa fa-share"></i> <span>{{'staffmanagement.Next' | translate}}</span></button>
+									
+								</form>
+							</div>
+							<!-- end ngRepeat: tab in tabset.tabs -->
+							<div class="tab-pane ng-scope" id="fourthstep">
+								<form name="step4">
+									<div class="row">
+										<div class="form-group col-md-3"></div>
+										<div class="form-group col-md-6">
+											<div ng-click="openFileChooser()" nv-file-drop uploader="uploader" class="well text-center p-30 b-dashed b-2x">
+												<input style="visibility: hidden; position: absolute;" my-admin-directive type="file" name="file" id="profileimage">
+												<label for="profileimage"> 
+													<div style="padding: 0px 20px 0;">
+													<span tooltip-placement="top" tooltip="Best of your image size :- height : 200 pixel and width : 200 pixel"
+													  class="btn btn-default btn-ef btn-ef-5 btn-ef-5a"><i class="fa 		fa-upload"></i> 
+														<span>Browse</span>
+													 </span> 
+													</div>	
+												</label>
+												<div class="text-center">
+													(.JPG,.JPEG,.PNG)
+												</div>
+											</div>
+										</div>
+										<div class="form-group col-md-3">
+											<img style="width:100%" height="120" src="{{image_id}}">
+										</div>
+										<div data-ng-show="success_file" class="form-group col-md-12 text-center">
+											<div style="color:red">
+												{{'staffmanagement.uploaderrormsg' | translate}}
+											</div>
+										</div>
+									</div>									
+									<button class="btn btn-danger btn-ef btn-ef-5 btn-ef-5a" ng-click="thirdpreviousstep()">
+									<i class="fa fa-reply "></i><span>{{'staffmanagement.Previous' | translate}}</span></button>
+									<div id="divLoading" data-ng-show="loading"></div>
+									<button class="btn btn-primary btn-ef btn-ef-5 btn-ef-5a pull-right" ng-click="step4.$valid && finalstep()" ng-disabled="step4.$invalid" ><i class="fa fa-user-plus"></i> <span>Create</span></button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</form>
+			</section>
+			<!-- /tile body -->
+		</div>
+    <!-- /tile -->
+	</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="docancel.html">
+	<div class="modal-header">
+		<h4 class="modal-title popupfontst">{{'schoolmanagement.deletblood' | translate}}</h4>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-sm btn-danger" ng-click="yes()">{{'common.ok' | translate}}</button>
+		<button class="btn btn-sm btn-primary" ng-click="okcancel()">{{'configreligion.cancel' | translate}}</button>	
+	</div>
+</script>

@@ -1,0 +1,217 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="getAllRouteData()" data-ng-controller="routedetails">
+    <div class="row headcontent">
+        <h3 class="schooldiary_h2">{{'RouteManagement.RouteManagement'| translate}} </h3>
+    </div>
+    <div class="row" style="margin-left:-10px !important;width:1140px;">
+        <div class="col-md-12" style="padding-right:5px !important">
+            <ol class="breadcrumb" id="setresyults">
+                <li data-ng-click="gotodashboard()"><i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"> <a> {{'configclass.Home' | translate}} </a> </i></li>
+                   <li class="active">{{'RouteManagement.Routes'| translate}} </li>
+				<li class="active">{{'RouteManagement.Create'| translate}} </li>
+
+            </ol>
+        </div>
+    </div>
+
+    <div class="panel panel-default" style="margin-left: 6px;width: 1119px;">
+        <div class="panel-heading">
+            <i class="fa fa-bars"></i>
+            <span class="labelstcampaign" style="font-weight:bold;font-size:14px !important"> {{'RouteManagement.RouteDetailsCreate'| translate}} </span>
+            <span></span>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-12 nopadmar" data-ng-show="hidesearchdet">
+
+                <button href="#review" data-toggle="collapse" class="btn btn-sm btn-primary" data-ng-click="backtosearch()">
+                    {{'configsubject.AN' | translate}} <i class="glyphicon  glyphicon-plus" style="font-size:11px !important;left:5px !important">   </i></button>
+
+            </div>
+            <div id="review" class="col-md-12 collapse">
+                <div class="col-md-12" style="padding:0px 0px 8px 0px">
+                    <button href="#review" data-toggle="collapse" class="btn btn-sm btn-danger" data-ng-click="returnsearch()">
+                        <i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"> </i> {{'configsubject.H/B' | translate}} </button>
+
+                </div>
+                <form name="createForm">
+                    <div class="col-md-12" style="border:2px solid #eee;padding:10px">
+                        <div class="col-md-12 nopadmar">
+                            <h3 style="margin-top:1px !important;"> {{'RouteManagement.Provideroutedetails'| translate}}</h3>
+                        
+                                <div class="col-md-4">
+                                    <label class="control-label pull-left"> {{'RouteManagement.Routes' | translate}}  <font color="red"> * </font> </label>
+                                </div>
+
+                                <div class="col-md-6 nopadmar">
+
+                                    <input placeholder="{{'RouteManagement.Routes'| translate}}" name="classname" id="classname" class="form-control" data-ng-model="ClassVO.className" type="text"  numeric-only-class>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label pull-left">{{'RouteManagement.StudentFee'| translate}}
+
+                                        </label>
+                                </div>
+
+                                <div class="col-md-6 nopadmar">
+
+                                    <input placeholder="{{'RouteManagement.StudentFee'| ranslate}}" name="classname" id="classname" class="form-control" data-ng-model="ClassVO.className" type="text" numeric-only-class>
+                                </div>
+                           
+                         
+                                <div class="col-md-4">
+                                    <label class="control-label pull-left">{{'RouteManagement.StaffFee'| translate}}
+</label>
+                                </div>
+
+                                <div class="col-md-6 nopadmar">
+
+                                    <input placeholder="{{'RouteManagement.StaffFee'| translate}}" name="classname" id="classname" class="form-control" data-ng-model="ClassVO.className" type="text" numeric-only-class>
+                                </div>
+                               
+                          
+                            
+                            
+                           
+                           
+                            <div class="col-md-5">
+
+                                <button class="btn btn-sm btn-primary " type="submit" validation-submit="createForm" data-ng-click="createForm.$valid && createclass()"> <i class="glyphicon glyphicon-ok" style="font-size:11px !important;right:5px !important"></i>{{'configsection.create' | translate}}</button>
+
+                                <button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="goclear()"><i class="glyphicon glyphicon-remove" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.clear' | translate}}</button>
+                            </div>
+                            <div class="col-md-12" data-ng-show="errormsg">
+                                <div class="col-md-8 text-center text-red">
+                                    {{'configclass.errormsg' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-12 " data-ng-show="showupdatefrm">
+                <div class="col-md-12" style="padding:0px 0px 8px 0px">
+                    <button data-toggle="collapse" class="btn btn-sm btn-danger" data-ng-click="updatesearch()">
+                        <i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"> </i> {{'configsubject.H/B' | translate}}
+                    </button>
+                </div>
+                <form name="updateForm">
+                    <div class="col-md-12" style="border:2px solid #eee;padding:10px">
+                        <div class="col-md-12 nopadmar">
+                            <h3 style="margin-top:1px !important;">  {{'configclass.upfrm' | translate}}</h3>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="control-label pull-left"> {{'RouteManagement.Routes'| translate}}</label>
+                                </div>
+
+                                <div class="col-md-4 nopadmar">
+
+                                    <input placeholder="{{'RouteManagement.Routes'| translate}}" name="classname" id="classname" class="form-control" data-ng-model="ClassVO.className" type="text"  numeric-only-class>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="control-label pull-left">{{'RouteManagement.StudentFee'| translate}}  </label>
+                                </div>
+
+                                <div class="col-md-4 nopadmar">
+
+                                    <input placeholder="{{'RouteManagement.StudentFee'|translate}}" name="classname" id="classname" class="form-control" data-ng-model="ClassVO.className" type="text" numeric-only-class>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="control-label pull-left">{{'RouteManagement.StaffFee'|translate}}</label>
+                                </div>
+
+                                <div class="col-md-4 nopadmar">
+
+                                    <input placeholder="{{'RouteManagement.StaffFee'| translate}}" name="classname" id="classname" class="form-control" data-ng-model="ClassVO.className" type="text" numeric-only-class>
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-md-5">
+                                <button class="btn btn-sm btn-primary" type="submit" validation-submit="updateForm" data-ng-click="updateForm.$valid && update()"><i class="glyphicon glyphicon-ok" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.update' | translate}}</button>
+                                <button class="btn btn-sm btn-danger" style="margin-left:10px;" ng-click="go()"><i class="glyphicon glyphicon-remove" style="font-size:11px !important;right:5px !important"></i>{{'configreligion.cancel' | translate}}</button>
+                            </div>
+
+                            <div class="col-md-12" data-ng-show="errormsg">
+                                <div class="col-md-8 text-center text-red">
+                                    {{'configclass.errormsg' | translate}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <!-- row -->
+            <div class="col-md-12 nopadmar" data-ng-show="hidetable" data-ng-if="items.length > 0">
+                <!--<button class="btn btn-sm btn-primary" ui-sref="addstudent">Add Student</button>
+				-->
+                <table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid">
+                    <thead class="tabletbody">
+                        <tr>
+                            <th>{{'configclass.sno' | translate}}</th>
+                            <th>{{{'RouteManagement.Routes'| translate}}</th>
+                            <th>{{'RouteManagement.StudentFee'| translate}}</th>
+							<th>{{'RouteManagement.StaffFee'| translate}}</th>
+							<th>{{'RouteManagement.Action'| translate}}</th>
+							
+							
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--<tr ng-repeat="item in items | filter:{StudentId: studentid, StudentName:studentname, ParentName:parentname,ParentMobile:parentno,AdmissionID:admissionid,Class:class,Section:section,Medium:medium}">-->
+                        <tr ng-repeat="item in items | filter:search">
+                            <td class="change_colr">{{$index+1}}</td>
+                            <td class="change_colr">a</td>
+							  <td class="change_colr">a</td>
+							    <td class="change_colr">a</td>
+                            <td><span><a data-ng-click="edit(item.id)"  tooltip-placement="top" tooltip="Edit" style="cursor: pointer;">
+						  <i class="creatli"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></i>
+                                </a>
+                                </span>
+                                <span><a  data-ng-click="deleteClass(item.id)" tooltip-placement="top" tooltip="Delete" style="cursor: pointer;">
+						  <i class="creatli"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></i>
+                                </a>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-12 nopadmar" data-ng-show="hidetable" style="margin-top:10px !important" data-ng-if="items.length == 0">
+                <!--<button class="btn btn-sm btn-primary" ui-sref="addstudent">Add Student</button>
+				-->
+                <table class="table table-striped table-bordered table-hover generaltable minotaur-table " style="display: table;" role="grid">
+                    <thead class="tabletbody">
+                        <tr>
+                            <th>{{'configclass.sno' | translate}}</th>
+                             <th>{{{'RouteManagement.Routes'| translate}}</th>
+                            <th>{{'RouteManagement.StudentFee'| translate}}</th>
+							<th>{{'RouteManagement.StaffFee'| translate}}</th>
+							<th>{{'RouteManagement.Action'| translate}}</th>
+							
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--<tr ng-repeat="item in items | filter:{StudentId: studentid, StudentName:studentname, ParentName:parentname,ParentMobile:parentno,AdmissionID:admissionid,Class:class,Section:section,Medium:medium}">-->
+                        <tr>
+                            <td colspan="10">No Results Found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="deleteclass.html">
+    <div class="modal-header">
+        <h4 class="modal-title popupfontst"> {{'configclass.del' | translate}}</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-danger" ng-click="deleteclassok()">{{'configsubject.Ok' | translate}}</button>
+        <button class="btn btn-sm btn-primary" ng-click="okcancel()">{{'configsubject.Cancel' | translate}}</button>
+    </div>
+</script>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<module id="studentattendancemodule">	
+	<routers>
+		<router id="studentattendance" url="/studentattendance" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/studentattendance/studentattendance.html"></view>
+            </views>
+        </router>
+		<router id="addattendance" url="/addattendance" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/studentattendance/addattendance.html"></view>
+            </views>
+        </router>
+        
+	</routers>
+	<services id="studentattendanceservice">
+		<operations>
+			<operation name="saveCampaign" method="post" requestWrapper="request"
+				responseWrapper="response" url="attendance/saveBulkAttendance"
+				mockUrl="mock/admin/usersList.json" mock="true">
+			</operation>
+			<operation name="saveBulkAttendance" method="post" requestType="json" 
+				responseWrapper="response" url="attendance/saveBulkAttendance"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			
+		</operations>
+	</services>
+</module>

@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<module id="schooladminModule">
+    <routers>
+		<router id="schoolmgmt" url="/schoolmgmt/{status}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/schooladminmanagement/schooladminmanagement.html"></view>
+            </views>
+        </router>
+		<router id="addschool" url="/addschool" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/schooladminmanagement/addschool.html"></view>
+            </views>
+        </router>
+		<router id="editschool" url="/editschool/{schoolId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/schooladminmanagement/editschool.html"></view>
+            </views>
+        </router>
+		<router id="viewschool" url="/viewschool/{schoolId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/schooladminmanagement/viewschool.html"></view>
+            </views>
+        </router>
+		<router id="viewsschool" url="/viewsschool/{schoolId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/adminmanagement/viewschool.html"></view>
+            </views>
+        </router>
+		<router id="fileuploadmgmt" url="/fileuploadmgmt/{schoolId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/schooladminmanagement/fileuploadmanagement.html"></view>
+            </views>
+        </router>
+		<router id="viewfileupload" url="/viewfileupload/{schoolId}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/schooladminmanagement/viewfileupload.html"></view>
+            </views>
+        </router>
+    </routers>
+    <services id="schooladmin">
+        <operations>
+        	<operation name="saveSchool" method="post" requestType="json" 
+				responseWrapper="response" url="school/saveSchool"
+				mockUrl="mock/course/admin.json" mock="false">
+			</operation>
+			<operation name="getSchoolById" method="get" requestWrapper="request" responseWrapper="response" 
+				url="school/getSchoolById" mockUrl="mock/admin/usersList.json" mock="false">
+				<params>
+                    <param name="schoolId" source="state" key="schoolId"></param>
+                </params>
+			</operation>
+			<operation name="getCountById" method="get" requestWrapper="request" responseWrapper="response" 
+				url="dashboard/getAllDashboardCount" mockUrl="mock/admin/usersList.json" mock="false">
+				<params>
+                    <param name="schoolId" source="state" key="schoolId"></param>
+                </params>
+			</operation>
+			<operation name="updateSchool" method="post" requestType="json" 
+				responseWrapper="response" url="school/updateSchool"
+				mockUrl="mock/course/admin.json" mock="false">
+			</operation>
+			<operation name="updateBulkInportStudent" method="post" requestType="json" 
+				responseWrapper="response" url="student/updateBulkImportStudent"
+				mockUrl="mock/course/admin.json" mock="false">
+			</operation>
+        </operations>		
+    </services>
+</module>

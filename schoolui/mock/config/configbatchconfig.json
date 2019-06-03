@@ -1,0 +1,128 @@
+{
+"Status" : "Ok",
+"configbatchVO" : 
+[
+
+{
+"BatchYear" :"2016-17",
+"Medium":"English Medium",
+"class" : "PREKG",
+"section" : "General",
+"Course" : "General",
+"Grade" :"NO",
+"subjectset":"General",
+"classteacher":"Not Assigned"
+},
+
+{
+"BatchYear" :"2016-17",
+"Medium":"English Medium",
+"class" : "LKG",
+"section" : "A",
+"Course" : "General",
+"Grade" :"NO",
+"subjectset":"General",
+"classteacher":"Not Assigned"
+},
+
+{
+"BatchYear" :"2016-17",
+"Medium":"English Medium",
+"class" : "B",
+"section" : "General",
+"Course" : "General",
+"Grade" :"NO",
+"subjectset":"General",
+"classteacher":"Not Assigned"
+},
+
+{
+"BatchYear" :"2016-17",
+"Medium":"English Medium",
+"class" : "UKG",
+"section" : "A",
+"Course" : "General",
+"Grade" :"NO",
+"subjectset":"General",
+"classteacher":"Not Assigned"
+},
+
+
+{
+"BatchYear" :"2016-17",
+"Medium":"English Medium",
+"class" : "B",
+"section" : "General",
+"Course" : "General",
+"Grade" :"NO",
+"subjectset":"General",
+"classteacher":"Not Assigned"
+},
+
+{
+"BatchYear" :"2016-17",
+"Medium":"English Medium",
+"class" : "I",
+"section" : "A",
+"Course" : "General",
+"Grade" :"NO",
+"subjectset":"General",
+"classteacher":"Not Assigned"
+},
+
+
+
+{
+"BatchYear" :"2016-17",
+"Medium":"English Medium",
+"class" : "II",
+"section" : "B",
+"Course" : "General",
+"Grade" :"NO",
+"subjectset":"General",
+"classteacher":"Not Assigned"
+},
+
+{
+"BatchYear" :"2016-17",
+"Medium":"English Medium",
+"class" : "III",
+"section" : "General",
+"Course" : "General",
+"Grade" :"NO",
+"subjectset":"General",
+"classteacher":"Not Assigned"
+},
+
+{
+"BatchYear" :"2016-17",
+"Medium":"English Medium",
+"class" : "IV",
+"section" : "General",
+"Course" : "General",
+"Grade" :"NO",
+"subjectset":"General",
+"classteacher":"Not Assigned"
+},
+{
+"BatchYear" :"2016-17",
+"Medium":"English Medium",
+"class" : "V",
+"section" : "General",
+"Course" : "General",
+"Grade" :"NO",
+"subjectset":"General",
+"classteacher":"Not Assigned"
+},
+{
+"BatchYear" :"2016-17",
+"Medium":"English Medium",
+"class" : "II",
+"section" : "General",
+"Course" : "General",
+"Grade" :"NO",
+"subjectset":"General",
+"classteacher":"Not Assigned"
+}
+]
+}

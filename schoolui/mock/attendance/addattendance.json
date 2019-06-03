@@ -1,0 +1,90 @@
+{
+	"Status" : "Ok",
+	"StudentVO" : 
+	[
+		{
+		"StudentId":"ASD3456",
+		"AdmissionNo":"GS1002",
+		"StudentName" : "Kamesh",
+		"Percentage" : "50%"
+		
+		},
+		{
+		"StudentId":"ASD3457",
+		"AdmissionNo":"GS1003",
+		"StudentName" : "Gokul",
+		"Percentage" : "50%"
+		
+		},
+		{
+		"StudentId":"ASD3458",
+		"AdmissionNo":"GS1004",
+		"StudentName" : "Bharat",
+		"Percentage" : "50%"
+		
+		},
+		{
+		"StudentId":"ASD3459",
+		"AdmissionNo":"GS1005",
+		"StudentName" : "Karthick",
+		"Percentage" : "50%"
+		
+		},
+		{
+		"StudentId":"ASD3410",
+		"AdmissionNo":"GS1006",
+		"StudentName" : "Syed",
+		"Percentage" : "50%"
+		
+		},
+		{
+		"StudentId":"ASD3411",
+		"AdmissionNo":"GS1007",
+		"StudentName" : "John",
+		"Percentage" : "50%"
+		
+		},
+		{
+		"StudentId":"ASD3412",
+		"AdmissionNo":"GS1008",
+		"StudentName" : "Riyas",
+		"Percentage" : "50%"
+		
+		},
+		{
+		"StudentId":"ASD3413",
+		"AdmissionNo":"GS1009",
+		"StudentName" : "Vijay",
+		"Percentage" : "50%"
+		
+		},
+		{
+		"StudentId":"ASD3414",
+		"AdmissionNo":"GS1010",
+		"StudentName" : "Ajith",
+		"Percentage" : "50%"
+		
+		},
+		{
+		"StudentId":"ASD3415",
+		"AdmissionNo":"GS1011",
+		"StudentName" : "Surya",
+		"Percentage" : "50%"
+		
+		},
+		{
+		"StudentId":"ASD3415",
+		"AdmissionNo":"GS1011",
+		"StudentName" : "Surya",
+		"Percentage" : "50%"
+		
+		},
+		{
+		"StudentId":"ASD3415",
+		"AdmissionNo":"GS1011",
+		"StudentName" : "Surya",
+		"Percentage" : "50%"
+		
+		}
+		]
+		}

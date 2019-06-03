@@ -1,0 +1,297 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-controller="studentmgmtController">
+	<div class="row headcontent">
+		<h3 class="schooldiary_h2">Student Management</h3>
+	</div>
+	<div class="row schooldiary_row">
+		<div class="col-md-12">
+			<ol class="breadcrumb" id="setresyults">
+				<li data-ng-click="gotodashboard()"><a>Home</a></li>
+				<li><a ui-sref="studentmanagement">Student</a></li>
+			<li class="active">Add Student</li>
+			</ol>
+		</div>
+	</div>
+		<!--<div class="col-md-4">
+			<button class="btn btn-sm btn-info pull-right" ui-sref="studentmanagement">StudentManagement</button>
+		</div>-->
+   
+	<div class="col-md-12">
+		<!-- tile -->
+		<div class="tile tile-simple">
+			<!-- tile body -->
+			<section class="tile-body p-0">
+				<form name="outerForm" role="form" novalidate="" class="form-validation ng-invalid ng-invalid-required ng-valid-pattern ng-valid-url ng-valid-email ng-dirty ng-valid-parse ng-valid-maxlength ng-valid-minlength ng-valid-match ng-submitted" style="">
+					<div id="addstuDiv" active="forms.activeStep" justified="true" class="tab-wizard padded ng-isolate-scope">
+						<ul class="nav nav-tabs nav-justified" ng-class="{'nav-stacked': vertical, 'nav-justified': justified}">
+							<li id="fstid" class="uib-tab nav-item ng-scope ng-isolate-scope active" index="0" style="">
+								<a href="#firststep" data-toggle="tab" ng-click="step1.$valid && select('fstid')" class="nav-link ng-binding" uib-tab-heading-transclude="">
+									<uib-tab-heading class="ng-scope">
+										<!-- ngIf: step1.$valid --><i class="fa fa-check ng-scope" ng-if="step1.$valid" style=""></i>
+										<!-- end ngIf: step1.$valid -->Personal Information <span class="pull-right wizard-step">1</span></uib-tab-heading>
+								</a>
+							</li>
+							<!--<li ng-if="!step1.$valid" ng-class="[{active: active, disabled: disabled}, classes]" class="uib-tab nav-item ng-scope ng-isolate-scope disabled" index="1" style="">
+								<a href="" class="nav-link ng-binding">
+									<uib-tab-heading class="ng-scope">
+										<!-- ngIf: step2.$valid -->
+										<!--Address <span class="pull-right wizard-step">2</span></uib-tab-heading>
+								</a>
+							</li>-->
+							<li id="sndid" ng-class="step1.$valid ? 'active' : 'disabled'" class="uib-tab nav-item ng-scope ng-isolate-scope" index="1" style="" >
+								<a href="{{step1.$valid ? '#secondstep' : ''}}" data-toggle="tab"  ng-click="step1.$valid && select('sndid')" class="nav-link ng-binding">
+									<uib-tab-heading class="ng-scope">
+										<!-- ngIf: step2.$valid -->Address <span class="pull-right wizard-step">2</span></uib-tab-heading>
+								</a>
+							</li>
+							<li id="thirdid" ng-class="step2.$valid ? 'active' : 'disabled'" class="uib-tab nav-item ng-scope ng-isolate-scope disabled" index="2">
+								<a href="#thirdstep" data-toggle="tab" ng-click="step2.$valid && select('thirdid')" class="nav-link ng-binding" uib-tab-heading-transclude="">
+									<uib-tab-heading class="ng-scope">
+										<!-- ngIf: step3.$valid -->Education <span class="pull-right wizard-step">3</span></uib-tab-heading>
+								</a>
+							</li>
+							<li id="fourid" ng-class="step3.$valid ? 'active' : 'disabled'" class="uib-tab nav-item ng-scope ng-isolate-scope disabled" index="3" aria-controls="timeline" role="tab" data-toggle="tab">
+								<a href="#fourthstep" data-toggle="tab" ng-click="step3.$valid && select('fourid')" class="nav-link ng-binding" uib-tab-heading-transclude="">
+									<uib-tab-heading class="ng-scope">
+										<!-- ngIf: step4.$valid -->Contact <span class="pull-right wizard-step">4</span></uib-tab-heading>
+								</a>
+							</li>
+							<!--<li ng-class="[{active: active, disabled: disabled}, classes]" class="uib-tab nav-item ng-scope ng-isolate-scope disabled" index="4" disable="step4.$invalid">
+								<a href="" ng-click="select($event)" class="nav-link ng-binding" uib-tab-heading-transclude="">
+									<uib-tab-heading class="ng-scope">
+										<!-- ngIf: step5.$valid -->
+										<!--EULA <span class="pull-right wizard-step">5</span></uib-tab-heading>
+								</a>
+							</li>-->
+						</ul>
+						<div class="tab-content">
+							<!-- ngRepeat: tab in tabset.tabs -->
+							<div class="tab-pane ng-scope active"  style="" id="firststep">
+								<ng-form name="step1" class="ng-scope ng-dirty ng-valid-parse ng-valid-maxlength ng-valid-minlength ng-valid-required ng-valid ng-valid-match" style="">
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label for="username" class="control-label minotaur-label">Name <span class="text-red">*</span>:</label>
+											<input name="name" id="name" class="form-control ng-not-empty ng-dirty ng-valid-parse ng-valid ng-valid-required ng-touched" ng-model="forms.forms.user.name" required="" aria-invalid="false" style="" type="text">
+											<!-- ngIf: step1.name.$dirty -->
+											<div ng-messages="step1.name.$error" ng-if="step1.name.$dirty" role="alert" class="help-block text-red ng-scope ng-inactive" aria-live="assertive" style="">
+												<!-- ngMessagesInclude: app/components/templates/messages_tmpl.html -->
+												<!-- ngMessage: required -->
+												<!-- ngMessage: minlength -->
+												<!-- ngMessage: maxlength -->
+												<!-- ngMessage: email -->
+												<!-- ngMessage: number -->
+												<!-- ngMessage: match -->
+												<!-- ngMessage: pattern -->
+												<!-- ngMessage: min -->
+												<!-- ngMessage: max -->
+											</div>
+											<!-- end ngIf: step1.name.$dirty -->
+										</div>
+										<div class="form-group col-md-6">
+											<label for="username" class="control-label minotaur-label">Username <span class="text-red">*</span>:</label>
+											<input name="username" id="username" class="form-control ng-not-empty ng-dirty ng-valid-parse ng-valid-required ng-valid-minlength ng-touched ng-valid ng-valid-maxlength" ng-model="forms.user.username" ng-minlength="3" ng-maxlength="8" required="" aria-invalid="false" style="" type="text">
+											<!-- ngIf: step1.username.$dirty -->
+											<div ng-messages="step1.username.$error" ng-if="step1.username.$dirty" role="alert" class="help-block text-red ng-scope ng-inactive" aria-live="assertive" style="">
+												<!-- ngMessagesInclude: app/components/templates/messages_tmpl.html -->
+												<!-- ngMessage: required -->
+												<!-- ngMessage: minlength -->
+												<!-- ngMessage: maxlength -->
+												<!-- ngMessage: email -->
+												<!-- ngMessage: number -->
+												<!-- ngMessage: match -->
+												<!-- ngMessage: pattern -->
+												<!-- ngMessage: min -->
+												<!-- ngMessage: max -->
+											</div>
+											<!-- end ngIf: step1.username.$dirty -->
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label for="password" class="control-label minotaur-label">Password <span class="text-red">*</span>:</label>
+											<input name="password" id="password" class="form-control ng-dirty ng-valid-parse ng-touched ng-not-empty ng-valid-required ng-valid ng-valid-minlength" ng-model="forms.user.password" ng-minlength="6" required="" aria-invalid="false" style="" type="password">
+											<!-- ngIf: step1.password.$dirty -->
+											<div ng-messages="step1.password.$error" ng-if="step1.password.$dirty" role="alert" class="help-block text-red ng-scope ng-inactive" aria-live="assertive" style="">
+												<!-- ngMessagesInclude: app/components/templates/messages_tmpl.html -->
+												<!-- ngMessage: required -->
+												<!-- ngMessage: minlength -->
+												<!-- ngMessage: maxlength -->
+												<!-- ngMessage: email -->
+												<!-- ngMessage: number -->
+												<!-- ngMessage: match -->
+												<!-- ngMessage: pattern -->
+												<!-- ngMessage: min -->
+												<!-- ngMessage: max -->
+											</div>
+											<!-- end ngIf: step1.password.$dirty -->
+										</div>
+										<div class="form-group col-md-6">
+											<label for="passwordConfirm" class="control-label minotaur-label">Password confirmation <span class="text-red">*</span>:</label>
+											<input name="passwordConfirm" id="passwordConfirm" class="form-control ng-dirty ng-valid-parse ng-touched ng-not-empty ng-valid-required ng-valid ng-valid-match" ng-model="forms.user.passwordConfirm" match="forms.user.password" required="" aria-invalid="false" style="" type="password">
+											<!-- ngIf: step1.passwordConfirm.$dirty -->
+											<div ng-messages="step1.passwordConfirm.$error" ng-if="step1.passwordConfirm.$dirty" role="alert" class="help-block text-red ng-scope ng-inactive" aria-live="assertive" style="">
+												<!-- ngMessagesInclude: app/components/templates/messages_tmpl.html -->
+												<!-- ngMessage: required -->
+												<!-- ngMessage: minlength -->
+												<!-- ngMessage: maxlength -->
+												<!-- ngMessage: email -->
+												<!-- ngMessage: number -->
+												<!-- ngMessage: match -->
+												<!-- ngMessage: pattern -->
+												<!-- ngMessage: min -->
+												<!-- ngMessage: max -->
+											</div>
+											<!-- end ngIf: step1.passwordConfirm.$dirty -->
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="message" class="control-label minotaur-label">About you:</label>
+										<textarea class="form-control ng-valid ng-touched ng-not-empty ng-dirty ng-valid-parse" rows="5" name="message" id="message" placeholder="Write something about you..." ng-model="forms.user.message" aria-invalid="false" style=""></textarea>
+									</div>
+									<button ng-disabled="step1.$invalid" class="btn btn-default minotaur-btn" ng-click="step1.$invalid && firststep()">Next</button>
+								</ng-form>
+							</div>
+							<!-- end ngRepeat: tab in tabset.tabs -->
+							<div class="tab-pane ng-scope" style="" id="secondstep">
+								<ng-form name="step2" class="ng-pristine ng-scope ng-invalid ng-invalid-required">
+									<div class="row">
+										<div class="form-group col-md-8">
+											<label for="street" class="control-label minotaur-label">Street <span class="text-red">*</span>:</label>
+											<input name="street" id="street" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="forms.user.street" placeholder="Enter street address" required="" aria-invalid="true" type="text">
+											<!-- ngIf: step2.street.$dirty -->
+										</div>
+										<div class="form-group col-md-4">
+											<label for="dnumber" class="control-label minotaur-label">Door no. <span class="text-red">*</span>:</label>
+											<input name="dnumber" id="dnumber" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="forms.user.dnumber" placeholder="Enter door number" required="" aria-invalid="true" type="text">
+											<!-- ngIf: step2.dnumber.$dirty -->
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="address2" class="control-label minotaur-label">Address Line 2:</label>
+										<input name="address2" id="address2" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="forms.user.address2" placeholder="Enter secondary address" aria-invalid="false" type="text">
+									</div>
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label for="city" class="control-label minotaur-label">City <span class="text-red">*</span>:</label>
+											<input name="city" id="city" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="forms.user.city" placeholder="Enter city" required="" aria-invalid="true" type="text">
+											<!-- ngIf: step2.city.$dirty -->
+										</div>
+										<div class="form-group col-md-4">
+											<label for="state" class="control-label minotaur-label">State <span class="text-red">*</span>:</label>
+											<input name="state" id="state" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="forms.user.state" placeholder="Enter state" required="" aria-invalid="true" type="text">
+											<!-- ngIf: step2.state.$dirty -->
+										</div>
+										<div class="form-group col-md-4">
+											<label for="zip" class="control-label minotaur-label">Zip <span class="text-red">*</span>:</label>
+											<input name="zip" id="zip" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="forms.user.zip" placeholder="Enter zip" required="" aria-invalid="true" type="text">
+											<!-- ngIf: step2.zip.$dirty -->
+										</div>
+									</div>
+									<button class="btn btn-default minotaur-btn" ng-click="forms.activeStep = 0">Previous</button>
+									<button ng-disabled="step2.$invalid" class="btn btn-default minotaur-btn pull-right" ng-click="forms.activeStep = 2" disabled="disabled">Next</button>
+								</ng-form>
+							</div>
+							<!-- end ngRepeat: tab in tabset.tabs -->
+							<div class="tab-pane ng-scope" id="thirdstep">
+								<ng-form name="step3" class="ng-pristine ng-scope ng-invalid ng-invalid-required ng-valid-pattern">
+									<h4>Primary School</h4>
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label for="pr-subject" class="control-label minotaur-label">Subject:</label>
+											<input name="pr-subject" id="pr-subject" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="forms.user.prsubject" aria-invalid="false" type="text">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="pr-name" class="control-label minotaur-label">School name <span class="text-red">*</span>:</label>
+											<input name="pr-name" id="pr-name" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="forms.user.prname" required="" aria-invalid="true" type="text">
+											<!-- ngIf: step3.name.$dirty -->
+										</div>
+										<div class="form-group col-md-2">
+											<label for="prstart" class="control-label minotaur-label">Start Date:</label>
+											<input name="prstart" id="prstart" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-pattern" ng-model="forms.user.prstart" placeholder="YYYY-MM-DD" ng-pattern="/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/" aria-invalid="false" type="text">
+											<!-- ngIf: step3.prstart.$dirty -->
+										</div>
+										<div class="form-group col-md-2">
+											<label for="prend" class="control-label minotaur-label">End Date:</label>
+											<input name="prend" id="prend" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-pattern" ng-model="forms.user.prend" placeholder="YYYY-MM-DD" ng-pattern="/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/" aria-invalid="false" type="text">
+											<!-- ngIf: step3.prend.$dirty -->
+										</div>
+									</div>
+									<h4>Secondary School</h4>
+									<div class="row">
+										<div class="form-group col-md-4">
+											<label for="sc-subject" class="control-label minotaur-label">Subject:</label>
+											<input name="sc-subject" id="sc-subject" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="forms.user.scsubject" aria-invalid="false" type="text">
+										</div>
+										<div class="form-group col-md-4">
+											<label for="sc-name" class="control-label minotaur-label">School name:</label>
+											<input name="sc-name" id="sc-name" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="forms.user.scname" aria-invalid="false" type="text">
+										</div>
+										<div class="form-group col-md-2">
+											<label for="scstart" class="control-label minotaur-label">Start Date:</label>
+											<input name="scstart" id="scstart" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-pattern" ng-model="forms.user.scstart" placeholder="YYYY-MM-DD" ng-pattern="/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/" aria-invalid="false" type="text">
+											<!-- ngIf: step3.scstart.$dirty -->
+										</div>
+										<div class="form-group col-md-2">
+											<label for="scend" class="control-label minotaur-label">End Date:</label>
+											<input name="scend" id="scend" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-pattern" ng-model="forms.user.scend" placeholder="YYYY-MM-DD" ng-pattern="/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/" aria-invalid="false" type="text">
+											<!-- ngIf: step3.scend.$dirty -->
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="qualification" class="control-label minotaur-label">Other qualification:</label>
+										<textarea class="form-control ng-pristine ng-untouched ng-valid ng-empty" rows="5" name="qualification" id="qualification" ng-model="forms.user.qualification" aria-invalid="false"></textarea>
+									</div>
+									<button class="btn btn-default minotaur-btn" ng-click="forms.activeStep = 1">Previous</button>
+									<button ng-disabled="step3.$invalid" class="btn btn-default minotaur-btn pull-right" ng-click="forms.activeStep = 3" disabled="disabled">Next</button>
+								</ng-form>
+							</div>
+							<!-- end ngRepeat: tab in tabset.tabs -->
+							<div class="tab-pane ng-scope" id="fourthstep">
+								<ng-form name="step4" class="ng-pristine ng-scope ng-invalid ng-invalid-required ng-valid-pattern ng-valid-url ng-valid-email">
+									<div class="row">
+										<div class="form-group col-md-6">
+											<label for="email" class="control-label minotaur-label">Email <span class="text-red">*</span>:</label>
+											<input name="email" id="email" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-email" ng-model="forms.user.email" required="" aria-invalid="true" type="email">
+											<!-- ngIf: step4.email.$dirty -->
+										</div>
+										<div class="form-group col-md-6">
+											<label for="phone" class="control-label minotaur-label">Phone:</label>
+											<input name="phone" id="phone" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-pattern" ng-model="forms.user.phone" placeholder="(XXX) XXXX XXX" ng-pattern="/\([0-9]{3}\) ([0-9]{4}) ([0-9]{3})$/" aria-invalid="false" type="text">
+											<!-- ngIf: step4.phone.$dirty -->
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="web" class="control-label minotaur-label">Website:</label>
+										<input name="web" id="web" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-url" ng-model="forms.user.web" placeholder="http://" aria-invalid="false" type="url">
+										<!-- ngIf: step4.web.$dirty -->
+									</div>
+									<button class="btn btn-default minotaur-btn" ng-click="forms.activeStep = 2">Previous</button>
+									<button ng-disabled="step4.$invalid" class="btn btn-default minotaur-btn pull-right" ng-click="forms.activeStep = 4" disabled="disabled">Next</button>
+								</ng-form>
+							</div>
+							<!-- end ngRepeat: tab in tabset.tabs -->
+							<!--<div class="tab-pane ng-scope" >
+								<ng-form name="step5" class="ng-pristine ng-scope ng-invalid ng-invalid-required">
+									<p class="well">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>
+									<label class="checkbox minotaur-checkbox">I agree to the <a href="" class="text-info">Terms of Service</a>
+										<input name="agree" id="agree" ng-model="forms.user.agree" required="" class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" aria-invalid="true" type="checkbox">
+										<div class="input-indicator"></div>
+									</label>
+									<!-- ngIf: step5.agree.$dirty -->
+									<!--<label class="checkbox minotaur-checkbox">Receive newsletter
+										<input name="newsletter" id="newsletter" ng-model="forms.user.newsletter" class="ng-pristine ng-untouched ng-valid ng-empty" aria-invalid="false" type="checkbox">
+										<div class="input-indicator"></div>
+									</label>
+									<button class="btn btn-default minotaur-btn" ng-click="forms.activeStep = 3">Previous</button>
+									<button ng-disabled="step5.$invalid" class="btn btn-success minotaur-btn pull-right" ng-click="forms.submit()" disabled="disabled">Finish</button>
+								</ng-form>
+							</div>-->
+							<!-- end ngRepeat: tab in tabset.tabs -->
+						</div>
+					</div>
+				</form>
+			</section>
+			<!-- /tile body -->
+		</div>
+    <!-- /tile -->
+	</div>
+</div>

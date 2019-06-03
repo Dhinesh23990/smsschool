@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<module id="smsmodule">	
+	<routers>
+		<router id="confignotification" url="/confignotification" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/sms/confignotification.html"></view>
+            </views>
+        </router>
+		<router id="configsms" url="/configsms" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/sms/configsms.html"></view>
+            </views>
+        </router>
+		<router id="composesms" url="/composesms" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/sms/composesms.html"></view>
+            </views>
+        </router>
+		<router id="smslog" url="/smslog/{Allsmsid}" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/sms/smslog.html"></view>
+            </views>
+        </router>
+        <router id="expiredsms" url="/expiredsms" auth="false">
+			<views>
+                <view containerId="apps" templateUrl="views/sms/expiredsms.html"></view>
+            </views>
+        </router>		
+	</routers>
+	<services id="smsservice">
+		<operations>
+			<operation name="saveCampaign" method="post" requestWrapper="request"
+				responseWrapper="response" url=""
+				mockUrl="mock/admin/usersList.json" mock="true">
+			</operation>
+			<operation name="saveSmsTemplate" method="post" requestType="json" 
+				responseWrapper="response" url="smstemplate/saveSmsTemplate"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="updateSmsTemplate" method="post" requestType="json" 
+				responseWrapper="response" url="smstemplate/updateSmsTemplate"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+			<operation name="sendSMS" method="post" requestType="json" 
+				responseWrapper="response" url="sms/sendSMS"
+				mockUrl="mock/section/section.json" mock="false">
+			</operation>
+		</operations>
+	</services>
+</module>

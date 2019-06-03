@@ -1,0 +1,261 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-controller="teacherattendancemgmtController">
+    <div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'teacherattendance.teacherattendancemgmt' | translate}}</h3>
+	</div>
+	<div class="row" style="margin-left:-10px !important;">
+		<div class="col-md-12" style="padding-right:5px !important">
+			<ol class="breadcrumb" id="setresyults">
+				<li data-ng-click="gotodashboard()"> <i class="glyphicon glyphicon-home" style="font-size:11px !important;right:5px !important"></i><a>{{'studentattendance.home' | translate}}</a></li>
+				<li class="active">{{'teacherattendance.teacheratde' | translate}}</li>
+				
+			</ol>
+		</div>
+	</div>
+	
+	<div class="panel panel-default" style="margin-left: 6px;">
+	<div class="panel-heading">
+		<i class="fa fa-bars"></i>
+			<span class="labelstcampaign " style="font-weight:bold;font-size:14px !important"> {{'teacherattendance.teacheratde' | translate}} </span>
+			<span class="pull-right">
+				<a class="activeview" id="list_view" data-ng-click="listviewdet()" style="margin-right:10px;font-weight:bold">{{'studentattendance.dayview' | translate}}</a>
+				<a class="hoverview defaultcol" id="grid_view" data-ng-click="gridviewdet()" style="font-weight:bold">{{'studentattendance.consview' | translate}}</a>				
+			</span>
+	</div>
+	<div class="panel-body" data-ng-show="studentlistviewdetails">
+			<div class="col-md-12 nopadmar">
+				
+			<div id="searchclass" class="col-md-12 nopadmar">
+				
+				
+			<div class="col-md-12" style="border:1px solid #eee;background-color:#eee;padding:10px">
+			
+			      <div class="col-md-12">
+					<div class="col-md-12 nopadmar">
+					<form name="attendance">
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="pr-name" class="control-label ">{{'studentattendance.dtofatt' | translate}}</label>
+								<input class="form-control" placeholder="Attendance Date" type="text" name="birthdate" ng-model="attenddancedate" validator="required" valid-method="watch" required-error-message= "Attendance Date is required">
+								 
+							</div>
+                            <div class="form-group col-md-4">
+                                <label for="class" class="control-label minotaur-label"> {{'teacherattendance.day' | translate}} </label>
+							<select class="form-control" name="day" id="day" data-ng-model="day"
+								 ng-options="dayoption.key as dayoption.value for dayoption in dayoptions">
+							</select>
+                            </div>
+							
+							 <div class="form-group col-md-4">
+                                <label for="section" class="control-label minotaur-label"> {{'teacherattendance.staff' | translate}} </label>
+                                <select class="form-control" name="staff" id="staff" data-ng-model="staffId"
+								ng-options="teachername.staffId as teachername.staffName for teachername in teachernames">
+                                    <option value="">{{'teacherattendance.selectstaff' | translate}}</option>
+							    </select>
+                            </div>
+						</div>
+						<div class="row">
+					    <div class="form-group col-md-5">
+						</div>
+						<div class="form-group col-md-6">
+						    <button class="btn btn-sm btn-success" type="submit" validation-submit="attendance"  data-ng-click="showbysearch()">
+							{{'studentattendance.SSearch' | translate}} <i class="glyphicon glyphicon-search" style="font-size:11px !important;left:5px !important" ></i></button>
+ 
+						</div>	
+					
+							</div>
+							</form>
+					</div>
+				</div>			
+			
+			
+			</div>	
+				
+							
+			</div>
+			
+			<div class="col-md-12 nopadmar" data-ng-show="items.length > 0 && day_view">
+			
+				<table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							
+							<th>{{'teacherattendance.staffids' | translate}}</th>
+							<th>{{'teacherattendance.employeeno' | translate}}</th>
+							<th>{{'teacherattendance.staffname' | translate}}</th>
+							<th>{{'teacherattendance.testatus' | translate}}</th>
+							<th>{{'teacherattendance.teleave' | translate}}</th>
+							<th>{{'teacherattendance.comments' | translate}}</th>
+							<th>{{'teacherattendance.presentdays' | translate}}</th>
+							<th>{{'teacherattendance.totaldays' | translate}}</th>
+							<th >{{'teacherattendance.percentage' | translate}}</th>		        
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in items">
+					
+						  <td class="change_colr">{{item.staffId}}</td>
+						  <td class="change_colr">{{item.admissionNumber}}</td>
+						  <td class="change_colr">{{item.staffName}}</td>
+						  <td class="change_colr">
+						  <span data-ng-if="item.morning == false">
+							<i><img src="assets/images/gra.png" style="width:20px;height:20px;"></i>
+						  </span>
+						  <span data-ng-if="item.morning == true">
+							<i><img src="assets/images/red.png" style="width:20px;height:20;"></i>
+						  </span></td>
+						  <td class="change_colr">
+						  <span data-ng-if="item.morning == false">
+							NA
+						  </span>
+						  <span data-ng-if="item.morning == true">
+							{{item.leaveMasterShortName}}
+						  </span></td>
+						  <td class="change_colr">
+						  <span data-ng-if="item.note == null">
+							<i class="fa fa-comment" aria-hidden="true"></i> No Comments
+						  </span>
+						   <span data-ng-if="item.note">
+							{{item.note}}
+						  </span>
+						  </td>
+						  <td class="change_colr">{{item.presentDays}}</td>
+						  <td class="change_colr">{{item.totalDays}}</td>
+						  <td class="change_colr">
+						   <span style="background-color:#6ec06e;padding:5px">{{item.attendancePercenatge}} %</span> </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-12" style="padding:0px;margin:5px 0px" data-ng-if="items.length == 0 && day_view">
+			
+				<table  class="table table-striped table-bordered table-hover generaltable minotaur-table " style="display: table;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'teacherattendance.staffids' | translate}}</th>
+							<th>{{'teacherattendance.employeeno' | translate}}</th>
+							<th>{{'teacherattendance.staffname' | translate}}</th>
+							<th>{{'teacherattendance.testatus' | translate}}</th>
+							<th>{{'teacherattendance.teleave' | translate}}</th>
+							<th>{{'teacherattendance.comments' | translate}}</th>
+							<th>{{'teacherattendance.presentdays' | translate}}</th>
+							<th>{{'teacherattendance.totaldays' | translate}}</th>
+							<th >{{'teacherattendance.percentage' | translate}}</th>		        
+						</tr>
+					</thead>
+					<tbody>
+						<tr> 
+							<td colspan="9" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+				
+			</div>
+			<div class="panel-body" data-ng-show="studentgridviewdetails">
+			<div class="col-md-12 nopadmar">
+				
+				<div id="searchclass" class="col-md-12 nopadmar">
+				<div class="col-md-12" style="border:1px solid #eee;background-color:#eee;padding:10px">
+					<div class="col-md-12 nopadmar">
+					<form name="consolitedviewstff">
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label for="pr-name" class="control-label ">{{'studentattendance.fromdate' | translate}}<span class="text-red"> * </span></label>
+								<input class="form-control" placeholder="From Date" type="text" name="birthdate" ng-model="fromdate" validator="required" valid-method="watch" required-error-message= "From Date is required">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="pr-name" class="control-label ">{{'studentattendance.todate' | translate}}<span class="text-red"> * </span></label>
+								<input class="form-control" placeholder="To Date" type="text" name="todate" ng-model="todate" validator="required" valid-method="watch" required-error-message= "To Date is required">
+								
+									
+							</div>
+                            <div class="form-group col-md-4">
+                                <label for="section" class="control-label minotaur-label"> {{'teacherattendance.staff' | translate}} </label>
+                                <select class="form-control" name="constaffId" id="constaffId" data-ng-model="constaffId"
+								ng-options="teachername.staffId as teachername.staffName for teachername in teachernames">
+                                    <option value="">{{'teacherattendance.selectstaff' | translate}}</option>
+							    </select>
+                            </div>
+							
+							
+						</div>
+						<div class="row">
+					    <div class="form-group col-md-5">
+						</div>
+						<div class="form-group col-md-6">
+						    <button class="btn btn-sm btn-success" type="submit" validation-submit="consolitedviewstff" data-ng-click="conshowbysearch()">
+							{{'studentattendance.SSearch' | translate}} <i class="glyphicon glyphicon-search" style="font-size:11px !important;left:5px !important" ></i></button>
+ 
+						</div>	
+					
+							</div>
+							</form>
+					</div>
+					</div>
+							
+			</div>
+			
+			<div class="col-md-12 nopadmar" data-ng-show="conitems.length > 0 && consolidated_view">
+			
+				<table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'teacherattendance.staffids' | translate}}</th>
+							<th>{{'teacherattendance.employeeno' | translate}}</th>
+							<th>{{'teacherattendance.staffname' | translate}}</th>
+							<th>{{'teacherattendance.presentdays' | translate}}</th>
+							<th>{{'teacherattendance.totaldays' | translate}}</th>
+							<th >{{'studentattendance.percentage' | translate}}</th>		        
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="conitem in conitems">
+						  <td class="change_colr">{{conitem.staffId}}</td>
+						  <td class="change_colr">{{conitem.admissionNumber}}</td>
+						  <td class="change_colr">{{conitem.staffName}}</td>
+						  <td class="change_colr">{{conitem.presentDays}}</td>
+						  <td class="change_colr">{{conitem.totalDays}}</td>
+						  <td class="change_colr">
+						  <span style="background-color:#6ec06e;padding:5px">{{conitem.attendancePercenatge}} %</span>
+						  </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-12" style="padding:0px;margin:5px 0px" data-ng-if="conitems.length == 0 && consolidated_view">
+			
+				<table  class="table table-striped table-bordered table-hover generaltable minotaur-table " style="display: table;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'teacherattendance.staffids' | translate}}</th>
+							<th>{{'teacherattendance.employeeno' | translate}}</th>
+							<th>{{'teacherattendance.staffname' | translate}}</th>
+							<th>P.D</th>
+							<th>T.D</th>
+							<th>{{'studentattendance.percentage' | translate}}</th>	
+						</tr>
+					</thead>
+					<tbody>
+						<tr> 
+							<td colspan="6" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+				
+			</div>
+			
+			</div>
+		</div> 
+	
+<script type="text/ng-template" id="deletestudent.html">
+		<div class="modal-header">
+			<h4 class="modal-title popupfontst">{{'studentattendance.studentdeletedet' | translate}}</h4>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-sm btn-info" ng-click="deletestudentok()">{{'common.ok' | translate}}</button>
+			<button class="btn btn-sm btn-default" ng-click="okcancel()">{{'common.cancel' | translate}}Cancel</button>	
+		</div>
+</script>

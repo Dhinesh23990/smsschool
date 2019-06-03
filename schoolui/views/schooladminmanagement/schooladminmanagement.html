@@ -1,0 +1,396 @@
+<div class="page page-dashboard pull-to-header ng-scope" data-ng-init="getallschooldata()" data-ng-controller="schooladminmgmtController">
+    <div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'schooladmin.schoolmnt' | translate}}</h3>
+	</div>
+	<div class="row" style="margin-left:-10px !important;width:1140px;">
+		<div class="col-md-12" style="padding-right:5px !important">
+			<ol class="breadcrumb" id="setresyults">
+				<li data-ng-click="gotodashboard()" class="navcursor"><i class="glyphicon glyphicon-home " style="font-size:11px !important;right:5px !important"></i><a>{{'configgender.Home' | translate}}</a></li>
+				<li class="active navcursor">{{'admindashboard.school' | translate}}</li>
+				<!--<li class="active">{{listandgridview}}</li>-->
+			</ol>
+		</div>
+	</div>
+	
+	<div class="panel panel-default" style="margin-left: 6px;width: 1119px;">
+		<div class="panel-heading">
+		<i class="fa fa-bars"></i>
+			<span class="labelstcampaign" style="font-weight:bold;font-size:14px !important"> {{'admindashboard.school' | translate}} </span>
+			<!--<span class="pull-right">
+				<a class="activeview" id="list_view" data-ng-click="listviewdet()" style="margin-right:10px;font-weight:bold">{{'studentmgmt.listview' | translate}}</a>
+				<a class="hoverview defaultcol" id="grid_view" data-ng-click="gridviewdet()" style="font-weight:bold">{{'studentmgmt.gridview' | translate}}</a>				
+			</span>-->
+		</div>
+		<div class="panel-body" data-ng-show="studentlistviewdetails">
+			<div class="col-md-12 nopadmar" data-ng-show="hidesearchdet">
+				<button href="#review" data-toggle="collapse" class="btn btn-sm btn-primary" data-ng-click="backtosearch()">
+				{{'studentmgmt.advancedsearch' | translate}}<i class="glyphicon glyphicon-search"
+				style="font-size:11px !important;left:5px !important"></i></button>
+				<button class="btn btn-sm btn-danger" data-ng-click="showalldata()">
+				{{'studentmgmt.showall' | translate}} <i class="fa fa-check" aria-hidden="true"
+				style="font-size:12px !important;left:5px !important"></i></button>
+				<button class="btn btn-sm btn-primary pull-right" ui-sref="addschool">{{'schooladmin.addschool' | translate}}
+				<i class="glyphicon glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+				<div class="col-md-5" style="padding-left:0px !important">
+					<div class="main-search hidden-xs">
+						<form class="ng-pristine ng-valid">
+							<input class="form-control" placeholder="Search School Code..." type="text" data-ng-model="search.schoolCode"
+							style="background:none;border:0;border-bottom:1px solid #286090;box-shadow:none;border-radius:0;padding:3px 0;letter-spacing:1px;color:#000 !important">
+							<button class="btn" style="position:absolute;top:2px;right:12px;padding:6px 3px;background:none;border-radius:0transition:all .4s cubic-bezier(.05, .74, .27, .99);transform:translateZ(0);will-change:transform;color:#286090"><i class="fa fa-search"></i></button>
+						</form>
+					</div>
+				</div>				
+			</div>
+			 <div id="review" class="col-md-12 collapse nopadmar">
+				<div class="col-md-12" style="padding:0px 0px 8px 0px">
+					<button href="#review" data-toggle="collapse" class="btn btn-sm btn-danger" data-ng-click="returnsearch()">
+					<i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>{{'studentmgmt.back' | translate}}
+					</button>
+					<button class="btn btn-sm btn-primary pull-right" ui-sref="addschool">{{'schooladmin.addschool' | translate}}
+				<i class="glyphicon glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+				</div>
+				<div class="col-md-12" style="border:2px solid #eee;padding:10px">
+					<div class="col-md-12 nopadmar">
+						<div class="col-md-3">
+							<label class="control-label">{{'schooladmin.schoolcode' | translate}}</label>
+							<input placeholder="School code" name="schoolCode" class="form-control" data-ng-model="search.schoolCode" type="text">
+						</div>
+						<div class="col-md-3">
+							<label class="control-label">{{'schooladmin.schoolname' | translate}}</label>
+							<input placeholder="School Name" name="schoolName" class="form-control" data-ng-model="search.schoolName" type="text">
+						</div>
+						<div class="col-md-3">
+							<label class="control-label">{{'schooladmin.mobileno' | translate}}</label>
+							<input placeholder="Contact Mobile No" name="contactNumber" class="form-control" data-ng-model="search.contactNumber" type="text" ng-maxlength="10" maxlength="10" ng-pattern="/[0-9]{10}$/" numeric-only-addstudent>
+						</div>
+						<div class="col-md-3">
+							<label class="control-label">{{'schooladmin.emailid' | translate}}</label>
+							<input placeholder="Contact EmailId" name="contactEmailId" class="form-control" data-ng-model="search.contactEmailId" type="email">
+						</div>
+					</div>
+					<!--<div class="col-md-12 nopadmar">
+						<div class="col-md-3">
+							<label class="control-label">{{'studentmgmt.admissionno' | translate}}</label>
+							<input placeholder="Username" name="username" class="form-control" data-ng-model="search.admissionNumber" type="text">
+						</div>
+						<div class="col-md-3">
+							<label class="control-label">{{'studentmgmt.medium' | translate}}</label>
+							<select class="form-control" data-ng-model="search.medium" data-ng-options="medium.key as medium.value for medium in mediums">
+								<option value="">{{'studentmgmt.selectmedium' | translate}}</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<label class="control-label">{{'studentmgmt.class' | translate}}</label>
+							<select class="form-control" data-ng-model="search.className" data-ng-options="class.key as class.value for class in classs">
+								<option value="">{{'studentmgmt.selectclass' | translate}}</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<label class="control-label">{{'studentmgmt.section' | translate}}</label>
+							<select class="form-control" data-ng-model="search.section" data-ng-options="section.key as section.value for section in sections">
+								<option value="">{{'studentmgmt.selectsection' | translate}}</option>
+							</select>
+						</div>
+					</div>-->
+					
+				</div>
+			 </div>
+			<div class="col-md-12 nopadmar" data-ng-if="items.length > 0">
+			<!--<button class="btn btn-sm btn-primary" ui-sref="addstudent">Add Student</button>
+				-->
+				<table datatable="ng" dt-options="dtOptions" class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'studentmgmt.sno' | translate}}</th>
+							<th>{{'schooladmin.schoolname' | translate}}</th>
+							<th>{{'schooladmin.schoolcode' | translate}}</th>
+							<th>{{'schooladmin.mobileno' | translate}}</th>
+							<th>{{'schooladmin.emailid' | translate}}</th>
+							<th>{{'studentmgmt.country' | translate}}</th>
+							<th>{{'common.status' | translate}}</th>
+							<th class="text-center"><span class="text-center" style="margin-right:28px !important">{{'studentmgmt.action' | translate}}</span></th>		        
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in items">
+						 <td class="change_colr">{{$index+1}}</td>
+						  <td class="change_colr">{{item.schoolName}}</td>
+						  <td class="change_colr">{{item.schoolCode}}</td>
+						  <td class="change_colr">{{item.contactNumber}}</td>
+						  <td class="change_colr">{{item.contactEmailId}}</td>
+						  <td class="change_colr">{{item.country}}</td>
+						  <td class="change_colr">
+						  <button type="button" class="btn btn-primary btn-sm" data-ng-if="item.status == 'Active'"
+						  data-ng-click="statusschooldata('INACTIVE',item.id)" tooltip-placement="top"
+						  tooltip="InActive" style="cursor: pointer;line-height:1.0 !important;">{{item.status}}</button>
+						  
+						  <button type="button" class="btn btn-danger btn-sm" data-ng-if="item.status == 'InActive'"
+						  data-ng-click="statusschooldata('ACTIVE',item.id)" tooltip-placement="top"
+						  tooltip="Active" style="cursor: pointer;line-height:1.0 !important;">{{item.status}}</button>
+						  
+						  </td>
+						  <td>
+						 <!-- <span><a tooltip-placement="top" tooltip="View" ui-sref="viewstudent({studentId:item.id})" style="cursor: pointer;">
+						  <i class="creatli"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></i></a></span>-->
+						  <span><a tooltip-placement="top" tooltip="Edit" ui-sref="editschool({schoolId:item.id})" style="cursor: pointer;">
+						  <i class="creatli"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></i></a></span>
+						  <!--<span><a data-ng-click="deleteschooldata(item.id)" tooltip-placement="top" tooltip="Delete" style="cursor: pointer;">
+						  <i class="creatli"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></i></a></span>-->
+						  <span><a tooltip-placement="top" tooltip="View" ui-sref="viewschool({schoolId:item.id})" style="cursor: pointer;">
+						  <i class="creatli"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></i></a></span>
+						  <span><a tooltip-placement="top" tooltip="Upload" ui-sref="fileuploadmgmt({schoolId:item.id})" style="cursor: pointer;">
+						  <i class="creatli fa fa-upload" aria-hidden="true"></i></a></span>
+						  </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			 <div class="col-md-12 nopadmar" data-ng-if="items.length == 0">				
+				<table class="table table-striped table-bordered table-hover generaltable minotaur-table" style="display: table;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'studentmgmt.sno' | translate}}</th>
+							<th>{{'schooladmin.schoolname' | translate}}</th>
+							<th>{{'schooladmin.schoolcode' | translate}}</th>
+							<th>{{'schooladmin.mobileno' | translate}}</th>
+							<th>{{'schooladmin.emailid' | translate}}</th>
+							<th>{{'studentmgmt.country' | translate}}</th>
+							<th>{{'common.status' | translate}}</th>
+							<th class="text-center"><span class="text-center" style="margin-right:28px !important">{{'studentmgmt.action' | translate}}</span></th>		        
+						</tr>
+					</thead>
+					<tbody>
+						<tr >
+						 <td colspan="9" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	<!--<div class="panel-body" data-ng-show="studentgridviewdetails">
+			<div class="col-md-12 nopadmar" data-ng-show="hidesearchdetgrid">
+				<button href="#reviewgrid" data-toggle="collapse" class="btn btn-sm btn-primary" data-ng-click="backtosearchgrid()">
+				{{'studentmgmt.showsearch' | translate}}<i class="glyphicon glyphicon-search"
+				style="font-size:11px !important;left:5px !important"></i></button>
+				<button class="btn btn-sm btn-primary pull-right" ui-sref="addstudent">{{'studentmgmt.addstudent' | translate}}
+				<i class="glyphicon glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+					
+			</div>
+			 <div id="reviewgrid" class="col-md-12 collapse nopadmar">
+				<div class="col-md-12" style="padding:0px 0px 8px 0px">
+					<button href="#reviewgrid" data-toggle="collapse" class="btn btn-sm btn-danger" data-ng-click="returnsearchgrid()">
+					<i class="glyphicon glyphicon-arrow-left" style="font-size:11px !important;right:5px !important"></i>{{'studentmgmt.hidesearch' | translate}}
+					</button>
+					<button class="btn btn-sm btn-primary pull-right" ui-sref="addstudent">{{'studentmgmt.addstudent' | translate}}
+				<i class="glyphicon glyphicon-plus" style="font-size:11px !important;left:5px !important"></i></button>
+				</div>
+				<div class="col-md-12" style="border:2px solid #eee;padding:10px">
+					<div class="col-md-12 nopadmar">
+						<ul class="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom profile-tabs"
+						style="border-bottom:1px solid #6ec06e;">
+							<li role="presentation"  class="active">
+								<a class="font-14-800" href="#searchone" style="border-radius:unset !important" aria-controls="timeline" role="tab" data-toggle="tab">
+								{{'studentmgmt.idandname' | translate}}
+								</a> 
+							</li>
+							<li role="presentation"  class="">
+								<a class="font-14-800" style="border-radius:unset !important"  href="#searchtwo" aria-controls="timeline" role="tab" data-toggle="tab">
+								{{'studentmgmt.classandbatch' | translate}}
+								</a> 
+							</li>
+							<li role="presentation"  class="">
+								<a class="font-14-800" style="border-radius:unset !important"  href="#searchthree" aria-controls="timeline" role="tab" data-toggle="tab">
+								{{'studentmgmt.personaldetails' | translate}}
+								</a> 
+							</li>
+							<li class="pull-right">
+								<button class="btn btn-sm btn-danger" data-ng-click="clearallsearchvalue()">{{'studentmgmt.clearall' | translate}}</button>
+							</li>
+						</ul>
+					</div>
+					<div class="tab-content col-md-12" style="padding:10px">
+						<div role="tabpanel" class="tab-pane active" id="searchone">
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.studentid' | translate}}</label>
+								<input placeholder="Student ID" name="StudentID" class="form-control" data-ng-model="searchgrid.studentId" type="text">
+							</div>
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.studentname' | translate}}</label>
+								<input placeholder="Student Name" name="studentname" class="form-control" data-ng-model="searchgrid.studentName" type="text">
+							</div>
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.surname' | translate}}</label>
+								<input placeholder="Student Surname/Initial" name="Surname" class="form-control" data-ng-model="searchgrid.surName" type="text">
+							</div>
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.admissionno' | translate}}</label>
+								<input placeholder="Student Admission No" name="AdmissionID" class="form-control" data-ng-model="searchgrid.AdmissionID" type="text">
+							</div>
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.fileno' | translate}}</label>
+								<input placeholder="Student File No" name="FileNo" class="form-control" data-ng-model="searchgrid.FileNo" type="text">
+							</div>
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.admissiondte' | translate}}</label>
+								
+								<div layout-gt-xs="row">
+									<div flex-gt-xs>
+									  <md-datepicker ng-model="searchgrid.admissionNumber" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+									</div>
+								</div>	
+							</div>							
+						</div>
+						<div role="tabpanel" class="tab-pane" id="searchtwo">
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.medium' | translate}}</label>
+								<select class="form-control" name="Medium " data-ng-model="searchgrid.medium" 
+								ng-options="medium.key as medium.value for medium in mediums">
+									<option value="">{{'studentmgmt.selectmedium' | translate}}</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.class' | translate}}</label>
+								<select class="form-control" name="Class" data-ng-model="searchgrid.className" 
+								ng-options="class.key as class.value for class in classs">
+									<option value="">{{'studentmgmt.selectclass' | translate}}</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.course' | translate}}</label>
+								<select class="form-control" name="Course" data-ng-model="searchgrid.course" 
+								ng-options="course.key as course.value for course in courses">
+									<option value="">{{'studentmgmt.selectcourse' | translate}}</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label class="control-label">{{'studentmgmt.firstlanguage' | translate}}</label>
+								<select class="form-control" name="firstlanguage" data-ng-model="searchgrid.firstLanguage" 
+								ng-options="language.key as language.value for language in languages">
+									<option value="">{{'studentmgmt.selectufstlag' | translate}}</option>
+								</select>
+							</div>	
+							<div class="col-md-6">
+								<label class="control-label">{{'studentmgmt.secondlanguage' | translate}}</label>
+								<select class="form-control" name="secondLanguage" data-ng-model="searchgrid.secondLanguage" 
+								ng-options="language.key as language.value for language in languages">
+									<option value="">{{'studentmgmt.selectusndlag' | translate}}</option>
+								</select>
+							</div>
+						</div>
+						<div role="tabpanel nopadmar" class="tab-pane" id="searchthree">
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.gender' | translate}}</label>
+								<select class="form-control" name="Gender" data-ng-model="searchgrid.gender" 
+								ng-options="gender.key as gender.value for gender in genders">
+									<option value="">{{'studentmgmt.selectugender' | translate}}</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								 <div layout-gt-xs="row">
+									<div flex-gt-xs>
+									  <md-datepicker ng-model="searchgrid.dob" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+									</div>
+								</div>	
+							</div>
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.bloodgroup' | translate}}</label>
+								<select class="form-control" name="bloodgroup" data-ng-model="searchgrid.bloodGroup" 
+								ng-options="bloodgroup.key as bloodgroup.value for bloodgroup in bloodgroups">
+									<option value="">{{'studentmgmt.selectubg' | translate}}</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.religion' | translate}}</label>
+								<select class="form-control" name="Religion" data-ng-model="searchgrid.religion" 
+								ng-options="religion.key as religion.value for religion in religions">
+									<option value="">{{'studentmgmt.selectreligion' | translate}}</option>
+							</select>
+							</div>
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.nationality' | translate}}</label>
+								<select class="form-control" name="Nationality" data-ng-model="searchgrid.nationality" 
+								ng-options="nationality.key as nationality.value for nationality in nationalities" >
+									<option value="">{{'studentmgmt.selectunat' | translate}}</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<label class="control-label">{{'studentmgmt.mothertongue' | translate}}</label>
+								<select class="form-control" name="motherTongue" data-ng-model="searchgrid.mohterTongue" 
+								ng-options="motherTongue.key as motherTongue.value for motherTongue in motherTongues">
+									<option value="">{{'studentmgmt.selectumothertongue' | translate}}</option>
+								</select>
+							</div>	
+						</div>
+					</div>
+				</div>
+			 </div>
+			 <div class="col-md-12 nopadmar">
+				<hr style="border:1px solid #ececec !important">
+			 </div>
+			<div class="col-md-12 nopadmar" data-ng-if="items.length > 0">
+				<div class="col-md-3" style="padding:0px 8px 0px 0px" ng-repeat="item in items | filter:searchgrid">
+					<div class="tile tile-simple">
+						<section class="tile-widget p-10" style="background-color:#ececec">
+							<div class="thumb thumb-xl pull-right" style="width:145px !important">
+								<div><strong><a style="cursor: pointer;" ui-sref="viewstudent({studentId:item.id})">{{item.studentName}}</a></strong></div>
+								<div class="m-0">{{item.genderName}} / {{item.dob}}</div>
+								<div class="m-0">{{item.admissionNumber}}/ {{item.admissionDate}}</div>
+								<div class="m-0">{{item.className}} - {{item.sectionName}} <span data-ng-if="item.course">/ {{item.courseName}}</span></div>
+							</div>
+							<div class="thumb thumb-xl" style="width:90px !important">
+								 <span style="position:relative;z-index:1020;top:2px;left:70px"><a tooltip-placement="bottom" tooltip="edit" ui-sref="editstudent({studentId:item.id})" style="cursor: pointer;">
+									<i class="creatli" style="font-size:11px !important;width:18px !important;height:16px !important;line-height:16px !important"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></i></a>
+									</span>
+								<img style="position:relative;top:-19px;margin-bottom:-15px" src="assets/images/ici-avatar.jpg" alt="">			
+							</div>
+							
+						</section>
+					</div>		
+				</div>
+			</div>
+		
+			<div class="col-md-12 nopadmar" data-ng-if="items.length == 0">				
+				<table  class="table table-striped table-bordered table-hover generaltable minotaur-table" style="display: table;" role="grid"> 
+					<thead class="tabletbody">
+						<tr>
+							<th>{{'studentmgmt.sno' | translate}}</th>
+							<th>{{'studentmgmt.studentids' | translate}}</th>
+							<th>{{'studentmgmt.studentnames' | translate}}</th>
+							<th>{{'studentmgmt.parentnames' | translate}}</th>
+							<th>{{'studentmgmt.parentmobiles' | translate}}</th>
+							<th>{{'studentmgmt.dateOfbirth' | translate}}</th>
+							<th>{{'studentmgmt.admissionids' | translate}}</th>
+							<th>{{'studentmgmt.admissiondate' | translate}}</th>
+							<th class="text-center"><span class="text-center" style="margin-right:28px !important">{{'studentmgmt.action' | translate}}</span></th>		        
+						</tr>
+					</thead>
+					<tbody>
+						<tr >
+						 <td colspan="9" class="change_colr">{{'studentmgmt.datanotfound' | translate}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>-->
+	</div>
+</div>
+<script type="text/ng-template" id="deleteschool.html">
+		<div class="modal-header">
+			<h4 class="modal-title popupfontst">{{'schooladmin.studentdeletedet' | translate}}</h4>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-sm btn-danger" ng-click="deleteschoolok()">{{'common.ok' | translate}}</button>
+			<button class="btn btn-sm btn-primary" ng-click="okcancel()">{{'common.cancel' | translate}}</button>	
+		</div>
+</script>
+
+<script type="text/ng-template" id="activeorinactiveschool.html">
+		<div class="modal-header">
+			<h4 class="modal-title popupfontst">Are you sure want to {{activeorinactive}} this School details</h4>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-sm btn-danger" ng-click="activeschoolok()">{{'common.ok' | translate}}</button>
+			<button class="btn btn-sm btn-primary" ng-click="activeokcancel()">{{'common.cancel' | translate}}</button>	
+		</div>
+</script>

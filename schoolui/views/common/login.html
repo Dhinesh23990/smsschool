@@ -1,0 +1,56 @@
+<div class="contentlogin">
+	<video id="bgvid" playsinline autoplay muted loop>
+		<!--<source src="assets/images/Schoolsdiary.webm" type="video/webm">-->
+		<source src="assets/images/Schoolsdiary.mp4" type="video/mp4">
+	</video>
+	<div class="page page-core page-forgotpass ng-scope" login>
+		<div class="branding text-center">
+			<img src="assets/images/logo-login.png" style="height:120px;width:120px" alt="">
+			<h2 class="brand" style="margin:1px 0px 20px 0px !important;color:#9c9c9c !important"><strong>
+			{{'login.label.schoolsdiary'|translate}}
+			</strong></h2>
+		</div>
+		<div class="login-modal">	
+			<h4 class="brand" style="margin-bottom:20px !important;color:#ffffff!important"><strong>{{'login.label.logintoac'|translate}} </strong></h4>
+			<form class="ng-pristine ng-valid" name="loginForm">
+				<div class="form-group with-addon" ><span class="input-addon"><i class="glyphicon glyphicon-user"></i></span>
+					<input placeholder="Username" name="username" class="form-control" data-ng-model="j_username" type="text" 
+					validator="required" required-error-message="Username is required"
+										valid-method="watch">
+				</div>
+				<div class="form-group with-addon" style="margin-top:5px"><span class="input-addon"><i class="fa fa-key" style="font-weight:800 !important;font-size:16px !important"></i></span>
+					<input placeholder="Password" name="password" class="form-control" data-ng-model="j_password" type="password" validator="required" required-error-message="Password is required" valid-method="watch">
+				</div>
+				<div  data-ng-show="wrongusers">
+					<span  class="col-md-12 text-center" style="color:red">
+					{{'login.errorMsg.incorrectusernae'|translate}}</span>
+				</div>
+				<button type="submit" validation-submit="loginForm" class="btn btn-lg btn-block btn-rounded-40" data-ng-click="loginmockuser()">{{'login.label.login'|translate}}</button>
+				<label class="minotaur-checkbox inline-block pull-right" style="color:#ffffff!important;margin-top:10px">{{'login.label.rememberMe'|translate}}
+					<input type="checkbox">
+					<div class="input-indicator"></div>
+				</label>
+				<div style="margin-top:45px">
+				<div style="font-size:15px !important;color:#ffffff!important">{{'login.label.forgotPassword'|translate}}</div>
+				<div style="font-size:13px !important;color:#ffffff!important">{{'login.label.clickworries'|translate}}
+				<a ui-sref="forgetpsw" style="font-size:bold !important;font-size:14px !important">{{'login.label.here'|translate}}</a> {{'login.label.resetpsw'|translate}} </div>
+				</div>
+			</form>
+		</div>
+		<div class="footer-inner text-center" style="position:relative;text-align:center;color:white;padding-top:8px;">
+		{{'login.label.fottercontent'|translate}}
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="inactiveschool.html">
+	<div class="modal-header">
+		<h4 class="modal-title popupfontst">{{'login.label.uschoolinactive'|translate}}</h4>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-sm btn-danger" ng-click="activeschoolok()">{{'common.ok' | translate}}</button>
+	</div>
+</script>
+
+
+

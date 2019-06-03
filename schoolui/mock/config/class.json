@@ -1,0 +1,21 @@
+{
+	"Status" : "Ok",
+	"ClassView" : 
+	[
+		{
+		
+		"Class":"PreKG"
+		
+		},
+		{
+		
+		"Class":"LKG"
+		
+		},
+		{
+		
+		"Class":"UKG"
+		
+		}
+	]
+}
