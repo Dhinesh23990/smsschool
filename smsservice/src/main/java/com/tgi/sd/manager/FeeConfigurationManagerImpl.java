@@ -488,7 +488,7 @@ public class FeeConfigurationManagerImpl implements FeeConfigurationManager{
 		
 		
 		Map<String,Double> studentPaidAmountMap = new HashMap<String,Double>();
-		List<PaymentModeVO> paymentModes = paymentModeDAO.getAllPaymentModeStatusBySchoolId(schoolId, studentVO.getId(), studentVO.getBatchId());
+		List<PaymentModeVO> paymentModes = paymentModeDAO.getAllPaymentModeStatusBySchoolId(schoolId, studentVO.getId(), batchId);
 		if(paymentModes != null){
 			for(PaymentModeVO paymentvo :paymentModes) {
 				studentPaidAmountMap.put(paymentvo.getTerm(), Double.parseDouble(StringUtils.defaultString(paymentvo.getPending(),"0")));

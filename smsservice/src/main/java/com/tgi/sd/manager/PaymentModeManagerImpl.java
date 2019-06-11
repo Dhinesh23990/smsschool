@@ -79,9 +79,9 @@ public class PaymentModeManagerImpl implements PaymentModeManager{
 		//paymentModeVO.setStatus(SMSConstants.FILEUPLOAD_CREATED);
 		PaymentModeVO paymentMode = paymentModeDAO.getPaymentModeByName(paymentModeVO.getStudentId(),paymentModeVO.getBatchId(), null,
 				paymentModeVO.getSchoolId());
-		if(paymentMode != null) {
+	/*	if(paymentMode != null) {
 			throw new SMSBusinessException(SMSConstants.PAY_NAME_ALREADY_EXISTS);
-		}
+		}*/
 		paymentModeVO.setPaymentDate(com.tgi.sd.common.Utility.convertSystemTimeToGMTDate(DateUtil.getCurrentDateTime()));
 		paymentModeVO = paymentModeDAO.savePaymentMode(paymentModeVO);
 		
@@ -159,6 +159,7 @@ public class PaymentModeManagerImpl implements PaymentModeManager{
 			logger.debug("updatePaymentMode Starts");
 		}
 		
+		paymentModeVO.setPaymentDate(com.tgi.sd.common.Utility.convertSystemTimeToGMTDate(DateUtil.getCurrentDateTime()));
 		PaymentModeVO paymentMode = paymentModeDAO.getPaymentModeByName(paymentModeVO.getStudentId(),paymentModeVO.getBatchId(), paymentModeVO.getId(),
 				paymentModeVO.getSchoolId());		
 		paymentModeVO = paymentModeDAO.updatePaymentMode(paymentModeVO);

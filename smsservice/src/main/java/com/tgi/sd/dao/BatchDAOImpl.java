@@ -54,7 +54,7 @@ public class BatchDAOImpl extends GenericHibernateDAOImpl<BatchVO, String>  impl
 			Session session = getSession();
 			StringBuilder queryBuilder = new StringBuilder();
 			
-			queryBuilder.append("from BatchVO WHERE batchName =:BatchName and batchCode =: batchCode");
+			queryBuilder.append("from BatchVO WHERE batchName=:BatchName and batchCode=:batchCode");
 			queryBuilder.append(" and schoolId = :schoolId");
 			if(id != null)
 				queryBuilder.append(" and Id = :Id");
@@ -62,6 +62,7 @@ public class BatchDAOImpl extends GenericHibernateDAOImpl<BatchVO, String>  impl
 			Query query = session.createQuery(queryBuilder.toString());
 			
 			query.setParameter("BatchName", BatchName);
+			query.setParameter("batchCode", batchCode);
 			query.setParameter("schoolId", schoolId);
 			if(id != null)
 				query.setParameter("Id", id);

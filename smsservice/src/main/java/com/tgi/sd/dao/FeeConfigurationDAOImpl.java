@@ -379,18 +379,22 @@ public class FeeConfigurationDAOImpl extends GenericHibernateDAOImpl<FeeConfigur
 			StringBuilder queryBuilder = new StringBuilder();
 			
 			queryBuilder.append("from FeeConfigurationVO WHERE schoolId = :schoolId");
-			if(StringUtils.isNotBlank(classId))
-				queryBuilder.append(" or classId = :classId");
-			if(StringUtils.isNotBlank(batchId))
-				queryBuilder.append(" or batchId = :batchId");
+			if(StringUtils.isNotBlank(classId)) {
+				queryBuilder.append(" and classId = :classId");
+			}
+			if(StringUtils.isNotBlank(batchId)) {
+				queryBuilder.append(" and batchId = :batchId");
+			}
 			
 			Query query = session.createQuery(queryBuilder.toString());
 			
 			query.setParameter("schoolId", schoolId);
-			if(StringUtils.isNotBlank(classId))
+			if(StringUtils.isNotBlank(classId)) {
 				query.setParameter("classId", classId);
-			if(StringUtils.isNotBlank(batchId))
+			}
+			if(StringUtils.isNotBlank(batchId)) {
 				query.setParameter("batchId", batchId);
+			}
 			
 			feeConfigurationLst = query.list();
 
