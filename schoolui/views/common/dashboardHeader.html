@@ -71,13 +71,13 @@
 			</li>-->
 			<li>
 				<!-- Single button -->
-				<div uib-dropdown="" class="dropdown">
-					<button data-ng-show="defaultimage" id="profile" type="button" class="btn no-bg dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+				<div uib-dropdown>
+					<button data-ng-if="defaultimage" id="profile" type="button" class="btn no-bg dropdown-toggle" uib-dropdown-toggle aria-haspopup="true" aria-expanded="false">
 					<img src="assets/images/default_school.png" class="img-responsive img-circle hidden-xs" alt=""></button>
-					<button style="width:65px !important" data-ng-show="schoolimage" id="profile" type="button" class="btn no-bg dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+					<button style="width:65px !important" data-ng-if="schoolimage" id="profile" type="button" class="btn no-bg dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="true">
 					<img style="height:30px;width:100%" src="{{image_id}}" class="img-responsive img-circle hidden-xs" alt=""></button>
-					<span class="navcursor text-sm uppercase-bold" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false" style="top:7px;color:#fff;font-weight:bold;position:relative">{{profiledata.userName}}
-					</span>
+					<!-- <span class="navcursor text-sm uppercase-bold" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false" style="top:7px;color:#fff;font-weight:bold;position:relative">{{profiledata.userName}}
+					</span> -->
 					<div class="dropdown-menu with-arrow littleFadeInRight profile" uib-dropdown-menu="" role="menu" aria-labelledby="profile">
 						<div class="media">
 							<div class="media-left" data-ng-show="defaultimage"><img class="media-object img-circle" src="assets/images/default_school.png"  alt=""></div>
@@ -85,11 +85,11 @@
 							<img class="media-object img-circle" style="height:80px !important" src="{{image_id}}" alt=""></div>
 							<div class="media-body">
 								<h4 class="text-sm uppercase-bold">{{profiledata.userName}}</h4><a>{{profiledata.contactEmailId}}</a>
-								<!--<ul class="list-unstyled">
+								<ul class="list-unstyled">
 									<li><a> Member since May 2017</a></li>
 								    <li><a href="javascript:;"><i class="fa fa-check"></i> Tasks</a></li>
 									<li><a href="javascript:;"><i class="fa fa-cog"></i> Settings</a></li>
-								</ul>-->
+								</ul>
 							</div>
 						</div>
 						<div class="footer">

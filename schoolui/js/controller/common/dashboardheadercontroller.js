@@ -45,13 +45,17 @@ $scope.schoolheaderdata = function(){
 		method:'GET'
 		}).success(function(result){
              var schoolimagedata = result.responseVO.SchoolVO;
+             
+             $scope.profiledata = schoolimagedata;
+             
 			if(schoolimagedata.schoolImage.length > 0){
-				$scope.defaultimage =false;
+				$scope.defaultimage =false;				
 				$scope.schoolimage = true;
 				$scope.image_id = appCon.globalCon.serviceBaseURL+"fileUpload/downloadFile?id="+schoolimagedata.schoolImage[0].blobId+"&directory="+schoolimagedata.schoolImage[0].directory+ "&authType=token&authorization="+$scope.login_usertoken;
-				$scope.profiledata = schoolimagedata;
+				
 			}else{
 				$scope.defaultimage =true;
+				console.log($scope.defaultimage,"DefaultImage")
 				$scope.schoolimage =false;
 			}
 		});

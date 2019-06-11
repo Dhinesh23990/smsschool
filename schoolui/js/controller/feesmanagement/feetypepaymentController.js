@@ -323,6 +323,15 @@ $scope.getFeeConfigTerm = function(batchId,studentId,term,studentName){
 
 
 $scope.searchstudentdet = function(batchId,className,sectionName,studentname){
+
+	if(className == undefined){
+		className = '';
+	}
+	
+	if(sectionName == undefined){
+		sectionName = '';
+	}
+	
 	
 	$scope.feeTypeVO = [];
 
@@ -330,6 +339,9 @@ $scope.searchstudentdet = function(batchId,className,sectionName,studentname){
 	className = className == undefined ? null:className;
 	sectionName = sectionName == undefined ? null:	sectionName; 
 	studentname = studentname == undefined ? null:	studentname; 
+	
+	
+	console.log(className,sectionName,"sectionName")
 	
 	$scope.showstudent_det = false;
 	$scope.errorstudentdet = false;
@@ -348,7 +360,8 @@ $scope.searchstudentdet = function(batchId,className,sectionName,studentname){
 				$scope.itmes=feeconfigurationvo;
 				$scope.totalAmount = feeconfigurationvo.amount;*/
 				$scope.studentfeeconfiguration =result.responseVO;											
-				$scope.items=result.responseVO.FeeConfigurationVO;			
+				$scope.items=result.responseVO.FeeConfigurationVO;	
+				console.log(result.responseVO.FeeConfigurationVO,"Test")
 				for(var key in $scope.items){					
 					$scope.feeTypeVO.push($scope.items[key].feeTypes);					
 				}										
