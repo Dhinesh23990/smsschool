@@ -87,7 +87,7 @@ public class BatchConfigurationDAOImpl extends GenericHibernateDAOImpl<BatchConf
 			Session session = getSession();
 			StringBuilder queryBuilder = new StringBuilder();
 		
-			queryBuilder.append("from BatchConfigurationVO WHERE batchId = :batchId");
+			queryBuilder.append("from BatchConfigurationVO where batchId = :batchId");
 			queryBuilder.append(" and mediumId = :mediumId");
 			queryBuilder.append(" and sectionId = :sectionId");
 			queryBuilder.append(" and classId = :classId");
@@ -98,11 +98,12 @@ public class BatchConfigurationDAOImpl extends GenericHibernateDAOImpl<BatchConf
 			
 			Query query = session.createQuery(queryBuilder.toString());
 			
-			query.setParameter("batchId", batchConfiguration.getBatchId());
-			query.setParameter("mediumId", batchConfiguration.getMediumId());
-			query.setParameter("sectionId", batchConfiguration.getSectionId());
-			query.setParameter("classId", batchConfiguration.getClassId());
-			query.setParameter("classTeacherId", batchConfiguration.getClassTeacherId());
+			query.setParameter("batchId", batchConfigurationVO.getBatchId());
+			query.setParameter("mediumId", batchConfigurationVO.getMediumId());
+			query.setParameter("sectionId", batchConfigurationVO.getSectionId());
+			query.setParameter("classId", batchConfigurationVO.getClassId());
+			query.setParameter("classTeacherId", batchConfigurationVO.getClassTeacherId());
+			query.setParameter("schoolId", batchConfigurationVO.getSchoolId());
 			
 			if(id != null)
 				query.setParameter("Id", id);

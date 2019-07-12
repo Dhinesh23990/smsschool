@@ -22,7 +22,7 @@ public class SMSBaseService {
 		
 		try {
 			Gson gson = new Gson();
-			gson = new GsonBuilder().setDateFormat("MM/dd/yyyy HH:mm:ss").create();
+			gson = new GsonBuilder().setDateFormat("MM/dd/yyyy").create();
 
 			JSONObject ja = new JSONObject(requestString);
 			JSONArray array = ja.getJSONObject("SMSRequest").names();

@@ -49,8 +49,7 @@ public class SectionDAOImpl extends GenericHibernateDAOImpl<SectionVO, String> i
 			Session session = getSession();
 			StringBuilder queryBuilder = new StringBuilder();
 			
-			queryBuilder.append("from SectionVO WHERE sectionName = :sectionName");
-			queryBuilder.append(" and SectionVO  schoolId = :schoolId");
+			queryBuilder.append("from SectionVO WHERE sectionName = :sectionName and schoolId = :schoolId");
 			if(id != null)
 				queryBuilder.append(" and Id = :Id");
 			

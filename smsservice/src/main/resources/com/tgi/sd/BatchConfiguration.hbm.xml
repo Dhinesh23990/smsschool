@@ -24,7 +24,7 @@
 		<property name="classId" type="java.lang.String">
 			<column name="classId" />
 		</property>
-		<property name="classTeacherId" type="java.util.Date">
+		<property name="classTeacherId" type="java.lang.String">
 			<column name="classTeacherId" />
 		</property>
 		<property name="subjectSetId" type="java.lang.String">

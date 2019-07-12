@@ -44,7 +44,7 @@ public class ClassDAOImpl extends GenericHibernateDAOImpl<ClassVO, String> imple
 			StringBuilder queryBuilder = new StringBuilder();
 			
 			queryBuilder.append("from ClassVO WHERE className = :className");
-			queryBuilder.append(" and ClassVO  schoolId = :schoolId");
+			queryBuilder.append(" and schoolId = :schoolId");
 			if(id != null)
 				queryBuilder.append(" and Id = :Id");
 			
