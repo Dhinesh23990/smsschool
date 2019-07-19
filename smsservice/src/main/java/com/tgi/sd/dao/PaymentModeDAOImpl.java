@@ -185,7 +185,7 @@ public class PaymentModeDAOImpl extends GenericHibernateDAOImpl<PaymentModeVO, S
 	}
 
 	@Override
-	public List<PaymentModeVO> getAllPaymentModeBySchoolId(String schoolId, int pageNo, int pageSize) throws SMSBusinessException {
+	public List<PaymentModeVO> getAllPaymentModeBySchoolId(String schoolId) throws SMSBusinessException {
 
 		List<PaymentModeVO> paymentModeLst = null;
 		
@@ -200,11 +200,6 @@ public class PaymentModeDAOImpl extends GenericHibernateDAOImpl<PaymentModeVO, S
 
 			Query query = session.createQuery(queryBuilder.toString());
 			query.setParameter("schId", schoolId);
-
-			if (pageNo > 0) {
-				query.setFirstResult((pageNo - 1) * pageSize);
-				query.setMaxResults(pageSize);
-			}
 
 			paymentModeLst = query.list();
 

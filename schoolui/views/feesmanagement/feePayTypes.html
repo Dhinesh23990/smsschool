@@ -1,230 +1,319 @@
-<div class="page page-dashboard pull-to-header ng-scope"  data-ng-init="getFeesPaymentDetails()" data-ng-controller="feetypepaymentController">
-	 <div class="row headcontent">
-		<h3 class="schooldiary_h2">{{'feeconfiguration.paymode' | translate}}</h3>
+<div class="page page-dashboard pull-to-header ng-scope"
+	data-ng-init="getFeesPaymentDetails()"
+	data-ng-controller="feetypepaymentController">
+	<div class="row headcontent">
+		<h3 class="schooldiary_h2">{{'feeconfiguration.paymode' |
+			translate}}</h3>
 	</div>
-	<div class="row" style="margin-left:-10px !important;">
-		<div class="col-md-12" style="padding-right:5px !important">
+	<div class="row" style="margin-left: -10px !important;">
+		<div class="col-md-12" style="padding-right: 5px !important">
 			<ol class="breadcrumb" id="setresyults">
-			<li data-ng-click="gotodashboard()"> <i class="glyphicon glyphicon-home" style="font-size:11px !important; right:5px !important"><a>{{'configclass.Home' | translate}}</a></i></li>
-			<li class="active">{{'feeconfiguration.FeeTypes' | translate}}</li>
+				<li data-ng-click="gotodashboard()"><i
+					class="glyphicon glyphicon-home"
+					style="font-size: 11px !important; right: 5px !important"><a>{{'configclass.Home'
+							| translate}}</a></i></li>
+				<li class="active">{{'feeconfiguration.FeeTypes' | translate}}</li>
 			</ol>
 		</div>
 	</div>
-	<div  class="panel panel-default" style="margin-left:6px;" >
+	<div class="panel panel-default" style="margin-left: 6px;">
 		<div class="panel-heading">
-			<i class="fa fa-bars"></i>
-			<span class="labelstcampaign" style="font-size:14px;font-weight:bold">{{'feeconfiguration.Feepayment' | translate}}</span>
-			
+			<i class="fa fa-bars"></i> <span class="labelstcampaign"
+				style="font-size: 14px; font-weight: bold">{{'feeconfiguration.Feepayment'
+				| translate}}</span>
+
 		</div>
-			<div class="panel-body">
-			
-			
-				<div class="col-md-12 nopadmar">		
-					
-											<div class="col-md-12 nopadmar">
-							<table class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid">
-								<thead class="tablebody"  style="background-color:#337ab7;color:#fff">
-							      <tr>									
-									<th class="text-center" style="width:140px !important"> {{'feeconfiguration.StudentName' | translate}} </th>
-									<th class="text-center" style="width:140px !important"> {{'feeconfiguration.Class' | translate}} </th>
-									<th class="text-center" style="width:140px !important"> {{'feeconfiguration.Section' | translate}} </th>
-									<th class="text-center"  style="width:100px !important"> {{'feeconfiguration.year' | translate}} </th>
-									<th class="text-center"  style="width:100px !important"> {{'feeconfiguration.term' | translate}} </th>
-									<th class="text-center" style="width:140px !important"> {{'feeconfiguration.totalAmount' | translate}} </th>
-									<th class="text-center" style="width:140px !important"> {{'feeconfiguration.pendingAmount' | translate}} </th>
-								 </tr>
+		<div class="panel-body">
+
+
+			<div class="col-md-12 nopadmar">
+
+				<div class="col-md-12 nopadmar">
+					<table
+						class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable"
+						style="display: table; width: 961px;" role="grid">
+						<thead class="tablebody"
+							style="background-color: #337ab7; color: #fff">
+							<tr>
+								<th class="text-center" style="width: 140px !important">
+									{{'feeconfiguration.StudentName' | translate}}</th>
+								<th class="text-center" style="width: 140px !important">
+									{{'feeconfiguration.Class' | translate}}</th>
+								<th class="text-center" style="width: 140px !important">
+									{{'feeconfiguration.Section' | translate}}</th>
+								<th class="text-center" style="width: 100px !important">
+									{{'feeconfiguration.year' | translate}}</th>
+								<th class="text-center" style="width: 100px !important">
+									{{'feeconfiguration.term' | translate}}</th>
+								<th class="text-center" style="width: 140px !important">
+									{{'feeconfiguration.totalAmount' | translate}}</th>
+								<th class="text-center" style="width: 140px !important">
+									{{'feeconfiguration.pendingAmount' | translate}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-center">{{students.studentName}}</td>
+								<td class="text-center">{{students.className}}</td>
+								<td class="text-center">{{students.sectionName}}</td>
+								<td class="text-center">{{students.batchName}}</td>
+								<td class="text-center">{{feesConfigDetails.term}}</td>
+								<td class="text-center">{{feesConfigDetails.amount}}</td>
+								<td class="text-center"
+									data-ng-if="feesConfigDetails.pendingAmount > 0">{{feesConfigDetails.pendingAmount}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<form name="payment" style="margin-bottom: 10px;" novalidate>
+					<div class="col-md-12"
+						style="border-top: 1px solid #b3b6b7; border-bottom: 1px solid #b3b6b7; padding: 7px; margin-bottom: 10px">
+						<div class="col-md-2"></div>
+						<div class="nopadmar" style="font-size: 14px; font-weight: bold">
+							<div class="col-md-4">Fees Type</div>
+
+							<div class="col-md-4">
+								<div class="col-md-10 nopadmar text-center">Payable Amount
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2"></div>
+					</div>
+
+					<div class="col-md-12 nopadmar"
+						data-ng-show="feesConfigDetails.status === 'Open'"
+						data-ng-repeat="feetype in feesConfigDetails.feeTypes">
+
+						<div class="col-md-2"></div>
+						<div class="col-md-4" style="font-weight: 600">
+							<span style="padding-left: 5px"><input type="checkbox"
+								data-ng-model="feetype.checked"
+								data-ng-change="findtotalamount(feesConfigDetails.feeTypes)"></span>
+							{{feetype.feeType}}
+						</div>
+
+						<div class="col-md-4">
+							<div class="col-md-8 nopadmar">
+								<input type="text" class="form-control pull-left"
+									data-ng-model="feetype.amount"
+									data-ng-disabled="!feetype.checked" placeholder="Amount"
+									data-ng-change="findtotalamount(feesConfigDetails.feeTypes)">
+							</div>
+						</div>
+
+					</div>
+
+
+					<div class="col-md-12 nopadmar"
+						data-ng-show="feesConfigDetails.status != 'Open'"
+						data-ng-repeat="feetype in feesConfigDetails.feeTypes">
+						<div class="col-md-2"></div>
+						<div class="col-md-4" style="font-weight: 600">
+							<span style="padding-left: 5px"><input type="checkbox"
+								data-ng-model="feetype.checked"
+								data-ng-change="findtotalamount(feesConfigDetails.feeTypes)"></span>
+							{{feetype.feeType}}
+						</div>
+
+						<div class="col-md-4">
+							<div class="col-md-8 nopadmar">
+								<input type="text" class="form-control pull-left"
+									data-ng-model="feetype.amount"
+									data-ng-disabled="!feetype.checked" placeholder="Amount"
+									data-ng-change="findtotalamount(feesConfigDetails.feeTypes)">
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-md-12 nopadmar">
+						<div class=" col-md-2"></div>
+						<div class=" col-md-4" data-ng-init="feePay.paymentType='cash'">
+
+							<div>
+								<label class="checkbox minotaur-radio">{{'feeconfiguration.cash'
+									| translate}} <input type="radio"
+									data-ng-model="feePay.paymentType" value="cash">
+									<div class="input-indicator"></div>
+								</label>
+							</div>
+							<div>
+								<label class="checkbox minotaur-radio">{{'feeconfiguration.check'
+									| translate}} <input type="radio"
+									data-ng-model="feePay.paymentType" value="check">
+									<div class="input-indicator"></div>
+								</label>
+							</div>
+							<div>
+								<label class="checkbox minotaur-radio">{{'feeconfiguration.dd'
+									| translate}} <input type="radio"
+									data-ng-model="feePay.paymentType" value="dd">
+									<div class="input-indicator"></div>
+								</label>
+							</div>
+						</div>
+
+
+						<!--  Update Fees-->
+
+						<div class="col-md-4"
+							data-ng-show="feesConfigDetails.status != 'Open'">
+							<div data-ng-show="feePay.paymentType === 'cash'">
+								<div>
+									<input type="text" class="form-control"
+										data-ng-model="totalAmount" data-ng-disabled="true"
+										placeholder="Total Amount">
+								</div>
+							</div>
+							<div data-ng-show="feePay.paymentType === 'check'">
+								<div>
+									<input type="text" name="cbank" class="form-control"
+										placeholder="Bank Name" data-ng-model="feePay.cbank"
+										validator="required" valid-method="watch"
+										required-error-message="Bank Name Required">
+								</div>
+								<div>
+									<input type="text" name="check" class="form-control"
+										placeholder="Cheque Number" data-ng-model="feePay.chequeNO"
+										validator="required" valid-method="watch"
+										required-error-message="Check number required">
+								</div>
+								<div>
+									<input type="text" class="form-control"
+										data-ng-model="totalAmount" data-ng-disabled="true"
+										placeholder="Total Amount">
+								</div>
+							</div>
+							<div data-ng-show="feePay.paymentType === 'dd'">
+								<div>
+									<input type="text" name="dbank" class="form-control"
+										data-ng-model="feePay.dbank" placeholder="Bank Name"
+										validator="required" valid-method="watch"
+										required-error-message="Bank Name Required">
+								</div>
+								<div>
+									<input type="text" name="dd" class="form-control"
+										placeholder="DD number" data-ng-model="feePay.ddNO"
+										validator="required" valid-method="watch"
+										required-error-message="Demmand Draft(dd) number required">
+								</div>
+								<div>
+									<input type="text" class="form-control"
+										data-ng-model="totalAmount" data-ng-disabled="true"
+										placeholder="Total Amount">
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4"
+							data-ng-show="feesConfigDetails.status === 'Open'">
+							<div data-ng-show="feePay.paymentType === 'cash'">
+								<div>
+									<input type="text" class="form-control"
+										data-ng-model="totalAmount" data-ng-disabled="true"
+										placeholder="Total Amount">
+								</div>
+							</div>
+							<div data-ng-show="feePay.paymentType === 'check'">
+								<div>
+									<input type="text" name="cbank" class="form-control"
+										placeholder="Bank Name" data-ng-model="feePay.cbank"
+										validator="required" valid-method="watch"
+										required-error-message="Bank Name Required">
+								</div>
+								<div>
+									<input type="text" name="check" class="form-control"
+										placeholder="Cheque Number" data-ng-model="feePay.chequeNO"
+										validator="required" valid-method="watch"
+										required-error-message="Check number required">
+								</div>
+								<div>
+									<input type="text" class="form-control"
+										data-ng-model="totalAmount" data-ng-disabled="true"
+										placeholder="Total Amount">
+								</div>
+							</div>
+							<div data-ng-show="feePay.paymentType === 'dd'">
+								<div>
+									<input type="text" name="dbank" class="form-control"
+										data-ng-model="feePay.dbank" placeholder="Bank Name"
+										validator="required" valid-method="watch"
+										required-error-message="Bank Name Required">
+								</div>
+								<div>
+									<input type="text" name="dd" class="form-control"
+										placeholder="DD number" data-ng-model="feePay.ddNO"
+										validator="required" valid-method="watch"
+										required-error-message="Demmand Draft(dd) number required">
+								</div>
+								<div>
+									<input type="text" class="form-control"
+										data-ng-model="totalAmount" data-ng-disabled="true"
+										placeholder="Total Amount">
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+					<div class="col-md-12" style="margin-bottom: 10px">
+						<div class="col-md-3"></div>
+						<div class="col-md-6 text-center">
+							<!-- <button class="btn btn-primary" data-ng-clicl="functionname(cashfee||(checkfee,checkfee1)||(ddfee,ddfee1))" >sas</button> -->
+							<button class="btn  btn-primary"
+								data-ng-if="feesConfigDetails.status != 'Open'"
+								data-ng-click="feesPayUpdate(students,feesConfigDetails,feePay)" type="submit">{{'feeconfiguration.PayFee
+								'| translate}}</button>
+							<button class="btn  btn-primary"
+								data-ng-if="feesConfigDetails.status === 'Open'"
+								data-ng-click="feesPay(students,feesConfigDetails,feePay)"
+								type="submit">{{'feeconfiguration.PayFee '|
+								translate}}</button>
+							<button class="btn  btn-danger" data-ui-sref="feespaymenttype">{{'feeconfiguration.Cancel
+								'| translate}}</button>
+						</div>
+					</div>
+
+				</form>
+
+				<div data-ng-if="paymentModeVO != null">
+					<div style="font-size: 14px; font-weight: bold">Payment Mode
+						Type</div>
+					<div>
+						<div class="col-md-12 nopadmar">
+							<table
+								class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable"
+								style="display: table; width: 961px;" role="grid">
+								<thead class="tablebody"
+									style="background-color: #337ab7; color: #fff">
+									<tr>
+										<th class="text-center" style="width: 140px !important">
+											{{'feeconfiguration.feesType' | translate}}</th>
+										<th class="text-center" style="width: 140px !important">
+											Paid Amount</th>
+										<th class="text-center" style="width: 140px !important">
+											{{'feeconfiguration.pendingAmount' | translate}}</th>
+										<th class="text-center" style="width: 140px !important">
+											{{'feeconfiguration.paidDate' | translate}}</th>
+									</tr>
 								</thead>
-								<tbody>
-								    <tr>								    
-								    <td class="text-center">{{students.studentName}} </td>
-								    <td class="text-center">{{students.className}} </td>
-								    <td class="text-center">{{students.sectionName}} </td>
-								    <td class="text-center">{{students.batchName}}</td>
-								    <td class="text-center">{{feesConfigDetails.term}}</td>
-								    <td class="text-center">{{feesConfigDetails.amount}}</td>
-								     <td class="text-center" data-ng-if="feesConfigDetails.pendingAmount > 0">{{feesConfigDetails.pendingAmount}}</td>									 
-								    </tr>
+								<tbody
+									data-ng-repeat="paymentFeeTypes in paymentModeVO.feeTypes">
+									<tr>
+										<td class="text-center">{{paymentFeeTypes.feeType}}</td>
+										<td class="text-center">{{paymentFeeTypes.amount}}</td>
+										<td class="text-center">{{paymentFeeTypes.balanceAmount}}</td>
+										<td class="text-center">{{paymentModeVO.paymentDate |
+											date:"MM/dd/yyyy 'at' h:mma"}}</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
-															
-						
-					<form  name="payment" style="margin-bottom:10px;" novalidate >						 
-					         <div class="col-md-12" style="border-top:1px solid #b3b6b7 ;border-bottom:1px solid #b3b6b7;padding:7px;margin-bottom:10px">
-								<div class="col-md-2"></div>
-								<div class="nopadmar" style="font-size:14px;font-weight:bold">
-									<div class="col-md-4">
-									Fees Type
-									</div>
-									
-									<div class="col-md-4">
-										<div class="col-md-10 nopadmar text-center">
-										  Payable Amount
-										</div>
-									</div>
-								</div>
-								<div class="col-md-2"></div>
-							</div>
-							
-							
-							<div class="col-md-12 nopadmar" data-ng-show="feesConfigDetails.status === 'Open'" data-ng-repeat="feetype in feesConfigDetails.feeTypes">													
-							
-							<div class="col-md-2"></div>
-								<div class="col-md-4" style="font-weight:600">
-									<span style="padding-left:5px"><input type="checkbox" data-ng-model="feetype.checked"></span> {{feetype.feeType}}
-								</div>
 
-								<div class="col-md-4">
-									<div class="col-md-8 nopadmar">
-										<input type="text" class="form-control pull-left" data-ng-model="feetype.amount" data-ng-disabled="!feetype.checked" placeholder="Amount" data-ng-change="findtotalamount(feesConfigDetails.feeTypes)">
-									</div>		
-								</div>
-										
-							</div>
-							
-							<div class="col-md-12 nopadmar" data-ng-show="feesConfigDetails.status != 'Open'" data-ng-repeat="feetype in paymentModeVO.feeTypes">													
-							
-							<div class="col-md-2"></div>
-								<div class="col-md-4" style="font-weight:600">
-									<span style="padding-left:5px"><input type="checkbox" data-ng-model="feetype.checked"></span> {{feetype.feeType}}
-								</div>
-
-								<div class="col-md-4">
-									<div class="col-md-8 nopadmar">
-										<input type="text" class="form-control pull-left" data-ng-model="feetype.balanceAmount" data-ng-disabled="!feetype.checked" placeholder="Amount" data-ng-change="findtotalamount(paymentModeVO.feeTypes)">
-									</div>		
-								</div>
-										
-							</div>
-
-						<div class="col-md-12 nopadmar" >
-						<div class=" col-md-2"></div>						   
-						<div class=" col-md-4" data-ng-init="feePay.paymentType='cash'" >
-							
-							<div>
-								<label class="checkbox minotaur-radio" >{{'feeconfiguration.cash' | translate}}
-									<input type="radio" data-ng-model="feePay.paymentType" value="cash">
-										<div class="input-indicator"></div>
-								</label>
-							</div>
-							<div>
-								<label class="checkbox minotaur-radio">{{'feeconfiguration.check' | translate}}
-									<input type="radio" data-ng-model="feePay.paymentType"  value="check">
-										<div class="input-indicator"></div>
-								</label>
-							</div>
-							<div>
-								<label class="checkbox minotaur-radio">{{'feeconfiguration.dd' | translate}}
-									<input type="radio" data-ng-model="feePay.paymentType"  value="dd">
-										<div class="input-indicator"></div>
-								</label>
-							</div>
-							</div>	
-							
-							
-							<!--  Update Fees-->
-										
-						<div class="col-md-4" data-ng-show="feesConfigDetails.status != 'Open'" >
-						<div data-ng-show="feePay.paymentType === 'cash'">					
-							<div>
-								<input type="text" class="form-control" data-ng-model="totalAmount" data-ng-disabled="true" placeholder="Total Amount">
-							</div>
-						</div>
-						<div data-ng-show="feePay.paymentType === 'check'">
-							<div>
-								<input type="text" name="cbank" class="form-control" placeholder="Bank Name" data-ng-model="feePay.cbank" validator="required" valid-method="watch" required-error-message="Bank Name Required">
-							</div>
-							<div  >
-								<input type="text" name="check" class="form-control"  placeholder="Cheque Number" data-ng-model="feePay.chequeNO" validator="required" valid-method="watch" required-error-message="Check number required" >
-							</div>
-							<div >
-								<input type="text" class="form-control" data-ng-model="totalAmount" data-ng-disabled="true" placeholder="Total Amount">
-							</div>
-						</div>
-						<div data-ng-show="feePay.paymentType === 'dd'">
-							<div>
-								<input type="text" name="dbank" class="form-control" data-ng-model="feePay.dbank" placeholder="Bank Name" validator="required" valid-method="watch" required-error-message="Bank Name Required">
-							</div>
-							<div >
-								<input type="text" name="dd" class="form-control" placeholder="DD number" data-ng-model="feePay.ddNO" validator="required" valid-method="watch" required-error-message="Demmand Draft(dd) number required">
-							</div>
-							<div>
-								<input type="text" class="form-control" data-ng-model="totalAmount" data-ng-disabled="true" placeholder="Total Amount">
-							</div>
-						</div>					
-						</div>
-						
-												<div class="col-md-4" data-ng-show="feesConfigDetails.status === 'Open'" >
-						<div data-ng-show="feePay.paymentType === 'cash'"  >
-							<div>
-								<input type="text" class="form-control" data-ng-model="totalAmount" data-ng-disabled="true" placeholder="Total Amount">
-							</div>
-						</div>
-						<div data-ng-show="feePay.paymentType === 'check'">
-							<div>
-								<input type="text" name="cbank" class="form-control" placeholder="Bank Name" data-ng-model="feePay.cbank" validator="required" valid-method="watch" required-error-message="Bank Name Required">
-							</div>
-							<div  >
-								<input type="text" name="check" class="form-control"  placeholder="Cheque Number" data-ng-model="feePay.chequeNO" validator="required" valid-method="watch" required-error-message="Check number required" >
-							</div>
-							<div >
-								<input type="text" class="form-control" data-ng-model="totalAmount" data-ng-disabled="true" placeholder="Total Amount">
-							</div>
-						</div>
-						<div data-ng-show="feePay.paymentType === 'dd'">
-							<div>
-								<input type="text" name="dbank" class="form-control" data-ng-model="feePay.dbank" placeholder="Bank Name" validator="required" valid-method="watch" required-error-message="Bank Name Required">
-							</div>
-							<div >
-								<input type="text" name="dd" class="form-control" placeholder="DD number" data-ng-model="feePay.ddNO" validator="required" valid-method="watch" required-error-message="Demmand Draft(dd) number required">
-							</div>
-							<div>
-								<input type="text" class="form-control" data-ng-model="totalAmount" data-ng-disabled="true" placeholder="Total Amount">
-							</div>
-						</div>					
-						</div>
-						
-						
-						</div>s
-						<div class="col-md-12" style="margin-bottom:10px">
-							<div class="col-md-3"></div>
-								<div class="col-md-6 text-center">
-									<!-- <button class="btn btn-primary" data-ng-clicl="functionname(cashfee||(checkfee,checkfee1)||(ddfee,ddfee1))" >sas</button> -->
-									<button class="btn  btn-primary" data-ng-if = "feesConfigDetails.status != 'Open'" data-ng-click="feesPayUpdate()" type="submit" >{{'feeconfiguration.PayFee '| translate}}</button>
-									<button class="btn  btn-primary" data-ng-if = "feesConfigDetails.status === 'Open'" data-ng-click="feesPay(students,feesConfigDetails,feePay)" type="submit" >{{'feeconfiguration.PayFee '| translate}}</button>
-									<button class="btn  btn-danger" data-ui-sref="feespaymenttype">{{'feeconfiguration.Cancel '| translate}}</button>
-								</div>
-						</div>
-						
-					</form>
-				
-				    <div  data-ng-if="paymentModeVO != null">
-					<div style="font-size:14px;font-weight:bold">Payment Mode Type</div>
-					   <div>
-					     				<div class="col-md-12 nopadmar">
-							<table class="table table-striped table-bordered table-hover generaltable minotaur-table no-footer dataTable" style="display: table; width: 961px;" role="grid">
-								<thead class="tablebody"  style="background-color:#337ab7;color:#fff">
-							      <tr>																																									
-									<th class="text-center" style="width:140px !important"> {{'feeconfiguration.feesType' | translate}} </th>
-									<th class="text-center" style="width:140px !important"> Paid Amount </th>
-									<th class="text-center" style="width:140px !important"> {{'feeconfiguration.pendingAmount' | translate}} </th>
-									<th class="text-center" style="width:140px !important"> {{'feeconfiguration.paidDate' | translate}} </th>
-								 </tr>
-								</thead>
-								<tbody data-ng-repeat="paymentFeeTypes in paymentModeVO.feeTypes">
-								    <tr>								    								    
-								    <td class="text-center">{{paymentFeeTypes.feeType}}</td>
-								     <td class="text-center">{{paymentFeeTypes.amount}}</td>
-								      <td class="text-center">{{paymentFeeTypes.balanceAmount}}</td>
-								     <td class="text-center" >{{paymentModeVO.paymentDate | date:"MM/dd/yyyy 'at' h:mma"}}</td>									 
-								    </tr>
-								</tbody>
-							</table>
-						</div>
-					  
-					  </div>
 					</div>
 				</div>
 			</div>
+		</div>
 	</div>
 </div>

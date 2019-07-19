@@ -80,7 +80,7 @@ public class PaymentModeService extends SMSBaseService {
 	}
 	
 	@RequestMapping(value="/getAllPaymentModeBySchoolId",method=RequestMethod.GET)
-	public ResponseVO getAllPaymentModeBySchoolId(@RequestParam String shoolId, int pageIndex, int pageSize)
+	public ResponseVO getAllPaymentModeBySchoolId(@RequestParam String shoolId)
 	{
 		if(logger.isDebugEnabled()) {
 			logger.debug("getAllPaymentModeBySchoolId Starts");
@@ -89,7 +89,7 @@ public class PaymentModeService extends SMSBaseService {
 	    try{
 	    	
 	    	Map<String, Object> responseObjectsMap = new HashMap<String, Object>();
-	    	responseObjectsMap = paymentModeManager.getAllPaymentModeBySchoolId(shoolId, pageIndex, pageSize);
+	    	responseObjectsMap = paymentModeManager.getAllPaymentModeBySchoolId(shoolId);
 	    	responseVO = createSuccessResponseVO(responseObjectsMap);
 	    }catch(Throwable e){
 			logger.error(e.getMessage());

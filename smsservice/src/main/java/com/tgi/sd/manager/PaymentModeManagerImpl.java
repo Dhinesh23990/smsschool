@@ -107,7 +107,7 @@ public class PaymentModeManagerImpl implements PaymentModeManager{
 	}
 	
 	@Override
-	public Map<String, Object> getAllPaymentModeBySchoolId(String schoolId, int pageIndex,int pageSize) throws SMSBusinessException {
+	public Map<String, Object> getAllPaymentModeBySchoolId(String schoolId) throws SMSBusinessException {
 		
 		if (logger.isDebugEnabled()) {
 			logger.debug("getAllPaymentModeBySchoolId Starts");
@@ -115,22 +115,20 @@ public class PaymentModeManagerImpl implements PaymentModeManager{
 		
     	Map<String, Object> responseObjectsMap = new HashMap<String, Object>();
     	long totalRecords = paymentModeDAO.getPaymentModeCountBySchoolId(schoolId);
-		List<PaymentModeVO> paymentModeVOs = paymentModeDAO.getAllPaymentModeBySchoolId(schoolId, pageIndex, pageSize);
-		List<FeeConfigurationVO> feeConfigurationVOs = feeConfigurationDAO.getAllFeeConfigurationBySchoolId(schoolId, pageIndex, pageSize);
-		
-		List<List<FeeConfigurationTypeVO>> feesType= feeConfigurationVOs.stream().map(h -> h.getFeeTypes()).collect(Collectors.toList());
+		List<PaymentModeVO> paymentModeVOs = paymentModeDAO.getAllPaymentModeBySchoolId(schoolId);
+		StudentVO student = new StudentVO();
+	
 		
 		for(PaymentModeVO paymentModeVO : paymentModeVOs){
-			StudentVO student =  studentDAO.getStudent(paymentModeVO.getStudentId());
+			student =  studentDAO.getStudent(paymentModeVO.getStudentId());
 			ClassVO classVO =  classDAO.getClassById(student.getClassId());
 			SectionVO sectionVO = sectionDAO.getSectionById(student.getSection());
 			student.setClassName(classVO.getClassName());
 			student.setSectionName(sectionVO.getSectionName());
 			paymentModeVO.setStudentVO(student);
-		}
+		}			  	
 		responseObjectsMap.put(SMSConstants.TOTAL_RECORDS, totalRecords);
     	responseObjectsMap.put("paymentModeVOs", paymentModeVOs);
-    	responseObjectsMap.put("feesType", feesType);
 		
     	if (logger.isDebugEnabled()) {
 			logger.debug("getAllPaymentModeBySchoolId Ends");

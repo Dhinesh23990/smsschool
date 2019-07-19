@@ -12,8 +12,7 @@ public interface PaymentModeDAO {
 
 	PaymentModeVO getPaymentModeById(String paymentModeId) throws SMSBusinessException;
 
-	List<PaymentModeVO> getAllPaymentModeBySchoolId(String schoolId, int pageIndex,
-			int pageSize) throws SMSBusinessException;
+	List<PaymentModeVO> getAllPaymentModeBySchoolId(String schoolId) throws SMSBusinessException;
 
 	long getPaymentModeCountBySchoolId(String schoolId) throws SMSBusinessException;
 

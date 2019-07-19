@@ -17,8 +17,7 @@ public interface PaymentModeManager {
 
 	long getPaymentModeCountBySchoolId(String shoolId) throws SMSBusinessException;
 
-	Map<String, Object> getAllPaymentModeBySchoolId(String shoolId, int pageIndex,
-			int pageSize) throws SMSBusinessException;
+	Map<String, Object> getAllPaymentModeBySchoolId(String shoolId) throws SMSBusinessException;
 
 	Map<String, Object> getAllPaymentModeByStudentIdClassIdBatchId(String schoolId, String studentId, String classId, String batchId,
 			int pageIndex, int pageSize)throws SMSBusinessException;
