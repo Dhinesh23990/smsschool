@@ -439,15 +439,23 @@ angular.module(appCon.appName).controller('feetypepaymentController',
 							value.paymentdate = $filter('date')(value.createdDate, "dd-MM-yyyy");
 						})
 						$scope.paymentModeType = angular.copy(itemsdata);
-
-						angular.forEach($scope.feesConfigDetails.feeTypes,function(value,key){
-							angular.forEach(itemsdata,function(value1,key1){
-								if(value.feeType === value1.feeTypes[key1].feeType){					
-									value.amount = value.amount - value1.feeTypes[key1].amount				   
-								};
-							});
-
-						});	
+	
+						
+						for(var key in $scope.feesConfigDetails.feeTypes){		
+							  for (var key1 in itemsdata) {
+								  var balanceAmount = 0;
+								  var totalPaidAmt 
+								  for(var key3 in itemsdata[key1].feeTypes){									  									 									
+									  if(itemsdata[key1].feeTypes[key3].feeType === $scope.feesConfigDetails.feeTypes[key].feeType){
+										  balanceAmount = balanceAmount + itemsdata[key1].feeTypes[key3].amount;
+										  console.log($scope.feesConfigDetails.feeTypes[key].amount,  balanceAmount)
+										  totalPaidAmt = $scope.feesConfigDetails.feeTypes[key].amount - balanceAmount;
+										  										  
+								  }
+								  }							  
+							  }
+							  $scope.feesConfigDetails.feeTypes[key].amount = totalPaidAmt; 
+						}
 
 					}
 
@@ -608,15 +616,14 @@ angular.module(appCon.appName).controller('feetypepaymentController',
 
 				angular.forEach(savePaymentFeeType,function(value, key){											
 					if(value.checked){
-						feesTypes.push({
+						updatePayment.feeTypes.push({
 							feeTypeId :value.recId,
 							feeType : value.feeType,
 							amount :value.amount,
 							paymentModeId:updatePayment.id
 						});	
 					}
-				});
-				updatePayment.feeTypes = feesTypes;
+				});				
 				
 				console.log(updatePayment,"updatePayment")
 
